@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Mail, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart } from 'lucide-react';
 import { portfolioProjects } from '../data/projects';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
@@ -137,9 +139,32 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('Todo');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  
+  const [projects, setProjects] = useState<any[]>(portfolioProjects);
+  const [siteSettings, setSiteSettings] = useState<any>({});
+
+  useEffect(() => {
+    const fetchFirebaseData = async () => {
+      try {
+        const projectsSnapshot = await getDocs(collection(db, 'projects'));
+        if (!projectsSnapshot.empty) {
+          const fetchedProjects = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setProjects(fetchedProjects);
+        }
+
+        const settingsDoc = await getDoc(doc(db, 'settings', 'site'));
+        if (settingsDoc.exists()) {
+          setSiteSettings(settingsDoc.data());
+        }
+      } catch (error) {
+        console.error("Error fetching data from Firebase:", error);
+      }
+    };
+    fetchFirebaseData();
+  }, []);
 
   const projectCategories = ['Todo', 'E-commerce', 'Web Corporativa', 'SEO & CRO', 'Desarrollo a medida', 'Marketing Digital'];
-  const filteredProjects = activeFilter === 'Todo' ? portfolioProjects : portfolioProjects.filter(p => p.category === activeFilter);
+  const filteredProjects = activeFilter === 'Todo' ? projects : projects.filter(p => p.category === activeFilter);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -162,7 +187,7 @@ export default function Home() {
       
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-transparent text-white'}`}>
             
             {/* Logo */}
@@ -216,7 +241,7 @@ export default function Home() {
       </nav>
 
       {/* 1. HERO SECTION */}
-      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-36 md:pb-16 lg:pt-40 lg:pb-20 px-4 sm:px-6 flex flex-col items-center justify-center overflow-hidden bg-brand-blue text-white z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-2xl">
+      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-brand-blue text-white z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-2xl">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-20 bg-blueprint"></div>
         
@@ -235,7 +260,7 @@ export default function Home() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.5rem] leading-[0.9] md:leading-[0.85] tracking-tighter uppercase mb-6"
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] leading-[0.9] md:leading-[0.85] tracking-tighter uppercase mb-6"
           >
             Hacemos webs <br/>
             <span className="text-brand-lime italic">que venden</span>
@@ -245,7 +270,7 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="text-lg md:text-xl lg:text-2xl max-w-2xl text-white/80 font-medium mb-8"
+            className="text-lg md:text-xl max-w-2xl text-white/80 font-medium mb-8"
           >
             Elevamos marcas a través de diseño estratégico y desarrollo de alto rendimiento.
           </motion.p>
@@ -256,10 +281,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <a href="#pricing" className="bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-bold text-base md:text-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
+            <a href="#pricing" className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
               Pedir presupuesto <ArrowRight size={20} />
             </a>
-            <a href="#proyectos" className="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+            <a href="#proyectos" className="bg-transparent border-2 border-white/30 text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
               Ver proyectos
             </a>
           </motion.div>
@@ -268,7 +293,7 @@ export default function Home() {
 
       {/* 1.5 INTEGRATIONS / OPTIMIZED FOR */}
       <section className="pt-16 pb-10 bg-zinc-50 overflow-hidden z-10 relative -mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Tecnologías y plataformas con las que trabajamos</p>
         </div>
         
@@ -342,21 +367,21 @@ export default function Home() {
       </section>
 
       {/* 2. SERVICIOS PRINCIPALES (SEO) */}
-      <section id="servicios" className="py-20 md:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="servicios" className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12 mb-12 md:mb-16">
           <div className="md:w-3/5">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
               Nuestros Servicios
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight leading-[1.1]">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.1]">
               Diseño premium <br className="hidden lg:block" />
               <span className="text-brand-blue">optimizado para SEO</span>
             </h2>
           </div>
           <div className="md:w-2/5 md:pb-2">
-            <p className="text-gray-600 text-lg leading-relaxed border-l-2 border-brand-blue/20 pl-6">
+            <p className="text-gray-600 text-base lg:text-lg leading-relaxed border-l-2 border-brand-blue/20 pl-6">
               No hacemos webs de plantilla. Creamos activos digitales a medida diseñados para dominar Google y convertir visitas en clientes reales.
             </p>
           </div>
@@ -364,18 +389,18 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Card 1 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
-            <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+            <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 break-words">
                 Diseño Web Valencia
               </h3>
               <img 
                 src="/lapiz.svg" 
                 alt="Diseño Web Valencia" 
-                className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
             </div>
-            <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
+            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Diseñamos tu página web paso a paso, a medida y centrada en crear una experiencia de usuario (UX/UI) única que represente tu marca.
             </p>
             <a href="/servicio-diseno-web-valencia" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
@@ -384,18 +409,18 @@ export default function Home() {
           </div>
 
           {/* Card 2 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-lime/50 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
-            <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-lime/50 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+            <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 break-words">
                 Tienda Online
               </h3>
               <img 
                 src="/Teclado.svg" 
                 alt="Tienda Online" 
-                className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
             </div>
-            <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
+            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Desarrollamos e-commerce escalables. Gestiona tu tienda online fácilmente: catálogo, envíos y pagos.
             </p>
             <a href="/servicio-tiendas-online" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
@@ -404,18 +429,18 @@ export default function Home() {
           </div>
 
           {/* Card 3 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-300 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
-            <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-300 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+            <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 break-words">
                 Posicionamiento SEO
               </h3>
               <img 
                 src="/seo.svg" 
                 alt="Posicionamiento SEO" 
-                className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
             </div>
-            <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
+            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Utilizamos las técnicas SEO más avanzadas para mejorar la visibilidad de tu web en Google y superar a tu competencia.
             </p>
             <a href="/servicio-posicionamiento-seo" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
@@ -427,10 +452,10 @@ export default function Home() {
       </section>
 
       {/* 3. PROYECTOS */}
-      <section id="proyectos" className="py-20 md:py-32 bg-zinc-50">
-        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-12">
+      <section id="proyectos" className="py-16 md:py-20 bg-zinc-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header & Filtros */}
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end border-b border-gray-200 pb-6 sm:pb-8 mb-8 sm:mb-12 gap-6 sm:gap-8">
+          <div className="flex flex-col border-b border-gray-200 pb-6 sm:pb-8 mb-12 md:mb-16 gap-6 sm:gap-8">
             <div className="max-w-2xl shrink-0">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
@@ -442,26 +467,28 @@ export default function Home() {
             </div>
           
           {/* Filtros */}
-          <div className="flex flex-nowrap overflow-x-auto gap-4 sm:gap-5 xl:gap-6 w-full lg:w-auto pb-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="flex flex-nowrap overflow-x-auto gap-2 sm:gap-3 w-[calc(100%+2rem)] -mx-4 px-4 sm:w-[calc(100%+3rem)] sm:-mx-6 sm:px-6 lg:w-[calc(100%+4rem)] lg:-mx-8 lg:px-8 py-2 min-w-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {projectCategories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300 pb-1 border-b-2 ${
+                className={`shrink-0 whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300 px-5 py-2.5 rounded-full ${
                   activeFilter === cat 
-                    ? 'border-brand-dark text-brand-dark' 
-                    : 'border-transparent text-gray-400 hover:text-gray-800'
+                    ? 'bg-brand-dark text-white shadow-md' 
+                    : 'bg-gray-200/60 text-gray-600 hover:bg-gray-200 hover:text-brand-dark'
                 }`}
               >
                 {cat}
               </button>
             ))}
+            {/* Spacer invisible para asegurar que el último botón no se corte al hacer scroll */}
+            <div className="w-4 shrink-0"></div>
           </div>
         </div>
 
         {/* Grid de Proyectos */}
-        <div className="px-0 sm:px-8 md:px-12 lg:px-20 xl:px-32">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
+        <div className="mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
             <AnimatePresence mode="wait">
               {filteredProjects.slice(0, 6).map((project) => (
                 <motion.div 
@@ -478,6 +505,7 @@ export default function Home() {
                         alt={project.title} 
                         className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
                         referrerPolicy="no-referrer"
+                        onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
                     </div>
@@ -508,9 +536,9 @@ export default function Home() {
       </section>
 
       {/* 4. PROCESO DE TRABAJO */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
             <div className="md:w-3/5">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
@@ -578,8 +606,8 @@ export default function Home() {
       </section>
 
       {/* 6. OPINIONES */}
-      <section id="opiniones" className="py-20 md:py-32 bg-zinc-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-12">
+      <section id="opiniones" className="py-16 md:py-20 bg-zinc-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
             <div className="md:w-2/3">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
@@ -652,141 +680,138 @@ export default function Home() {
       </section>
 
       {/* 7. PRICING */}
-      <section id="pricing" className="py-20 md:py-32 bg-white px-4 sm:px-6">
-        <div className="max-w-[85rem] mx-auto bg-brand-dark rounded-[3rem] md:rounded-[4rem] p-8 sm:p-12 md:p-16 lg:p-20 text-white relative overflow-hidden shadow-2xl">
+      <section id="pricing" className="py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto bg-brand-dark rounded-[2.5rem] md:rounded-[3.5rem] p-8 sm:p-10 md:p-12 text-white relative overflow-hidden shadow-2xl">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-lime/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
           
-          <div className="relative z-10 mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="relative z-10 mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-8 border border-white/10 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></span>
-                Inversión transparente
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight mb-6 leading-[1.1] text-balance">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight mb-4 leading-[1.1] text-balance">
                 Precios <span className="text-brand-lime">claros</span>, sin sorpresas.
               </h2>
             </div>
-            <div className="md:w-1/3 md:pb-4">
-              <p className="text-lg sm:text-xl text-white/70 font-light border-l-2 border-brand-lime/30 pl-6">
+            <div className="md:w-1/3 md:pb-2">
+              <p className="text-base sm:text-lg text-white/70 font-light border-l-2 border-brand-lime/30 pl-6">
                 Tarifas transparentes para proyectos de alto rendimiento. Selecciona el plan que mejor se adapte a la fase de tu negocio.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 relative z-10">
             {/* Tier 1 */}
-            <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
-              <h3 className="font-display text-2xl uppercase mb-3 text-white">Landing Page</h3>
-              <p className="text-white/50 text-sm mb-8 min-h-[60px] leading-relaxed">Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.</p>
-              <div className="mb-8">
-                <span className="text-xs text-white/40 uppercase tracking-widest block mb-2 font-bold">Inversión desde</span>
+            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
+              <h3 className="font-display text-xl uppercase mb-2 text-white">Landing Page</h3>
+              <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.</p>
+              <div className="mb-6">
+                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-display tracking-tight">630</span>
-                  <span className="text-2xl text-white/50">€</span>
+                  <span className="text-4xl font-display tracking-tight">630</span>
+                  <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-8"></div>
-              <ul className="space-y-4 mb-10 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-6"></div>
+              <ul className="space-y-3 mb-8 flex-grow">
                 {['Página única optimizada', 'Copywriting persuasivo', 'Diseño responsive', 'Formulario de captación'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-                    <Check size={18} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
+                  <li key={i} className="flex items-start gap-3 text-xs text-white/80">
+                    <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-4 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-sm group-hover:border-white/40">
+              <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
                 Solicitar
               </button>
             </div>
 
             {/* Tier 2 */}
-            <div className="bg-gradient-to-b from-white/10 to-white/5 border border-brand-lime/40 rounded-[2.5rem] p-8 transform xl:-translate-y-4 shadow-[0_0_40px_rgba(204,255,0,0.1)] flex flex-col relative backdrop-blur-sm hover:border-brand-lime/60 transition-all duration-300">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-lime text-brand-dark text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full shadow-lg whitespace-nowrap">
+            <div className="bg-gradient-to-b from-white/10 to-white/5 border border-brand-lime/40 rounded-[2rem] p-6 transform xl:-translate-y-2 shadow-[0_0_40px_rgba(204,255,0,0.1)] flex flex-col relative backdrop-blur-sm hover:border-brand-lime/60 transition-all duration-300">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand-lime text-brand-dark text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg whitespace-nowrap">
                 Más Popular
               </div>
-              <h3 className="font-display text-2xl uppercase mb-3 text-white">Corporativa</h3>
-              <p className="text-white/60 text-sm mb-8 min-h-[60px] leading-relaxed">Para empresas que buscan autoridad, credibilidad y presencia digital sólida.</p>
-              <div className="mb-8">
-                <span className="text-xs text-brand-lime/80 uppercase tracking-widest block mb-2 font-bold">Inversión desde</span>
+              <h3 className="font-display text-xl uppercase mb-2 text-white">Corporativa</h3>
+              <p className="text-white/60 text-xs mb-6 min-h-[40px] leading-relaxed">Para empresas que buscan autoridad, credibilidad y presencia digital sólida.</p>
+              <div className="mb-6">
+                <span className="text-[10px] text-brand-lime/80 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-display tracking-tight">2.170</span>
-                  <span className="text-2xl text-white/50">€</span>
+                  <span className="text-4xl font-display tracking-tight">2.170</span>
+                  <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-8"></div>
-              <ul className="space-y-4 mb-10 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-6"></div>
+              <ul className="space-y-3 mb-8 flex-grow">
                 {['Hasta 5 páginas internas', 'Diseño UX/UI a medida', 'Optimización SEO On-page', 'Panel autogestionable', 'Integración de analítica'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/90">
-                    <Check size={18} className="text-brand-lime shrink-0 mt-0.5" /> <span>{feat}</span>
+                  <li key={i} className="flex items-start gap-3 text-xs text-white/90">
+                    <Check size={16} className="text-brand-lime shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-4 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-sm shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+              <button className="w-full py-3 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-xs shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
                 Solicitar
               </button>
             </div>
 
             {/* Tier 3 */}
-            <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
-              <h3 className="font-display text-2xl uppercase mb-3 text-white">E-commerce</h3>
-              <p className="text-white/50 text-sm mb-8 min-h-[60px] leading-relaxed">Tiendas online de alto rendimiento diseñadas para maximizar las ventas.</p>
-              <div className="mb-8">
-                <span className="text-xs text-white/40 uppercase tracking-widest block mb-2 font-bold">Inversión desde</span>
+            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
+              <h3 className="font-display text-xl uppercase mb-2 text-white">E-commerce</h3>
+              <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Tiendas online de alto rendimiento diseñadas para maximizar las ventas.</p>
+              <div className="mb-6">
+                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-display tracking-tight">3.670</span>
-                  <span className="text-2xl text-white/50">€</span>
+                  <span className="text-4xl font-display tracking-tight">3.670</span>
+                  <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-8"></div>
-              <ul className="space-y-4 mb-10 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-6"></div>
+              <ul className="space-y-3 mb-8 flex-grow">
                 {['Catálogo de productos', 'Pasarelas de pago seguras', 'Gestión de stock y envíos', 'Emails transaccionales', 'Optimización de checkout'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-                    <Check size={18} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
+                  <li key={i} className="flex items-start gap-3 text-xs text-white/80">
+                    <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-4 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-sm group-hover:border-white/40">
+              <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
                 Solicitar
               </button>
             </div>
 
             {/* Tier 4 */}
-            <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
-              <h3 className="font-display text-2xl uppercase mb-3 text-white">A medida</h3>
-              <p className="text-white/50 text-sm mb-8 min-h-[60px] leading-relaxed">Aplicaciones web complejas, portales personalizados e integraciones.</p>
-              <div className="mb-8">
-                <span className="text-xs text-white/40 uppercase tracking-widest block mb-2 font-bold">Inversión desde</span>
+            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
+              <h3 className="font-display text-xl uppercase mb-2 text-white">A medida</h3>
+              <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Aplicaciones web complejas, portales personalizados e integraciones.</p>
+              <div className="mb-6">
+                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-display tracking-tight">4.570</span>
-                  <span className="text-2xl text-white/50">€</span>
+                  <span className="text-4xl font-display tracking-tight">4.570</span>
+                  <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-8"></div>
-              <ul className="space-y-4 mb-10 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-6"></div>
+              <ul className="space-y-3 mb-8 flex-grow">
                 {['Arquitectura escalable', 'Integración de APIs externas', 'Bases de datos complejas', 'Panel de control custom', 'Soporte técnico prioritario'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-                    <Check size={18} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
+                  <li key={i} className="flex items-start gap-3 text-xs text-white/80">
+                    <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-4 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-sm group-hover:border-white/40">
+              <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
                 Consultar
               </button>
             </div>
 
           </div>
           
-          <div className="mt-16 text-center relative z-10 border-t border-white/10 pt-8">
-             <p className="text-white/40 text-xs sm:text-sm font-mono uppercase tracking-widest">* Todos los precios son sin IVA. El coste final dependerá de los requisitos exactos del proyecto.</p>
+          <div className="mt-10 text-center relative z-10 border-t border-white/10 pt-6">
+             <p className="text-white/40 text-[10px] sm:text-xs font-mono uppercase tracking-widest">* Todos los precios son sin IVA. El coste final dependerá de los requisitos exactos del proyecto.</p>
           </div>
         </div>
       </section>
 
       {/* 9. FAQ */}
-      <section className="py-20 md:py-32 bg-zinc-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16">
+      <section className="py-16 md:py-20 bg-zinc-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
               Dudas Resueltas
@@ -830,11 +855,12 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* 10. LEAD MAGNET */}
-      <section className="py-20 md:py-32 bg-white px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto bg-brand-lime rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto bg-brand-lime rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-10 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden">
           <div className="absolute -right-20 -top-20 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
           
           <div className="md:w-1/2 relative z-10">
@@ -873,9 +899,9 @@ export default function Home() {
       </section>
 
       {/* 11. BLOG */}
-      <section id="blog" className="py-20 md:py-32 bg-zinc-50 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-10 sm:mb-12 border-b-2 border-brand-dark pb-6 sm:pb-8">
+      <section id="blog" className="py-16 md:py-20 bg-zinc-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-12 md:mb-16 border-b-2 border-brand-dark pb-6 sm:pb-8">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
@@ -912,7 +938,7 @@ export default function Home() {
       </section>
 
       {/* 8. FOOTER / BIG CTA */}
-      <footer className="bg-brand-dark text-white pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 rounded-t-[2.5rem] sm:rounded-t-[3rem] md:rounded-t-[4rem] mt-8 sm:mt-12">
+      <footer className="bg-brand-dark text-white pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 rounded-t-[2.5rem] sm:rounded-t-[3rem] md:rounded-t-[4rem] mt-8 sm:mt-12">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
             <h2 className="font-display text-[18vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
