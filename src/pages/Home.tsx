@@ -5,6 +5,10 @@ import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap,
 import { portfolioProjects } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import iconoLogo from '../../public/icono-logo.png';
+import lapizIcon from '../../public/lapiz.svg';
+import tecladoIcon from '../../public/Teclado.svg';
+import seoIcon from '../../public/seo.svg';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
@@ -192,7 +196,7 @@ export default function Home() {
             
             {/* Logo */}
             <a href="#inicio" className="flex items-center gap-2 z-50">
-              <img src="/icono-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+              <img src={iconoLogo} alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </a>
             
             {/* Desktop Links */}
@@ -395,7 +399,7 @@ export default function Home() {
                 Diseño Web Valencia
               </h3>
               <img 
-                src="/lapiz.svg" 
+                src={lapizIcon} 
                 alt="Diseño Web Valencia" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
@@ -415,7 +419,7 @@ export default function Home() {
                 Tienda Online
               </h3>
               <img 
-                src="/Teclado.svg" 
+                src={tecladoIcon} 
                 alt="Tienda Online" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
@@ -435,7 +439,7 @@ export default function Home() {
                 Posicionamiento SEO
               </h3>
               <img 
-                src="/seo.svg" 
+                src={seoIcon} 
                 alt="Posicionamiento SEO" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
