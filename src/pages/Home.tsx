@@ -192,7 +192,7 @@ export default function Home() {
             
             {/* Logo */}
             <a href="#inicio" className="flex items-center gap-2 z-50">
-              <img src="/2026-02-18 (1).png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+              <img src="/icono-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </a>
             
             {/* Desktop Links */}
