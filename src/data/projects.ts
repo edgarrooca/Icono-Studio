@@ -54,25 +54,6 @@ export const portfolioProjects: Project[] = [
     link: 'https://edgarrooca.github.io/Libreria-Garcia-Lorca/'
   },
   {
-    id: 3,
-    title: 'Cuidados Paliativos',
-    subtitle: 'Diseño empático para el sector salud',
-    description: 'Creación de un entorno digital sereno, claro y profundamente accesible para el Hospital de Cuautitlán. Una plataforma diseñada específicamente desde la empatía para reducir la carga cognitiva de pacientes y familiares en momentos de extrema vulnerabilidad emocional. El proyecto abarcó desde la reestructuración completa de la arquitectura de la información hasta el diseño de la interfaz y el desarrollo frontend.',
-    category: 'UX/UI / Healthcare',
-    img: 'https://picsum.photos/seed/paliativos/800/2400',
-    clientDescription: 'El Hospital de Cuautitlán, a través de su unidad especializada, ofrece un servicio integral de cuidados paliativos enfocado en el acompañamiento, la dignidad y la calidad de vida de pacientes terminales y sus familias. Su labor trasciende lo puramente médico, adentrándose en el apoyo psicológico, emocional y espiritual durante una de las etapas más vulnerables y complejas de la vida humana.',
-    challenge: 'El reto de diseño y comunicación era doble y sumamente delicado. Por un lado, debíamos estructurar y comunicar información médica compleja, protocolos de actuación y servicios sensibles de forma cristalina, asegurando que las familias pudieran encontrar respuestas rápidas en momentos de crisis.\n\nPor otro lado, y quizás el desafío más importante, era diseñar una interfaz que transmitiera paz, contención emocional, empatía y profunda profesionalidad. Teníamos que evitar a toda costa la frialdad clínica, el alarmismo visual o la sobrecarga de datos que caracteriza a muchos portales de salud tradicionales, los cuales a menudo aumentan la ansiedad del usuario.\n\nEl diseño debía actuar como un "refugio digital". Esto implicaba tomar decisiones radicales en cuanto a la paleta cromática, la tipografía y el uso del espacio en blanco, creando un entorno que no solo informara, sino que abrazara al visitante, reduciendo su carga cognitiva y ofreciéndole un camino claro y sereno hacia la ayuda que necesita.',
-    objectives: [
-      'Establecer una jerarquía visual que priorice el acceso rápido a recursos de apoyo.',
-      'Implementar una paleta cromática y tipográfica fundamentada en la psicología del color para entornos de salud.',
-      'Garantizar la máxima accesibilidad web para usuarios de edad avanzada.'
-    ],
-    concept: 'El "Diseño como Refugio". Cada elemento de la interfaz, desde el espaciado hasta la microcopia, fue concebido para transmitir calma y seguridad. Utilizamos espacios en blanco generosos para dar respiro a la lectura, una navegación predecible que no requiere aprendizaje, y un lenguaje visual que abraza al usuario, guiándolo hacia los recursos de apoyo, guías médicas y vías de contacto de la forma más suave posible.',
-    philosophy: 'En el sector salud, el buen diseño no solo informa, sino que cuida y acompaña. Priorizamos la empatía digital y la reducción absoluta del estrés cognitivo por encima de cualquier tendencia estética. Creemos que una interfaz médica debe ser invisible, permitiendo que la humanidad del servicio y la claridad de la información sean los verdaderos protagonistas.',
-    technicalDetails: 'Desarrollo frontend robusto en React con Tailwind CSS, priorizando la semántica HTML y la compatibilidad con lectores de pantalla. Se realizó una optimización exhaustiva de la arquitectura de información y una estrategia SEO técnica avanzada para asegurar que los recursos críticos y las guías de apoyo aparezcan en los primeros resultados de búsqueda cuando las familias más lo necesitan, manteniendo tiempos de carga inferiores a 1 segundo.',
-    link: 'https://hcuautitlancuidadospaliativos.com/'
-  },
-  {
     id: 4,
     title: 'Gameshelf',
     subtitle: 'Arquitectura de datos y diseño de producto',
