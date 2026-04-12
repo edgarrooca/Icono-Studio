@@ -9,7 +9,7 @@ import lapizIcon from '../../public/lapiz.svg';
 import tecladoIcon from '../../public/Teclado.svg';
 import seoIcon from '../../public/seo.svg';
 
-const logoSrc = `${import.meta.env.BASE_URL}brand-logo.png`;
+const logoSrc = '/brand-logo.png';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
