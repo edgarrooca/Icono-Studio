@@ -5,10 +5,11 @@ import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap,
 import { portfolioProjects } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import iconoLogo from '../../public/icono-logo.png';
 import lapizIcon from '../../public/lapiz.svg';
 import tecladoIcon from '../../public/Teclado.svg';
 import seoIcon from '../../public/seo.svg';
+
+const logoSrc = `${import.meta.env.BASE_URL}brand-logo.png`;
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
@@ -196,7 +197,7 @@ export default function Home() {
             
             {/* Logo */}
             <a href="#inicio" className="flex items-center gap-2 z-50">
-              <img src={iconoLogo} alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+              <img src={logoSrc} alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </a>
             
             {/* Desktop Links */}
@@ -709,9 +710,9 @@ export default function Home() {
               <h3 className="font-display text-xl uppercase mb-2 text-white">Landing Page</h3>
               <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.</p>
               <div className="mb-6">
-                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
+                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">630</span>
+                  <span className="text-4xl font-display tracking-tight">300</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
@@ -736,9 +737,9 @@ export default function Home() {
               <h3 className="font-display text-xl uppercase mb-2 text-white">Corporativa</h3>
               <p className="text-white/60 text-xs mb-6 min-h-[40px] leading-relaxed">Para empresas que buscan autoridad, credibilidad y presencia digital sólida.</p>
               <div className="mb-6">
-                <span className="text-[10px] text-brand-lime/80 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
+                <span className="text-[10px] text-brand-lime/80 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">2.170</span>
+                  <span className="text-4xl font-display tracking-tight">800</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
@@ -760,9 +761,9 @@ export default function Home() {
               <h3 className="font-display text-xl uppercase mb-2 text-white">E-commerce</h3>
               <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Tiendas online de alto rendimiento diseñadas para maximizar las ventas.</p>
               <div className="mb-6">
-                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
+                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">3.670</span>
+                  <span className="text-4xl font-display tracking-tight">1.300</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
@@ -784,9 +785,9 @@ export default function Home() {
               <h3 className="font-display text-xl uppercase mb-2 text-white">A medida</h3>
               <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Aplicaciones web complejas, portales personalizados e integraciones.</p>
               <div className="mb-6">
-                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Inversión desde</span>
+                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">4.570</span>
+                  <span className="text-4xl font-display tracking-tight">2.000</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
@@ -799,7 +800,7 @@ export default function Home() {
                 ))}
               </ul>
               <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
-                Consultar
+                Solicitar
               </button>
             </div>
 
