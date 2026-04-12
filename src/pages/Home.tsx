@@ -403,7 +403,7 @@ export default function Home() {
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Diseñamos tu página web paso a paso, a medida y centrada en crear una experiencia de usuario (UX/UI) única que represente tu marca.
             </p>
-            <a href="/servicio-diseno-web-valencia" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
+            <a href="/#servicios" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
               Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -423,7 +423,7 @@ export default function Home() {
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Desarrollamos e-commerce escalables. Gestiona tu tienda online fácilmente: catálogo, envíos y pagos.
             </p>
-            <a href="/servicio-tiendas-online" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
+            <a href="/#servicios" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
               Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -443,7 +443,7 @@ export default function Home() {
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Utilizamos las técnicas SEO más avanzadas para mejorar la visibilidad de tu web en Google y superar a tu competencia.
             </p>
-            <a href="/servicio-posicionamiento-seo" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
+            <a href="/#servicios" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
               Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
