@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap,
 import { portfolioProjects } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import iconoLogo from '../../public/icono-logo.png';
+import iconoLogo from '../../public/icono-studio-logo.png';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
