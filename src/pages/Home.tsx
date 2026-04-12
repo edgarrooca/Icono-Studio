@@ -6,9 +6,6 @@ import { portfolioProjects } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import iconoLogo from '../../public/icono-logo.png';
-import lapizIcon from '../../public/lapiz.svg';
-import tecladoIcon from '../../public/Teclado.svg';
-import seoIcon from '../../public/seo.svg';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
@@ -399,7 +396,7 @@ export default function Home() {
                 Diseño Web Valencia
               </h3>
               <img 
-                src={lapizIcon} 
+                src="/lapiz.svg" 
                 alt="Diseño Web Valencia" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
@@ -419,7 +416,7 @@ export default function Home() {
                 Tienda Online
               </h3>
               <img 
-                src={tecladoIcon} 
+                src="/Teclado.svg" 
                 alt="Tienda Online" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
@@ -439,7 +436,7 @@ export default function Home() {
                 Posicionamiento SEO
               </h3>
               <img 
-                src={seoIcon} 
+                src="/seo.svg" 
                 alt="Posicionamiento SEO" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
               />
