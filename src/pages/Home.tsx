@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Mail, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart } from 'lucide-react';
 import { portfolioProjects } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import iconoLogo from '../../public/icono-studio-logo.png';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
@@ -176,11 +175,11 @@ export default function Home() {
   }, []);
 
   const navLinks = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Blog', href: '#blog' },
+    { name: 'Inicio', href: '/' },
+    { name: 'Proyectos', href: '/#proyectos' },
+    { name: 'Servicios', href: '/#servicios' },
+    { name: 'Pricing', href: '/#pricing' },
+    { name: 'Blog', href: '/#blog' },
   ];
 
   return (
@@ -192,8 +191,8 @@ export default function Home() {
           <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-transparent text-white'}`}>
             
             {/* Logo */}
-            <a href="#inicio" className="flex items-center gap-2 z-50">
-              <img src={iconoLogo} alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+            <a href="/" className="flex items-center gap-2 z-50">
+              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </a>
             
             {/* Desktop Links */}
@@ -499,7 +498,7 @@ export default function Home() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <Link to={`/proyecto/${project.id}`} className="group cursor-pointer flex flex-col">
+                  <RouterLink to={`/proyecto/${project.id}`} className="group cursor-pointer flex flex-col">
                     <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[3/4] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                       <img 
                         src={project.imgReto || project.img} 
@@ -527,7 +526,7 @@ export default function Home() {
                         <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
                       </div>
                     </div>
-                  </Link>
+                  </RouterLink>
                 </motion.div>
               ))}
             </AnimatePresence>
