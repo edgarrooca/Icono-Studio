@@ -5,11 +5,10 @@ import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap,
 import { portfolioProjects } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import iconoLogo from '../../public/icono-logo.png';
 import lapizIcon from '../../public/lapiz.svg';
 import tecladoIcon from '../../public/Teclado.svg';
 import seoIcon from '../../public/seo.svg';
-
-const logoSrc = '/brand-logo.png';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
@@ -197,7 +196,7 @@ export default function Home() {
             
             {/* Logo */}
             <a href="#inicio" className="flex items-center gap-2 z-50">
-              <img src={logoSrc} alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+              <img src={iconoLogo} alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </a>
             
             {/* Desktop Links */}
