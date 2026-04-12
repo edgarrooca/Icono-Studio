@@ -506,7 +506,7 @@ export default function Home() {
                   <Link to={`/proyecto/${project.id}`} className="group cursor-pointer flex flex-col">
                     <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[3/4] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                       <img 
-                        src={project.img} 
+                        src={project.imgReto || project.img} 
                         alt={project.title} 
                         className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
                         referrerPolicy="no-referrer"
