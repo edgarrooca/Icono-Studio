@@ -207,7 +207,7 @@ export default function ProjectDetail() {
                 className="flex flex-wrap items-center gap-4"
               >
                 <a 
-                  href="#" 
+                  href={project.link || '#'} 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2 text-sm"
@@ -296,7 +296,7 @@ export default function ProjectDetail() {
                   <p key={i} className="mb-4">{p}</p>
                 ))}
               </div>
-              <a href="#" className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors group px-6 py-3 rounded-full border-2 border-brand-blue hover:border-brand-dark">
+              <a href={project.link || '#'} className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors group px-6 py-3 rounded-full border-2 border-brand-blue hover:border-brand-dark">
                 Ver web de {project.title}
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
