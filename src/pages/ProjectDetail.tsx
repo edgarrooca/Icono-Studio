@@ -107,7 +107,7 @@ export default function ProjectDetail() {
             
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 z-50">
-              <img src="/2026-02-18 (1).png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </Link>
             
             {/* Desktop Links */}
@@ -546,7 +546,7 @@ export default function ProjectDetail() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 border-t border-white/20 pt-10 sm:pt-12">
             <div className="sm:col-span-2">
               <div className="flex items-center gap-2 mb-4 sm:mb-6">
-                <img src="/2026-02-18 (1).png" alt="Icono Studio Logo" className="h-10 sm:h-12 w-auto object-contain" />
+                <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-10 sm:h-12 w-auto object-contain" />
               </div>
               <p className="text-white/60 max-w-sm text-base sm:text-lg">
                 Agencia de diseño y desarrollo web en Valencia. Creando experiencias digitales que marcan la diferencia.
