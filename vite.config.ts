@@ -16,6 +16,7 @@ export default defineConfig(({mode}) => {
       },
     },
     base: '/',
+    assetsInclude: ['**/*.png', '**/*.svg', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp'],
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
@@ -24,6 +25,7 @@ export default defineConfig(({mode}) => {
     build: {
       outDir: 'dist',
       emptyOutDir: true,
+      copyPublicDir: true,
     },
   };
 });
