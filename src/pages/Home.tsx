@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Mail, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart } from 'lucide-react';
-import { portfolioProjects } from '../data/projects';
+import { portfolioProjects, Project } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -148,8 +148,20 @@ export default function Home() {
       try {
         const projectsSnapshot = await getDocs(collection(db, 'projects'));
         if (!projectsSnapshot.empty) {
-          const fetchedProjects = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setProjects(fetchedProjects);
+          const fetchedProjects = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Project));
+          
+          // Merge local and Firebase projects, avoiding duplicates by ID
+          const combined = [...portfolioProjects] as Project[];
+          fetchedProjects.forEach(fp => {
+            const index = combined.findIndex(p => p.id.toString() === fp.id.toString());
+            if (index !== -1) {
+              combined[index] = { ...combined[index], ...fp };
+            } else {
+              combined.push(fp);
+            }
+          });
+          
+          setProjects(combined);
         }
 
         const settingsDoc = await getDoc(doc(db, 'settings', 'site'));
