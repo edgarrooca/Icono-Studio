@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, ArrowUpRight, Check, ArrowRight, Menu, X, Mouse, ChevronDown, Download, Mail, Plus } from 'lucide-react';
-import { portfolioProjects } from '../data/projects';
+import { portfolioProjects, Project } from '../data/projects';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -47,7 +47,7 @@ export default function ProjectDetail() {
 
         // Fetch related projects
         const projectsSnapshot = await getDocs(collection(db, 'projects'));
-        let allProjects = projectsSnapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        let allProjects = projectsSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Project));
         
         if (allProjects.length === 0) {
           allProjects = portfolioProjects;
@@ -414,9 +414,9 @@ export default function ProjectDetail() {
               
               <div className={`flex flex-wrap gap-6 md:gap-10 ${!(project.imgObj1 || project.imgObj2) ? 'justify-center' : ''}`}>
                 {[
-                  { label: 'Rendimiento', score: '98%' },
+                  { label: 'Rendimiento', score: '92%' },
                   { label: 'Accesibilidad', score: '100%' },
-                  { label: 'Prácticas', score: '100%' },
+                  { label: 'Prácticas', score: '98%' },
                   { label: 'SEO', score: '100%' }
                 ].map((stat, i) => (
                   <div key={i} className="flex flex-col items-center gap-3 group">

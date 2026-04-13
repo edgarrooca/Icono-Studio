@@ -38,7 +38,7 @@ export const portfolioProjects: Project[] = [
     imgMobile3: '/projects/torrijos/mobile3.png',
     imgMobile4: '/projects/torrijos/mobile4.png',
     imgMobile5: '/projects/torrijos/mobile5.png',
-    clientDescription: 'En Instalaciones y Soluciones Torrijos trabajan con seriedad, trato cercano y soluciones bien ejecutadas para que cada intervención quede como debe. Más de 21 años ganándonos la confianza de nuestros clientes.',
+    clientDescription: 'En Instalaciones y Soluciones Torrijos trabajan con seriedad, trato cercano y soluciones bien ejecutadas para que cada intervención quede como debe.',
     challenge: 'El desafío principal era trasladar un negocio tradicional con más de dos décadas de experiencia al mundo digital, manteniendo la esencia de confianza y cercanía que les caracteriza. Necesitaban una plataforma que no solo mostrara sus servicios, sino que facilitara la captación de nuevos clientes de forma ágil y profesional.',
     objectives: [
       'Digitalizar la captación de clientes mediante una landing page de alto impacto.',
