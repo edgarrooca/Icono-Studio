@@ -480,7 +480,7 @@ export default function HostingMaintenance() {
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           
-          <div className="relative z-10 mb-16 flex flex-col items-center text-center md:items-end md:text-left justify-between gap-8 px-6 md:px-0">
+          <div className="relative z-10 mb-10 sm:mb-16 flex flex-col items-center text-center md:items-end md:text-left justify-between gap-8 px-6 md:px-0">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-6 border border-white/10">
                 NUESTROS PLANES
@@ -495,7 +495,7 @@ export default function HostingMaintenance() {
             </div>
           </div>
 
-          <div className="relative z-10 mb-16 px-6 md:px-0">
+          <div className="relative z-10 mb-4 sm:mb-16 px-6 md:px-0">
             <div className="relative w-full max-w-md mx-auto md:mx-0">
               {/* Left Fade */}
               <div className="absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-brand-dark to-transparent pointer-events-none md:hidden" />
