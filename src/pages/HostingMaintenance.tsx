@@ -132,6 +132,19 @@ export default function HostingMaintenance() {
     return () => clearInterval(timer);
   }, [isPaused]);
 
+  const [activePricingIndex, setActivePricingIndex] = useState(0);
+
+  const handlePricingScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollPosition = e.currentTarget.scrollLeft;
+    // Calculate index based on card width (85vw) + gap (1.5rem/24px)
+    const cardWidth = window.innerWidth * 0.85;
+    const gap = 24; 
+    const newIndex = Math.round(scrollPosition / (cardWidth + gap));
+    if (newIndex !== activePricingIndex) {
+      setActivePricingIndex(newIndex);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -462,8 +475,8 @@ export default function HostingMaintenance() {
       </div>
 
       {/* 4. PLANES - Bloque Oscuro Estilo Home.tsx */}
-      <section id="planes" className="py-12 sm:py-20 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto bg-brand-dark rounded-[2.5rem] sm:rounded-[3.5rem] p-8 sm:p-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
+      <section id="planes" className="py-12 sm:py-20 bg-white px-0 sm:px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto bg-brand-dark rounded-none sm:rounded-[3.5rem] p-6 sm:p-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           
@@ -498,7 +511,10 @@ export default function HostingMaintenance() {
             </div>
           </div>
 
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide -mx-2 md:mx-0 px-2 md:px-0">
+          <div 
+            onScroll={handlePricingScroll}
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide -mx-2 md:mx-0 px-2 md:px-0"
+          >
             <AnimatePresence mode="wait">
               {pricingView === 'hosting' ? (
                 <motion.div 
@@ -506,7 +522,7 @@ export default function HostingMaintenance() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.05 }}
-                  className="w-[85vw] md:w-auto shrink-0 snap-center lg:col-start-2 bg-white/5 border border-white/10 rounded-[2rem] p-10 flex flex-col group backdrop-blur-sm"
+                  className="w-[85vw] md:w-auto shrink-0 snap-center lg:col-start-2 bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-10 flex flex-col group backdrop-blur-sm"
                 >
                   <h3 className="font-display text-2xl uppercase mb-2 text-white">Solo Hosting</h3>
                   <p className="text-white/50 text-sm mb-8">Servidor optimizado y seguridad técnica base.</p>
@@ -557,7 +573,7 @@ export default function HostingMaintenance() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className={`relative w-[85vw] md:w-auto shrink-0 snap-center rounded-[2rem] p-8 sm:p-10 flex flex-col border transition-all duration-300 ${
+                    className={`relative w-[85vw] md:w-auto shrink-0 snap-center rounded-[2rem] p-7 sm:p-10 flex flex-col border transition-all duration-300 ${
                       plan.featured 
                         ? 'bg-gradient-to-b from-white/10 to-white/5 border-brand-lime/50 shadow-[0_0_40px_rgba(212,255,0,0.1)] md:-translate-y-2' 
                         : 'bg-white/5 border-white/10 hover:border-white/20'
@@ -621,6 +637,21 @@ export default function HostingMaintenance() {
                 ))
               )}
             </AnimatePresence>
+          </div>
+
+          {/* CUSTOM SLIDER INDICATOR - PREMIUM WHITE STYLE */}
+          <div className="flex justify-center gap-2.5 mt-10 md:hidden relative z-20">
+            {(pricingView === 'hosting' ? [1] : maintenancePlans).map((_, idx) => (
+              <motion.div 
+                key={idx}
+                animate={{
+                  width: activePricingIndex === idx ? 32 : 8,
+                  backgroundColor: activePricingIndex === idx ? '#D4FF00' : 'rgba(255, 255, 255, 0.15)',
+                  boxShadow: activePricingIndex === idx ? '0 0 12px rgba(212, 255, 0, 0.4)' : 'none'
+                }}
+                className="h-1.5 rounded-full transition-all duration-300"
+              />
+            ))}
           </div>
         </div>
       </section>
