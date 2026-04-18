@@ -481,7 +481,7 @@ export default function HostingMaintenance() {
       </div>
 
       {/* 4. PLANES - Bloque Oscuro Estilo Home.tsx */}
-      <section id="planes" className="py-12 sm:py-20 bg-white px-4 sm:px-6 lg:px-8">
+      <section id="planes" className="py-12 sm:py-20 bg-white px-0 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto bg-brand-dark rounded-none sm:rounded-[3.5rem] p-0 py-16 sm:p-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
