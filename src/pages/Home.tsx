@@ -5,9 +5,11 @@ import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap,
 import { portfolioProjects, Project } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { mainNavLinks } from '../data/navigation';
+import Footer from '../components/Footer';
 
 const faqs = [
-  { q: "¿El precio incluye el hosting y dominio?", a: "No, el hosting y dominio son servicios de terceros. Sin embargo, te asesoramos y ayudamos a contratarlos con los mejores proveedores del mercado para asegurar el máximo rendimiento." },
+  { q: "¿El precio incluye el hosting y dominio?", a: "No. El dominio no está incluido, aunque podemos recomendarte la mejor opción y ayudarte a dejarlo configurado. El hosting tampoco va incluido en el precio base de la web, pero si quieres podemos gestionarlo nosotros como un servicio aparte." },
   { q: "¿Cuánto tardáis en hacer una web?", a: "Depende de la complejidad del proyecto. Una Landing Page suele estar lista en 1-2 semanas, mientras que una web corporativa o e-commerce puede llevar entre 4 y 8 semanas." },
   { q: "¿Podré modificar la web yo mismo?", a: "¡Por supuesto! Desarrollamos nuestras webs con paneles de control autogestionables (como WordPress o Shopify) y te damos una formación básica para que puedas cambiar textos, imágenes o productos sin depender de nosotros." },
   { q: "¿Hacéis mantenimiento web?", a: "Sí, ofrecemos planes de mantenimiento mensual para asegurar que tu web esté siempre actualizada, segura y funcionando al 100% de su capacidad." }
@@ -134,6 +136,27 @@ const reviews = [
   { name: "Diego Castro", date: "Hace 1 año", text: "Rápidos, eficientes y con mucho gusto para el diseño. Sin duda volveré a contar con ellos para futuros proyectos.", source: "Google", rating: 5 }
 ];
 
+const supportTeaserItems = [
+  {
+    title: "Hosting",
+    description: "Alojamiento, SSL y configuración inicial.",
+    icon: Rocket,
+    iconClassName: "bg-brand-blue/10 text-brand-blue",
+  },
+  {
+    title: "Cuidado mensual",
+    description: "Revisiones, actualizaciones y seguimiento.",
+    icon: ShieldCheck,
+    iconClassName: "bg-slate-100 text-slate-700",
+  },
+  {
+    title: "Soporte cercano",
+    description: "Dudas, pequeños ajustes y ayuda cuando la necesites.",
+    icon: Check,
+    iconClassName: "bg-brand-lime/35 text-brand-dark",
+  },
+];
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -186,14 +209,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Inicio', href: '/' },
-    { name: 'Proyectos', href: '/#proyectos' },
-    { name: 'Servicios', href: '/#servicios' },
-    { name: 'Pricing', href: '/#pricing' },
-    { name: 'Blog', href: '/#blog' },
-  ];
-
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
       
@@ -209,18 +224,18 @@ export default function Home() {
             
             {/* Desktop Links */}
             <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              {navLinks.map((link) => (
-                <a key={link.name} href={link.href} className="hover:text-brand-lime transition-colors">
+              {mainNavLinks.map((link) => (
+                <RouterLink key={link.name} to={link.href} className="hover:text-brand-lime transition-colors">
                   {link.name}
-                </a>
+                </RouterLink>
               ))}
             </div>
             
             {/* CTA & Mobile Toggle */}
             <div className="flex items-center gap-4 z-50">
-              <a href="#pricing" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
+              <RouterLink to="/#planes" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
                 Presupuesto <ArrowRight size={16} />
-              </a>
+              </RouterLink>
               <button 
                 className="lg:hidden p-2"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -238,15 +253,15 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="absolute top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-32 px-6 flex flex-col gap-6 lg:hidden"
           >
-            {navLinks.map((link) => (
-              <a 
+            {mainNavLinks.map((link) => (
+              <RouterLink 
                 key={link.name} 
-                href={link.href} 
+                to={link.href} 
                 onClick={() => setMobileMenuOpen(false)}
                 className="font-display text-4xl uppercase hover:text-brand-lime transition-colors"
               >
                 {link.name}
-              </a>
+              </RouterLink>
             ))}
           </motion.div>
         )}
@@ -293,9 +308,9 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <a href="#pricing" className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
+            <RouterLink to="/#planes" className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
               Pedir presupuesto <ArrowRight size={20} />
-            </a>
+            </RouterLink>
             <a href="#proyectos" className="bg-transparent border-2 border-white/30 text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
               Ver proyectos
             </a>
@@ -548,64 +563,64 @@ export default function Home() {
       </section>
 
       {/* 4. PROCESO DE TRABAJO */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
             <div className="md:w-3/5">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
                 Metodología
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">
+              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">
                 Cómo trabajamos <br className="hidden md:block" />
                 <span className="text-brand-blue">tu proyecto</span>
               </h2>
             </div>
             <div className="md:w-2/5 md:pl-8 md:border-l border-gray-200">
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                 No creemos en las plantillas genéricas ni en la improvisación. Aplicamos un proceso estructurado en 6 fases para garantizar que tu web no solo sea visualmente impactante, sino que esté optimizada para convertir y posicionar en Google.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {workProcess.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className={`bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-gray-200 ${item.hoverBorder} hover:shadow-xl transition-all duration-300 group relative overflow-hidden`}>
+                <div key={i} className={`bg-white rounded-[2rem] p-5 sm:p-8 lg:p-10 shadow-sm border border-gray-200 ${item.hoverBorder} hover:shadow-xl transition-all duration-300 group relative overflow-hidden`}>
                   {/* Subtle unified gradient on hover */}
-                  <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${item.gradient} to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-20 -mt-20`}></div>
+                  <div className={`absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-bl ${item.gradient} to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-16 sm:-mr-20 -mt-16 sm:-mt-20`}></div>
                   
                   {/* Watermark Number */}
-                  <span className="absolute -bottom-4 -right-4 text-9xl font-display font-bold text-zinc-50 opacity-50 transition-colors duration-500 select-none pointer-events-none">
+                  <span className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 text-7xl sm:text-9xl font-display font-bold text-zinc-50 opacity-50 transition-colors duration-500 select-none pointer-events-none">
                     {item.step}
                   </span>
 
                   <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-8">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-14 h-14 rounded-2xl ${item.iconBg} flex items-center justify-center border border-white/50 group-hover:scale-110 transition-transform duration-300 ${item.iconColor}`}>
-                          <Icon className="w-6 h-6" />
+                    <div className="flex justify-between items-start mb-5 sm:mb-7">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className={`w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${item.iconBg} flex items-center justify-center border border-white/50 group-hover:scale-110 transition-transform duration-300 ${item.iconColor}`}>
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Fase {item.step}</p>
-                          <h3 className="font-display text-2xl sm:text-3xl uppercase text-brand-dark">{item.title}</h3>
+                          <p className="text-[11px] sm:text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Fase {item.step}</p>
+                          <h3 className="font-display text-xl sm:text-3xl uppercase text-brand-dark leading-none">{item.title}</h3>
                         </div>
                       </div>
                     </div>
                     
-                    <div className="mb-8">
-                      <h4 className="font-bold text-gray-900 mb-2">{item.subtitle}</h4>
-                      <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                    <div className="mb-5 sm:mb-6">
+                      <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">{item.subtitle}</h4>
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="flex flex-wrap gap-2.5">
                       {item.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <div className={`w-5 h-5 rounded-full ${item.iconBg} border border-white flex items-center justify-center flex-shrink-0`}>
-                            <Check className={`w-3 h-3 ${item.iconColor}`} />
+                        <div key={idx} className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-[#F8FAFB] px-3 py-2 text-xs font-medium text-gray-700">
+                          <div className={`w-4 h-4 rounded-full ${item.iconBg} border border-white flex items-center justify-center flex-shrink-0`}>
+                            <Check className={`w-2.5 h-2.5 ${item.iconColor}`} />
                           </div>
-                          <span className="text-sm font-medium text-gray-700">{feature}</span>
+                          <span>{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -692,129 +707,202 @@ export default function Home() {
       </section>
 
       {/* 7. PRICING */}
-      <section id="pricing" className="py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto bg-brand-dark rounded-[2.5rem] md:rounded-[3.5rem] p-8 sm:p-10 md:p-12 text-white relative overflow-hidden shadow-2xl">
+      <section id="planes" className="py-12 sm:py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto bg-brand-dark rounded-[2rem] sm:rounded-[2.5rem] md:rounded-[3.5rem] p-6 sm:p-10 md:p-12 text-white relative overflow-hidden shadow-2xl">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-lime/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
           
-          <div className="relative z-10 mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="relative z-10 mb-8 sm:mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8">
             <div className="max-w-2xl">
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight mb-4 leading-[1.1] text-balance">
+              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight mb-4 leading-[1.05] text-balance">
                 Precios <span className="text-brand-lime">claros</span>, sin sorpresas.
               </h2>
             </div>
             <div className="md:w-1/3 md:pb-2">
-              <p className="text-base sm:text-lg text-white/70 font-light border-l-2 border-brand-lime/30 pl-6">
+              <p className="border-t border-brand-lime/20 pt-4 text-sm sm:text-lg text-white/70 font-light md:border-t-0 md:border-l-2 md:pt-0 md:pl-6">
                 Tarifas transparentes para proyectos de alto rendimiento. Selecciona el plan que mejor se adapte a la fase de tu negocio.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 relative z-10">
             {/* Tier 1 */}
-            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
-              <h3 className="font-display text-xl uppercase mb-2 text-white">Landing Page</h3>
-              <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.</p>
-              <div className="mb-6">
+            <div className="bg-white/5 border border-white/10 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
+              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">Landing Page</h3>
+              <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.</p>
+              <div className="mb-5 sm:mb-6">
                 <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">300</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight">300</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-6"></div>
-              <ul className="space-y-3 mb-8 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
+              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                 {['Página única optimizada', 'Copywriting persuasivo', 'Diseño responsive', 'Formulario de captación'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-white/80">
+                  <li key={i} className={`${i > 2 ? 'hidden sm:flex' : 'flex'} items-start gap-3 text-xs sm:text-sm text-white/80`}>
                     <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
+              <button className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
                 Solicitar
               </button>
             </div>
 
             {/* Tier 2 */}
-            <div className="bg-gradient-to-b from-white/10 to-white/5 border border-brand-lime/40 rounded-[2rem] p-6 transform xl:-translate-y-2 shadow-[0_0_40px_rgba(204,255,0,0.1)] flex flex-col relative backdrop-blur-sm hover:border-brand-lime/60 transition-all duration-300">
+            <div className="bg-gradient-to-b from-white/10 to-white/5 border border-brand-lime/40 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 transform xl:-translate-y-2 shadow-[0_0_40px_rgba(204,255,0,0.1)] flex flex-col relative backdrop-blur-sm hover:border-brand-lime/60 transition-all duration-300">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand-lime text-brand-dark text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg whitespace-nowrap">
                 Más Popular
               </div>
-              <h3 className="font-display text-xl uppercase mb-2 text-white">Corporativa</h3>
-              <p className="text-white/60 text-xs mb-6 min-h-[40px] leading-relaxed">Para empresas que buscan autoridad, credibilidad y presencia digital sólida.</p>
-              <div className="mb-6">
+              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">Corporativa</h3>
+              <p className="text-white/60 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Para empresas que buscan autoridad, credibilidad y presencia digital sólida.</p>
+              <div className="mb-5 sm:mb-6">
                 <span className="text-[10px] text-brand-lime/80 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">800</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight">800</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-6"></div>
-              <ul className="space-y-3 mb-8 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
+              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                 {['Hasta 5 páginas internas', 'Diseño UX/UI a medida', 'Optimización SEO On-page', 'Panel autogestionable', 'Integración de analítica'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-white/90">
+                  <li key={i} className={`${i > 2 ? 'hidden sm:flex' : 'flex'} items-start gap-3 text-xs sm:text-sm text-white/90`}>
                     <Check size={16} className="text-brand-lime shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-3 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-xs shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+              <button className="w-full py-2.5 sm:py-3 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-xs shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
                 Solicitar
               </button>
             </div>
 
             {/* Tier 3 */}
-            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
-              <h3 className="font-display text-xl uppercase mb-2 text-white">E-commerce</h3>
-              <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Tiendas online de alto rendimiento diseñadas para maximizar las ventas.</p>
-              <div className="mb-6">
+            <div className="bg-white/5 border border-white/10 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
+              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">E-commerce</h3>
+              <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Tiendas online de alto rendimiento diseñadas para maximizar las ventas.</p>
+              <div className="mb-5 sm:mb-6">
                 <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">1.300</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight">1.300</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-6"></div>
-              <ul className="space-y-3 mb-8 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
+              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                 {['Catálogo de productos', 'Pasarelas de pago seguras', 'Gestión de stock y envíos', 'Emails transaccionales', 'Optimización de checkout'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-white/80">
+                  <li key={i} className={`${i > 2 ? 'hidden sm:flex' : 'flex'} items-start gap-3 text-xs sm:text-sm text-white/80`}>
                     <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
+              <button className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
                 Solicitar
               </button>
             </div>
 
             {/* Tier 4 */}
-            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
-              <h3 className="font-display text-xl uppercase mb-2 text-white">A medida</h3>
-              <p className="text-white/50 text-xs mb-6 min-h-[40px] leading-relaxed">Aplicaciones web complejas, portales personalizados e integraciones.</p>
-              <div className="mb-6">
+            <div className="bg-white/5 border border-white/10 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm">
+              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">A medida</h3>
+              <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Aplicaciones web complejas, portales personalizados e integraciones.</p>
+              <div className="mb-5 sm:mb-6">
                 <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-display tracking-tight">2.000</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight">2.000</span>
                   <span className="text-xl text-white/50">€</span>
                 </div>
               </div>
-              <div className="w-full h-px bg-white/10 mb-6"></div>
-              <ul className="space-y-3 mb-8 flex-grow">
+              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
+              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                 {['Arquitectura escalable', 'Integración de APIs externas', 'Bases de datos complejas', 'Panel de control custom', 'Soporte técnico prioritario'].map((feat, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-white/80">
+                  <li key={i} className={`${i > 2 ? 'hidden sm:flex' : 'flex'} items-start gap-3 text-xs sm:text-sm text-white/80`}>
                     <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
+              <button className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
                 Solicitar
               </button>
             </div>
 
           </div>
           
-          <div className="mt-10 text-center relative z-10 border-t border-white/10 pt-6">
+          <div className="mt-8 sm:mt-10 text-center relative z-10 border-t border-white/10 pt-5 sm:pt-6">
              <p className="text-white/40 text-[10px] sm:text-xs font-mono uppercase tracking-widest">* Todos los precios son sin IVA. El coste final dependerá de los requisitos exactos del proyecto.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. SUPPORT TEASER */}
+      <section id="soporte-web" className="pb-12 sm:pb-14 md:pb-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.25rem] md:rounded-[2.75rem] border border-[#D8E2E7] bg-[#F2F6F7] p-5 sm:p-8 lg:p-9 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_26%)]"></div>
+            <div className="absolute -top-20 right-0 w-72 h-72 bg-white/80 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-5 sm:gap-6 lg:gap-8 items-center">
+              <div className="max-w-xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-3 py-1.5 font-bold text-[11px] text-gray-700 sm:text-xs uppercase tracking-wider mb-4 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></span>
+                  Hosting y soporte
+                </div>
+
+                <h2 className="font-display text-[2rem] sm:text-4xl md:text-[3.15rem] uppercase tracking-tight text-brand-dark leading-[0.95] text-balance mb-4">
+                  Tu web, siempre en buenas manos
+                </h2>
+
+                <p className="text-[15px] sm:text-lg text-gray-600 max-w-xl leading-relaxed mb-5 sm:mb-6">
+                  Después de publicar, también podemos seguir a tu lado para que la web esté atendida, actualizada y funcionando para que no tengas que preocuparte por nada.
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
+                  <RouterLink
+                    to="/hosting-mantenimiento-web"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-6 py-3 font-bold text-white hover:bg-brand-blue transition-colors"
+                  >
+                    Ver planes <ArrowRight size={18} />
+                  </RouterLink>
+                  <p className="text-sm font-semibold text-gray-700">Hosting por 8€ / mes + IVA</p>
+                </div>
+              </div>
+
+              <div className="rounded-[1.7rem] sm:rounded-[1.9rem] border border-white/85 bg-white/88 p-4 sm:p-6 shadow-[0_12px_32px_rgba(15,23,42,0.05)] backdrop-blur-sm">
+                <div className="mb-3 sm:mb-4">
+                  <div>
+                    <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-gray-400 font-bold mb-2">Servicio opcional</p>
+                    <h3 className="font-display text-xl sm:text-[2rem] leading-none text-brand-dark">
+                      Todo bajo control
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {supportTeaserItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.title} className="rounded-[1rem] sm:rounded-[1.1rem] border border-[#E7EDF0] bg-[#F8FBFB] px-3 py-3 sm:px-3.5 sm:py-3.5">
+                        <div className="flex items-start gap-3 text-brand-dark">
+                          <span className={`mt-0.5 flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-xl ${item.iconClassName}`}>
+                            <Icon className="w-4 h-4" />
+                          </span>
+                          <div>
+                            <p className="font-semibold leading-none mb-1.5">{item.title}</p>
+                            <p className="text-[13px] sm:text-sm text-gray-600 leading-relaxed">{item.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-3 sm:mt-4 rounded-[1.1rem] sm:rounded-[1.2rem] bg-[#ECF3F4] px-4 py-3.5 sm:py-4">
+                  <p className="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
+                    Puedes empezar solo con el hosting y, cuando tu web necesite más atención, sumar mantenimiento, soporte y pequeñas mejoras para que siga bien cuidada sin complicarte con la parte técnica.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -950,56 +1038,7 @@ export default function Home() {
       </section>
 
       {/* 8. FOOTER / BIG CTA */}
-      <footer className="bg-brand-dark text-white pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 rounded-t-[2.5rem] sm:rounded-t-[3rem] md:rounded-t-[4rem] mt-8 sm:mt-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-            <h2 className="font-display text-[18vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
-              ¿Hablamos?
-            </h2>
-            <a href="mailto:hola@iconostudio.com" className="inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase hover:bg-brand-lime transition-colors w-full sm:w-auto">
-              Pedir Presupuesto <ArrowUpRight size={24} className="sm:w-7 sm:h-7" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 border-t border-white/20 pt-10 sm:pt-12">
-            <div className="sm:col-span-2">
-              <div className="flex items-center gap-2 mb-4 sm:mb-6">
-                <img src="/2026-02-18 (1).png" alt="Icono Studio Logo" className="h-10 sm:h-12 w-auto object-contain" />
-              </div>
-              <p className="text-white/60 max-w-sm text-base sm:text-lg">
-                Agencia de diseño y desarrollo web en Valencia. Creando experiencias digitales que marcan la diferencia.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
-              <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-                {navLinks.map(link => (
-                  <li key={link.name}><a href={link.href} className="hover:text-white transition-colors">{link.name}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Social</h4>
-              <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-                <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Twitter / X</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Dribbble</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 border-t border-white/20 pt-8 mt-10 sm:mt-12 text-xs sm:text-sm text-white/50 font-mono text-center md:text-left">
-            <p>© 2026 Icono Studio. Todos los derechos reservados.</p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-              <a href="#" className="hover:text-white transition-colors">Aviso Legal</a>
-              <a href="#" className="hover:text-white transition-colors">Privacidad</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

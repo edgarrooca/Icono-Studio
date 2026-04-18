@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, Check, ArrowRight, Menu, X, Mouse, ChevronDown
 import { portfolioProjects, Project } from '../data/projects';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import { mainNavLinks } from '../data/navigation';
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -15,49 +16,76 @@ export default function ProjectDetail() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMockup, setActiveMockup] = useState<1 | 2>(2);
 
-  const navLinks = [
-    { name: 'Inicio', href: '/#inicio' },
-    { name: 'Proyectos', href: '/#proyectos' },
-    { name: 'Servicios', href: '/#servicios' },
-    { name: 'Pricing', href: '/#pricing' },
-    { name: 'Blog', href: '/#blog' },
-  ];
-
   useEffect(() => {
     window.scrollTo(0, 0);
+    let isMounted = true;
+
+    const localProject = id ? portfolioProjects.find((p) => p.id.toString() === id) ?? null : null;
+    const localRelatedProjects = portfolioProjects.filter((p) => p.id.toString() !== id).slice(0, 3);
+
+    if (localProject) {
+      setProject(localProject);
+      setLoading(false);
+    }
+
+    const withTimeout = async <T,>(promise: Promise<T>, ms = 3500): Promise<T | null> => (
+      Promise.race([
+        promise,
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), ms)),
+      ])
+    );
     
     const fetchProject = async () => {
-      if (!id) return;
+      if (!id) {
+        if (isMounted) {
+          setRelatedProjects(localRelatedProjects);
+          setLoading(false);
+        }
+        return;
+      }
       
       try {
         // Try to fetch from Firebase first
         const docRef = doc(db, 'projects', id);
-        const docSnap = await getDoc(docRef);
+        const docSnap = await withTimeout(getDoc(docRef));
         
         let currentProject = null;
         
-        if (docSnap.exists()) {
+        if (docSnap && docSnap.exists()) {
           currentProject = { id: docSnap.id, ...docSnap.data() };
         } else {
           // Fallback to static data if not found in Firebase (for backwards compatibility)
-          currentProject = portfolioProjects.find(p => p.id.toString() === id);
+          currentProject = localProject;
         }
         
-        setProject(currentProject);
+        if (isMounted && currentProject) {
+          setProject(currentProject);
+        }
 
         // Fetch related projects
-        const projectsSnapshot = await getDocs(collection(db, 'projects'));
-        let allProjects = projectsSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Project));
-        
-        if (allProjects.length === 0) {
-          allProjects = portfolioProjects;
+        const projectsSnapshot = await withTimeout(getDocs(collection(db, 'projects')));
+        let allProjects = localRelatedProjects;
+
+        if (projectsSnapshot) {
+          const fetchedProjects = projectsSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Project));
+          allProjects = fetchedProjects.length > 0 ? fetchedProjects.filter(p => p.id.toString() !== id).slice(0, 3) : localRelatedProjects;
         }
-        
-        setRelatedProjects(allProjects.filter(p => p.id.toString() !== id).slice(0, 3));
+
+        if (isMounted) {
+          setRelatedProjects(allProjects);
+        }
       } catch (error) {
         console.error("Error fetching project:", error);
+        if (isMounted) {
+          if (localProject) {
+            setProject(localProject);
+          }
+          setRelatedProjects(localRelatedProjects);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
@@ -67,7 +95,10 @@ export default function ProjectDetail() {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      isMounted = false;
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [id]);
 
   if (loading) {
@@ -102,7 +133,7 @@ export default function ProjectDetail() {
       
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-transparent text-white'}`}>
             
             {/* Logo */}
@@ -112,7 +143,7 @@ export default function ProjectDetail() {
             
             {/* Desktop Links */}
             <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              {navLinks.map((link) => (
+              {mainNavLinks.map((link) => (
                 <a key={link.name} href={link.href} className="hover:text-brand-lime transition-colors">
                   {link.name}
                 </a>
@@ -139,14 +170,14 @@ export default function ProjectDetail() {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-32 px-6 flex flex-col gap-6 lg:hidden"
+            className="absolute top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-28 sm:pt-32 px-6 flex flex-col gap-5 sm:gap-6 lg:hidden"
           >
-            {navLinks.map((link) => (
+            {mainNavLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-display text-4xl uppercase hover:text-brand-lime transition-colors"
+                className="font-display text-3xl sm:text-4xl uppercase hover:text-brand-lime transition-colors"
               >
                 {link.name}
               </a>
@@ -157,11 +188,11 @@ export default function ProjectDetail() {
 
       <main>
         {/* 1. HERO SECTION */}
-        <section className="relative pt-24 pb-12 md:pt-32 md:pb-16 px-4 sm:px-6 overflow-hidden bg-brand-dark text-white z-20 rounded-b-[2rem] md:rounded-b-[4rem] shadow-2xl">
+        <section className="relative pt-22 sm:pt-24 pb-10 sm:pb-12 md:pt-32 md:pb-16 px-4 sm:px-6 overflow-hidden bg-brand-dark text-white z-20 rounded-b-[2rem] md:rounded-b-[4rem] shadow-2xl">
           {/* Decorative Background Elements */}
           <div className="absolute inset-0 opacity-[0.15] bg-blueprint"></div>
 
-          <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             
             {/* Left: Text Content */}
             <div className="flex flex-col items-start text-left relative">
@@ -179,7 +210,7 @@ export default function ProjectDetail() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6"
+                className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-5 sm:mb-6"
               >
                 {project.title}
               </motion.h1>
@@ -187,7 +218,7 @@ export default function ProjectDetail() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg md:text-xl lg:text-2xl text-white/90 font-medium mb-4 leading-relaxed max-w-xl"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium mb-3 sm:mb-4 leading-relaxed max-w-xl"
               >
                 {project.subtitle}
               </motion.p>
@@ -195,7 +226,7 @@ export default function ProjectDetail() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.25 }}
-                className="text-sm md:text-base text-white/60 font-light mb-10 leading-relaxed max-w-xl"
+                className="text-sm sm:text-base text-white/60 font-light mb-8 sm:mb-10 leading-relaxed max-w-xl"
               >
                 {project.clientDescription}
               </motion.p>
@@ -210,7 +241,7 @@ export default function ProjectDetail() {
                   href={project.link || '#'} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2 text-sm"
+                  className="bg-brand-lime text-brand-dark px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2 text-sm"
                 >
                   Ver sitio web <ArrowUpRight size={18} />
                 </a>
@@ -222,8 +253,18 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative w-full h-[300px] md:h-[350px] lg:h-[450px] mt-12 lg:mt-0"
+              className="relative w-full h-[240px] sm:h-[300px] md:h-[350px] lg:h-[450px] mt-4 sm:mt-12 lg:mt-0"
             >
+              <div className="sm:hidden relative mx-auto w-full max-w-[20rem] aspect-[16/10] rounded-[1.4rem] border-[6px] border-brand-dark shadow-2xl overflow-hidden bg-brand-dark">
+                <img 
+                  src={project.img}
+                  alt={`${project.title} preview`}
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}mobilepreview/1200/800`; }}
+                />
+              </div>
+
               {/* PC Mockup 1 (Back/Left) */}
               <motion.div 
                 onClick={() => setActiveMockup(1)}
@@ -237,7 +278,7 @@ export default function ProjectDetail() {
                 }}
                 whileHover={{ scale: activeMockup === 1 ? 1.08 : 0.98, rotate: activeMockup === 1 ? 0 : -5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="absolute left-0 md:left-[5%] top-[10%] md:top-[15%] w-[75%] md:w-[70%] aspect-[16/10] rounded-xl md:rounded-2xl border-[4px] md:border-[6px] border-brand-dark shadow-2xl overflow-hidden bg-brand-dark cursor-pointer"
+                className="hidden sm:block absolute left-0 md:left-[5%] top-[10%] md:top-[15%] w-[75%] md:w-[70%] aspect-[16/10] rounded-xl md:rounded-2xl border-[4px] md:border-[6px] border-brand-dark shadow-2xl overflow-hidden bg-brand-dark cursor-pointer"
               >
                 <img 
                   src={project.imgPc1 || `https://picsum.photos/seed/${project.id}pc1/1200/800`} 
@@ -261,7 +302,7 @@ export default function ProjectDetail() {
                 }}
                 whileHover={{ scale: activeMockup === 2 ? 1.08 : 0.98, rotate: activeMockup === 2 ? 2 : 7 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="absolute right-0 md:right-[5%] bottom-[10%] md:bottom-[15%] w-[75%] md:w-[70%] aspect-[16/10] rounded-xl md:rounded-2xl border-[4px] md:border-[6px] border-brand-dark shadow-2xl overflow-hidden bg-brand-dark cursor-pointer"
+                className="hidden sm:block absolute right-0 md:right-[5%] bottom-[10%] md:bottom-[15%] w-[75%] md:w-[70%] aspect-[16/10] rounded-xl md:rounded-2xl border-[4px] md:border-[6px] border-brand-dark shadow-2xl overflow-hidden bg-brand-dark cursor-pointer"
               >
                 <img 
                   src={project.img} 
@@ -277,18 +318,18 @@ export default function ProjectDetail() {
         </section>
 
         {/* 2. EL RETO */}
-        <section className="relative py-20 md:py-32 bg-white text-brand-dark overflow-hidden">
+        <section className="relative py-14 sm:py-20 md:py-32 bg-white text-brand-dark overflow-hidden">
           {/* Decorative Dot Pattern Background */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0F172A 2px, transparent 2px)', backgroundSize: '32px 32px' }}></div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
             <div className="order-2 lg:order-1 relative">
               <div className="inline-flex items-center gap-2 mb-6">
                 <span className="w-8 h-[2px] bg-brand-dark"></span>
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">El Reto</p>
               </div>
               
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:mb-8 leading-tight">
                 Diseño web estratégico para un referente
               </h2>
               <div className="prose prose-lg text-gray-600 font-light leading-relaxed mb-10">
@@ -305,7 +346,7 @@ export default function ProjectDetail() {
               <div className="w-full max-w-md rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 aspect-[4/5] relative lg:translate-x-4 transition-transform duration-500 group-hover:-translate-y-2">
                 {/* Indicator */}
                 <motion.div 
-                  className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 bg-brand-dark/90 backdrop-blur-md text-brand-lime w-16 h-16 rounded-full shadow-2xl flex flex-col items-center justify-center pointer-events-none opacity-100 group-hover:opacity-0 transition-opacity duration-500 border border-white/10"
+                  className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 bg-brand-dark/90 backdrop-blur-md text-brand-lime w-16 h-16 rounded-full shadow-2xl items-center justify-center pointer-events-none opacity-100 group-hover:opacity-0 transition-opacity duration-500 border border-white/10 flex-col"
                   animate={{ y: [0, -8, 0] }}
                   transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 >
@@ -332,16 +373,17 @@ export default function ProjectDetail() {
 
         {/* 3. SHOWCASE BAND */}
         {mobileImages.length > 0 && (
-          <section className="py-20 md:py-32 bg-[#fffafa] relative flex items-center justify-center overflow-x-hidden">
+          <section className="py-14 sm:py-20 md:py-32 bg-[#fffafa] relative flex items-center justify-center overflow-x-hidden">
             <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black to-transparent"></div>
-            <div className="max-w-[100vw] mx-auto px-4 relative z-10 w-full">
-              <div className="flex justify-center gap-6 md:gap-12 w-max mx-auto px-10">
+            <div className="max-w-[100vw] mx-auto relative z-10 w-full">
+              <div className="overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex justify-start sm:justify-center gap-4 md:gap-12 w-max sm:mx-auto px-4 sm:px-10 min-w-full sm:min-w-0">
                 {mobileImages.map((img, index) => (
                   <motion.div 
                     key={index} 
                     whileHover={{ y: -15, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className={`relative w-[200px] md:w-[260px] aspect-[9/19.5] rounded-[2rem] md:rounded-[2.5rem] border-[8px] md:border-[12px] border-brand-dark shadow-2xl bg-brand-dark overflow-hidden flex-shrink-0 cursor-pointer ${index % 2 === 0 ? 'translate-y-4 md:translate-y-8' : '-translate-y-4 md:-translate-y-8'}`}
+                    className={`relative w-[160px] sm:w-[200px] md:w-[260px] aspect-[9/19.5] rounded-[1.7rem] md:rounded-[2.5rem] border-[7px] sm:border-[8px] md:border-[12px] border-brand-dark shadow-2xl bg-brand-dark overflow-hidden flex-shrink-0 cursor-pointer ${index % 2 === 0 ? 'translate-y-2 sm:translate-y-4 md:translate-y-8' : '-translate-y-2 sm:-translate-y-4 md:-translate-y-8'}`}
                   >
                     {/* iPhone Dynamic Island */}
                     <div className="absolute top-2 md:top-3 inset-x-0 flex justify-center z-20">
@@ -356,14 +398,15 @@ export default function ProjectDetail() {
                     />
                   </motion.div>
                 ))}
+                </div>
               </div>
             </div>
           </section>
         )}
 
         {/* 4. OBJETIVOS & RESULTADOS */}
-        <section className="relative py-20 md:py-32 bg-[#F8F9FA] text-brand-dark overflow-hidden">
-          <div className={`relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 ${project.imgObj1 || project.imgObj2 ? 'lg:grid-cols-2' : ''} gap-16 items-center`}>
+        <section className="relative py-14 sm:py-20 md:py-32 bg-[#F8F9FA] text-brand-dark overflow-hidden">
+          <div className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 ${project.imgObj1 || project.imgObj2 ? 'lg:grid-cols-2' : ''} gap-10 sm:gap-16 items-center`}>
             {(project.imgObj1 || project.imgObj2) && (
               <div className={`grid ${project.imgObj1 && project.imgObj2 ? 'grid-cols-2' : 'grid-cols-1'} gap-4 md:gap-6 relative`}>
                 {/* Decorative dots behind images */}
@@ -398,12 +441,12 @@ export default function ProjectDetail() {
                 <span className={`w-8 h-[2px] bg-brand-dark ${!(project.imgObj1 || project.imgObj2) ? 'block' : 'hidden'}`}></span>
               </div>
               
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:mb-8 leading-tight">
                 Objetivos de la nueva web
               </h2>
-              <ul className={`space-y-5 mb-14 ${!(project.imgObj1 || project.imgObj2) ? 'text-left max-w-2xl mx-auto' : ''}`}>
+              <ul className={`space-y-4 sm:space-y-5 mb-10 sm:mb-14 ${!(project.imgObj1 || project.imgObj2) ? 'text-left max-w-2xl mx-auto' : ''}`}>
                 {project.objectives?.map((obj: string, i: number) => (
-                  <li key={i} className="flex items-start gap-4 text-gray-600 text-lg group">
+                  <li key={i} className="flex items-start gap-4 text-gray-600 text-base sm:text-lg group">
                     <div className="mt-1 bg-white border border-gray-200 shadow-sm p-1.5 rounded-full flex-shrink-0 group-hover:bg-brand-lime group-hover:border-brand-lime transition-colors">
                       <Check size={16} className="text-brand-dark" />
                     </div>
@@ -412,7 +455,7 @@ export default function ProjectDetail() {
                 ))}
               </ul>
               
-              <div className={`flex flex-wrap gap-6 md:gap-10 ${!(project.imgObj1 || project.imgObj2) ? 'justify-center' : ''}`}>
+              <div className={`flex flex-wrap gap-5 sm:gap-6 md:gap-10 ${!(project.imgObj1 || project.imgObj2) ? 'justify-center' : ''}`}>
                 {[
                   { label: 'Rendimiento', score: '92%' },
                   { label: 'Accesibilidad', score: '100%' },
@@ -432,19 +475,19 @@ export default function ProjectDetail() {
         </section>
 
         {/* 5. LEAD MAGNET / NEWSLETTER */}
-        <section className="py-20 md:py-32 bg-brand-lime relative overflow-hidden">
+        <section className="py-14 sm:py-20 md:py-32 bg-brand-lime relative overflow-hidden">
           <div className="absolute -right-20 -top-20 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
           
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10 relative z-10">
             <div className="md:w-1/2">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-dark/10 text-brand-dark font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
                 <Download size={14} />
                 Recurso Gratuito
               </div>
-              <h2 className="font-display text-3xl md:text-4xl uppercase tracking-tight text-brand-dark leading-none mb-3">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-brand-dark leading-none mb-3">
                 10 errores que arruinan tu conversión
               </h2>
-              <p className="text-brand-dark/80 text-base md:text-lg mb-0">
+              <p className="text-brand-dark/80 text-sm sm:text-base md:text-lg mb-0">
                 Descarga nuestra checklist gratuita y descubre por qué tu web actual no está consiguiendo clientes.
               </p>
             </div>
@@ -472,8 +515,8 @@ export default function ProjectDetail() {
         </section>
 
         {/* 6. PROYECTOS RELACIONADOS */}
-        <section className="py-20 md:py-32 bg-[#F8F9FA]">
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="py-14 sm:py-20 md:py-32 bg-[#F8F9FA]">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
               <div>
                 <h2 className="font-display text-3xl sm:text-4xl tracking-tight text-brand-dark">
@@ -556,7 +599,7 @@ export default function ProjectDetail() {
             <div>
               <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
               <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-                {navLinks.map(link => (
+                {mainNavLinks.map(link => (
                   <li key={link.name}><a href={link.href} className="hover:text-white transition-colors">{link.name}</a></li>
                 ))}
               </ul>
@@ -585,4 +628,3 @@ export default function ProjectDetail() {
     </div>
   );
 }
-
