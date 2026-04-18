@@ -499,10 +499,8 @@ export default function HostingMaintenance() {
                 Sin permanencias. Gestión unificada de hosting y mantenimiento para que no tengas que preocuparte de nada.
               </p>
             </div>
-          </div>
 
-          <div className="relative z-10 mb-4 sm:mb-16 px-6 md:px-0">
-            <div className="relative w-full max-w-md mx-auto md:mx-0">
+            <div className="relative w-full md:w-auto max-w-md md:max-w-none">
               {/* Left Fade */}
               <div className="absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-brand-dark to-transparent pointer-events-none md:hidden" />
               {/* Right Fade */}
