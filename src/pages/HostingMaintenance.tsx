@@ -200,7 +200,7 @@ export default function HostingMaintenance() {
       {/* STRATOSPHERE TRANSITION - CLEAN & DYNAMIC */}
       <div 
         className="relative overflow-hidden"
-        style={{ background: 'linear-gradient(to bottom, #0A36E8 0%, #4F6FF2 20%, #F0F5FF 45%, #ffffff 70%)' }}
+        style={{ background: 'linear-gradient(to bottom, #0A36E8 0%, #4F6FF2 25%, #F0F5FF 50%, #ffffff 65%)' }}
       > 
         {/* Real Flickering Stars Layer - Moved to parent for better visibility */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -254,7 +254,7 @@ export default function HostingMaintenance() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-              className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[0.9] md:leading-[0.85] tracking-tighter uppercase mb-6"
+              className="font-display text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[0.95] md:leading-[0.85] tracking-tighter uppercase mb-6"
             >
               Soporte web <br/>
               <span className="text-brand-lime italic">para crecer</span>
@@ -384,7 +384,7 @@ export default function HostingMaintenance() {
                       y: isActive ? -12 : 0,
                       scale: isActive ? 1.02 : 1,
                     }}
-                    className={`group relative bg-white/40 backdrop-blur-3xl border border-white/50 rounded-tl-[5rem] rounded-tr-3xl rounded-br-[5rem] rounded-bl-3xl p-10 md:p-14 overflow-hidden transition-all duration-700 hover:-translate-y-3 flex flex-col items-center text-center ${isActive ? 'shadow-xl shadow-brand-blue/10 bg-white/60' : 'shadow-2xl shadow-brand-blue/5'}`}
+                    className={`group relative bg-white/40 backdrop-blur-3xl border border-white/50 rounded-tl-[3.5rem] md:rounded-tl-[5rem] rounded-tr-2xl md:rounded-tr-3xl rounded-br-[3.5rem] md:rounded-br-[5rem] rounded-bl-2xl md:rounded-bl-3xl p-7 md:p-14 overflow-hidden transition-all duration-700 hover:-translate-y-3 flex flex-col items-center text-center ${isActive ? 'shadow-xl shadow-brand-blue/10 bg-white/60' : 'shadow-2xl shadow-brand-blue/5'}`}
                     style={{
                       boxShadow: isActive ? 'inset 0 0 40px rgba(255,255,255,0.8), 0 20px 40px rgba(10, 54, 232, 0.1)' : 'inset 0 0 40px rgba(255,255,255,0.6), 0 20px 40px rgba(10, 54, 232, 0.05)'
                     }}
@@ -419,7 +419,7 @@ export default function HostingMaintenance() {
                           scale: isActive ? 1.1 : 1
                         }}
                         whileHover={{ scale: 1.1, rotate: i === 0 ? -5 : i === 1 ? 5 : 0 }}
-                        className="w-24 h-24 rounded-full bg-white/50 backdrop-blur-md border border-white flex items-center justify-center shadow-lg group-hover:shadow-brand-blue/20 transition-all duration-500 overflow-hidden relative"
+                        className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-white/50 backdrop-blur-md border border-white flex items-center justify-center shadow-lg group-hover:shadow-brand-blue/20 transition-all duration-500 overflow-hidden relative"
                       >
                         <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/10 to-transparent"></div>
                         <motion.div
@@ -440,8 +440,8 @@ export default function HostingMaintenance() {
                       </motion.div>
                     </div>
 
-                    <h3 className="relative z-20 font-display text-3xl uppercase text-brand-dark mb-6 tracking-tighter leading-none italic">{service.title}</h3>
-                    <p className="relative z-20 text-gray-500/80 text-lg leading-relaxed mb-10 flex-grow font-medium italic">
+                    <h3 className="relative z-20 font-display text-2xl md:text-3xl uppercase text-brand-dark mb-4 md:mb-6 tracking-tighter leading-none italic">{service.title}</h3>
+                    <p className="relative z-20 text-gray-500/80 text-base md:text-lg leading-relaxed mb-8 md:mb-10 flex-grow font-medium italic">
                       {service.desc}
                     </p>
 
@@ -481,8 +481,8 @@ export default function HostingMaintenance() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <div className="inline-flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="flex flex-col gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
+              <div className="inline-flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm w-fit whitespace-nowrap">
                 {pricingViews.map((view) => (
                   <button
                     key={view.key}
@@ -498,7 +498,7 @@ export default function HostingMaintenance() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide -mx-2 md:mx-0 px-2 md:px-0">
             <AnimatePresence mode="wait">
               {pricingView === 'hosting' ? (
                 <motion.div 
@@ -506,7 +506,7 @@ export default function HostingMaintenance() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.05 }}
-                  className="lg:col-start-2 bg-white/5 border border-white/10 rounded-[2rem] p-10 flex flex-col group backdrop-blur-sm"
+                  className="w-[85vw] md:w-auto shrink-0 snap-center lg:col-start-2 bg-white/5 border border-white/10 rounded-[2rem] p-10 flex flex-col group backdrop-blur-sm"
                 >
                   <h3 className="font-display text-2xl uppercase mb-2 text-white">Solo Hosting</h3>
                   <p className="text-white/50 text-sm mb-8">Servidor optimizado y seguridad técnica base.</p>
@@ -557,9 +557,9 @@ export default function HostingMaintenance() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className={`relative rounded-[2rem] p-8 sm:p-10 flex flex-col border transition-all duration-300 ${
+                    className={`relative w-[85vw] md:w-auto shrink-0 snap-center rounded-[2rem] p-8 sm:p-10 flex flex-col border transition-all duration-300 ${
                       plan.featured 
-                        ? 'bg-gradient-to-b from-white/10 to-white/5 border-brand-lime/50 shadow-[0_0_40px_rgba(212,255,0,0.1)] -translate-y-2' 
+                        ? 'bg-gradient-to-b from-white/10 to-white/5 border-brand-lime/50 shadow-[0_0_40px_rgba(212,255,0,0.1)] md:-translate-y-2' 
                         : 'bg-white/5 border-white/10 hover:border-white/20'
                     }`}
                   >

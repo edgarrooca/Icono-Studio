@@ -11,7 +11,7 @@ export default function Footer() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <h2 className="font-display text-[18vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
+          <h2 className="font-display text-[14vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
             ¿Hablamos?
           </h2>
           <motion.a 
