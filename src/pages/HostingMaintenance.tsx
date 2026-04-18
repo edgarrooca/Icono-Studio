@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, ChevronDown, ChevronUp, ShieldCheck, Rocket, LineChart, Zap } from 'lucide-react';
@@ -159,6 +159,27 @@ export default function HostingMaintenance() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Memoize star positions to prevent jitter on re-renders (scroll)
+  const starData = useMemo(() => {
+    return [...Array(40)].map(() => ({
+      top: `${Math.pow(Math.random(), 1.5) * 85}%`,
+      left: `${Math.random() * 100}%`,
+      width: `${Math.random() * 2 + 1}px`,
+      height: `${Math.random() * 2 + 1}px`,
+      delay: `${Math.random() * 5}s`,
+      opacity: Math.random() * 0.7 + 0.3
+    }));
+  }, []);
+
+  const shootingStarData = useMemo(() => {
+    return [...Array(6)].map((_, i) => ({
+      top: `${Math.random() * 40}%`,
+      left: `${Math.random() * 80}%`,
+      delay: `${i * 2 + Math.random() * 12}s`,
+      duration: `${7 + Math.random() * 4}s`
+    }));
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
       
@@ -223,36 +244,33 @@ export default function HostingMaintenance() {
       > 
         {/* Real Flickering Stars Layer - Moved to parent for better visibility */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          {[...Array(40)].map((_, i) => {
-            const topPos = Math.pow(Math.random(), 1.5) * 85;
-            return (
-              <div 
-                key={i}
-                className="absolute bg-white transition-all animate-twinkle rotate-45"
-                style={{
-                  top: `${topPos}%`,
-                  left: `${Math.random() * 100}%`,
-                  width: `${Math.random() * 2 + 1}px`,
-                  height: `${Math.random() * 2 + 1}px`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  opacity: Math.random() * 0.7 + 0.3,
-                  boxShadow: '0 0 10px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            );
-          })}
+          {starData.map((star, i) => (
+            <div 
+              key={i}
+              className="absolute bg-white transition-all animate-twinkle rotate-45"
+              style={{
+                top: star.top,
+                left: star.left,
+                width: star.width,
+                height: star.height,
+                animationDelay: star.delay,
+                opacity: star.opacity,
+                boxShadow: '0 0 10px rgba(255, 255, 255, 0.4)'
+              }}
+            />
+          ))}
           
           {/* Shooting Stars - CSS Optimized - Top to Bottom trajectories */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            {[...Array(6)].map((_, i) => (
+            {shootingStarData.map((star, i) => (
               <div
                 key={`shooting-${i}`}
                 className="absolute w-[120px] h-[1px] bg-gradient-to-r from-transparent via-white/80 to-white opacity-0 animate-shooting-star"
                 style={{ 
-                  top: `${Math.random() * 40}%`,
-                  left: `${Math.random() * 80}%`,
-                  animationDelay: `${i * 2 + Math.random() * 12}s`,
-                  animationDuration: `${7 + Math.random() * 4}s`,
+                  top: star.top,
+                  left: star.left,
+                  animationDelay: star.delay,
+                  animationDuration: star.duration,
                   transformOrigin: 'left center'
                 }}
               />
