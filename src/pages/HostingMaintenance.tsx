@@ -481,14 +481,14 @@ export default function HostingMaintenance() {
       </div>
 
       {/* 4. PLANES - Bloque Oscuro Estilo Home.tsx */}
-      <section id="planes" className="py-12 sm:py-20 bg-white sm:px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto bg-brand-dark rounded-none sm:rounded-[3.5rem] py-12 px-0 sm:p-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
+      <section id="planes" className="py-12 sm:py-20 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto bg-brand-dark rounded-none sm:rounded-[3.5rem] p-0 py-16 sm:p-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           
-          <div className="relative z-10 mb-10 sm:mb-16 flex flex-col md:flex-row items-center text-center md:items-end md:text-left justify-between gap-8 px-6 md:px-0">
+          <div className="relative z-10 mb-10 sm:mb-16 flex flex-col md:flex-row items-center md:items-end text-center md:text-left justify-between gap-8 px-6 md:px-0">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-6 border border-white/10">
+              <div className="mx-auto md:mx-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-6 border border-white/10">
                 NUESTROS PLANES
               </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight leading-[1.05] mb-6">
