@@ -476,11 +476,11 @@ export default function HostingMaintenance() {
 
       {/* 4. PLANES - Bloque Oscuro Estilo Home.tsx */}
       <section id="planes" className="py-12 sm:py-20 bg-white px-0 sm:px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto bg-brand-dark rounded-none sm:rounded-[3.5rem] p-6 sm:p-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
+        <div className="max-w-7xl mx-auto bg-brand-dark rounded-none sm:rounded-[3.5rem] py-12 md:p-20 text-white relative overflow-hidden shadow-2xl">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           
-          <div className="relative z-10 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="relative z-10 mb-16 flex flex-col items-center text-center md:items-end md:text-left justify-between gap-8 px-6 md:px-0">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-6 border border-white/10">
                 NUESTROS PLANES
@@ -493,27 +493,36 @@ export default function HostingMaintenance() {
                 Sin permanencias. Gestión unificada de hosting y mantenimiento para que no tengas que preocuparte de nada.
               </p>
             </div>
+          </div>
 
-            <div className="flex flex-col gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
-              <div className="inline-flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm w-fit whitespace-nowrap">
-                {pricingViews.map((view) => (
-                  <button
-                    key={view.key}
-                    onClick={() => setPricingView(view.key)}
-                    className={`px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
-                      pricingView === view.key ? 'bg-brand-lime text-brand-dark' : 'text-white/40 hover:text-white'
-                    }`}
-                  >
-                    {view.label}
-                  </button>
-                ))}
+          <div className="relative z-10 mb-16 px-6 md:px-0">
+            <div className="relative w-full max-w-md mx-auto md:mx-0">
+              {/* Left Fade */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-brand-dark to-transparent pointer-events-none md:hidden" />
+              {/* Right Fade */}
+              <div className="absolute right-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-l from-brand-dark to-transparent pointer-events-none md:hidden" />
+              
+              <div className="flex flex-col gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x">
+                <div className="inline-flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm w-fit whitespace-nowrap mx-auto md:mx-0">
+                  {pricingViews.map((view) => (
+                    <button
+                      key={view.key}
+                      onClick={() => setPricingView(view.key)}
+                      className={`px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all snap-center ${
+                        pricingView === view.key ? 'bg-brand-lime text-brand-dark' : 'text-white/40 hover:text-white'
+                      }`}
+                    >
+                      {view.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
           <div 
             onScroll={handlePricingScroll}
-            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide -mx-2 md:mx-0 px-2 md:px-0"
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide px-6 md:px-0"
           >
             <AnimatePresence mode="wait">
               {pricingView === 'hosting' ? (
@@ -640,7 +649,7 @@ export default function HostingMaintenance() {
           </div>
 
           {/* CUSTOM SLIDER INDICATOR - PREMIUM WHITE STYLE */}
-          <div className="flex justify-center gap-2.5 mt-10 md:hidden relative z-20">
+          <div className="flex justify-center gap-2.5 mt-10 md:hidden relative z-20 px-6">
             {(pricingView === 'hosting' ? [1] : maintenancePlans).map((_, idx) => (
               <motion.div 
                 key={idx}
