@@ -522,7 +522,7 @@ export default function HostingMaintenance() {
 
           <div 
             onScroll={handlePricingScroll}
-            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-8 md:pb-0 scrollbar-hide px-6 md:px-0"
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory py-10 md:py-0 scrollbar-hide px-6 md:px-0"
           >
             <AnimatePresence mode="wait">
               {pricingView === 'hosting' ? (
