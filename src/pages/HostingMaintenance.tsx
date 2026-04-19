@@ -150,7 +150,6 @@ export default function HostingMaintenance() {
     }
   };
 
-  }, []);
 
   // Memoize star positions to prevent jitter on re-renders (scroll)
   const starData = useMemo(() => {
