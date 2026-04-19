@@ -45,187 +45,225 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-brand-dark selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8F9FA] text-brand-dark selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
       
+      {/* 1. Header is pushed to Z-index by Navbar component, so we just add the Navbar */}
       <Navbar initialTheme="dark" />
 
-      <main className="pt-32 pb-24">
-        {/* Simple Page Header */}
-        <section className="bg-brand-dark text-white pt-20 pb-24 rounded-b-[3rem] sm:rounded-b-[4rem] relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-blue/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <main>
+        {/* --- PREMIUM HERO (Touches top) --- */}
+        <section className="bg-brand-dark text-white pt-40 md:pt-48 pb-32 sm:pb-40 rounded-b-[2.5rem] md:rounded-b-[4rem] relative overflow-hidden z-10">
+           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-lime/5 rounded-full blur-[80px] pointer-events-none"></div>
            
            <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-8"
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-8 backdrop-blur-sm"
               >
-                ¿Hablamos?
+                Let's talk
               </motion.div>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="font-display text-5xl sm:text-7xl lg:text-8xl uppercase tracking-tighter leading-[0.95]"
+                transition={{ delay: 0.1, duration: 0.7 }}
+                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] uppercase tracking-tighter leading-[0.9]"
               >
-                Cuéntanos tu <br />
-                <span className="text-brand-lime italic">proyecto</span>
+                Hablemos de tu <br className="hidden sm:block"/>
+                <span className="text-brand-lime italic font-light tracking-wide mr-1 md:mr-2">próximo</span>
+                proyecto
               </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-white/50 text-base md:text-lg max-w-xl mx-auto mt-8 font-medium leading-relaxed"
+              >
+                Estamos buscando proyectos ambiciosos. Si quieres destacar en tu sector con una web que deje marca, estás en el lugar correcto.
+              </motion.p>
            </div>
         </section>
 
-        {/* Content Section */}
-        <section className="max-w-7xl mx-auto px-6 -mt-12 relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* --- REDESIGNED CONTACT SECTION --- */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-20 sm:-mt-24 relative z-20 pb-20 md:pb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start">
             
-            {/* Left: Info Card */}
-            <div className="lg:col-span-5 space-y-8">
+            {/* Left: Minimalist Info Pillar */}
+            <div className="lg:col-span-4 lg:col-start-1 space-y-8 order-2 lg:order-1 pt-8 lg:pt-0">
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-brand-blue/5 border border-gray-100"
               >
-                <h2 className="font-display text-3xl uppercase mb-8 text-brand-dark">Canales directos</h2>
-                <div className="space-y-6">
-                   <a href="https://wa.me/34623783129" className="flex items-center gap-6 p-6 rounded-2xl bg-emerald-50 text-emerald-700 hover:scale-[1.02] transition-transform group">
-                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                        <MessageSquare size={24} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">WhatsApp Directo</p>
-                        <p className="text-lg font-bold">Escríbenos ahora</p>
-                      </div>
-                   </a>
+                <div className="space-y-12">
+                   {/* Info block 1 */}
+                   <div>
+                     <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 border-b border-gray-200 pb-3 inline-block">WhatsApp Directo</h3>
+                     <a href="https://wa.me/34623783129" className="flex items-start gap-4 group">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                          <MessageSquare size={18} />
+                        </div>
+                        <div>
+                          <p className="text-xl font-display uppercase tracking-tight text-brand-dark group-hover:text-emerald-600 transition-colors">623 783 129</p>
+                          <p className="text-xs text-gray-500 font-medium mt-1">Lunes a Viernes, 9:00 - 18:00</p>
+                        </div>
+                     </a>
+                   </div>
 
-                   <a href="tel:623783129" className="flex items-center gap-6 p-6 rounded-2xl bg-blue-50 text-brand-blue hover:scale-[1.02] transition-transform group">
-                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
-                        <Phone size={24} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Llámanos</p>
-                        <p className="text-lg font-bold">623 783 129</p>
-                      </div>
-                   </a>
+                   {/* Info block 2 */}
+                   <div>
+                     <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 border-b border-gray-200 pb-3 inline-block">Habla con nosotros</h3>
+                     <a href="tel:623783129" className="flex items-start gap-4 group">
+                        <div className="w-10 h-10 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                          <Phone size={18} />
+                        </div>
+                        <div>
+                          <p className="text-xl font-display uppercase tracking-tight text-brand-dark group-hover:text-brand-blue transition-colors">Llamada directa</p>
+                          <p className="text-xs text-gray-500 font-medium mt-1">Agenda una llamada sin compromiso</p>
+                        </div>
+                     </a>
+                   </div>
 
-                   <a href="mailto:holaiconostudio@gmail.com" className="flex items-center gap-6 p-6 rounded-2xl bg-zinc-50 text-zinc-600 hover:scale-[1.02] transition-transform group">
-                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-zinc-800 group-hover:text-white transition-colors duration-300">
-                        <Mail size={24} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Correo electrónico</p>
-                        <p className="text-base font-bold">holaiconostudio@gmail.com</p>
-                      </div>
-                   </a>
+                   {/* Info block 3 */}
+                   <div>
+                     <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 border-b border-gray-200 pb-3 inline-block">Email General</h3>
+                     <a href="mailto:holaiconostudio@gmail.com" className="flex items-start gap-4 group">
+                        <div className="w-10 h-10 rounded-full bg-brand-dark/5 text-brand-dark flex items-center justify-center shrink-0 group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300">
+                          <Mail size={18} />
+                        </div>
+                        <div>
+                          <p className="text-[15px] font-bold text-brand-dark leading-none mt-1 group-hover:underline decration-brand-dark/20 underline-offset-4">holaiconostudio@gmail.com</p>
+                        </div>
+                     </a>
+                   </div>
                 </div>
 
-                <div className="mt-12 pt-10 border-t border-gray-100 grid grid-cols-2 gap-6 text-center">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-full bg-brand-lime/10 flex items-center justify-center mx-auto text-brand-blue"><Clock size={20} /></div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Respuesta</p>
-                    <p className="text-sm font-bold">Menos de 24h</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center mx-auto text-brand-blue"><ShieldCheck size={20} /></div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Servicio</p>
-                    <p className="text-sm font-bold">100% Personalizado</p>
+                <div className="mt-16 pt-8 border-t border-gray-200 flex items-center gap-6 text-sm">
+                  <div className="flex items-center gap-2 text-brand-dark font-medium">
+                    <Clock size={16} className="text-brand-lime" />
+                    <span>Respuesta &lt; 24h</span>
                   </div>
                 </div>
               </motion.div>
             </div>
 
-            {/* Right: Modern Form Card */}
-            <div className="lg:col-span-7">
+            {/* Right: Premium Form Sheet */}
+            <div className="lg:col-span-8 order-1 lg:order-2">
               <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-white p-8 md:p-14 rounded-[2.5rem] shadow-2xl shadow-gray-200 border border-gray-100"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="bg-white p-8 sm:p-12 md:p-16 rounded-[2rem] sm:rounded-[3rem] shadow-2xl shadow-gray-200/50"
               >
-                <div className="mb-10">
-                   <h2 className="text-3xl font-display uppercase text-brand-dark mb-4">¿En qué podemos ayudarte?</h2>
-                   <p className="text-gray-500 font-medium">Rellena este breve formulario y nos pondremos en contacto contigo lo antes posible para hablar de tu idea.</p>
+                <div className="mb-12">
+                   <h2 className="text-2xl sm:text-3xl font-display uppercase text-brand-dark">Comparte tu visión</h2>
+                   <p className="text-gray-500 text-sm mt-3 font-medium">Completa los campos a continuación. Toda la información será tratada de manera estrictamente confidencial.</p>
                 </div>
 
                 <AnimatePresence mode="wait">
                   {formStatus === 'success' ? (
                     <motion.div 
                       key="success"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
                       className="py-16 text-center"
                     >
-                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle2 size={40} />
+                      <div className="w-24 h-24 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+                        <CheckCircle2 size={48} />
                       </div>
-                      <h3 className="text-2xl font-bold mb-2 uppercase">¡Mensaje recibido!</h3>
-                      <p className="text-gray-500 max-w-sm mx-auto mb-8">Gracias por confiar en Icono Studio. Ya estamos analizando tu solicitud.</p>
+                      <h3 className="text-3xl font-display uppercase tracking-tight text-brand-dark mb-4">Solicitud Recibida</h3>
+                      <p className="text-gray-500 max-w-sm mx-auto mb-10 leading-relaxed font-medium">Gracias por confiar en el equipo de Icono Studio. Revisaremos tu información y te contactaremos en menos de 24 horas.</p>
+                      
                       <button 
                         onClick={() => setFormStatus('idle')}
-                        className="text-brand-blue font-bold uppercase tracking-widest text-[10px] border-b-2 border-brand-lime pb-1"
+                        className="inline-flex items-center justify-center px-8 py-3 rounded-full border border-gray-200 text-xs font-bold uppercase tracking-widest text-brand-dark hover:bg-gray-50 transition-colors"
                       >
-                        Enviar otro mensaje
+                        Nuevo Mensaje
                       </button>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans">
-                          <div className="space-y-2">
-                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Nombre Completo</label>
+                    <form onSubmit={handleSubmit} className="space-y-10 group">
+                       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                          {/* Minimalist Input: Name */}
+                          <div className="relative group/input">
                              <input 
                               type="text" 
                               name="nombre" 
                               required 
-                              placeholder="Ej. Edgar Roca" 
-                              className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium text-brand-dark"
+                              id="nombre"
+                              className="peer w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium"
+                              placeholder="Nombre Completo"
                              />
+                             <label htmlFor="nombre" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
+                               Nombre Completo
+                             </label>
                           </div>
-                          <div className="space-y-2">
-                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Correo Electrónico</label>
+                          
+                          {/* Minimalist Input: Email */}
+                          <div className="relative group/input">
                              <input 
                               type="email" 
                               name="email" 
                               required 
-                              placeholder="tu@email.com" 
-                              className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium text-brand-dark"
+                              id="email"
+                              className="peer w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium"
+                              placeholder="Correo Electrónico"
                              />
+                             <label htmlFor="email" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
+                               Correo Electrónico
+                             </label>
                           </div>
                        </div>
 
-                       <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">¿Qué necesitas?</label>
-                          <select name="servicio" className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium text-brand-dark appearance-none cursor-pointer">
-                             <option>Diseño Web Profesional</option>
-                             <option>E-commerce / Tienda Online</option>
-                             <option>Mantenimiento y Hosting</option>
-                             <option>SEO y Auditoría Digital</option>
-                             <option>Otros servicios</option>
-                          </select>
+                       {/* Minimalist Select */}
+                       <div className="relative group/input pt-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-brand-dark block mb-3">Interés Principal</label>
+                          <div className="relative">
+                            <select name="servicio" className="w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark font-medium outline-none focus:border-brand-dark transition-colors appearance-none cursor-pointer">
+                               <option>Diseño Web Profesional</option>
+                               <option>E-commerce / Tienda Online</option>
+                               <option>Mantenimiento y Rendimiento</option>
+                               <option>Estrategia y SEO</option>
+                               <option>Otro Proyecto Especifico</option>
+                            </select>
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-brand-dark">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                          </div>
                        </div>
 
-                       <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Mensaje o Detalles del proyecto</label>
+                       {/* Minimalist Textarea */}
+                       <div className="relative group/input pt-4">
                           <textarea 
                              name="mensaje" 
                              required 
-                             rows={4}
-                             placeholder="Cuéntanos brevemente cuáles son tus objetivos..."
-                             className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/5 transition-all font-medium text-brand-dark resize-none"
+                             id="mensaje"
+                             rows={1}
+                             className="peer w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium resize-none min-h-[100px]"
+                             placeholder="Cuéntanos un poco sobre el proyecto..."
                           />
+                          <label htmlFor="mensaje" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
+                             Detalles del proyecto (Opcional pero recomendable)
+                          </label>
                        </div>
 
-                       <button 
-                        type="submit" 
-                        disabled={formStatus === 'submitting'}
-                        className="w-full bg-brand-dark text-white py-6 rounded-2xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-brand-blue transition-all disabled:opacity-50 shadow-xl shadow-brand-blue/10"
-                       >
-                         {formStatus === 'submitting' ? 'Enviando...' : (
-                           <>Enviar Solicitud <ArrowRight size={18} /></>
-                         )}
-                       </button>
-
-                       <p className="text-center text-[10px] text-gray-400 font-medium">Al enviar este formulario, aceptas nuestra política de privacidad.</p>
+                       <div className="pt-6 flex flex-col sm:flex-row items-center gap-6 justify-between border-t border-gray-100">
+                         <p className="text-[10px] text-gray-400 font-medium max-w-xs text-center sm:text-left leading-relaxed">
+                           Tus datos están seguros. Jamás compartiremos tu información con terceros, ni enviaremos spam.
+                         </p>
+                         <button 
+                          type="submit" 
+                          disabled={formStatus === 'submitting'}
+                          className="w-full sm:w-auto bg-brand-dark text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-lime hover:text-brand-dark transition-all duration-300 disabled:opacity-50"
+                         >
+                           {formStatus === 'submitting' ? 'Procesando...' : (
+                             <>Iniciar Proyecto <ArrowRight size={14} /></>
+                           )}
+                         </button>
+                       </div>
                     </form>
                   )}
                 </AnimatePresence>
