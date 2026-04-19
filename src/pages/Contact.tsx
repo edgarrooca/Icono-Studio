@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { 
   Phone, Mail, MessageSquare, Send, CheckCircle2, 
-  ArrowRight, Globe, ShieldCheck, Clock, MapPin, 
-  Linkedin, Instagram, Twitter
+  ArrowRight, Globe, ShieldCheck, Clock, MapPin
 } from 'lucide-react';
-import Navbar from '../components/Navbar'; // I'll check if I should use Navbar or inline it
 import Footer from '../components/Footer';
 
 export default function Contact() {

@@ -3,6 +3,8 @@ import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import Dashboard from './pages/Dashboard';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import HostingMaintenance from './pages/HostingMaintenance';
 import Contact from './pages/Contact';
 import HashScrollHandler from './components/HashScrollHandler';
 

@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { 
-  ArrowLeft, Calendar, User, ChevronRight, Share2, Twitter, Linkedin, 
-  Facebook, Copy, Menu, X, ArrowRight 
+  ArrowLeft, Calendar, User, ChevronRight, Share2, 
+  Copy, Menu, X, ArrowRight 
 } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { mainNavLinks } from '../data/navigation';
@@ -205,8 +205,6 @@ export default function BlogPost() {
                     <Copy size={16} /> Enlace
                  </button>
                  <div className="flex items-center gap-2">
-                    <Twitter size={18} className="text-gray-400 cursor-pointer hover:text-brand-blue transition-colors" />
-                    <Linkedin size={18} className="text-gray-400 cursor-pointer hover:text-brand-blue transition-colors" />
                  </div>
               </div>
             </div>
