@@ -4,18 +4,35 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://icono.studio/</loc>
-  <lastmod>2026-04-18T00:00:00+00:00</lastmod>
+  <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/hosting-mantenimiento-web</loc>
-  <lastmod>2026-04-18T00:00:00+00:00</lastmod>
+  <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 
+<url>
+  <loc>https://icono.studio/blog</loc>
+  <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/blog/cuanto-cuesta-pagina-web-profesional-espana-2026</loc>
+  <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/blog/que-debe-tener-una-pagina-web-para-atraer-clientes</loc>
+  <lastmod>2026-04-19T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
 
 </urlset>
