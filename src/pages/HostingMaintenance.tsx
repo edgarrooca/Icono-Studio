@@ -230,7 +230,7 @@ export default function HostingMaintenance() {
               ))}
               <div className="mt-auto pb-12">
                 <p className="text-white/40 text-sm font-bold uppercase tracking-widest mb-4">Contacto</p>
-                <a href="mailto:hola@iconostudio.com" className="text-2xl font-display text-brand-lime lowercase">hola@iconostudio.com</a>
+                <a href="mailto:holaiconostudio@gmail.com" className="text-2xl font-display text-brand-lime lowercase">holaiconostudio@gmail.com</a>
               </div>
             </motion.div>
           )}
@@ -307,7 +307,7 @@ export default function HostingMaintenance() {
             </motion.p>
             
               <motion.a
-                href="#planes"
+                href="/contacto"
                 whileHover="hover"
                 className="group relative bg-brand-lime text-brand-dark px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(212,255,0,0.2)] overflow-hidden"
               >

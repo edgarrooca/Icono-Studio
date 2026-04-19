@@ -764,7 +764,7 @@ export default function Dashboard() {
                   </div>
                   <div className="md:col-span-2">
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email de Contacto</label>
-                    <input name="contactEmail" type="email" defaultValue={siteSettings.contactEmail} placeholder="hola@iconostudio.com" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" />
+                    <input name="contactEmail" type="email" defaultValue={siteSettings.contactEmail} placeholder="holaiconostudio@gmail.com" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all" />
                   </div>
                 </div>
                 

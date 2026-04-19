@@ -234,7 +234,7 @@ export default function Home() {
             
             {/* CTA & Mobile Toggle */}
             <div className="flex items-center gap-4 z-50">
-              <RouterLink to="/#planes" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
+              <RouterLink to="/contacto" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white'}`}>
                 Presupuesto <ArrowRight size={16} />
               </RouterLink>
               <button 
@@ -309,7 +309,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <RouterLink to="/#planes" className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
+            <RouterLink to="/contacto" className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
               Pedir presupuesto <ArrowRight size={20} />
             </RouterLink>
             <a href="#proyectos" className="bg-transparent border-2 border-white/30 text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">

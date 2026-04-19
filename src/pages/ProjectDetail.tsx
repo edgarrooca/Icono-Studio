@@ -152,7 +152,7 @@ export default function ProjectDetail() {
             
             {/* CTA & Mobile Toggle */}
             <div className="flex items-center gap-4 z-50">
-              <a href="/#pricing" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
+              <a href="/contacto" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
                 Presupuesto <ArrowRight size={16} />
               </a>
               <button 
@@ -581,7 +581,7 @@ export default function ProjectDetail() {
             <h2 className="font-display text-[18vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
               ¿Hablamos?
             </h2>
-            <a href="mailto:hola@iconostudio.com" className="inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase hover:bg-brand-lime transition-colors w-full sm:w-auto">
+            <a href="mailto:holaiconostudio@gmail.com" className="inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase hover:bg-brand-lime transition-colors w-full sm:w-auto">
               Pedir Presupuesto <ArrowUpRight size={24} className="sm:w-7 sm:h-7" />
             </a>
           </div>

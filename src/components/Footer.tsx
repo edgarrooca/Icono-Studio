@@ -15,13 +15,13 @@ export default function Footer() {
             ¿Hablamos?
           </h2>
           <motion.a 
-            href="mailto:hola@iconostudio.com"
+            href="/contacto"
             whileHover="hover"
             initial="initial"
             className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase overflow-hidden transition-all duration-300 w-full sm:w-auto"
           >
             {/* HIGH-VISIBILITY CRYSTAL SHINE - ENTER ONLY */}
-            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-full">
+            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-full font-normal">
               <motion.div 
                 whileHover={{ 
                   x: '200%',

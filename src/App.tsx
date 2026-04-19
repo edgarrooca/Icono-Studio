@@ -3,8 +3,7 @@ import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import Dashboard from './pages/Dashboard';
 import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import HostingMaintenance from './pages/HostingMaintenance';
+import Contact from './pages/Contact';
 import HashScrollHandler from './components/HashScrollHandler';
 
 export default function App() {
@@ -17,6 +16,7 @@ export default function App() {
         <Route path="/proyecto/:id" element={<ProjectDetail />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/contacto" element={<Contact />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
