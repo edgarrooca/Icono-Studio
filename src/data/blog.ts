@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
     metaTitle: 'Cuánto cuesta una página web profesional en España en 2026 | Icono Studio',
     metaDescription: 'Descubre cuánto cuesta una página web profesional en España en 2026, qué factores influyen en el precio y qué incluye realmente un proyecto web bien hecho.',
     content: `
-      <p>Si estás pensando en crear la web de tu negocio, seguramente te has hecho esta pregunta: <strong>¿cuánto cuesta una página web profesional en España en 2026?</strong></p>
+      <p>Si estás pensando en crear la web de tu negocio, seguramente te has hecho esta pregunta: <em><strong>¿cuánto cuesta una página web profesional en España en 2026?</strong></em></p>
 
       <p>La realidad es que no hay un único precio. No cuesta lo mismo una web sencilla para presentar tus servicios que una página con más secciones, formularios avanzados, automatizaciones o un sistema de gestión interno. Aun así, sí que hay rangos orientativos que te pueden ayudar a entender cuánto deberías invertir y qué puedes esperar según tu caso.</p>
 
