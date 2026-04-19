@@ -1,7 +1,11 @@
-import { motion } from 'motion/react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, User, ChevronRight, Share2, Twitter, Linkedin, Facebook, Copy } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { useParams, Link as RouterLink } from 'react-router-dom';
+import { 
+  ArrowLeft, Calendar, User, ChevronRight, Share2, Twitter, Linkedin, 
+  Facebook, Copy, Menu, X, ArrowRight 
+} from 'lucide-react';
 import { blogPosts } from '../data/blog';
+import { mainNavLinks } from '../data/navigation';
 import { useEffect, useState, useRef } from 'react';
 import Footer from '../components/Footer';
 
@@ -16,6 +20,8 @@ export default function BlogPost() {
   const [readingProgress, setReadingProgress] = useState(0);
   const [toc, setToc] = useState<ToCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,16 +47,15 @@ export default function BlogPost() {
       });
 
       setToc(items);
-      
-      if (contentRef.current) {
-        // We'll use the IDs in the dangerouslySetInnerHTML by searching and replacing
-        // This is a bit hacky but works for static-ish content
-      }
     };
 
     generateToC();
 
-    const updateScroll = () => {
+    const handleScroll = () => {
+      // Scrolled state for Navbar
+      setIsScrolled(window.scrollY > 50);
+
+      // Reading Progress
       const currentScroll = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollHeight) {
@@ -69,10 +74,10 @@ export default function BlogPost() {
       setActiveId(currentActiveId);
     };
 
-    window.addEventListener('scroll', updateScroll);
+    window.addEventListener('scroll', handleScroll);
     window.scrollTo(0, 0);
 
-    return () => window.removeEventListener('scroll', updateScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [post]);
 
   if (!post) {
@@ -80,7 +85,7 @@ export default function BlogPost() {
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
           <h1 className="text-3xl font-display mb-4 uppercase text-brand-dark">Post no encontrado</h1>
-          <Link to="/blog" className="text-brand-blue font-bold hover:underline">Volver al blog</Link>
+          <RouterLink to="/blog" className="text-brand-blue font-bold hover:underline">Volver al blog</RouterLink>
         </div>
       </div>
     );
@@ -88,7 +93,6 @@ export default function BlogPost() {
 
   // Inject IDs into content HTML for ToC linking
   const contentWithIds = post.content.replace(/<h2>/g, (match, offset) => {
-    // Find which index this h2 belongs to
     const before = post.content.substring(0, offset);
     const index = (before.match(/<h2>/g) || []).length;
     return `<h2 id="section-${index}">`;
@@ -106,63 +110,125 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
-      {/* 1. Top Navbar / Breadcrumbs (Minimalist) */}
-      <nav className="sticky top-0 z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
-            <Link to="/" className="text-gray-400 hover:text-brand-dark transition-colors">Inicio</Link>
+      
+      {/* 1. Standard Site Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-white/80 backdrop-blur-md shadow-sm text-brand-dark border border-gray-100'}`}>
+            
+            {/* Logo */}
+            <RouterLink to="/" className="flex items-center gap-2 z-50">
+              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
+            </RouterLink>
+            
+            {/* Desktop Links */}
+            <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
+              {mainNavLinks.map((link) => (
+                <RouterLink key={link.name} to={link.href} className="hover:text-brand-blue transition-colors">
+                  {link.name}
+                </RouterLink>
+              ))}
+            </div>
+            
+            {/* CTA & Mobile Toggle */}
+            <div className="flex items-center gap-4 z-50">
+              <RouterLink to="/#planes" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white'}`}>
+                Presupuesto <ArrowRight size={16} />
+              </RouterLink>
+              <button 
+                className="lg:hidden p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-32 px-6 flex flex-col gap-6 lg:hidden"
+            >
+              {mainNavLinks.map((link) => (
+                <RouterLink 
+                  key={link.name} 
+                  to={link.href} 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-display text-4xl uppercase hover:text-brand-lime transition-colors"
+                >
+                  {link.name}
+                </RouterLink>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      {/* Reading Progress Layer */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[110]">
+        <motion.div 
+          className="h-full bg-brand-lime shadow-[0_0_10px_rgba(212,255,0,0.5)]" 
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
+
+      <main className="pt-32 pb-32">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          {/* Breadcrumbs Row */}
+          <div className="max-w-5xl mx-auto mb-12 flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
+            <RouterLink to="/" className="text-gray-400 hover:text-brand-dark transition-colors">Inicio</RouterLink>
             <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/blog" className="text-gray-400 hover:text-brand-dark transition-colors">Blog</Link>
+            <RouterLink to="/blog" className="text-gray-400 hover:text-brand-dark transition-colors">Blog</RouterLink>
             <ChevronRight size={12} className="text-gray-300" />
             <span className="text-brand-blue">{post.tag}</span>
           </div>
-          <div className="flex items-center gap-3">
-             <button className="p-2 text-gray-400 hover:text-brand-blue transition-colors"><Twitter size={18} /></button>
-             <button className="p-2 text-gray-400 hover:text-brand-blue transition-colors"><Linkedin size={18} /></button>
-             <button className="p-2 text-gray-400 hover:text-brand-blue transition-colors"><Share2 size={18} /></button>
-          </div>
-        </div>
-      </nav>
 
-      <main className="pt-16 pb-32">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          {/* Header Section */}
-          <div className="max-w-4xl mb-16">
+          {/* Header Section - Aligned with Image Width (max-w-5xl) */}
+          <div className="max-w-5xl mx-auto mb-16">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display text-4xl sm:text-5xl md:text-7xl text-brand-dark uppercase tracking-tighter leading-[0.95] mb-8"
+              className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-brand-dark uppercase tracking-tighter leading-[0.9] mb-12"
             >
               {post.title}
             </motion.h1>
 
-            <div className="flex flex-wrap items-center gap-y-4 gap-x-12 border-y border-gray-100 py-8">
+            <div className="flex flex-wrap items-center gap-y-6 gap-x-12 border-y border-gray-200 py-10 w-full">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-brand-lime font-display">I</div>
+                <div className="w-12 h-12 rounded-full bg-brand-dark flex items-center justify-center text-brand-lime font-display text-lg">I</div>
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Escrito por</p>
-                  <p className="text-sm font-bold text-brand-dark">{post.author}</p>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-black mb-1">Escrito por</p>
+                  <p className="text-base font-bold text-brand-dark">{post.author}</p>
                 </div>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Publicado el</p>
-                <p className="text-sm font-bold text-brand-dark">{post.date}</p>
+                <p className="text-[10px] uppercase tracking-widest text-gray-400 font-black mb-1">Publicado el</p>
+                <p className="text-base font-bold text-brand-dark">{post.date}</p>
               </div>
               <div className="ml-auto hidden sm:flex gap-4">
-                 <button className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors">
-                    <Copy size={14} /> Copiar enlace
+                 <button className="flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors">
+                    <Copy size={16} /> Copiar enlace
                  </button>
+                 <div className="flex items-center gap-2">
+                    <Twitter size={18} className="text-gray-400 cursor-pointer hover:text-brand-blue transition-colors" />
+                    <Linkedin size={18} className="text-gray-400 cursor-pointer hover:text-brand-blue transition-colors" />
+                 </div>
               </div>
             </div>
           </div>
 
-          {/* Featured Image */}
+          {/* Featured Image - Aligned (max-w-5xl) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-20 rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-100 border border-gray-100"
+            className="max-w-5xl mx-auto mb-20 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-gray-100 border border-gray-100"
           >
             <img src={post.image} alt={post.title} className="w-full aspect-[21/9] object-cover" />
           </motion.div>
@@ -173,7 +239,7 @@ export default function BlogPost() {
             {/* Left Sidebar: ToC */}
             <aside className="hidden lg:block">
               <div className="toc-sidebar">
-                <p className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-dark mb-6">Índice</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-dark mb-6">Contenido</p>
                 <nav className="flex flex-col">
                   {toc.map((item) => (
                     <button
@@ -181,7 +247,7 @@ export default function BlogPost() {
                       onClick={() => scrollToSection(item.id)}
                       className={`toc-link ${activeId === item.id ? 'active' : ''}`}
                     >
-                      <span>{item.text}</span>
+                      <span className="line-clamp-2">{item.text}</span>
                       <div className="dot" />
                     </button>
                   ))}
@@ -189,15 +255,15 @@ export default function BlogPost() {
                     onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
                     className="toc-link"
                   >
-                    <span>Preguntas frecuentes</span>
+                    <span>FAQs</span>
                     <div className="dot" />
                   </button>
                 </nav>
 
-                <div className="mt-12 p-6 bg-brand-blue/5 rounded-2xl border border-brand-blue/10">
-                   <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Necesitas ayuda?</p>
-                   <p className="text-sm text-gray-600 mb-6 leading-relaxed">Analizamos tu proyecto y te damos un presupuesto a medida.</p>
-                   <Link to="/#pricing" className="block text-center bg-brand-dark text-white py-3 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-brand-blue transition-colors">Empezar ahora</Link>
+                <div className="mt-12 p-6 bg-brand-blue/5 rounded-[2rem] border border-brand-blue/10">
+                   <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Lanzamos tu web?</p>
+                   <p className="text-sm text-gray-500 mb-6 leading-relaxed">Pide tu presupuesto sin compromiso hoy mismo.</p>
+                   <RouterLink to="/#pricing" className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors">Solicitar Presupuesto</RouterLink>
                 </div>
               </div>
             </aside>
@@ -212,53 +278,61 @@ export default function BlogPost() {
 
               {/* FAQ Section */}
               {post.faqs && (
-                <section className="mt-32 pt-16 border-t border-gray-100">
-                  <h2 className="font-display text-3xl uppercase mb-12 tracking-tight">Preguntas <span className="text-brand-blue italic underline decoration-brand-lime/30">frecuentes</span></h2>
-                  <div className="space-y-6">
+                <section className="mt-32 pt-24 border-t border-gray-100">
+                  <h2 className="font-display text-4xl uppercase mb-16 tracking-tight text-brand-dark">Preguntas <span className="text-brand-blue italic underline decoration-brand-lime/30">frecuentes</span></h2>
+                  <div className="grid gap-8">
                     {post.faqs.map((faq, i) => (
-                      <div key={i} className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                        <h3 className="text-lg font-bold text-brand-dark mb-4">{faq.question}</h3>
-                        <p className="text-gray-600 text-lg leading-relaxed">{faq.answer}</p>
+                      <div key={i} className="group flex gap-6">
+                        <span className="text-brand-lime font-display text-2xl pt-1">0{i+1}.</span>
+                        <div>
+                          <h3 className="text-xl font-bold text-brand-dark mb-4 group-hover:text-brand-blue transition-colors">{faq.question}</h3>
+                          <p className="text-gray-500 text-lg leading-relaxed">{faq.answer}</p>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </section>
               )}
 
-              {/* Minimalist Footer Navigation */}
-              <div className="mt-24 pt-12 border-t border-gray-100 flex items-center justify-between">
-                <Link to="/blog" className="flex items-center gap-3 font-bold text-gray-400 hover:text-brand-blue transition-colors group">
-                  <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-                  Volver al Blog
-                </Link>
-                <div className="flex gap-4">
-                  <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white transition-all"><Facebook size={18} /></button>
-                  <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white transition-all"><Twitter size={18} /></button>
-                </div>
+              {/* Author Section */}
+              <div className="mt-32 p-12 bg-zinc-50 rounded-[3rem] border border-gray-100 flex flex-col md:flex-row items-center gap-10">
+                 <div className="w-24 h-24 rounded-3xl bg-brand-dark text-brand-lime font-display flex items-center justify-center text-4xl shrink-0">I</div>
+                 <div className="text-center md:text-left">
+                    <p className="text-[10px] uppercase font-black tracking-widest text-brand-blue mb-2">Editor en Jefe</p>
+                    <h4 className="font-display text-2xl uppercase tracking-tight text-brand-dark mb-4">Icono Studio Team</h4>
+                    <p className="text-gray-500 mb-6 leading-relaxed">Especialistas en diseño web estratégico y desarrollo de alto impacto para negocios que buscan liderar su sector.</p>
+                    <div className="flex justify-center md:justify-start gap-4">
+                       <RouterLink to="/#planes" className="text-xs font-bold uppercase tracking-widest text-brand-dark hover:text-brand-blue underline decoration-brand-lime decoration-4">Nuestros Planes</RouterLink>
+                    </div>
+                 </div>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Simplified Next Articles Section */}
-      <section className="py-24 bg-zinc-50 border-t border-gray-100">
+      {/* Recommended Articles Section */}
+      <section className="py-32 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
-            <h2 className="font-display text-3xl uppercase tracking-tight">Seguir leyendo</h2>
-            <Link to="/blog" className="text-brand-blue font-bold uppercase tracking-widest text-xs border-b border-brand-blue pb-1">Ver todos</Link>
+          <div className="flex items-end justify-between mb-16 px-4">
+            <div>
+              <p className="text-brand-blue font-black uppercase tracking-widest text-[10px] mb-2">Siguiente lectura</p>
+              <h2 className="font-display text-4xl uppercase tracking-tight">Quizás te <span className="italic text-brand-blue">interese</span></h2>
+            </div>
+            <RouterLink to="/blog" className="hidden sm:flex items-center gap-2 font-bold uppercase tracking-widest text-xs hover:text-brand-blue transition-colors">Todos los artículos <ArrowRight size={14} /></RouterLink>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.filter(p => p.slug !== slug).map(p => (
-              <Link to={`/blog/${p.slug}`} key={p.slug} className="group bg-white rounded-3xl p-4 border border-gray-100 hover:shadow-xl transition-all">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-6">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            {blogPosts.filter(p => p.slug !== slug).slice(0, 3).map(p => (
+              <RouterLink to={`/blog/${p.slug}`} key={p.slug} className="group bg-white rounded-[2.5rem] p-5 shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-8 relative">
+                   <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />
+                   <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                 </div>
-                <div className="px-2 pb-2">
-                  <span className="text-[10px] font-bold text-brand-blue uppercase tracking-widest mb-3 block">{p.tag}</span>
-                  <h3 className="font-display text-xl uppercase leading-tight group-hover:text-brand-blue transition-colors line-clamp-2">{p.title}</h3>
+                <div className="px-2">
+                  <span className="text-[10px] font-bold text-brand-blue uppercase tracking-[0.2em] mb-4 block">{p.tag}</span>
+                  <h3 className="font-display text-2xl uppercase leading-[1.1] group-hover:text-brand-blue transition-colors line-clamp-2">{p.title}</h3>
                 </div>
-              </Link>
+              </RouterLink>
             ))}
           </div>
         </div>
