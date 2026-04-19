@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Mail, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Mail, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart, Phone, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { portfolioProjects, Project } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -167,6 +167,37 @@ export default function Home() {
   
   const [projects, setProjects] = useState<any[]>(portfolioProjects);
   const [siteSettings, setSiteSettings] = useState<any>({});
+  
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/holaiconostudio@gmail.com', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        alert('Lo sentimos, hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.');
+        setFormStatus('idle');
+      }
+    } catch (error) {
+      alert('Error de conexión. Revisa tu internet e inténtalo de nuevo.');
+      setFormStatus('idle');
+    }
+  };
 
   useEffect(() => {
     const fetchFirebaseData = async () => {
@@ -978,6 +1009,170 @@ export default function Home() {
             </RouterLink>
           ))}
         </div>
+        </div>
+      </section>
+
+      {/* 12. CONTACTO DIRECTO */}
+      <section id="contacto" className="py-24 sm:py-32 bg-white relative z-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Left: Info Card */}
+            <div className="lg:col-span-5 space-y-8">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="bg-zinc-50 p-10 rounded-[2.5rem] shadow-xl shadow-brand-blue/5 border border-gray-100"
+              >
+                <h2 className="font-display text-4xl uppercase mb-8 text-brand-dark">¿Hablamos?</h2>
+                <div className="space-y-6">
+                   <a href="https://wa.me/34623783129" className="flex items-center gap-6 p-6 rounded-2xl bg-emerald-50 text-emerald-700 hover:scale-[1.02] transition-transform group shadow-sm">
+                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <MessageSquare size={24} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">WhatsApp Directo</p>
+                        <p className="text-lg font-bold">Escríbenos ahora</p>
+                      </div>
+                   </a>
+
+                   <a href="tel:623783129" className="flex items-center gap-6 p-6 rounded-2xl bg-blue-50 text-brand-blue hover:scale-[1.02] transition-transform group shadow-sm">
+                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
+                        <Phone size={24} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Llámanos</p>
+                        <p className="text-lg font-bold">623 783 129</p>
+                      </div>
+                   </a>
+
+                   <a href="mailto:holaiconostudio@gmail.com" className="flex items-center gap-6 p-6 rounded-2xl bg-white border border-gray-100 text-zinc-600 hover:scale-[1.02] transition-transform group shadow-sm">
+                      <div className="w-12 h-12 rounded-xl bg-zinc-50 flex items-center justify-center shadow-sm group-hover:bg-zinc-800 group-hover:text-white transition-colors duration-300">
+                        <Mail size={24} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Correo electrónico</p>
+                        <p className="text-base font-bold">holaiconostudio@gmail.com</p>
+                      </div>
+                   </a>
+                </div>
+
+                <div className="mt-12 pt-10 border-t border-gray-200 grid grid-cols-2 gap-6 text-center">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-full bg-brand-lime/10 flex items-center justify-center mx-auto text-brand-blue"><Clock size={20} /></div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Respuesta</p>
+                    <p className="text-sm font-bold">Menos de 24h</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center mx-auto text-brand-blue"><ShieldCheck size={20} /></div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Servicio</p>
+                    <p className="text-sm font-bold">100% Personalizado</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right: Modern Form Card */}
+            <div className="lg:col-span-7">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-zinc-50 p-8 md:p-14 rounded-[2.5rem] shadow-2xl shadow-gray-200 border border-gray-100 h-full"
+              >
+                <div className="mb-10">
+                   <h2 className="text-3xl font-display uppercase text-brand-dark mb-4">Escríbenos sobre tu idea</h2>
+                   <p className="text-gray-500 font-medium text-lg leading-relaxed">Rellena este breve formulario y nos pondremos en contacto contigo lo antes posible para darle forma a tu proyecto juntos.</p>
+                </div>
+
+                <AnimatePresence mode="wait">
+                  {formStatus === 'success' ? (
+                    <motion.div 
+                      key="success"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="py-16 text-center"
+                    >
+                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle2 size={40} />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2 uppercase">¡Mensaje recibido!</h3>
+                      <p className="text-gray-500 max-w-sm mx-auto mb-8">Gracias por contactar con Icono Studio. Ya estamos analizando tu solicitud.</p>
+                      <button 
+                        onClick={() => setFormStatus('idle')}
+                        className="text-brand-blue font-bold uppercase tracking-widest text-[10px] border-b-2 border-brand-lime pb-1 hover:text-brand-dark transition-colors"
+                      >
+                        Enviar otro mensaje
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans">
+                          <div className="space-y-2">
+                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Nombre Completo</label>
+                             <input 
+                              type="text" 
+                              name="nombre" 
+                              required 
+                              placeholder="Ej. Edgar Roca" 
+                              className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark"
+                             />
+                          </div>
+                          <div className="space-y-2">
+                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Correo Electrónico</label>
+                             <input 
+                              type="email" 
+                              name="email" 
+                              required 
+                              placeholder="tu@email.com" 
+                              className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark"
+                             />
+                          </div>
+                       </div>
+
+                       <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">¿Qué necesitas?</label>
+                          <select name="servicio" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark appearance-none cursor-pointer">
+                             <option>Diseño Web Profesional</option>
+                             <option>E-commerce / Tienda Online</option>
+                             <option>Mantenimiento y Hosting</option>
+                             <option>SEO y Auditoría Digital</option>
+                             <option>Otros servicios</option>
+                          </select>
+                       </div>
+
+                       <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Mensaje o Detalles del proyecto</label>
+                          <textarea 
+                             name="mensaje" 
+                             required 
+                             rows={4}
+                             placeholder="Cuéntanos brevemente cuáles son tus objetivos..."
+                             className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark resize-none"
+                          />
+                       </div>
+
+                       <button 
+                        type="submit" 
+                        disabled={formStatus === 'submitting'}
+                        className="w-full bg-brand-dark text-white py-6 rounded-2xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-brand-blue hover:shadow-2xl hover:shadow-brand-blue/20 transition-all duration-300 disabled:opacity-50"
+                       >
+                         {formStatus === 'submitting' ? 'Enviando...' : (
+                           <>Enviar Solicitud <ArrowRight size={18} /></>
+                         )}
+                       </button>
+
+                       <p className="text-center text-[10px] text-gray-400 font-medium">Al enviar este formulario, aceptas nuestra política de privacidad.</p>
+                    </form>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
