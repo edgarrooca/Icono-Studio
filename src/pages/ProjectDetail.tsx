@@ -13,6 +13,8 @@ export default function ProjectDetail() {
   const [project, setProject] = useState<any>(null);
   const [relatedProjects, setRelatedProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMockup, setActiveMockup] = useState<1 | 2>(2);
 
   useEffect(() => {
@@ -90,8 +92,13 @@ export default function ProjectDetail() {
 
     fetchProject();
 
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
     return () => {
       isMounted = false;
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [id]);
 

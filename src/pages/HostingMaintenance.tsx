@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, ChevronDown, ChevronUp, ShieldCheck, Rocket, LineChart, Zap } from 'lucide-react';
-import { mainNavLinks } from '../data/navigation';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -117,6 +116,8 @@ const supportFaqs = [
 ];
 
 export default function HostingMaintenance() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [pricingView, setPricingView] = useState<(typeof pricingViews)[number]['key']>('bundle');
 
@@ -150,6 +151,13 @@ export default function HostingMaintenance() {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Memoize star positions to prevent jitter on re-renders (scroll)
   const starData = useMemo(() => {
