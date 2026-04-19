@@ -36,12 +36,12 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
               <img 
                 src="/icono-studio-logo.png" 
                 alt="Icono Studio" 
-                className={`h-8 sm:h-10 w-auto object-contain ${!isSolid && initialTheme === 'transparent' ? 'brightness-0 invert' : 'brightness-0 invert'}`} 
+                className="h-8 sm:h-10 w-auto object-contain brightness-0 invert" 
               />
             </RouterLink>
             
             {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-[0.15em]">
+            <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
               {mainNavLinks.map((link) => (
                 <RouterLink 
                   key={link.name} 
@@ -57,7 +57,7 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
             <div className="flex items-center gap-4 z-50">
               <RouterLink 
                 to="/contacto" 
-                className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
+                className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[10px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
               >
                 Presupuesto <ArrowRight size={14} />
               </RouterLink>
@@ -65,6 +65,7 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
               <button 
                 className="lg:hidden p-2 text-white"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle Menu"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -100,7 +101,7 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
               <RouterLink 
                 to="/contacto" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full bg-brand-lime text-brand-dark py-5 rounded-2xl font-bold uppercase tracking-widest text-center block"
+                className="w-full bg-brand-lime text-brand-dark py-5 rounded-2xl font-black uppercase tracking-widest text-center block text-[12px]"
               >
                 Pedir Presupuesto
               </RouterLink>

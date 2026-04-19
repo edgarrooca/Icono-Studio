@@ -21,7 +21,6 @@ export default function BlogPost() {
   const [readingProgress, setReadingProgress] = useState(0);
   const [toc, setToc] = useState<ToCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -154,8 +153,6 @@ export default function BlogPost() {
                  <button className="flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors">
                     <Copy size={16} /> Enlace
                  </button>
-                 <div className="flex items-center gap-2">
-                 </div>
               </div>
             </div>
           </div>
@@ -172,32 +169,24 @@ export default function BlogPost() {
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 xl:gap-24">
             
             <aside className="hidden lg:block text-slate-800">
-              <div className="toc-sidebar">
+              <div className="toc-sidebar sticky top-32">
                 <p className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-dark mb-6">Contenido</p>
                 <nav className="flex flex-col">
                   {toc.map((item) => (
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`toc-link ${activeId === item.id ? 'active' : ''}`}
+                      className={`toc-link ${activeId === item.id ? 'active' : ''} text-left py-2 text-sm border-l-2 border-transparent pl-4 hover:border-brand-lime transition-all`}
                     >
                       <span className="line-clamp-2">{item.text}</span>
-                      <div className="dot" />
                     </button>
                   ))}
-                  <button
-                    onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-                    className="toc-link"
-                  >
-                    <span>FAQs</span>
-                    <div className="dot" />
-                  </button>
                 </nav>
 
                 <div className="mt-12 p-6 bg-brand-blue/5 rounded-[2rem] border border-brand-blue/10">
                    <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Lanzamos tu web?</p>
                    <p className="text-sm text-gray-500 mb-6 leading-relaxed">Pide tu presupuesto sin compromiso hoy mismo.</p>
-                   <RouterLink to="/#planes" className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors">Solicitar Presupuesto</RouterLink>
+                   <RouterLink to="/contacto" className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors">Solicitar Presupuesto</RouterLink>
                 </div>
               </div>
             </aside>
@@ -205,7 +194,7 @@ export default function BlogPost() {
             <div className="max-w-3xl">
               <div 
                 ref={contentRef}
-                className="blog-content"
+                className="blog-content prose prose-lg prose-slate max-w-none"
                 dangerouslySetInnerHTML={{ __html: contentWithIds }}
               />
 
