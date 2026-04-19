@@ -8,7 +8,7 @@ export const blogPosts: BlogPost[] = [
     date: '19 Abr 2026',
     author: 'Icono Studio',
     tag: 'Presupuestos',
-    image: '/web_pricing_article_hero.png', // Assuming we copy the generated image here
+    image: '/blog-hero-pricing.png',
     metaTitle: 'Cuánto cuesta una página web profesional en España en 2026 | Icono Studio',
     metaDescription: 'Descubre cuánto cuesta una página web profesional en España en 2026, qué factores influyen en el precio y qué incluye realmente un proyecto web bien hecho.',
     content: `
