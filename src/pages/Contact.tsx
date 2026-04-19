@@ -45,231 +45,215 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-brand-dark selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-white font-sans selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden relative">
       
-      {/* 1. Header is pushed to Z-index by Navbar component, so we just add the Navbar */}
-      <Navbar initialTheme="dark" />
+      {/* 
+        NAVBAR FIX:
+        Placed inside an absolute wrapper so it floats gracefully over both 
+        the dark and light split sections without pushing content downward.
+      */}
+      <div className="absolute top-0 w-full z-50">
+        <Navbar initialTheme="dark" />
+      </div>
 
-      <main>
-        {/* --- PREMIUM HERO (Touches top) --- */}
-        <section className="bg-brand-dark text-white pt-40 md:pt-48 pb-32 sm:pb-40 rounded-b-[2.5rem] md:rounded-b-[4rem] relative overflow-hidden z-10">
-           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-lime/5 rounded-full blur-[80px] pointer-events-none"></div>
-           
-           <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-8 backdrop-blur-sm"
-              >
-                Let's talk
-              </motion.div>
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.7 }}
-                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] uppercase tracking-tighter leading-[0.9]"
-              >
-                Hablemos de tu <br className="hidden sm:block"/>
-                <span className="text-brand-lime italic font-light tracking-wide mr-1 md:mr-2">próximo</span>
-                proyecto
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-white/50 text-base md:text-lg max-w-xl mx-auto mt-8 font-medium leading-relaxed"
-              >
-                Estamos buscando proyectos ambiciosos. Si quieres destacar en tu sector con una web que deje marca, estás en el lugar correcto.
-              </motion.p>
-           </div>
+      <main className="flex flex-col xl:flex-row min-h-screen w-full relative z-10">
+        
+        {/* =========================================
+            LEFT COLUMN: THE DARK EDITORIAL HERO 
+        ============================================= */}
+        <section className="w-full xl:w-[45%] bg-brand-dark text-white pt-40 pb-20 px-6 sm:px-12 lg:px-16 flex flex-col justify-between relative overflow-hidden shrink-0 min-h-[60vh] xl:min-h-screen">
+          
+          {/* Subtle Ambient Glows */}
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-lime/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+          <div className="relative z-10 space-y-8 lg:space-y-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white font-bold text-[10px] uppercase tracking-[0.2em] mb-4 backdrop-blur-sm"
+            >
+              Start a project
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.7 }}
+              className="font-display text-7xl sm:text-8xl lg:text-[7rem] leading-[0.85] tracking-tighter uppercase"
+            >
+              Let's <br /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 italic">Talk</span>
+            </motion.h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-white/60 text-lg sm:text-xl font-medium max-w-md leading-relaxed"
+            >
+              Construimos ecosistemas digitales que transforman audiencias en clientes.
+            </motion.p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="relative z-10 mt-20 xl:mt-0 space-y-10"
+          >
+            {/* Quick Contact Info Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
+              <div className="space-y-4">
+                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">General Inquiries</p>
+                 <a href="mailto:holaiconostudio@gmail.com" className="flex flex-col gap-1 group">
+                   <span className="text-white font-medium group-hover:text-brand-lime transition-colors">holaiconostudio@gmail.com</span>
+                   <span className="text-white/40 group-hover:text-white/80 transition-colors uppercase text-[10px] tracking-widest font-bold">Email Us</span>
+                 </a>
+              </div>
+              <div className="space-y-4">
+                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">Direct Line</p>
+                 <a href="https://wa.me/34623783129" className="flex flex-col gap-1 group">
+                   <span className="text-white font-medium group-hover:text-brand-lime transition-colors">+34 623 783 129</span>
+                   <span className="text-white/40 group-hover:text-white/80 transition-colors uppercase text-[10px] tracking-widest font-bold">WhatsApp / Tel</span>
+                 </a>
+              </div>
+            </div>
+
+            <div className="pt-8 border-t border-white/10 flex items-center justify-between">
+               <p className="text-[10px] uppercase tracking-widest font-black text-white/30">Valencia, ES</p>
+               <div className="flex items-center gap-4 text-white/50">
+                  <a href="#" className="hover:text-white transition-colors"><Globe size={18} /></a>
+                  <a href="#" className="hover:text-white transition-colors"><MapPin size={18} /></a>
+               </div>
+            </div>
+          </motion.div>
         </section>
 
-        {/* --- REDESIGNED CONTACT SECTION --- */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-20 sm:-mt-24 relative z-20 pb-20 md:pb-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start">
+
+        {/* =========================================
+            RIGHT COLUMN: PRISTINE WHITE FORM 
+        ============================================= */}
+        <section className="w-full xl:w-[55%] bg-white pt-24 pb-20 px-6 sm:px-12 lg:px-20 xl:px-32 flex flex-col justify-center shrink-0 min-h-screen">
             
-            {/* Left: Minimalist Info Pillar */}
-            <div className="lg:col-span-4 lg:col-start-1 space-y-8 order-2 lg:order-1 pt-8 lg:pt-0">
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="space-y-12">
-                   {/* Info block 1 */}
-                   <div>
-                     <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 border-b border-gray-200 pb-3 inline-block">WhatsApp Directo</h3>
-                     <a href="https://wa.me/34623783129" className="flex items-start gap-4 group">
-                        <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                          <MessageSquare size={18} />
-                        </div>
-                        <div>
-                          <p className="text-xl font-display uppercase tracking-tight text-brand-dark group-hover:text-emerald-600 transition-colors">623 783 129</p>
-                          <p className="text-xs text-gray-500 font-medium mt-1">Lunes a Viernes, 9:00 - 18:00</p>
-                        </div>
-                     </a>
-                   </div>
+            <div className="max-w-2xl w-full mx-auto">
+              <div className="mb-14">
+                <h2 className="text-3xl sm:text-4xl font-display uppercase text-brand-dark tracking-tight">Datos del Proyecto</h2>
+                <p className="text-gray-400 mt-4 font-medium text-sm sm:text-base leading-relaxed">
+                  Completa este formulario. Tratamos toda la información con máxima confidencialidad. Te daremos una respuesta humana en menos de 24 horas.
+                </p>
+              </div>
 
-                   {/* Info block 2 */}
-                   <div>
-                     <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 border-b border-gray-200 pb-3 inline-block">Habla con nosotros</h3>
-                     <a href="tel:623783129" className="flex items-start gap-4 group">
-                        <div className="w-10 h-10 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
-                          <Phone size={18} />
-                        </div>
-                        <div>
-                          <p className="text-xl font-display uppercase tracking-tight text-brand-dark group-hover:text-brand-blue transition-colors">Llamada directa</p>
-                          <p className="text-xs text-gray-500 font-medium mt-1">Agenda una llamada sin compromiso</p>
-                        </div>
-                     </a>
-                   </div>
-
-                   {/* Info block 3 */}
-                   <div>
-                     <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 border-b border-gray-200 pb-3 inline-block">Email General</h3>
-                     <a href="mailto:holaiconostudio@gmail.com" className="flex items-start gap-4 group">
-                        <div className="w-10 h-10 rounded-full bg-brand-dark/5 text-brand-dark flex items-center justify-center shrink-0 group-hover:bg-brand-dark group-hover:text-white transition-colors duration-300">
-                          <Mail size={18} />
-                        </div>
-                        <div>
-                          <p className="text-[15px] font-bold text-brand-dark leading-none mt-1 group-hover:underline decration-brand-dark/20 underline-offset-4">holaiconostudio@gmail.com</p>
-                        </div>
-                     </a>
-                   </div>
-                </div>
-
-                <div className="mt-16 pt-8 border-t border-gray-200 flex items-center gap-6 text-sm">
-                  <div className="flex items-center gap-2 text-brand-dark font-medium">
-                    <Clock size={16} className="text-brand-lime" />
-                    <span>Respuesta &lt; 24h</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Right: Premium Form Sheet */}
-            <div className="lg:col-span-8 order-1 lg:order-2">
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="bg-white p-8 sm:p-12 md:p-16 rounded-[2rem] sm:rounded-[3rem] shadow-2xl shadow-gray-200/50"
-              >
-                <div className="mb-12">
-                   <h2 className="text-2xl sm:text-3xl font-display uppercase text-brand-dark">Comparte tu visión</h2>
-                   <p className="text-gray-500 text-sm mt-3 font-medium">Completa los campos a continuación. Toda la información será tratada de manera estrictamente confidencial.</p>
-                </div>
-
-                <AnimatePresence mode="wait">
-                  {formStatus === 'success' ? (
-                    <motion.div 
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      className="py-16 text-center"
+              <AnimatePresence mode="wait">
+                {formStatus === 'success' ? (
+                  <motion.div 
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="py-12 bg-white text-center"
+                  >
+                    <div className="w-24 h-24 bg-brand-dark text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-brand-dark/20">
+                      <CheckCircle2 size={40} className="text-brand-lime" />
+                    </div>
+                    <h3 className="text-4xl font-display uppercase tracking-tight text-brand-dark mb-4">Solicitud Recibida</h3>
+                    <p className="text-gray-500 max-w-sm mx-auto mb-10 leading-relaxed font-medium">Extraordinario. Nuestro equipo está revisando tu propuesta y nos pondremos en contacto contigo increíblemente rápido.</p>
+                    
+                    <button 
+                      onClick={() => setFormStatus('idle')}
+                      className="inline-flex items-center justify-center px-10 py-4 font-black uppercase tracking-widest text-[10px] text-brand-dark border-b-2 border-brand-dark hover:text-brand-lime hover:border-brand-lime transition-all duration-300"
                     >
-                      <div className="w-24 h-24 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
-                        <CheckCircle2 size={48} />
-                      </div>
-                      <h3 className="text-3xl font-display uppercase tracking-tight text-brand-dark mb-4">Solicitud Recibida</h3>
-                      <p className="text-gray-500 max-w-sm mx-auto mb-10 leading-relaxed font-medium">Gracias por confiar en el equipo de Icono Studio. Revisaremos tu información y te contactaremos en menos de 24 horas.</p>
-                      
-                      <button 
-                        onClick={() => setFormStatus('idle')}
-                        className="inline-flex items-center justify-center px-8 py-3 rounded-full border border-gray-200 text-xs font-bold uppercase tracking-widest text-brand-dark hover:bg-gray-50 transition-colors"
-                      >
-                        Nuevo Mensaje
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-10 group">
-                       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                          {/* Minimalist Input: Name */}
-                          <div className="relative group/input">
-                             <input 
-                              type="text" 
-                              name="nombre" 
-                              required 
-                              id="nombre"
-                              className="peer w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium"
-                              placeholder="Nombre Completo"
-                             />
-                             <label htmlFor="nombre" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
-                               Nombre Completo
-                             </label>
-                          </div>
-                          
-                          {/* Minimalist Input: Email */}
-                          <div className="relative group/input">
-                             <input 
-                              type="email" 
-                              name="email" 
-                              required 
-                              id="email"
-                              className="peer w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium"
-                              placeholder="Correo Electrónico"
-                             />
-                             <label htmlFor="email" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
-                               Correo Electrónico
-                             </label>
-                          </div>
-                       </div>
+                      Enviar nueva solicitud
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-12">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        {/* Minimalist Input: Name */}
+                        <div className="relative group/input">
+                           <input 
+                            type="text" 
+                            name="nombre" 
+                            required 
+                            id="nombre"
+                            className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium text-lg rounded-none"
+                            placeholder="Nombre Completo"
+                           />
+                           <label htmlFor="nombre" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
+                             Tu Nombre Completo
+                           </label>
+                        </div>
+                        
+                        {/* Minimalist Input: Email */}
+                        <div className="relative group/input">
+                           <input 
+                            type="email" 
+                            name="email" 
+                            required 
+                            id="email"
+                            className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium text-lg rounded-none"
+                            placeholder="Correo Electrónico"
+                           />
+                           <label htmlFor="email" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
+                             Correo Electrónico
+                           </label>
+                        </div>
+                     </div>
 
-                       {/* Minimalist Select */}
-                       <div className="relative group/input pt-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-brand-dark block mb-3">Interés Principal</label>
-                          <div className="relative">
-                            <select name="servicio" className="w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark font-medium outline-none focus:border-brand-dark transition-colors appearance-none cursor-pointer">
-                               <option>Diseño Web Profesional</option>
-                               <option>E-commerce / Tienda Online</option>
-                               <option>Mantenimiento y Rendimiento</option>
-                               <option>Estrategia y SEO</option>
-                               <option>Otro Proyecto Especifico</option>
-                            </select>
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-brand-dark">
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </div>
+                     {/* Minimalist Select */}
+                     <div className="relative group/input pt-2">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-brand-dark block mb-3">Principal Área de Interés</label>
+                        <div className="relative">
+                          <select name="servicio" className="w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark font-medium text-lg outline-none focus:border-brand-dark transition-colors appearance-none cursor-pointer rounded-none">
+                             <option value="" disabled selected hidden>Selecciona una opción...</option>
+                             <option>Desarrollo Web / Landing Page</option>
+                             <option>E-commerce / Tienda Online</option>
+                             <option>Mantenimiento Técnico Avanzado</option>
+                             <option>Auditoría SEO & Rendimiento</option>
+                             <option>Proyecto 100% a medida</option>
+                          </select>
+                          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-brand-dark -mt-1">
+                            <ChevronDown size={20} />
                           </div>
-                       </div>
+                        </div>
+                     </div>
 
-                       {/* Minimalist Textarea */}
-                       <div className="relative group/input pt-4">
-                          <textarea 
-                             name="mensaje" 
-                             required 
-                             id="mensaje"
-                             rows={1}
-                             className="peer w-full bg-transparent border-b border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium resize-none min-h-[100px]"
-                             placeholder="Cuéntanos un poco sobre el proyecto..."
-                          />
-                          <label htmlFor="mensaje" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
-                             Detalles del proyecto (Opcional pero recomendable)
-                          </label>
-                       </div>
+                     {/* Minimalist Textarea */}
+                     <div className="relative group/input pt-6">
+                        <textarea 
+                           name="mensaje" 
+                           required 
+                           id="mensaje"
+                           rows={3}
+                           className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium resize-none min-h-[120px] rounded-none text-lg leading-relaxed"
+                           placeholder="Cuéntanos un poco sobre el proyecto..."
+                        />
+                        <label htmlFor="mensaje" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
+                           Detalles sobre tu objetivo o visión
+                        </label>
+                     </div>
 
-                       <div className="pt-6 flex flex-col sm:flex-row items-center gap-6 justify-between border-t border-gray-100">
-                         <p className="text-[10px] text-gray-400 font-medium max-w-xs text-center sm:text-left leading-relaxed">
-                           Tus datos están seguros. Jamás compartiremos tu información con terceros, ni enviaremos spam.
-                         </p>
-                         <button 
-                          type="submit" 
-                          disabled={formStatus === 'submitting'}
-                          className="w-full sm:w-auto bg-brand-dark text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-lime hover:text-brand-dark transition-all duration-300 disabled:opacity-50"
-                         >
+                     <div className="pt-8 flex flex-col sm:flex-row items-center gap-8 justify-between">
+                       <button 
+                        type="submit" 
+                        disabled={formStatus === 'submitting'}
+                        className="w-full sm:w-auto bg-brand-dark text-white px-12 py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-lime hover:text-brand-dark transition-all duration-300 disabled:opacity-50 overflow-hidden relative group"
+                       >
+                         <span className="relative z-10 flex items-center gap-3">
                            {formStatus === 'submitting' ? 'Procesando...' : (
-                             <>Iniciar Proyecto <ArrowRight size={14} /></>
+                             <>Solicitar Presupuesto <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" /></>
                            )}
-                         </button>
-                       </div>
-                    </form>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                         </span>
+                       </button>
+                       <p className="text-[10px] text-gray-400 font-bold max-w-xs text-center sm:text-right leading-relaxed uppercase tracking-widest">
+                         <ShieldCheck size={14} className="inline mr-1 -mt-0.5" /> 100% Confidencial
+                       </p>
+                     </div>
+                  </form>
+                )}
+              </AnimatePresence>
             </div>
-          </div>
         </section>
       </main>
 
