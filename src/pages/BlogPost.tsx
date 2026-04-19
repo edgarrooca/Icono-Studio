@@ -20,7 +20,6 @@ export default function BlogPost() {
   const [readingProgress, setReadingProgress] = useState(0);
   const [toc, setToc] = useState<ToCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -52,9 +51,6 @@ export default function BlogPost() {
     generateToC();
 
     const handleScroll = () => {
-      // Scrolled state for Navbar
-      setIsScrolled(window.scrollY > 50);
-
       // Reading Progress
       const currentScroll = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -91,7 +87,6 @@ export default function BlogPost() {
     );
   }
 
-  // Inject IDs into content HTML for ToC linking
   const contentWithIds = post.content.replace(/<h2>/g, (match, offset) => {
     const before = post.content.substring(0, offset);
     const index = (before.match(/<h2>/g) || []).length;
@@ -111,28 +106,24 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-white selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
       
-      {/* 1. Standard Site Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
+      {/* 1. Header (Always Dark in Blog) */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-white/80 backdrop-blur-md shadow-sm text-brand-dark border border-gray-100'}`}>
-            
-            {/* Logo */}
+          <div className="flex justify-between items-center rounded-full px-6 py-3 bg-brand-dark/95 backdrop-blur-md shadow-lg text-white border border-white/5">
             <RouterLink to="/" className="flex items-center gap-2 z-50">
               <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </RouterLink>
             
-            {/* Desktop Links */}
             <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
               {mainNavLinks.map((link) => (
-                <RouterLink key={link.name} to={link.href} className="hover:text-brand-blue transition-colors">
+                <RouterLink key={link.name} to={link.href} className="hover:text-brand-lime transition-colors">
                   {link.name}
                 </RouterLink>
               ))}
             </div>
             
-            {/* CTA & Mobile Toggle */}
             <div className="flex items-center gap-4 z-50">
-              <RouterLink to="/#planes" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white'}`}>
+              <RouterLink to="/#planes" className="hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 bg-brand-lime text-brand-dark">
                 Presupuesto <ArrowRight size={16} />
               </RouterLink>
               <button 
@@ -145,7 +136,6 @@ export default function BlogPost() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div 
@@ -169,10 +159,10 @@ export default function BlogPost() {
         </AnimatePresence>
       </nav>
 
-      {/* Reading Progress Layer */}
-      <div className="fixed top-0 left-0 w-full h-1 z-[110]">
+      {/* Progress Bar (Lime for visibility against navbar) */}
+      <div className="fixed top-0 left-0 w-full h-1.5 z-[110]">
         <motion.div 
-          className="h-full bg-brand-lime shadow-[0_0_10px_rgba(212,255,0,0.5)]" 
+          className="h-full bg-brand-lime shadow-[0_0_10px_rgba(212,255,0,0.8)]" 
           style={{ width: `${readingProgress}%` }}
         />
       </div>
@@ -180,26 +170,25 @@ export default function BlogPost() {
       <main className="pt-32 pb-32">
         <div className="max-w-7xl mx-auto px-6">
           
-          {/* Breadcrumbs Row */}
-          <div className="max-w-5xl mx-auto mb-12 flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
+          <div className="max-w-5xl mx-auto mb-12 flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em]">
             <RouterLink to="/" className="text-gray-400 hover:text-brand-dark transition-colors">Inicio</RouterLink>
-            <ChevronRight size={12} className="text-gray-300" />
+            <ChevronRight size={10} className="text-gray-300" />
             <RouterLink to="/blog" className="text-gray-400 hover:text-brand-dark transition-colors">Blog</RouterLink>
-            <ChevronRight size={12} className="text-gray-300" />
+            <ChevronRight size={10} className="text-gray-300" />
             <span className="text-brand-blue">{post.tag}</span>
           </div>
 
-          {/* Header Section - Aligned with Image Width (max-w-5xl) */}
+          {/* Title Section (Smaller Scale) */}
           <div className="max-w-5xl mx-auto mb-16">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-brand-dark uppercase tracking-tighter leading-[0.9] mb-12"
+              className="font-display text-3xl sm:text-5xl md:text-6xl text-brand-dark uppercase tracking-tight leading-tighter mb-12"
             >
               {post.title}
             </motion.h1>
 
-            <div className="flex flex-wrap items-center gap-y-6 gap-x-12 border-y border-gray-200 py-10 w-full">
+            <div className="flex flex-wrap items-center gap-y-6 gap-x-12 border-y border-gray-100 py-10 w-full">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-dark flex items-center justify-center text-brand-lime font-display text-lg">I</div>
                 <div>
@@ -213,7 +202,7 @@ export default function BlogPost() {
               </div>
               <div className="ml-auto hidden sm:flex gap-4">
                  <button className="flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors">
-                    <Copy size={16} /> Copiar enlace
+                    <Copy size={16} /> Enlace
                  </button>
                  <div className="flex items-center gap-2">
                     <Twitter size={18} className="text-gray-400 cursor-pointer hover:text-brand-blue transition-colors" />
@@ -223,21 +212,18 @@ export default function BlogPost() {
             </div>
           </div>
 
-          {/* Featured Image - Aligned (max-w-5xl) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="max-w-5xl mx-auto mb-20 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-gray-100 border border-gray-100"
+            className="max-w-5xl mx-auto mb-20 rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-100 border border-gray-50"
           >
             <img src={post.image} alt={post.title} className="w-full aspect-[21/9] object-cover" />
           </motion.div>
 
-          {/* Article Layout Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 xl:gap-24">
             
-            {/* Left Sidebar: ToC */}
-            <aside className="hidden lg:block">
+            <aside className="hidden lg:block text-slate-800">
               <div className="toc-sidebar">
                 <p className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-dark mb-6">Contenido</p>
                 <nav className="flex flex-col">
@@ -263,12 +249,11 @@ export default function BlogPost() {
                 <div className="mt-12 p-6 bg-brand-blue/5 rounded-[2rem] border border-brand-blue/10">
                    <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Lanzamos tu web?</p>
                    <p className="text-sm text-gray-500 mb-6 leading-relaxed">Pide tu presupuesto sin compromiso hoy mismo.</p>
-                   <RouterLink to="/#pricing" className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors">Solicitar Presupuesto</RouterLink>
+                   <RouterLink to="/#planes" className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors">Solicitar Presupuesto</RouterLink>
                 </div>
               </div>
             </aside>
 
-            {/* Main Content Column */}
             <div className="max-w-3xl">
               <div 
                 ref={contentRef}
@@ -276,17 +261,16 @@ export default function BlogPost() {
                 dangerouslySetInnerHTML={{ __html: contentWithIds }}
               />
 
-              {/* FAQ Section */}
               {post.faqs && (
                 <section className="mt-32 pt-24 border-t border-gray-100">
-                  <h2 className="font-display text-4xl uppercase mb-16 tracking-tight text-brand-dark">Preguntas <span className="text-brand-blue italic underline decoration-brand-lime/30">frecuentes</span></h2>
+                  <h2 className="font-display text-3xl uppercase mb-16 tracking-tight text-brand-dark">Preguntas <span className="text-brand-blue italic underline decoration-brand-lime/30">frecuentes</span></h2>
                   <div className="grid gap-8">
                     {post.faqs.map((faq, i) => (
                       <div key={i} className="group flex gap-6">
                         <span className="text-brand-lime font-display text-2xl pt-1">0{i+1}.</span>
                         <div>
                           <h3 className="text-xl font-bold text-brand-dark mb-4 group-hover:text-brand-blue transition-colors">{faq.question}</h3>
-                          <p className="text-gray-500 text-lg leading-relaxed">{faq.answer}</p>
+                          <p className="text-gray-500 font-serif text-lg leading-relaxed">{faq.answer}</p>
                         </div>
                       </div>
                     ))}
@@ -294,13 +278,12 @@ export default function BlogPost() {
                 </section>
               )}
 
-              {/* Author Section */}
               <div className="mt-32 p-12 bg-zinc-50 rounded-[3rem] border border-gray-100 flex flex-col md:flex-row items-center gap-10">
                  <div className="w-24 h-24 rounded-3xl bg-brand-dark text-brand-lime font-display flex items-center justify-center text-4xl shrink-0">I</div>
                  <div className="text-center md:text-left">
                     <p className="text-[10px] uppercase font-black tracking-widest text-brand-blue mb-2">Editor en Jefe</p>
                     <h4 className="font-display text-2xl uppercase tracking-tight text-brand-dark mb-4">Icono Studio Team</h4>
-                    <p className="text-gray-500 mb-6 leading-relaxed">Especialistas en diseño web estratégico y desarrollo de alto impacto para negocios que buscan liderar su sector.</p>
+                    <p className="text-gray-500 mb-6 leading-relaxed">Especialistas en diseño web estratégico y desarrollo de alto impacto para negocios.</p>
                     <div className="flex justify-center md:justify-start gap-4">
                        <RouterLink to="/#planes" className="text-xs font-bold uppercase tracking-widest text-brand-dark hover:text-brand-blue underline decoration-brand-lime decoration-4">Nuestros Planes</RouterLink>
                     </div>
@@ -311,7 +294,6 @@ export default function BlogPost() {
         </div>
       </main>
 
-      {/* Recommended Articles Section */}
       <section className="py-32 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-16 px-4">
