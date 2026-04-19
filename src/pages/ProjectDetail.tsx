@@ -6,14 +6,13 @@ import { portfolioProjects, Project } from '../data/projects';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { mainNavLinks } from '../data/navigation';
+import Navbar from '../components/Navbar';
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const [project, setProject] = useState<any>(null);
   const [relatedProjects, setRelatedProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMockup, setActiveMockup] = useState<1 | 2>(2);
 
   useEffect(() => {
@@ -91,13 +90,8 @@ export default function ProjectDetail() {
 
     fetchProject();
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
     return () => {
       isMounted = false;
-      window.removeEventListener('scroll', handleScroll);
     };
   }, [id]);
 
@@ -131,60 +125,7 @@ export default function ProjectDetail() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
       
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-transparent text-white'}`}>
-            
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 z-50">
-              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
-            </Link>
-            
-            {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              {mainNavLinks.map((link) => (
-                <a key={link.name} href={link.href} className="hover:text-brand-lime transition-colors">
-                  {link.name}
-                </a>
-              ))}
-            </div>
-            
-            {/* CTA & Mobile Toggle */}
-            <div className="flex items-center gap-4 z-50">
-              <a href="/contacto" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
-                Presupuesto <ArrowRight size={16} />
-              </a>
-              <button 
-                className="lg:hidden p-2"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X size={24} className={isScrolled ? 'text-white' : 'text-white'} /> : <Menu size={24} className={isScrolled ? 'text-white' : 'text-white'} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-28 sm:pt-32 px-6 flex flex-col gap-5 sm:gap-6 lg:hidden"
-          >
-            {mainNavLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-display text-3xl sm:text-4xl uppercase hover:text-brand-lime transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </nav>
+      <Navbar />
 
       <main>
         {/* 1. HERO SECTION */}

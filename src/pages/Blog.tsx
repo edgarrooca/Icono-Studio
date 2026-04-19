@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { useEffect } from 'react';
+import Navbar from '../components/Navbar';
 
 export default function Blog() {
   useEffect(() => {
@@ -12,6 +13,7 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] selection:bg-brand-lime selection:text-brand-dark">
+      <Navbar initialTheme="dark" />
       {/* Premium Header */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-brand-dark text-white">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>

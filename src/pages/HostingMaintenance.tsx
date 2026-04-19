@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, ChevronDown, ChevronUp, ShieldCheck, Rocket, LineChart, Zap } from 'lucide-react';
 import { mainNavLinks } from '../data/navigation';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const supportHeroPills = [
@@ -116,8 +117,6 @@ const supportFaqs = [
 ];
 
 export default function HostingMaintenance() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [pricingView, setPricingView] = useState<(typeof pricingViews)[number]['key']>('bundle');
 
@@ -151,12 +150,6 @@ export default function HostingMaintenance() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Memoize star positions to prevent jitter on re-renders (scroll)
@@ -183,59 +176,7 @@ export default function HostingMaintenance() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
       
-      {/* Navigation - Matching Home.tsx logic */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-transparent text-white'}`}>
-            <a href="/" className="flex items-center gap-2 z-50">
-              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
-            </a>
-
-            <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              {mainNavLinks.map((link) => (
-                <Link key={link.name} to={link.href} className="hover:text-brand-lime transition-colors">
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4 z-50">
-              <a href="#planes" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-white text-brand-blue'}`}>
-                Presupuesto <ArrowRight size={16} />
-              </a>
-              <button className="lg:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X size={24} className={isScrolled ? 'text-white' : 'text-white'} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-0 left-0 right-0 h-screen bg-brand-dark/95 backdrop-blur-xl text-white pt-32 px-6 flex flex-col gap-6 lg:hidden z-40"
-            >
-              {mainNavLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display text-4xl uppercase hover:text-brand-lime transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <div className="mt-auto pb-12">
-                <p className="text-white/40 text-sm font-bold uppercase tracking-widest mb-4">Contacto</p>
-                <a href="mailto:holaiconostudio@gmail.com" className="text-2xl font-display text-brand-lime lowercase">holaiconostudio@gmail.com</a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Navbar />
 
       {/* STRATOSPHERE TRANSITION - CLEAN & DYNAMIC */}
       <div 

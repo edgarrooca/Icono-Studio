@@ -7,6 +7,7 @@ import {
 import { blogPosts } from '../data/blog';
 import { mainNavLinks } from '../data/navigation';
 import { useEffect, useState, useRef } from 'react';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 interface ToCItem {
@@ -106,58 +107,7 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-white selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
       
-      {/* 1. Header (Always Dark in Blog) */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center rounded-full px-6 py-3 bg-brand-dark/95 backdrop-blur-md shadow-lg text-white border border-white/5">
-            <RouterLink to="/" className="flex items-center gap-2 z-50">
-              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
-            </RouterLink>
-            
-            <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              {mainNavLinks.map((link) => (
-                <RouterLink key={link.name} to={link.href} className="hover:text-brand-lime transition-colors">
-                  {link.name}
-                </RouterLink>
-              ))}
-            </div>
-            
-            <div className="flex items-center gap-4 z-50">
-              <RouterLink to="/#planes" className="hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 bg-brand-lime text-brand-dark">
-                Presupuesto <ArrowRight size={16} />
-              </RouterLink>
-              <button 
-                className="lg:hidden p-2"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="fixed top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-32 px-6 flex flex-col gap-6 lg:hidden"
-            >
-              {mainNavLinks.map((link) => (
-                <RouterLink 
-                  key={link.name} 
-                  to={link.href} 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display text-4xl uppercase hover:text-brand-lime transition-colors"
-                >
-                  {link.name}
-                </RouterLink>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Navbar initialTheme="dark" />
 
       {/* Progress Bar (Lime for visibility against navbar) */}
       <div className="fixed top-0 left-0 w-full h-1.5 z-[110]">

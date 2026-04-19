@@ -7,7 +7,9 @@ import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { mainNavLinks } from '../data/navigation';
 import { blogPosts } from '../data/blog';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import HashScrollHandler from '../components/HashScrollHandler';
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No. El dominio no está incluido, aunque podemos recomendarte la mejor opción y ayudarte a dejarlo configurado. El hosting tampoco va incluido en el precio base de la web, pero si quieres podemos gestionarlo nosotros como un servicio aparte." },
@@ -160,10 +162,6 @@ const supportTeaserItems = [
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('Todo');
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  
   const [projects, setProjects] = useState<any[]>(portfolioProjects);
   const [siteSettings, setSiteSettings] = useState<any>({});
 
@@ -200,74 +198,12 @@ export default function Home() {
   }, []);
 
   const projectCategories = ['Todo', 'E-commerce', 'Web Corporativa', 'SEO & CRO', 'Desarrollo a medida', 'Marketing Digital'];
+  const [activeFilter, setActiveFilter] = useState('Todo');
   const filteredProjects = activeFilter === 'Todo' ? projects : projects.filter(p => p.category === activeFilter);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
-      
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isScrolled ? 'bg-brand-dark/90 backdrop-blur-md shadow-lg text-white' : 'bg-transparent text-white'}`}>
-            
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-2 z-50">
-              <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-8 sm:h-10 w-auto object-contain" />
-            </a>
-            
-            {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              {mainNavLinks.map((link) => (
-                <RouterLink key={link.name} to={link.href} className="hover:text-brand-lime transition-colors">
-                  {link.name}
-                </RouterLink>
-              ))}
-            </div>
-            
-            {/* CTA & Mobile Toggle */}
-            <div className="flex items-center gap-4 z-50">
-              <RouterLink to="/contacto" className={`hidden md:flex px-6 py-2.5 rounded-full font-bold text-sm items-center gap-2 transition-transform hover:scale-105 ${isScrolled ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white'}`}>
-                Presupuesto <ArrowRight size={16} />
-              </RouterLink>
-              <button 
-                className="lg:hidden p-2"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X size={24} className={isScrolled ? 'text-white' : 'text-white'} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-0 left-0 right-0 h-screen bg-brand-dark text-white pt-32 px-6 flex flex-col gap-6 lg:hidden"
-          >
-            {mainNavLinks.map((link) => (
-              <RouterLink 
-                key={link.name} 
-                to={link.href} 
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-display text-4xl uppercase hover:text-brand-lime transition-colors"
-              >
-                {link.name}
-              </RouterLink>
-            ))}
-          </motion.div>
-        )}
-      </nav>
-
+      <Navbar />
       {/* 1. HERO SECTION */}
       <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-brand-blue text-white z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-2xl">
         {/* Subtle Background Pattern */}
