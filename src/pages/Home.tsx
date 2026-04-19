@@ -6,6 +6,7 @@ import { portfolioProjects, Project } from '../data/projects';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { mainNavLinks } from '../data/navigation';
+import { blogPosts } from '../data/blog';
 import Footer from '../components/Footer';
 
 const faqs = [
@@ -1009,20 +1010,16 @@ export default function Home() {
               </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">Blog</h2>
             </div>
-          <a href="#" className="flex items-center gap-2 font-bold text-lg sm:text-xl hover:text-brand-blue transition-colors">
+          <RouterLink to="/blog" className="flex items-center gap-2 font-bold text-lg sm:text-xl hover:text-brand-blue transition-colors">
             Ver todos <ArrowRight size={20} className="sm:w-6 sm:h-6" />
-          </a>
+          </RouterLink>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            { title: 'Tendencias de Diseño Web para 2026', tag: 'Diseño', date: '12 Mar 2026', img: 'https://picsum.photos/seed/blog1/800/800' },
-            { title: 'Por qué tu web necesita ser más rápida', tag: 'Desarrollo', date: '05 Mar 2026', img: 'https://picsum.photos/seed/blog2/800/800' },
-            { title: 'Guía básica de SEO para empresas locales', tag: 'Marketing', date: '28 Feb 2026', img: 'https://picsum.photos/seed/blog3/800/800' }
-          ].map((post, i) => (
-            <div key={i} className="group cursor-pointer">
+          {blogPosts.slice(0, 3).map((post, i) => (
+            <RouterLink key={post.slug} to={`/blog/${post.slug}`} className="group cursor-pointer">
               <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
-                <img src={post.img} alt={post.title} className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src={post.image} alt={post.title} className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
                 <div className="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full uppercase tracking-wider">
                   {post.tag}
                 </div>
@@ -1031,7 +1028,7 @@ export default function Home() {
                 <span className="text-xs sm:text-sm text-gray-500 font-mono">{post.date}</span>
               </div>
               <h3 className="font-display text-xl sm:text-2xl uppercase leading-tight group-hover:text-brand-blue transition-colors">{post.title}</h3>
-            </div>
+            </RouterLink>
           ))}
         </div>
         </div>

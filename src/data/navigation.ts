@@ -4,5 +4,5 @@ export const mainNavLinks = [
   { name: 'Servicios', href: '/#servicios' },
   { name: 'Precios', href: '/#planes' },
   { name: 'Soporte web', href: '/hosting-mantenimiento-web' },
-  { name: 'Blog', href: '/#blog' },
+  { name: 'Blog', href: '/blog' },
 ];
