@@ -25,7 +25,7 @@ export interface Project {
 
 export const portfolioProjects: Project[] = [
   {
-    id: 5,
+    id: 'instalaciones-torrijos-fontaneria',
     title: 'Instalaciones Torrijos',
     subtitle: 'Especialistas en fontanería, gas y calefacción',
     description: 'Instalaciones, reparaciones y mantenimiento con un servicio cercano, rápido y bien resuelto desde el primer contacto.',
