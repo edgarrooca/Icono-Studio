@@ -33,6 +33,47 @@ export default function BlogPost() {
       metaDescription.setAttribute('content', post.metaDescription);
     }
 
+    // Schema.org Structured Data
+    const schemaScriptId = 'blog-schema';
+    let schemaScript = document.getElementById(schemaScriptId);
+    if (!schemaScript) {
+      schemaScript = document.createElement('script');
+      schemaScript.id = schemaScriptId;
+      schemaScript.type = 'application/ld+json';
+      document.head.appendChild(schemaScript);
+    }
+    
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": post.metaTitle,
+          "description": post.metaDescription,
+          "image": [
+            window.location.origin + post.image
+          ],
+          "author": [{
+            "@type": "Organization",
+            "name": post.author,
+            "url": window.location.origin
+          }]
+        },
+        ...(post.faqs && post.faqs.length > 0 ? [{
+          "@type": "FAQPage",
+          "mainEntity": post.faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }] : [])
+      ]
+    };
+    schemaScript.textContent = JSON.stringify(schemaData);
+
     // Generate ToC and Add IDs to content
     const generateToC = () => {
       const container = document.createElement('div');
@@ -74,7 +115,13 @@ export default function BlogPost() {
     window.addEventListener('scroll', handleScroll);
     window.scrollTo(0, 0);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      const schemaElement = document.getElementById(schemaScriptId);
+      if (schemaElement) {
+        schemaElement.remove();
+      }
+    };
   }, [post]);
 
   if (!post) {
