@@ -168,6 +168,9 @@ export default function Dashboard() {
           await setDoc(doc(db, 'projects', existing.id), updateData, { merge: true });
         } else {
           // Create new with default placeholder images
+          const generateSlug = (text: string) => text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          const slug = proj.id && typeof proj.id === 'string' && isNaN(Number(proj.id)) ? proj.id : generateSlug(proj.title);
+          
           const newData = {
             title: proj.title,
             subtitle: proj.subtitle,
@@ -184,7 +187,7 @@ export default function Dashboard() {
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
           };
-          await addDoc(collection(db, 'projects'), newData);
+          await setDoc(doc(db, 'projects', slug), newData);
         }
       }
       showToast("Proyectos sincronizados correctamente con los nuevos textos");
@@ -250,7 +253,10 @@ export default function Dashboard() {
         await setDoc(doc(db, 'projects', editingProjectId), projectData, { merge: true });
         showToast("Proyecto actualizado correctamente");
       } else {
-        await addDoc(collection(db, 'projects'), {
+        const generateSlug = (text: string) => text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        const slug = generateSlug(projectForm.title);
+        
+        await setDoc(doc(db, 'projects', slug), {
           ...projectData,
           createdAt: new Date().toISOString()
         });
