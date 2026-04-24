@@ -7,6 +7,7 @@ import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { mainNavLinks } from '../data/navigation';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -189,6 +190,12 @@ export default function ProjectDetail() {
                   href={project.link || '#'} 
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => (window as any).dataLayer?.push({
+                    'event': 'cta_click',
+                    'cta_id': 'project_external_link',
+                    'cta_text': `Ver sitio web: ${project.title}`,
+                    'page_path': window.location.pathname
+                  })}
                   className="bg-brand-lime text-brand-dark px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2 text-sm"
                 >
                   Ver sitio web <ArrowUpRight size={18} />
@@ -285,7 +292,16 @@ export default function ProjectDetail() {
                   <p key={i} className="mb-4">{p}</p>
                 ))}
               </div>
-              <a href={project.link || '#'} className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors group px-6 py-3 rounded-full border-2 border-brand-blue hover:border-brand-dark">
+              <a 
+                href={project.link || '#'} 
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'project_challenge_link',
+                  'cta_text': `Ver web de ${project.title}`,
+                  'page_path': window.location.pathname
+                })}
+                className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors group px-6 py-3 rounded-full border-2 border-brand-blue hover:border-brand-dark"
+              >
                 Ver web de {project.title}
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
@@ -485,7 +501,16 @@ export default function ProjectDetail() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <Link to={`/proyecto/${rp.id}`} className="group cursor-pointer flex flex-col h-full">
+                  <Link 
+                    to={`/proyecto/${rp.id}`} 
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'project_click',
+                      'project_id': rp.id,
+                      'project_title': rp.title,
+                      'page_path': window.location.pathname
+                    })}
+                    className="group cursor-pointer flex flex-col h-full"
+                  >
                     <div className="overflow-hidden rounded-2xl aspect-[4/3] mb-4 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-md group-hover:-translate-y-1">
                       <img 
                         src={rp.img} 
@@ -522,57 +547,7 @@ export default function ProjectDetail() {
         </section>
       </main>
 
-      {/* FOOTER / BIG CTA */}
-      <footer className="bg-brand-dark text-white pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 rounded-t-[2.5rem] sm:rounded-t-[3rem] md:rounded-t-[4rem] mt-8 sm:mt-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-            <h2 className="font-display text-[18vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
-              ¿Hablamos?
-            </h2>
-            <a href="mailto:holaiconostudio@gmail.com" className="inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase hover:bg-brand-lime transition-colors w-full sm:w-auto">
-              Pedir Presupuesto <ArrowUpRight size={24} className="sm:w-7 sm:h-7" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 border-t border-white/20 pt-10 sm:pt-12">
-            <div className="sm:col-span-2">
-              <div className="flex items-center gap-2 mb-4 sm:mb-6">
-                <img src="/icono-studio-logo.png" alt="Icono Studio Logo" className="h-10 sm:h-12 w-auto object-contain" />
-              </div>
-              <p className="text-white/60 max-w-sm text-base sm:text-lg">
-                Agencia de diseño y desarrollo web en Valencia. Creando experiencias digitales que marcan la diferencia.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
-              <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-                {mainNavLinks.map(link => (
-                  <li key={link.name}><a href={link.href} className="hover:text-white transition-colors">{link.name}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Social</h4>
-              <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-                <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Twitter / X</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Dribbble</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 border-t border-white/20 pt-8 mt-10 sm:mt-12 text-xs sm:text-sm text-white/50 font-mono text-center md:text-left">
-            <p>© 2026 Icono Studio. Todos los derechos reservados.</p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-              <a href="#" className="hover:text-white transition-colors">Aviso Legal</a>
-              <a href="#" className="hover:text-white transition-colors">Privacidad</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -244,7 +244,18 @@ export default function BlogPost() {
                 <div className="mt-12 p-6 bg-brand-blue/5 rounded-[2rem] border border-brand-blue/10">
                    <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Lanzamos tu web?</p>
                    <p className="text-sm text-gray-500 mb-6 leading-relaxed">Pide tu presupuesto sin compromiso hoy mismo.</p>
-                   <RouterLink to="/#planes" className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors">Solicitar Presupuesto</RouterLink>
+                   <RouterLink 
+                     to="/#planes" 
+                     onClick={() => (window as any).dataLayer?.push({
+                       'event': 'cta_click',
+                       'cta_id': 'blog_sidebar_budget',
+                       'cta_text': 'Solicitar Presupuesto (Blog Sidebar)',
+                       'page_path': window.location.pathname
+                     })}
+                     className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors"
+                   >
+                     Solicitar Presupuesto
+                   </RouterLink>
                 </div>
               </div>
             </aside>
@@ -280,7 +291,18 @@ export default function BlogPost() {
                     <h4 className="font-display text-2xl uppercase tracking-tight text-brand-dark mb-4">Icono Studio Team</h4>
                     <p className="text-gray-500 mb-6 leading-relaxed">Especialistas en diseño web estratégico y desarrollo de alto impacto para negocios.</p>
                     <div className="flex justify-center md:justify-start gap-4">
-                       <RouterLink to="/#planes" className="text-xs font-bold uppercase tracking-widest text-brand-dark hover:text-brand-blue underline decoration-brand-lime decoration-4">Nuestros Planes</RouterLink>
+                       <RouterLink 
+                          to="/#planes" 
+                          onClick={() => (window as any).dataLayer?.push({
+                            'event': 'cta_click',
+                            'cta_id': 'blog_footer_plans',
+                            'cta_text': 'Nuestros Planes (Blog Footer)',
+                            'page_path': window.location.pathname
+                          })}
+                          className="text-xs font-bold uppercase tracking-widest text-brand-dark hover:text-brand-blue underline decoration-brand-lime decoration-4"
+                        >
+                          Nuestros Planes
+                        </RouterLink>
                     </div>
                  </div>
               </div>

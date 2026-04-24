@@ -1115,7 +1115,16 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.slice(0, 3).map((post, i) => (
-            <RouterLink key={post.slug} to={`/blog/${post.slug}`} className="group cursor-pointer">
+            <RouterLink 
+              key={post.slug} 
+              to={`/blog/${post.slug}`} 
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'nav_click',
+                'nav_item': `Blog: ${post.title}`,
+                'page_path': window.location.pathname
+              })}
+              className="group cursor-pointer"
+            >
               <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
                 <img src={post.image} alt={post.title} className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
                 <div className="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full uppercase tracking-wider">

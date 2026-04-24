@@ -4,6 +4,7 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Blog() {
   useEffect(() => {
@@ -58,7 +59,15 @@ export default function Blog() {
                 transition={{ delay: i * 0.1 }}
                 className="group flex flex-col h-full bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-blue/5 transition-all duration-500"
               >
-                <Link to={`/blog/${post.slug}`} className="block overflow-hidden aspect-[4/3] relative">
+                <Link 
+                  to={`/blog/${post.slug}`} 
+                  onClick={() => (window as any).dataLayer?.push({
+                    'event': 'nav_click',
+                    'nav_item': `Blog Grid: ${post.title}`,
+                    'page_path': window.location.pathname
+                  })}
+                  className="block overflow-hidden aspect-[4/3] relative"
+                >
                   <img 
                     src={post.image} 
                     alt={post.title} 
@@ -78,7 +87,15 @@ export default function Blog() {
                     <span>{post.author}</span>
                   </div>
                   
-                  <Link to={`/blog/${post.slug}`} className="block group/link mb-6">
+                  <Link 
+                    to={`/blog/${post.slug}`} 
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'nav_click',
+                      'nav_item': `Blog Grid Title: ${post.title}`,
+                      'page_path': window.location.pathname
+                    })}
+                    className="block group/link mb-6"
+                  >
                     <h2 className="font-display text-2xl sm:text-3xl uppercase leading-[1.1] tracking-tight group-hover/link:text-brand-blue transition-colors">
                       {post.title}
                     </h2>
@@ -91,6 +108,11 @@ export default function Blog() {
                   <div className="mt-auto">
                     <Link 
                       to={`/blog/${post.slug}`} 
+                      onClick={() => (window as any).dataLayer?.push({
+                        'event': 'nav_click',
+                        'nav_item': `Blog Grid More: ${post.title}`,
+                        'page_path': window.location.pathname
+                      })}
                       className="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-widest text-brand-dark group-hover:text-brand-blue transition-colors"
                     >
                       Leer más <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -116,7 +138,18 @@ export default function Blog() {
             </div>
 
             <div className="md:w-2/5 w-full relative z-10">
-              <form className="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl sm:rounded-full">
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  (window as any).dataLayer?.push({
+                    'event': 'lead_magnet_signup',
+                    'lead_magnet_name': 'blog_newsletter',
+                    'page_path': window.location.pathname
+                  });
+                  alert('¡Gracias por unirte!');
+                }}
+                className="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl sm:rounded-full"
+              >
                 <input 
                   type="email" 
                   placeholder="Tu email" 
@@ -130,6 +163,7 @@ export default function Blog() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

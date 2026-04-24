@@ -66,7 +66,17 @@ export default function Footer() {
             <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
               {mainNavLinks.map(link => (
                 <li key={link.name}>
-                  <Link to={link.href} className="hover:text-white transition-colors">{link.name}</Link>
+                  <Link 
+                    to={link.href} 
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'nav_click',
+                      'nav_item': link.name,
+                      'page_path': window.location.pathname
+                    })}
+                    className="hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
