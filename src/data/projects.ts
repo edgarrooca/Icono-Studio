@@ -159,16 +159,16 @@ export const portfolioProjects: Project[] = [
     imgMobile2: 'https://i.postimg.cc/KvDkBNTh/Captura-de-pantalla-2026-04-06-a-las-9-31-16.png',
     imgMobile3: 'https://i.postimg.cc/SNf2Cr9p/Captura-de-pantalla-2026-04-06-a-las-9-31-35.png',
     imgMobile4: 'https://i.postimg.cc/Hs9cX2MG/Captura-de-pantalla-2026-04-06-a-las-9-32-05.png',
-    clientDescription: 'Dogcat Madrid es un centro especializado en bienestar animal integral que ofrece servicios de veterinaria avanzada.',
-    challenge: 'El cliente operaba con una web obsoleta que no permitía la gestión de citas online ni reflejaba la excelencia de sus instalaciones, lo que generaba fricción en el proceso de reserva y una imagen de marca desactualizada frente a su competencia directa.',
+    clientDescription: "Dogcat Madrid es un centro especializado en bienestar animal integral que ofrece servicios de veterinaria avanzada.",
+    challenge: "El cliente operaba con una web obsoleta que no permitía la gestión de citas online ni reflejaba la excelencia de sus instalaciones, lo que generaba fricción en el proceso de reserva y una imagen de marca desactualizada frente a su competencia directa.",
     objectives: [
-      'Implementación de un sistema de reservas en tiempo real para optimizar la gestión de citas.',
-      'Mejora del posicionamiento SEO local para captar tráfico cualificado en la Comunidad de Madrid.',
-      'Desarrollo de un diseño \\'responsive\\' orientado a facilitar el acceso rápido desde dispositivos móviles.'
+      "Implementación de un sistema de reservas en tiempo real para optimizar la gestión de citas.",
+      "Mejora del posicionamiento SEO local para captar tráfico cualificado en la Comunidad de Madrid.",
+      "Desarrollo de un diseño 'responsive' orientado a facilitar el acceso rápido desde dispositivos móviles."
     ],
-    concept: 'Diseño enfocado en la funcionalidad y la confianza veterinaria.',
-    philosophy: 'Sistemas claros para dueños preocupados.',
-    technicalDetails: 'Arquitectura frontend reactiva e integración de citas.',
-    link: 'https://dogcat-madrid-rescate.onrender.com/'
+    concept: "Diseño enfocado en la funcionalidad y la confianza veterinaria.",
+    philosophy: "Sistemas claros para dueños preocupados.",
+    technicalDetails: "Arquitectura frontend reactiva e integración de citas.",
+    link: "https://dogcat-madrid-rescate.onrender.com/"
   }
 ];
