@@ -61,90 +61,90 @@ export default function Contact() {
         {/* =========================================
             LEFT COLUMN: THE DARK EDITORIAL HERO 
         ============================================= */}
-        <section className="w-full xl:w-[45%] bg-brand-dark text-white pt-32 xl:pt-40 pb-16 xl:pb-20 px-6 sm:px-12 lg:px-16 flex flex-col justify-between relative overflow-hidden shrink-0 min-h-screen xl:min-h-screen">
+        <section className="w-full xl:w-[45%] bg-brand-dark text-white py-32 px-6 sm:px-12 lg:px-16 flex flex-col justify-center relative overflow-hidden shrink-0 min-h-screen">
           
           {/* Subtle Ambient Glows */}
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-lime/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-          <div className="relative z-10 space-y-8 lg:space-y-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white font-bold text-[10px] uppercase tracking-[0.2em] mb-4 backdrop-blur-sm"
-            >
-              Inicia tu proyecto
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.7 }}
-              className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.9] tracking-tighter uppercase"
-            >
-              Hablemos
-            </motion.h1>
+          <div className="relative z-10 flex flex-col gap-16 lg:gap-20 max-w-xl mx-auto w-full">
+            <div className="space-y-8 lg:space-y-10">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white font-bold text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm"
+              >
+                Inicia tu proyecto
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.7 }}
+                className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.9] tracking-tighter uppercase"
+              >
+                Hablemos
+              </motion.h1>
 
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-white/60 text-lg sm:text-xl font-medium max-w-md leading-relaxed"
-            >
-              Construimos ecosistemas digitales que transforman audiencias en clientes.
-            </motion.p>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="relative z-10 mt-20 xl:mt-0 space-y-10"
-          >
-            {/* Quick Contact Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* WhatsApp Contact Card */}
-              <a href="https://wa.me/34623783129" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <MessageCircle size={48} className="text-brand-lime" />
-                </div>
-                <div className="relative z-10 flex flex-col h-full justify-between gap-6">
-                  <div className="w-10 h-10 rounded-full bg-brand-lime/20 flex items-center justify-center text-brand-lime group-hover:scale-110 transition-transform">
-                    <MessageCircle size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-medium text-lg mb-1 group-hover:text-brand-lime transition-colors">+34 623 783 129</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">WhatsApp / Tel</p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Email Contact Card */}
-              <a href="mailto:holaiconostudio@gmail.com" className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Mail size={48} className="text-white" />
-                </div>
-                <div className="relative z-10 flex flex-col h-full justify-between gap-6">
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-medium text-base sm:text-lg mb-1 group-hover:text-white transition-colors truncate" title="holaiconostudio@gmail.com">holaiconostudio@gmail...</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">Envíanos un Email</p>
-                  </div>
-                </div>
-              </a>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-white/60 text-lg sm:text-xl font-medium max-w-md leading-relaxed"
+              >
+                Construimos ecosistemas digitales que transforman audiencias en clientes.
+              </motion.p>
             </div>
 
-            <div className="pt-8 border-t border-white/10 flex items-center justify-between">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+              className="space-y-6"
+            >
+              {/* WhatsApp Row */}
+              <a href="https://wa.me/34623783129" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                <div className="flex items-center gap-5 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-brand-lime/20 flex items-center justify-center text-brand-lime group-hover:scale-110 transition-transform">
+                    <MessageCircle size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium text-lg sm:text-2xl mb-1 sm:mb-2 group-hover:text-brand-lime transition-colors">+34 623 783 129</h3>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold text-white/40">WhatsApp / Teléfono</p>
+                  </div>
+                </div>
+                <ArrowRight size={24} className="text-white/20 group-hover:text-brand-lime group-hover:-rotate-45 transition-all hidden sm:block" />
+              </a>
+
+              {/* Email Row */}
+              <a href="mailto:holaiconostudio@gmail.com" className="group flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                <div className="flex items-center gap-5 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                    <Mail size={24} />
+                  </div>
+                  <div className="overflow-hidden">
+                    <h3 className="text-white font-medium text-base sm:text-xl md:text-2xl mb-1 sm:mb-2 group-hover:text-white transition-colors truncate" title="holaiconostudio@gmail.com">holaiconostudio@gmail.com</h3>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold text-white/40">Correo Electrónico</p>
+                  </div>
+                </div>
+                <ArrowRight size={24} className="text-white/20 group-hover:text-white group-hover:-rotate-45 transition-all hidden sm:block" />
+              </a>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.7 }}
+              className="pt-6 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between"
+            >
                <p className="text-[10px] uppercase tracking-widest font-black text-white/30">Valencia, ES</p>
                <div className="flex items-center gap-4 text-white/50">
                   <a href="#" className="hover:text-white transition-colors"><Globe size={18} /></a>
                   <a href="#" className="hover:text-white transition-colors"><MapPin size={18} /></a>
                </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </section>
 
 
