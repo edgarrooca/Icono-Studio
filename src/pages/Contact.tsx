@@ -22,12 +22,13 @@ export default function Contact() {
     const data = new FormData(form);
     
     try {
-      const response = await fetch('https://formspree.io/f/holaiconostudio@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/holaiconostudio@gmail.com', {
         method: 'POST',
-        body: data,
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify(Object.fromEntries(data))
       });
       
       if (response.ok) {
@@ -73,17 +74,16 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white font-bold text-[10px] uppercase tracking-[0.2em] mb-4 backdrop-blur-sm"
             >
-              Start a project
+              Inicia tu proyecto
             </motion.div>
             
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.7 }}
-              className="font-display text-7xl sm:text-8xl lg:text-[7rem] leading-[0.85] tracking-tighter uppercase"
+              className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.9] tracking-tighter uppercase"
             >
-              Let's <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 italic">Talk</span>
+              Hablemos
             </motion.h1>
 
             <motion.p 
@@ -131,7 +131,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-white font-medium text-base sm:text-lg mb-1 group-hover:text-white transition-colors truncate" title="holaiconostudio@gmail.com">holaiconostudio@gmail...</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">Email Us</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">Envíanos un Email</p>
                   </div>
                 </div>
               </a>
@@ -184,8 +184,8 @@ export default function Contact() {
                     </button>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-12">
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <form onSubmit={handleSubmit} className="space-y-10">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Minimalist Input: Name */}
                         <div className="relative group/input">
                            <input 
@@ -193,7 +193,7 @@ export default function Contact() {
                             name="nombre" 
                             required 
                             id="nombre"
-                            className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium text-lg rounded-none"
+                            className="peer w-full bg-transparent border-b-2 border-gray-200 py-2.5 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium text-base rounded-none"
                             placeholder="Nombre Completo"
                            />
                            <label htmlFor="nombre" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
@@ -208,7 +208,7 @@ export default function Contact() {
                             name="email" 
                             required 
                             id="email"
-                            className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium text-lg rounded-none"
+                            className="peer w-full bg-transparent border-b-2 border-gray-200 py-2.5 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium text-base rounded-none"
                             placeholder="Correo Electrónico"
                            />
                            <label htmlFor="email" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
@@ -219,9 +219,9 @@ export default function Contact() {
 
                      {/* Minimalist Select */}
                      <div className="relative group/input pt-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-brand-dark block mb-3">Principal Área de Interés</label>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-brand-dark block mb-2">Principal Área de Interés</label>
                         <div className="relative">
-                          <select name="servicio" className="w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark font-medium text-lg outline-none focus:border-brand-dark transition-colors appearance-none cursor-pointer rounded-none">
+                          <select name="servicio" className="w-full bg-transparent border-b-2 border-gray-200 py-2.5 text-brand-dark font-medium text-base outline-none focus:border-brand-dark transition-colors appearance-none cursor-pointer rounded-none">
                              <option value="" disabled selected hidden>Selecciona una opción...</option>
                              <option>Desarrollo Web / Landing Page</option>
                              <option>E-commerce / Tienda Online</option>
@@ -242,7 +242,7 @@ export default function Contact() {
                            required 
                            id="mensaje"
                            rows={3}
-                           className="peer w-full bg-transparent border-b-2 border-gray-200 py-3 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium resize-none min-h-[120px] rounded-none text-lg leading-relaxed"
+                           className="peer w-full bg-transparent border-b-2 border-gray-200 py-2.5 text-brand-dark placeholder-transparent outline-none focus:border-brand-dark transition-colors font-medium resize-none min-h-[100px] rounded-none text-base leading-relaxed"
                            placeholder="Cuéntanos un poco sobre el proyecto..."
                         />
                         <label htmlFor="mensaje" className="absolute left-0 -top-3.5 text-[10px] font-black uppercase tracking-widest text-gray-400 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:font-black peer-focus:uppercase peer-focus:text-brand-dark cursor-text">
@@ -250,11 +250,11 @@ export default function Contact() {
                         </label>
                      </div>
 
-                     <div className="pt-8 flex flex-col sm:flex-row items-center gap-8 justify-between">
+                     <div className="pt-6 flex flex-col sm:flex-row items-center gap-6 justify-between">
                        <button 
                         type="submit" 
                         disabled={formStatus === 'submitting'}
-                        className="w-full sm:w-auto bg-brand-dark text-white px-12 py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-lime hover:text-brand-dark transition-all duration-300 disabled:opacity-50 overflow-hidden relative group"
+                        className="w-full sm:w-auto bg-brand-dark text-white px-10 py-4 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-lime hover:text-brand-dark transition-all duration-300 disabled:opacity-50 overflow-hidden relative group"
                        >
                          <span className="relative z-10 flex items-center gap-3">
                            {formStatus === 'submitting' ? 'Procesando...' : (
