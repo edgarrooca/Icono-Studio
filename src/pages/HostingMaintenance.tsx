@@ -255,7 +255,14 @@ export default function HostingMaintenance() {
             </motion.p>
             
               <motion.a
-                href="/contacto"
+                href="#planes"
+                id="cta_support_hero_plans"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'support_hero_plans',
+                  'cta_text': 'Ver planes',
+                  'page_path': window.location.pathname
+                })}
                 whileHover="hover"
                 className="group relative bg-brand-lime text-brand-dark px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(212,255,0,0.2)] overflow-hidden"
               >
@@ -477,7 +484,15 @@ export default function HostingMaintenance() {
                   {pricingViews.map((view) => (
                     <button
                       key={view.key}
-                      onClick={() => setPricingView(view.key)}
+                      id={`cta_support_view_${view.key}`}
+                      onClick={() => {
+                        (window as any).dataLayer?.push({
+                          'event': 'support_view_change',
+                          'view_type': view.key,
+                          'view_label': view.label
+                        });
+                        setPricingView(view.key);
+                      }}
                       className={`px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all snap-center ${
                         pricingView === view.key ? 'bg-brand-lime text-brand-dark' : 'text-white/40 hover:text-white'
                       }`}
@@ -521,6 +536,12 @@ export default function HostingMaintenance() {
                   </ul>
                   <motion.a 
                     href="https://buy.stripe.com/aFaeVf0PNdmig7d0pAew800"
+                    id="cta_support_buy_hosting_only"
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'support_checkout_click',
+                      'plan_name': 'Solo Hosting',
+                      'pricing_view': 'hosting'
+                    })}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover="hover"
@@ -587,6 +608,12 @@ export default function HostingMaintenance() {
 
                     <motion.a 
                       href={pricingView === 'bundle' ? plan.bundleLink : plan.maintenanceLink}
+                      id={`cta_support_buy_${plan.name.toLowerCase()}`}
+                      onClick={() => (window as any).dataLayer?.push({
+                        'event': 'support_checkout_click',
+                        'plan_name': plan.name,
+                        'pricing_view': pricingView
+                      })}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover="hover"

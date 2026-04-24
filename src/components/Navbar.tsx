@@ -46,6 +46,11 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
                 <RouterLink 
                   key={link.name} 
                   to={link.href} 
+                  onClick={() => (window as any).dataLayer?.push({
+                    'event': 'nav_click',
+                    'nav_item': link.name,
+                    'page_path': window.location.pathname
+                  })}
                   className={`transition-colors ${location.pathname === link.href ? 'text-brand-lime' : 'hover:text-brand-lime text-white/80'}`}
                 >
                   {link.name}
@@ -97,7 +102,14 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
               <RouterLink 
                 key={link.name} 
                 to={link.href} 
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  (window as any).dataLayer?.push({
+                    'event': 'nav_click',
+                    'nav_item': link.name,
+                    'page_path': window.location.pathname
+                  });
+                  setMobileMenuOpen(false);
+                }}
                 className="font-display text-5xl uppercase tracking-tighter hover:text-brand-lime transition-colors"
               >
                 {link.name}

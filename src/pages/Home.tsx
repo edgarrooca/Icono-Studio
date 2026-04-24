@@ -207,6 +207,16 @@ export default function Home() {
     }
   };
 
+  const handleLeadMagnetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    (window as any).dataLayer?.push({
+      'event': 'lead_magnet_signup',
+      'form_id': 'lead_magnet_home',
+      'page_path': window.location.pathname
+    });
+    alert('¡Gracias! Te hemos enviado el recurso a tu correo.');
+  };
+
   useEffect(() => {
     const fetchFirebaseData = async () => {
       try {
@@ -437,9 +447,18 @@ export default function Home() {
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Diseñamos tu página web paso a paso, a medida y centrada en crear una experiencia de usuario (UX/UI) única que represente tu marca.
             </p>
-            <a href="/#servicios" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
+            <RouterLink 
+              to="/#servicios" 
+              id="cta_service_web"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'service_view', 
+                'service_name': 'Diseño Web',
+                'page_path': window.location.pathname
+              })} 
+              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
+            >
               Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </a>
+            </RouterLink>
           </div>
 
           {/* Card 2 */}
@@ -457,9 +476,18 @@ export default function Home() {
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Desarrollamos e-commerce escalables. Gestiona tu tienda online fácilmente: catálogo, envíos y pagos.
             </p>
-            <a href="/#servicios" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
+            <RouterLink 
+              to="/#servicios" 
+              id="cta_service_ecommerce"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'service_view', 
+                'service_name': 'Tienda Online',
+                'page_path': window.location.pathname
+              })} 
+              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
+            >
               Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </a>
+            </RouterLink>
           </div>
 
           {/* Card 3 */}
@@ -477,9 +505,18 @@ export default function Home() {
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
               Utilizamos las técnicas SEO más avanzadas para mejorar la visibilidad de tu web en Google y superar a tu competencia.
             </p>
-            <a href="/#servicios" className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase">
+            <RouterLink 
+              to="/#servicios" 
+              id="cta_service_seo"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'service_view', 
+                'service_name': 'SEO',
+                'page_path': window.location.pathname
+              })} 
+              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
+            >
               Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </a>
+            </RouterLink>
           </div>
         </div>
         </div>
@@ -532,7 +569,17 @@ export default function Home() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <RouterLink to={`/proyecto/${project.id}`} className="group cursor-pointer flex flex-col">
+                  <RouterLink 
+                    to={`/proyecto/${project.id}`} 
+                    id={`project_link_${project.id}`}
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'project_click',
+                      'project_id': project.id,
+                      'project_title': project.title,
+                      'page_path': window.location.pathname
+                    })}
+                    className="group cursor-pointer flex flex-col"
+                  >
                     <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[3/4] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                       <img 
                         src={project.imgReto || project.img} 
@@ -906,6 +953,12 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
                   <RouterLink
                     to="/hosting-mantenimiento-web"
+                    id="cta_support_plans_hero"
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'support_click',
+                      'cta_id': 'support_plans_hero',
+                      'page_path': window.location.pathname
+                    })}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-6 py-3 font-bold text-white hover:bg-brand-blue transition-colors"
                   >
                     Ver planes <ArrowRight size={18} />
@@ -1024,7 +1077,7 @@ export default function Home() {
           </div>
           
           <div className="md:w-1/2 w-full relative z-10">
-            <form className="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl sm:rounded-full shadow-xl">
+            <form onSubmit={handleLeadMagnetSubmit} className="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl sm:rounded-full shadow-xl">
               <div className="flex-grow flex items-center pl-4">
                 <Mail className="text-gray-400 mr-3 shrink-0" size={20} />
                 <input 
@@ -1056,7 +1109,7 @@ export default function Home() {
               </div>
               <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">Blog</h2>
             </div>
-          <RouterLink to="/blog" className="flex items-center gap-2 font-bold text-lg sm:text-xl hover:text-brand-blue transition-colors">
+          <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 font-bold text-lg sm:text-xl hover:text-brand-blue transition-colors">
             Ver todos <ArrowRight size={20} className="sm:w-6 sm:h-6" />
           </RouterLink>
         </div>
