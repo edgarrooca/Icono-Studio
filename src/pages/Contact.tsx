@@ -116,8 +116,8 @@ export default function Contact() {
                     <WhatsAppIcon size={24} />
                   </div>
                   <div>
-                    <h3 className="text-white font-medium text-base sm:text-xl md:text-2xl mb-1 group-hover:text-[#25D366] transition-colors">+34 623 783 129</h3>
-                    <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold text-white/40">WhatsApp</p>
+                    <h3 className="text-white font-medium text-lg sm:text-2xl mb-1 group-hover:text-[#25D366] transition-colors">WhatsApp</h3>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold text-white/40">Chatea con nosotros</p>
                   </div>
                 </div>
                 <ArrowRight size={24} className="text-white/20 group-hover:text-[#25D366] group-hover:-rotate-45 transition-all hidden sm:block" />
