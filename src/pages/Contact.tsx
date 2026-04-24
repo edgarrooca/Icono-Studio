@@ -41,8 +41,7 @@ export default function Contact() {
         // GTM: Track successful lead generation
         (window as any).dataLayer?.push({
           'event': 'generate_lead',
-          'form_id': 'contact_form',
-          'form_name': 'Formulario de Contacto',
+          'form_name': 'Formulario de Contacto Principal',
           'page_path': window.location.pathname
         });
         

@@ -190,8 +190,7 @@ export default function Home() {
         // GTM: Track successful lead generation
         (window as any).dataLayer?.push({
           'event': 'generate_lead',
-          'form_id': 'contact_form_home',
-          'form_name': 'Formulario Home',
+          'form_name': 'Formulario de Contacto Home',
           'page_path': window.location.pathname
         });
         
@@ -211,7 +210,7 @@ export default function Home() {
     e.preventDefault();
     (window as any).dataLayer?.push({
       'event': 'lead_magnet_signup',
-      'form_id': 'lead_magnet_home',
+      'lead_magnet_name': 'recurso_gratis_home',
       'page_path': window.location.pathname
     });
     alert('¡Gracias! Te hemos enviado el recurso a tu correo.');
@@ -452,7 +451,7 @@ export default function Home() {
               id="cta_service_web"
               onClick={() => (window as any).dataLayer?.push({
                 'event': 'service_view', 
-                'service_name': 'Diseño Web',
+                'service_name': 'Diseño Web Valencia',
                 'page_path': window.location.pathname
               })} 
               className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
@@ -510,7 +509,7 @@ export default function Home() {
               id="cta_service_seo"
               onClick={() => (window as any).dataLayer?.push({
                 'event': 'service_view', 
-                'service_name': 'SEO',
+                'service_name': 'Posicionamiento SEO',
                 'page_path': window.location.pathname
               })} 
               className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
