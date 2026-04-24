@@ -161,13 +161,6 @@ export default function Contact() {
         <section className="w-full xl:w-[55%] bg-white pt-24 pb-20 px-6 sm:px-12 lg:px-20 xl:px-32 flex flex-col justify-center shrink-0 min-h-screen">
             
             <div className="max-w-2xl w-full mx-auto">
-              <div className="mb-14">
-                <h2 className="text-3xl sm:text-4xl font-display uppercase text-brand-dark tracking-tight">Datos del Proyecto</h2>
-                <p className="text-gray-400 mt-4 font-medium text-sm sm:text-base leading-relaxed">
-                  Completa este formulario. Tratamos toda la información con máxima confidencialidad. Te daremos una respuesta humana en menos de 24 horas.
-                </p>
-              </div>
-
               <AnimatePresence mode="wait">
                 {formStatus === 'success' ? (
                   <motion.div 
@@ -175,13 +168,13 @@ export default function Contact() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="py-12 bg-white text-center"
+                    className="py-12 bg-white text-center flex flex-col items-center justify-center min-h-[400px]"
                   >
-                    <div className="w-24 h-24 bg-brand-dark text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-brand-dark/20">
+                    <div className="w-24 h-24 bg-brand-dark text-white rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-brand-dark/20">
                       <CheckCircle2 size={40} className="text-brand-lime" />
                     </div>
                     <h3 className="text-4xl font-display uppercase tracking-tight text-brand-dark mb-4">Solicitud Recibida</h3>
-                    <p className="text-gray-500 max-w-sm mx-auto mb-10 leading-relaxed font-medium">Extraordinario. Nuestro equipo está revisando tu propuesta y nos pondremos en contacto contigo increíblemente rápido.</p>
+                    <p className="text-gray-500 max-w-md mx-auto mb-10 leading-relaxed font-medium text-lg">Nuestro equipo está revisando tu propuesta. Nos pondremos en contacto contigo en un plazo de 24 horas.</p>
                     
                     <button 
                       onClick={() => setFormStatus('idle')}
@@ -191,7 +184,14 @@ export default function Contact() {
                     </button>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
+                  <>
+                    <div className="mb-14">
+                      <h2 className="text-3xl sm:text-4xl font-display uppercase text-brand-dark tracking-tight">Datos del Proyecto</h2>
+                      <p className="text-gray-400 mt-4 font-medium text-sm sm:text-base leading-relaxed">
+                        Completa este formulario. Tratamos toda la información con máxima confidencialidad. Te daremos una respuesta humana en menos de 24 horas.
+                      </p>
+                    </div>
+                    <form onSubmit={handleSubmit} className="space-y-10">
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Minimalist Input: Name */}
                         <div className="relative group/input">
@@ -274,6 +274,7 @@ export default function Contact() {
                        </p>
                      </div>
                   </form>
+                </>
                 )}
               </AnimatePresence>
             </div>
