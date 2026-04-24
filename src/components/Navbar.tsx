@@ -57,6 +57,13 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
             <div className="flex items-center gap-4 z-50">
               <RouterLink 
                 to="/contacto" 
+                id="cta_nav_budget"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'nav_budget',
+                  'cta_text': 'Presupuesto (Nav)',
+                  'page_path': window.location.pathname
+                })}
                 className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[10px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
               >
                 Presupuesto <ArrowRight size={14} />
@@ -100,7 +107,16 @@ export default function Navbar({ initialTheme = 'transparent' }: NavbarProps) {
             <div className="mt-auto pb-12">
               <RouterLink 
                 to="/contacto" 
-                onClick={() => setMobileMenuOpen(false)}
+                id="cta_mobile_nav_budget"
+                onClick={() => {
+                  (window as any).dataLayer?.push({
+                    'event': 'cta_click',
+                    'cta_id': 'mobile_nav_budget',
+                    'cta_text': 'Pedir Presupuesto (Mobile Nav)',
+                    'page_path': window.location.pathname
+                  });
+                  setMobileMenuOpen(false);
+                }}
                 className="w-full bg-brand-lime text-brand-dark py-5 rounded-2xl font-black uppercase tracking-widest text-center block text-[12px]"
               >
                 Pedir Presupuesto

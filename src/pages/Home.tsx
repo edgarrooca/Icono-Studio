@@ -187,6 +187,14 @@ export default function Home() {
       });
       
       if (response.ok) {
+        // GTM: Track successful lead generation
+        (window as any).dataLayer?.push({
+          'event': 'generate_lead',
+          'form_id': 'contact_form_home',
+          'form_name': 'Formulario Home',
+          'page_path': window.location.pathname
+        });
+        
         setFormStatus('success');
         form.reset();
       } else {
@@ -287,10 +295,30 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <RouterLink to="/contacto" className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto">
+            <RouterLink 
+              to="/contacto" 
+              id="cta_hero_contact"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'cta_click',
+                'cta_id': 'hero_contact',
+                'cta_text': 'Pedir presupuesto',
+                'page_path': window.location.pathname
+              })}
+              className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
               Pedir presupuesto <ArrowRight size={20} />
             </RouterLink>
-            <a href="#proyectos" className="bg-transparent border-2 border-white/30 text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+            <a 
+              href="#proyectos" 
+              id="cta_hero_projects"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'cta_click',
+                'cta_id': 'hero_projects',
+                'cta_text': 'Ver proyectos',
+                'page_path': window.location.pathname
+              })}
+              className="bg-transparent border-2 border-white/30 text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
               Ver proyectos
             </a>
           </motion.div>
@@ -725,9 +753,19 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
+              <RouterLink 
+                to="/contacto"
+                id="cta_pricing_landing"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'pricing_landing',
+                  'cta_text': 'Solicitar Landing Page',
+                  'page_path': window.location.pathname
+                })}
+                className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-center text-xs group-hover:border-white/40"
+              >
                 Solicitar
-              </button>
+              </RouterLink>
             </div>
 
             {/* Tier 2 */}
@@ -752,9 +790,19 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-2.5 sm:py-3 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-xs shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+              <RouterLink 
+                to="/contacto"
+                id="cta_pricing_corporate"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'pricing_corporate',
+                  'cta_text': 'Solicitar Corporativa',
+                  'page_path': window.location.pathname
+                })}
+                className="w-full py-2.5 sm:py-3 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-center text-xs shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]"
+              >
                 Solicitar
-              </button>
+              </RouterLink>
             </div>
 
             {/* Tier 3 */}
@@ -776,9 +824,19 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
+              <RouterLink 
+                to="/contacto"
+                id="cta_pricing_ecommerce"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'pricing_ecommerce',
+                  'cta_text': 'Solicitar E-commerce',
+                  'page_path': window.location.pathname
+                })}
+                className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-center text-xs group-hover:border-white/40"
+              >
                 Solicitar
-              </button>
+              </RouterLink>
             </div>
 
             {/* Tier 4 */}
@@ -800,9 +858,19 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-xs group-hover:border-white/40">
+              <RouterLink 
+                to="/contacto"
+                id="cta_pricing_custom"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'pricing_custom',
+                  'cta_text': 'Solicitar A medida',
+                  'page_path': window.location.pathname
+                })}
+                className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-center text-xs group-hover:border-white/40"
+              >
                 Solicitar
-              </button>
+              </RouterLink>
             </div>
 
           </div>

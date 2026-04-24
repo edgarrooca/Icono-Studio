@@ -38,6 +38,14 @@ export default function Contact() {
       });
       
       if (response.ok) {
+        // GTM: Track successful lead generation
+        (window as any).dataLayer?.push({
+          'event': 'generate_lead',
+          'form_id': 'contact_form',
+          'form_name': 'Formulario de Contacto',
+          'page_path': window.location.pathname
+        });
+        
         setFormStatus('success');
         form.reset();
       } else {
@@ -110,7 +118,18 @@ export default function Contact() {
               className="space-y-4 pt-4"
             >
               {/* WhatsApp Row */}
-              <a href="https://wa.me/34623783129" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <a 
+                href="https://wa.me/34623783129" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                id="cta_contact_whatsapp"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'click_whatsapp',
+                  'click_text': 'WhatsApp',
+                  'page_path': window.location.pathname
+                })}
+                className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+              >
                 <div className="flex items-center gap-5">
                   <div className="w-12 h-12 shrink-0 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] group-hover:scale-110 transition-transform">
                     <WhatsAppIcon size={24} />
@@ -124,7 +143,16 @@ export default function Contact() {
               </a>
 
               {/* Phone Row */}
-              <a href="tel:+34623783129" className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <a 
+                href="tel:+34623783129" 
+                id="cta_contact_phone"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'click_call',
+                  'click_text': '+34 623 783 129',
+                  'page_path': window.location.pathname
+                })}
+                className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+              >
                 <div className="flex items-center gap-5">
                   <div className="w-12 h-12 shrink-0 rounded-full bg-brand-lime/20 flex items-center justify-center text-brand-lime group-hover:scale-110 transition-transform">
                     <Phone size={24} />
@@ -138,7 +166,16 @@ export default function Contact() {
               </a>
 
               {/* Email Row */}
-              <a href="mailto:holaiconostudio@gmail.com" className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <a 
+                href="mailto:holaiconostudio@gmail.com" 
+                id="cta_contact_email"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'click_email',
+                  'click_text': 'holaiconostudio@gmail.com',
+                  'page_path': window.location.pathname
+                })}
+                className="group flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+              >
                 <div className="flex items-center gap-5">
                   <div className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                     <Mail size={24} />
@@ -191,7 +228,11 @@ export default function Contact() {
                         Completa este formulario. Tratamos toda la información con máxima confidencialidad. Te daremos una respuesta humana en menos de 24 horas.
                       </p>
                     </div>
-                    <form onSubmit={handleSubmit} className="space-y-10">
+                    <form 
+                      onSubmit={handleSubmit} 
+                      id="contact_form"
+                      className="space-y-10"
+                    >
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Minimalist Input: Name */}
                         <div className="relative group/input">
@@ -260,6 +301,7 @@ export default function Contact() {
                      <div className="pt-6 flex flex-col sm:flex-row items-center gap-6 justify-between">
                        <button 
                         type="submit" 
+                        id="cta_contact_submit"
                         disabled={formStatus === 'submitting'}
                         className="w-full sm:w-auto bg-brand-dark text-white px-10 py-4 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-lime hover:text-brand-dark transition-all duration-300 disabled:opacity-50 overflow-hidden relative group"
                        >

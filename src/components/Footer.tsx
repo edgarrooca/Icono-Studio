@@ -16,6 +16,13 @@ export default function Footer() {
           </h2>
           <motion.a 
             href="/contacto"
+            id="cta_footer_contact"
+            onClick={() => (window as any).dataLayer?.push({
+              'event': 'cta_click',
+              'cta_id': 'footer_contact',
+              'cta_text': 'Pedir Presupuesto (Footer)',
+              'page_path': window.location.pathname
+            })}
             whileHover="hover"
             initial="initial"
             className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase overflow-hidden transition-all duration-300 w-full sm:w-auto"
