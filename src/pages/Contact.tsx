@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Phone, Mail, MessageSquare, Send, CheckCircle2, 
-  ArrowRight, Globe, ShieldCheck, Clock, MapPin
+  CheckCircle2, ArrowRight, Globe, ShieldCheck, MapPin, ChevronDown, MessageCircle, Mail
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -61,7 +60,7 @@ export default function Contact() {
         {/* =========================================
             LEFT COLUMN: THE DARK EDITORIAL HERO 
         ============================================= */}
-        <section className="w-full xl:w-[45%] bg-brand-dark text-white pt-40 pb-20 px-6 sm:px-12 lg:px-16 flex flex-col justify-between relative overflow-hidden shrink-0 min-h-[60vh] xl:min-h-screen">
+        <section className="w-full xl:w-[45%] bg-brand-dark text-white pt-32 xl:pt-40 pb-16 xl:pb-20 px-6 sm:px-12 lg:px-16 flex flex-col justify-between relative overflow-hidden shrink-0 min-h-screen xl:min-h-screen">
           
           {/* Subtle Ambient Glows */}
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
@@ -104,21 +103,38 @@ export default function Contact() {
             className="relative z-10 mt-20 xl:mt-0 space-y-10"
           >
             {/* Quick Contact Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
-              <div className="space-y-4">
-                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">General Inquiries</p>
-                 <a href="mailto:holaiconostudio@gmail.com" className="flex flex-col gap-1 group">
-                   <span className="text-white font-medium group-hover:text-brand-lime transition-colors">holaiconostudio@gmail.com</span>
-                   <span className="text-white/40 group-hover:text-white/80 transition-colors uppercase text-[10px] tracking-widest font-bold">Email Us</span>
-                 </a>
-              </div>
-              <div className="space-y-4">
-                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">Direct Line</p>
-                 <a href="https://wa.me/34623783129" className="flex flex-col gap-1 group">
-                   <span className="text-white font-medium group-hover:text-brand-lime transition-colors">+34 623 783 129</span>
-                   <span className="text-white/40 group-hover:text-white/80 transition-colors uppercase text-[10px] tracking-widest font-bold">WhatsApp / Tel</span>
-                 </a>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* WhatsApp Contact Card */}
+              <a href="https://wa.me/34623783129" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <MessageCircle size={48} className="text-brand-lime" />
+                </div>
+                <div className="relative z-10 flex flex-col h-full justify-between gap-6">
+                  <div className="w-10 h-10 rounded-full bg-brand-lime/20 flex items-center justify-center text-brand-lime group-hover:scale-110 transition-transform">
+                    <MessageCircle size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium text-lg mb-1 group-hover:text-brand-lime transition-colors">+34 623 783 129</h3>
+                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">WhatsApp / Tel</p>
+                  </div>
+                </div>
+              </a>
+
+              {/* Email Contact Card */}
+              <a href="mailto:holaiconostudio@gmail.com" className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <Mail size={48} className="text-white" />
+                </div>
+                <div className="relative z-10 flex flex-col h-full justify-between gap-6">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium text-base sm:text-lg mb-1 group-hover:text-white transition-colors truncate" title="holaiconostudio@gmail.com">holaiconostudio@gmail...</h3>
+                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40">Email Us</p>
+                  </div>
+                </div>
+              </a>
             </div>
 
             <div className="pt-8 border-t border-white/10 flex items-center justify-between">
