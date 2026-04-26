@@ -269,7 +269,7 @@ export const blogPosts: BlogPost[] = [
       }
     ]
   },
-
+  {
     title: '7 errores que hacen que tu página web no consiga clientes en 2026',
     subtitle: 'Descubre los errores más comunes por los que una página web no genera clientes y qué hacer para convertirla en una herramienta real de negocio.',
     slug: 'errores-pagina-web-no-consigue-clientes',
