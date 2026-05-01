@@ -102,6 +102,86 @@ export const debugLog = (label: string, ...args: unknown[]) => {
   console.log(label, ...args);
 };
 
+export const installAnalyticsTransportDebug = () => {
+  if (!isBrowser() || !isAnalyticsDebugEnabled()) {
+    return;
+  }
+
+  const debugWindow = window as Window & {
+    __iconoAnalyticsTransportDebugInstalled?: boolean;
+  };
+
+  if (debugWindow.__iconoAnalyticsTransportDebugInstalled) {
+    return;
+  }
+
+  debugWindow.__iconoAnalyticsTransportDebugInstalled = true;
+
+  const matchesAnalyticsRequest = (input: string) =>
+    /googletagmanager\.com|google-analytics\.com|analytics\.google\.com/.test(input);
+
+  const originalFetch = window.fetch.bind(window);
+  window.fetch = async (...args) => {
+    const requestUrl =
+      typeof args[0] === 'string'
+        ? args[0]
+        : args[0] instanceof Request
+          ? args[0].url
+          : String(args[0]);
+
+    if (matchesAnalyticsRequest(requestUrl)) {
+      debugLog('[Icono Analytics] fetch:start', requestUrl);
+    }
+
+    try {
+      const response = await originalFetch(...args);
+
+      if (matchesAnalyticsRequest(requestUrl)) {
+        debugLog('[Icono Analytics] fetch:response', {
+          url: requestUrl,
+          status: response.status,
+          ok: response.ok,
+          type: response.type,
+        });
+      }
+
+      return response;
+    } catch (error) {
+      if (matchesAnalyticsRequest(requestUrl)) {
+        debugLog('[Icono Analytics] fetch:error', {
+          url: requestUrl,
+          error,
+        });
+      }
+
+      throw error;
+    }
+  };
+
+  if (typeof navigator.sendBeacon === 'function') {
+    const originalSendBeacon = navigator.sendBeacon.bind(navigator);
+    navigator.sendBeacon = (url, data) => {
+      const requestUrl = typeof url === 'string' ? url : String(url);
+
+      if (matchesAnalyticsRequest(requestUrl)) {
+        debugLog('[Icono Analytics] beacon', {
+          url: requestUrl,
+          payloadType:
+            data instanceof Blob
+              ? 'blob'
+              : data instanceof FormData
+                ? 'formdata'
+                : data instanceof URLSearchParams
+                  ? 'urlsearchparams'
+                  : typeof data,
+        });
+      }
+
+      return originalSendBeacon(url, data);
+    };
+  }
+};
+
 const ensureDataLayer = () => {
   if (!isBrowser()) {
     return;

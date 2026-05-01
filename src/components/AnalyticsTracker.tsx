@@ -4,6 +4,7 @@ import {
   captureAttribution,
   debugLog,
   getConsentState,
+  installAnalyticsTransportDebug,
   trackContactClick,
   trackCtaClick,
   trackEvent,
@@ -17,6 +18,7 @@ export default function AnalyticsTracker() {
 
   useEffect(() => {
     captureAttribution();
+    installAnalyticsTransportDebug();
   }, []);
 
   useEffect(() => {
