@@ -6,7 +6,7 @@ export default function WhatsAppButton() {
       href="https://wa.me/34623783129" 
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-[0_10px_30px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 group flex items-center justify-center"
+      className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[80] bg-[#25D366] text-white p-4 rounded-full shadow-[0_10px_30px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 group flex items-center justify-center"
       aria-label="Hablar por WhatsApp"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
