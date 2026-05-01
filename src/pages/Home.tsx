@@ -9,7 +9,7 @@ import { blogPosts } from '../data/blog';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
-import { submitLeadForm } from '../lib/analytics';
+import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, submitLeadForm } from '../lib/analytics';
 import { absoluteUrl, siteConfig } from '../lib/site';
 import { mergeAndDedupeProjects } from '../lib/projectUtils';
 
@@ -1225,7 +1225,15 @@ export default function Home() {
                       <p className="text-sm text-white/70 font-medium">Te responderemos con una propuesta clara y sin compromiso.</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-3.5">
+                    <form
+                      onSubmit={handleSubmit}
+                      onSubmitCapture={() => debugLeadFormSubmitCapture('contact_home_integrated')}
+                      onInvalidCapture={(event) => {
+                        const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+                        debugLeadFormInvalid('contact_home_integrated', target.name, target.validationMessage);
+                      }}
+                      className="space-y-3.5"
+                    >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                         <div className="space-y-1">
                           <label className="ui-form-label text-white/40 ml-1">Nombre</label>
@@ -1352,6 +1360,7 @@ export default function Home() {
 
                       <button
                         type="submit"
+                        onClick={() => debugLeadFormButtonClick('contact_home_integrated')}
                         className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
                       >
                         Pedir presupuesto gratis <Send size={14} />

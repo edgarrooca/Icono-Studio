@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   captureAttribution,
+  debugLog,
+  getConsentState,
   trackContactClick,
   trackCtaClick,
   trackEvent,
@@ -15,6 +17,14 @@ export default function AnalyticsTracker() {
 
   useEffect(() => {
     captureAttribution();
+  }, []);
+
+  useEffect(() => {
+    debugLog('[Icono Analytics] debug:ready', {
+      location: window.location.href,
+      consent: getConsentState(),
+      gtagReady: typeof window.gtag === 'function',
+    });
   }, []);
 
   useEffect(() => {

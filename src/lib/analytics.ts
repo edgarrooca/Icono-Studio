@@ -76,7 +76,7 @@ const syncAnalyticsDebugFlag = () => {
   }
 };
 
-const isAnalyticsDebugEnabled = () => {
+export const isAnalyticsDebugEnabled = () => {
   if (!isBrowser()) {
     return false;
   }
@@ -94,12 +94,12 @@ const isAnalyticsDebugEnabled = () => {
   return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 };
 
-const debugLog = (label: string, ...args: unknown[]) => {
+export const debugLog = (label: string, ...args: unknown[]) => {
   if (!isAnalyticsDebugEnabled()) {
     return;
   }
 
-  console.info(label, ...args);
+  console.log(label, ...args);
 };
 
 const ensureDataLayer = () => {
@@ -321,6 +321,22 @@ export const trackLeadSubmission = (formId: string, values: LeadFormValues = {})
     lead_type: typeof values.necesidad === 'string' ? values.necesidad : undefined,
     budget_range: typeof values.presupuesto === 'string' ? values.presupuesto : undefined,
     city: typeof values.ciudad === 'string' ? values.ciudad : undefined,
+  });
+};
+
+export const debugLeadFormButtonClick = (formId: string) => {
+  debugLog('[Icono Lead] button:click', { formId });
+};
+
+export const debugLeadFormSubmitCapture = (formId: string) => {
+  debugLog('[Icono Lead] submit:capture', { formId });
+};
+
+export const debugLeadFormInvalid = (formId: string, fieldName?: string, message?: string) => {
+  debugLog('[Icono Lead] invalid', {
+    formId,
+    field: fieldName,
+    message,
   });
 };
 
