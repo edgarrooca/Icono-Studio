@@ -32,6 +32,8 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
+    __iconoAnalyticsEvents?: unknown[];
+    google_tag_manager?: Record<string, unknown>;
   }
 }
 
@@ -212,6 +214,7 @@ const ensureDataLayer = () => {
   }
 
   window.dataLayer = window.dataLayer || [];
+  window.__iconoAnalyticsEvents = window.__iconoAnalyticsEvents || [];
 };
 
 const sanitizeParams = (params: EventParams = {}) =>
@@ -230,7 +233,11 @@ const pushDataLayer = (event: string, params: EventParams = {}) => {
     ...sanitizeParams(params),
   };
 
-  window.dataLayer.push(payload);
+  window.__iconoAnalyticsEvents?.push(payload);
+
+  if (window.google_tag_manager) {
+    window.dataLayer.push(payload);
+  }
 
   debugLog('[Icono Analytics:dataLayer]', payload);
 };
