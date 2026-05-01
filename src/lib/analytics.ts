@@ -180,6 +180,30 @@ export const installAnalyticsTransportDebug = () => {
       return originalSendBeacon(url, data);
     };
   }
+
+  if (typeof PerformanceObserver === 'function') {
+    try {
+      const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (!matchesAnalyticsRequest(entry.name)) {
+            return;
+          }
+
+          const resourceEntry = entry as PerformanceResourceTiming;
+          debugLog('[Icono Analytics] resource', {
+            name: resourceEntry.name,
+            initiatorType: resourceEntry.initiatorType,
+            transferSize: resourceEntry.transferSize,
+            duration: Math.round(resourceEntry.duration),
+          });
+        });
+      });
+
+      observer.observe({ type: 'resource', buffered: true });
+    } catch {
+      // Ignore unsupported PerformanceObserver configurations.
+    }
+  }
 };
 
 const ensureDataLayer = () => {
