@@ -7,6 +7,7 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
+import { submitLeadForm } from '../lib/analytics';
 import { siteConfig } from '../lib/site';
 
 export default function Contact() {
@@ -55,24 +56,9 @@ export default function Contact() {
     e.preventDefault();
     
     try {
-      const response = await fetch('https://formsubmit.co/ajax/holaiconostudio@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await submitLeadForm('contact_page_main', formData);
       
       if (response.ok) {
-        (window as any).dataLayer?.push({
-          'event': 'form_submission',
-          'form_id': 'contact_page_main',
-          'form_data': {
-            'necesidad': formData.necesidad,
-            'presupuesto': formData.presupuesto
-          }
-        });
         setIsSubmitted(true);
       } else {
         alert('Hubo un error al enviar. Por favor, inténtalo de nuevo.');

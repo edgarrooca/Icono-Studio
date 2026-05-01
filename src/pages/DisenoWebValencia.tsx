@@ -46,6 +46,7 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { portfolioProjects } from '../data/projects';
+import { submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
 
@@ -81,25 +82,9 @@ export default function DisenoWebValencia() {
     e.preventDefault();
     
     try {
-      const response = await fetch('https://formsubmit.co/ajax/holaiconostudio@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await submitLeadForm('contact_valencia_ads', formData);
       
       if (response.ok) {
-        // Tracking
-        (window as any).dataLayer?.push({
-          'event': 'form_submission',
-          'form_id': 'contact_valencia_ads',
-          'form_data': {
-            'necesidad': formData.necesidad,
-            'presupuesto': formData.presupuesto
-          }
-        });
         setIsSubmitted(true);
       } else {
         alert('Hubo un error al enviar. Por favor, inténtalo de nuevo.');

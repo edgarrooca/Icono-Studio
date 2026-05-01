@@ -3,6 +3,7 @@ export const siteConfig = {
   legalName: 'Icono Studio',
   url: 'https://icono.studio',
   locale: 'es_ES',
+  gaMeasurementId: 'G-8NJTQ5C82J',
   city: 'Valencia',
   countryCode: 'ES',
   email: 'holaiconostudio@gmail.com',

@@ -1,5 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AnalyticsTracker from './components/AnalyticsTracker';
+import CookieConsentBanner from './components/CookieConsentBanner';
 import HashScrollHandler from './components/HashScrollHandler';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -20,8 +22,10 @@ const PoliticaPrivacidad = lazy(() => import('./pages/PoliticaPrivacidad'));
 export default function App() {
   return (
     <Router>
+      <AnalyticsTracker />
       <HashScrollHandler />
       <WhatsAppButton />
+      <CookieConsentBanner />
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
