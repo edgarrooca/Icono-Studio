@@ -50,7 +50,7 @@ export default function CookieConsentBanner() {
             <button
               type="button"
               onClick={() => handleConsent('denied')}
-              className="text-[9px] font-black uppercase tracking-[0.18em] text-white/52 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white hover:decoration-white/60"
+              className="text-[9px] font-black uppercase tracking-[0.18em] text-white/52 transition-colors hover:text-white"
             >
               Solo necesarias
             </button>
