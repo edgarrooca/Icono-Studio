@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8NJTQ5C82J"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
+      window.__iconoAnalyticsDebug = false;
+      window.__iconoGtagScriptStatus = 'idle';
       function gtag(){dataLayer.push(arguments);}
       (function() {
         var consentState = 'denied';
         var debugMode = false;
+        var measurementId = 'G-8NJTQ5C82J';
         try {
           var url = new URL(window.location.href);
           var debugFlag = url.searchParams.get('debug_analytics');
@@ -26,6 +27,8 @@
           }
         } catch (error) {}
 
+        window.__iconoAnalyticsDebug = debugMode;
+
         gtag('consent', 'default', {
           ad_storage: consentState,
           analytics_storage: consentState,
@@ -33,14 +36,32 @@
           ad_personalization: consentState,
           wait_for_update: 500
         });
-      })();
 
-      gtag('js', new Date());
-      gtag('config', 'G-8NJTQ5C82J', {
-        send_page_view: false,
-        allow_google_signals: true,
-        debug_mode: debugMode ? true : undefined
-      });
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+        window.__iconoGtagScriptStatus = 'loading';
+        gtagScript.onload = function() {
+          window.__iconoGtagScriptStatus = 'loaded';
+          if (window.__iconoAnalyticsDebug) {
+            console.log('[Icono Analytics] gtag-script loaded', { measurementId: measurementId });
+          }
+        };
+        gtagScript.onerror = function(event) {
+          window.__iconoGtagScriptStatus = 'error';
+          if (window.__iconoAnalyticsDebug) {
+            console.log('[Icono Analytics] gtag-script error', event);
+          }
+        };
+        document.head.appendChild(gtagScript);
+
+        gtag('js', new Date());
+        gtag('config', measurementId, {
+          send_page_view: false,
+          allow_google_signals: true,
+          debug_mode: debugMode ? true : undefined
+        });
+      })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

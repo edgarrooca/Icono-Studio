@@ -26,6 +26,7 @@ export default function AnalyticsTracker() {
       location: window.location.href,
       consent: getConsentState(),
       gtagReady: typeof window.gtag === 'function',
+      gtagScriptStatus: (window as Window & { __iconoGtagScriptStatus?: string }).__iconoGtagScriptStatus,
     });
   }, []);
 
