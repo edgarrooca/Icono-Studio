@@ -87,7 +87,7 @@ export default function DisenoWebValencia() {
       if (response.ok) {
         setIsSubmitted(true);
       } else {
-        alert('Hubo un error al enviar. Por favor, inténtalo de nuevo.');
+        alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
       }
     } catch (error) {
       alert('Error de conexión.');

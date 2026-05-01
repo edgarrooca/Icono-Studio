@@ -5,6 +5,10 @@ export type ConsentState = 'granted' | 'denied';
 type Primitive = string | number | boolean;
 type EventParams = Record<string, Primitive | undefined>;
 type LeadFormValues = Record<string, string | boolean | undefined>;
+type LeadSubmitResponseBody = {
+  success?: string | boolean;
+  message?: string;
+};
 
 interface AttributionState {
   firstLandingPath: string;
@@ -90,6 +94,14 @@ const isAnalyticsDebugEnabled = () => {
   return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 };
 
+const debugLog = (label: string, ...args: unknown[]) => {
+  if (!isAnalyticsDebugEnabled()) {
+    return;
+  }
+
+  console.info(label, ...args);
+};
+
 const ensureDataLayer = () => {
   if (!isBrowser()) {
     return;
@@ -116,9 +128,7 @@ const pushDataLayer = (event: string, params: EventParams = {}) => {
 
   window.dataLayer.push(payload);
 
-  if (isAnalyticsDebugEnabled()) {
-    console.info('[Icono Analytics:dataLayer]', payload);
-  }
+  debugLog('[Icono Analytics:dataLayer]', payload);
 };
 
 const sendGtagEvent = (eventName: string, params: EventParams = {}) => {
@@ -133,9 +143,7 @@ const sendGtagEvent = (eventName: string, params: EventParams = {}) => {
 
   window.gtag('event', eventName, payload);
 
-  if (isAnalyticsDebugEnabled()) {
-    console.info('[Icono Analytics:gtag]', eventName, payload);
-  }
+  debugLog('[Icono Analytics:gtag]', eventName, payload);
 };
 
 const readJsonStorage = <T,>(key: string): T | null => {
@@ -366,18 +374,55 @@ export const buildLeadPayload = (formId: string, values: LeadFormValues) => {
 };
 
 export const submitLeadForm = async (formId: string, values: LeadFormValues) => {
+  const payload = buildLeadPayload(formId, values);
+
+  debugLog('[Icono Lead] submit:start', {
+    formId,
+    payload,
+  });
+
   const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify(buildLeadPayload(formId, values)),
+    body: JSON.stringify(payload),
   });
 
-  if (response.ok) {
-    trackLeadSubmission(formId, values);
+  let data: LeadSubmitResponseBody | null = null;
+
+  try {
+    data = (await response.json()) as LeadSubmitResponseBody;
+  } catch {
+    data = null;
   }
 
-  return response;
+  const formSubmitSuccess = data?.success;
+  const ok =
+    response.ok &&
+    formSubmitSuccess !== false &&
+    formSubmitSuccess !== 'false';
+
+  debugLog('[Icono Lead] submit:response', {
+    formId,
+    status: response.status,
+    ok,
+    data,
+  });
+
+  if (ok) {
+    trackLeadSubmission(formId, values);
+  } else {
+    trackEvent('form_submit_error', {
+      form_id: formId,
+      error_message: data?.message || `HTTP ${response.status}`,
+    });
+  }
+
+  return {
+    ok,
+    status: response.status,
+    data,
+  };
 };
