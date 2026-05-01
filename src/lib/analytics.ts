@@ -33,6 +33,7 @@ declare global {
 
 export const consentStorageKey = 'icono_cookie_consent_v1';
 const attributionStorageKey = 'icono_attribution_v1';
+const analyticsDebugStorageKey = 'icono_analytics_debug_v1';
 
 const attributionQueryMap = {
   utmSource: 'utm_source',
@@ -49,6 +50,45 @@ const attributionQueryMap = {
 } as const;
 
 const isBrowser = () => typeof window !== 'undefined';
+
+const syncAnalyticsDebugFlag = () => {
+  if (!isBrowser()) {
+    return;
+  }
+
+  try {
+    const url = new URL(window.location.href);
+    const debugFlag = url.searchParams.get('debug_analytics');
+
+    if (debugFlag === '1') {
+      window.localStorage.setItem(analyticsDebugStorageKey, 'true');
+    }
+
+    if (debugFlag === '0') {
+      window.localStorage.removeItem(analyticsDebugStorageKey);
+    }
+  } catch {
+    // Ignore URL parsing/storage errors silently.
+  }
+};
+
+const isAnalyticsDebugEnabled = () => {
+  if (!isBrowser()) {
+    return false;
+  }
+
+  syncAnalyticsDebugFlag();
+
+  try {
+    if (window.localStorage.getItem(analyticsDebugStorageKey) === 'true') {
+      return true;
+    }
+  } catch {
+    return false;
+  }
+
+  return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+};
 
 const ensureDataLayer = () => {
   if (!isBrowser()) {
@@ -69,10 +109,16 @@ const pushDataLayer = (event: string, params: EventParams = {}) => {
   }
 
   ensureDataLayer();
-  window.dataLayer.push({
+  const payload = {
     event,
     ...sanitizeParams(params),
-  });
+  };
+
+  window.dataLayer.push(payload);
+
+  if (isAnalyticsDebugEnabled()) {
+    console.info('[Icono Analytics:dataLayer]', payload);
+  }
 };
 
 const sendGtagEvent = (eventName: string, params: EventParams = {}) => {
@@ -80,7 +126,16 @@ const sendGtagEvent = (eventName: string, params: EventParams = {}) => {
     return;
   }
 
-  window.gtag('event', eventName, sanitizeParams(params));
+  const payload = sanitizeParams({
+    ...params,
+    debug_mode: isAnalyticsDebugEnabled() ? true : undefined,
+  });
+
+  window.gtag('event', eventName, payload);
+
+  if (isAnalyticsDebugEnabled()) {
+    console.info('[Icono Analytics:gtag]', eventName, payload);
+  }
 };
 
 const readJsonStorage = <T,>(key: string): T | null => {
@@ -176,6 +231,8 @@ export const captureAttribution = () => {
   if (!isBrowser()) {
     return getDefaultAttributionState();
   }
+
+  syncAnalyticsDebugFlag();
 
   const url = new URL(window.location.href);
   const query = url.searchParams;
