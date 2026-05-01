@@ -46,11 +46,11 @@ export default function CookieConsentBanner() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 pl-[3.25rem] sm:pl-0">
+          <div className="flex items-center gap-3 pl-[3.25rem] sm:pl-0">
             <button
               type="button"
               onClick={() => handleConsent('denied')}
-              className="rounded-full border border-white/15 px-3.5 py-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/68 transition-colors hover:border-white/30 hover:text-white"
+              className="text-[9px] font-black uppercase tracking-[0.18em] text-white/52 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white hover:decoration-white/60"
             >
               Solo necesarias
             </button>
