@@ -8,7 +8,19 @@
       function gtag(){dataLayer.push(arguments);}
       (function() {
         var consentState = 'denied';
+        var debugMode = false;
         try {
+          var url = new URL(window.location.href);
+          var debugFlag = url.searchParams.get('debug_analytics');
+          if (debugFlag === '1') {
+            window.localStorage.setItem('icono_analytics_debug_v1', 'true');
+          }
+          if (debugFlag === '0') {
+            window.localStorage.removeItem('icono_analytics_debug_v1');
+          }
+
+          debugMode = window.localStorage.getItem('icono_analytics_debug_v1') === 'true';
+
           if (window.localStorage.getItem('icono_cookie_consent_v1') === 'granted') {
             consentState = 'granted';
           }
@@ -26,7 +38,8 @@
       gtag('js', new Date());
       gtag('config', 'G-8NJTQ5C82J', {
         send_page_view: false,
-        allow_google_signals: true
+        allow_google_signals: true,
+        debug_mode: debugMode ? true : undefined
       });
     </script>
     <meta charset="UTF-8" />
