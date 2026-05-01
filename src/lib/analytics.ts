@@ -508,7 +508,7 @@ export const submitLeadForm = async (formId: string, values: LeadFormValues) => 
     payload,
   });
 
-  const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
+  const response = await fetch('/api/lead', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
