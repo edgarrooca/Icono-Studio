@@ -17,23 +17,12 @@ const DisenoWebMadrid = lazy(() => import('./pages/DisenoWebMadrid'));
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'));
 const PoliticaPrivacidad = lazy(() => import('./pages/PoliticaPrivacidad'));
 
-function RouteFallback() {
-  return (
-    <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center px-6">
-      <div className="flex items-center gap-4 text-brand-dark">
-        <div className="w-10 h-10 rounded-full border-4 border-brand-blue border-t-transparent animate-spin" />
-        <p className="ui-eyebrow text-brand-dark/70">Cargando página</p>
-      </div>
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <Router>
       <HashScrollHandler />
       <WhatsAppButton />
-      <Suspense fallback={<RouteFallback />}>
+      <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/proyectos" element={<Projects />} />
