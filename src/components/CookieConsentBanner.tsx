@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Cookie } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { consentStorageKey, getConsentState, trackPageView, updateConsentState } from '../lib/analytics';
 
@@ -34,8 +35,8 @@ export default function CookieConsentBanner() {
       <div className="pointer-events-auto mr-[5.25rem] w-auto rounded-[1.25rem] border border-white/8 bg-brand-dark/88 px-3.5 py-3 text-white shadow-[0_16px_40px_rgba(2,8,23,0.22)] backdrop-blur-xl sm:mx-auto sm:max-w-3xl sm:rounded-[1.35rem] sm:px-4 sm:py-3.5">
         <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
-            <span className="mt-0.5 shrink-0 rounded-full bg-white/6 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.18em] text-brand-lime/90">
-              Cookies
+            <span className="mt-0.5 shrink-0 rounded-full bg-white/6 p-2 text-brand-lime/90">
+              <Cookie size={13} strokeWidth={2.25} />
             </span>
             <p className="max-w-xl text-[11px] leading-relaxed text-white/72 sm:text-[12px]">
               Usamos cookies para mejorar tu experiencia y recordar tus preferencias.
