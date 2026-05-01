@@ -1,9 +1,11 @@
-import { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, ChevronDown, ChevronUp, ShieldCheck, Rocket, LineChart, Zap } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SeoHead from '../components/SeoHead';
+import { absoluteUrl, siteConfig } from '../lib/site';
 
 const supportHeroPills = [
   {
@@ -116,8 +118,6 @@ const supportFaqs = [
 ];
 
 export default function HostingMaintenance() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [pricingView, setPricingView] = useState<(typeof pricingViews)[number]['key']>('bundle');
 
@@ -151,14 +151,6 @@ export default function HostingMaintenance() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Memoize star positions to prevent jitter on re-renders (scroll)
   const starData = useMemo(() => {
     return [...Array(40)].map(() => ({
@@ -180,8 +172,44 @@ export default function HostingMaintenance() {
     }));
   }, []);
 
+  const supportSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Hosting y mantenimiento web | Icono Studio",
+        "url": `${siteConfig.url}/hosting-mantenimiento-web`,
+        "description": "Servicio de hosting, mantenimiento y soporte web para mantener tu proyecto rápido, seguro y actualizado.",
+        "provider": {
+          "@type": "Organization",
+          "name": siteConfig.name,
+          "url": siteConfig.url,
+        },
+        "image": absoluteUrl(siteConfig.defaultOgImage),
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": supportFaqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+      <SeoHead
+        title="Hosting y Mantenimiento Web | Icono Studio"
+        description="Hosting, mantenimiento y soporte web para que tu proyecto esté siempre rápido, seguro y bien atendido. Planes claros, sin permanencias y con soporte directo."
+        path="/hosting-mantenimiento-web"
+        type="service"
+        schema={supportSchema}
+      />
       
       <Navbar />
 
@@ -235,6 +263,15 @@ export default function HostingMaintenance() {
           ></div>
           
           <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="ui-eyebrow text-brand-lime mb-5"
+            >
+              Hosting, mantenimiento y soporte
+            </motion.p>
+
             <motion.h1 
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -320,12 +357,12 @@ export default function HostingMaintenance() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center text-center mb-24">
               <div className="flex flex-col items-center">
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tighter text-brand-dark leading-[1.1] mb-8 max-w-3xl">
+                <h2 className="ui-section-title text-brand-dark mb-8 max-w-3xl">
                   Tu web, en las <br />
                   <span className="text-brand-blue italic">mejores manos.</span>
                 </h2>
                 <div className="w-12 h-[2px] bg-brand-blue/20 mb-10"></div>
-                <p className="text-gray-500 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
+                <p className="ui-section-copy max-w-2xl mx-auto">
                   Elevamos el estándar de cuidado digital. Soporte proactivo y humano diseñado para que tu presencia online sea siempre el activo más rentable de tu negocio.
                 </p>
               </div>
@@ -461,14 +498,14 @@ export default function HostingMaintenance() {
           
           <div className="relative z-10 mb-10 sm:mb-16 flex flex-col md:flex-row items-center md:items-end text-center md:text-left justify-between gap-8 px-6 md:px-0">
             <div className="max-w-2xl">
-              <div className="mx-auto md:mx-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-brand-lime font-bold text-[10px] uppercase tracking-widest mb-6 border border-white/10">
+              <div className="mx-auto md:mx-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-brand-lime mb-6 border border-white/10 ui-eyebrow">
                 NUESTROS PLANES
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight leading-[1.05] mb-6">
+              <h2 className="ui-section-title text-white mb-6">
                 Planes de <br />
                 <span className="text-brand-lime italic">crecimiento</span>
               </h2>
-              <p className="text-white/60 text-lg max-w-xl">
+              <p className="ui-section-copy text-white/70 max-w-xl">
                 Sin permanencias. Gestión unificada de hosting y mantenimiento para que no tengas que preocuparte de nada.
               </p>
             </div>
@@ -665,13 +702,13 @@ export default function HostingMaintenance() {
       <section className="py-24 bg-[#F8F9FA] overflow-hidden border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/5 text-brand-blue font-bold text-xs uppercase tracking-wider mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/5 text-brand-blue mb-6 ui-eyebrow">
               Soporte & FAQ
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl uppercase tracking-tight text-brand-dark leading-none mb-6">
+            <h2 className="ui-section-title text-brand-dark mb-6">
               ¿Tienes dudas? <br /> <span className="text-brand-blue italic">Te ayudamos</span>
             </h2>
-            <p className="text-lg text-gray-500">Respuestas directas para que no tengas que preocuparte por nada.</p>
+            <p className="ui-section-copy">Respuestas directas para que no tengas que preocuparte por nada.</p>
           </div>
 
           <div className="space-y-4">

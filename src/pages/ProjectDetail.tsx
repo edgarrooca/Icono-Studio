@@ -5,17 +5,17 @@ import { ArrowLeft, ArrowUpRight, Check, ArrowRight, Menu, X, Mouse, ChevronDown
 import { portfolioProjects, Project } from '../data/projects';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import { mainNavLinks } from '../data/navigation';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SeoHead from '../components/SeoHead';
+import { absoluteUrl, siteConfig } from '../lib/site';
+import { mergeAndDedupeProjects } from '../lib/projectUtils';
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const [project, setProject] = useState<any>(null);
   const [relatedProjects, setRelatedProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMockup, setActiveMockup] = useState<1 | 2>(2);
 
   useEffect(() => {
@@ -70,7 +70,8 @@ export default function ProjectDetail() {
 
         if (projectsSnapshot) {
           const fetchedProjects = projectsSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Project));
-          allProjects = fetchedProjects.length > 0 ? fetchedProjects.filter(p => p.id.toString() !== id).slice(0, 3) : localRelatedProjects;
+          const uniqueProjects = mergeAndDedupeProjects(portfolioProjects, fetchedProjects);
+          allProjects = uniqueProjects.filter((p) => p.id.toString() !== id).slice(0, 3);
         }
 
         if (isMounted) {
@@ -92,20 +93,20 @@ export default function ProjectDetail() {
     };
 
     fetchProject();
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
     return () => {
       isMounted = false;
-      window.removeEventListener('scroll', handleScroll);
     };
   }, [id]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
+        <SeoHead
+          title="Cargando proyecto | Icono Studio"
+          description="Cargando caso de estudio."
+          path="/"
+          robots="noindex,nofollow"
+        />
         <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -114,6 +115,12 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA] text-brand-dark">
+        <SeoHead
+          title="Proyecto no encontrado | Icono Studio"
+          description="El proyecto que buscas no está disponible."
+          path="/"
+          robots="noindex,nofollow"
+        />
         <div className="text-center">
           <h1 className="text-4xl font-display font-bold mb-4">Proyecto no encontrado</h1>
           <Link to="/" className="text-brand-blue hover:underline font-bold">Volver al inicio</Link>
@@ -130,8 +137,37 @@ export default function ProjectDetail() {
     project.imgMobile5
   ].filter(img => img && img.trim() !== '');
 
+  const projectDescription =
+    project.description ||
+    project.clientDescription ||
+    project.subtitle ||
+    'Caso de estudio de diseño y desarrollo web.';
+  const hasPublicLink = typeof project.link === 'string' && project.link.trim() !== '';
+
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": project.title,
+    "description": projectDescription,
+    "url": `${siteConfig.url}/proyecto/${project.id}`,
+    "image": absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage),
+    "creator": {
+      "@type": "Organization",
+      "name": siteConfig.name,
+      "url": siteConfig.url,
+    },
+    "about": project.category || 'Diseño web',
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+      <SeoHead
+        title={`${project.title} | Proyecto Web | Icono Studio`}
+        description={projectDescription}
+        path={`/proyecto/${project.id}`}
+        image={project.imgReto || project.img || siteConfig.defaultOgImage}
+        schema={projectSchema}
+      />
       
       <Navbar />
 
@@ -186,20 +222,26 @@ export default function ProjectDetail() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex flex-wrap items-center gap-4"
               >
-                <a 
-                  href={project.link || '#'} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => (window as any).dataLayer?.push({
-                    'event': 'cta_click',
-                    'cta_id': 'project_external_link',
-                    'cta_text': `Ver sitio web: ${project.title}`,
-                    'page_path': window.location.pathname
-                  })}
-                  className="bg-brand-lime text-brand-dark px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2 text-sm"
-                >
-                  Ver sitio web <ArrowUpRight size={18} />
-                </a>
+                {hasPublicLink ? (
+                  <a 
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => (window as any).dataLayer?.push({
+                      'event': 'cta_click',
+                      'cta_id': 'project_external_link',
+                      'cta_text': `Ver sitio web: ${project.title}`,
+                      'page_path': window.location.pathname
+                    })}
+                    className="bg-brand-lime text-brand-dark px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2 text-sm"
+                  >
+                    Ver sitio web <ArrowUpRight size={18} />
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-6 sm:px-8 py-3 sm:py-4 text-sm font-bold text-white/80">
+                    Proyecto no publico
+                  </span>
+                )}
               </motion.div>
             </div>
 
@@ -292,19 +334,27 @@ export default function ProjectDetail() {
                   <p key={i} className="mb-4">{p}</p>
                 ))}
               </div>
-              <a 
-                href={project.link || '#'} 
-                onClick={() => (window as any).dataLayer?.push({
-                  'event': 'cta_click',
-                  'cta_id': 'project_challenge_link',
-                  'cta_text': `Ver web de ${project.title}`,
-                  'page_path': window.location.pathname
-                })}
-                className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors group px-6 py-3 rounded-full border-2 border-brand-blue hover:border-brand-dark"
-              >
-                Ver web de {project.title}
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              {hasPublicLink ? (
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => (window as any).dataLayer?.push({
+                    'event': 'cta_click',
+                    'cta_id': 'project_challenge_link',
+                    'cta_text': `Ver web de ${project.title}`,
+                    'page_path': window.location.pathname
+                  })}
+                  className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors group px-6 py-3 rounded-full border-2 border-brand-blue hover:border-brand-dark"
+                >
+                  Ver web de {project.title}
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-2 rounded-full border-2 border-gray-200 px-6 py-3 font-bold text-gray-400">
+                  Demo no disponible
+                </span>
+              )}
             </div>
             <div className="relative order-1 lg:order-2 group cursor-pointer flex justify-center lg:justify-end">
               <div className="w-full max-w-md rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 aspect-[4/5] relative lg:translate-x-4 transition-transform duration-500 group-hover:-translate-y-2">
@@ -341,7 +391,7 @@ export default function ProjectDetail() {
             <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black to-transparent"></div>
             <div className="max-w-[100vw] mx-auto relative z-10 w-full">
               <div className="overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <div className="flex justify-start sm:justify-center gap-4 md:gap-12 w-max sm:mx-auto px-4 sm:px-10 min-w-full sm:min-w-0">
+                <div className="flex justify-start sm:justify-center gap-4 md:gap-12 w-max sm:mx-auto px-4 sm:px-10 min-w-full sm:min-w-0 py-12 md:py-20">
                 {mobileImages.map((img, index) => (
                   <motion.div 
                     key={index} 
@@ -356,7 +406,7 @@ export default function ProjectDetail() {
                     <img 
                       src={img} 
                       alt={`Screen ${index + 1}`} 
-                      className="w-full h-full object-cover rounded-[1.5rem] md:rounded-[1.8rem]" 
+                      className="w-full h-full object-cover object-top rounded-[1.2rem] md:rounded-[1.5rem]" 
                       referrerPolicy="no-referrer" 
                       onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}showcase${index}/600/1300`; }}
                     />
@@ -438,45 +488,7 @@ export default function ProjectDetail() {
           </div>
         </section>
 
-        {/* 5. LEAD MAGNET / NEWSLETTER */}
-        <section className="py-14 sm:py-20 md:py-32 bg-brand-lime relative overflow-hidden">
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
-          
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10 relative z-10">
-            <div className="md:w-1/2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-dark/10 text-brand-dark font-bold text-xs sm:text-sm uppercase tracking-wider mb-4">
-                <Download size={14} />
-                Recurso Gratuito
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-brand-dark leading-none mb-3">
-                10 errores que arruinan tu conversión
-              </h2>
-              <p className="text-brand-dark/80 text-sm sm:text-base md:text-lg mb-0">
-                Descarga nuestra checklist gratuita y descubre por qué tu web actual no está consiguiendo clientes.
-              </p>
-            </div>
-            
-            <div className="md:w-1/2 w-full">
-              <form className="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl sm:rounded-full shadow-xl">
-                <div className="flex-grow flex items-center pl-4">
-                  <Mail className="text-gray-400 mr-3 shrink-0" size={20} />
-                  <input 
-                    type="email" 
-                    placeholder="Tu correo electrónico" 
-                    className="w-full py-2.5 outline-none text-brand-dark bg-transparent"
-                    required
-                  />
-                </div>
-                <button type="submit" className="bg-brand-dark text-white px-6 py-3 rounded-xl sm:rounded-full font-bold hover:bg-black transition-colors whitespace-nowrap">
-                  Descargar PDF
-                </button>
-              </form>
-              <p className="text-xs text-brand-dark/60 mt-3 text-center sm:text-left pl-4">
-                * 100% libre de spam. Date de baja cuando quieras.
-              </p>
-            </div>
-          </div>
-        </section>
+
 
         {/* 6. PROYECTOS RELACIONADOS */}
         <section className="py-14 sm:py-20 md:py-32 bg-[#F8F9FA]">
@@ -487,7 +499,7 @@ export default function ProjectDetail() {
                   Proyectos relacionados
                 </h2>
               </div>
-              <Link to="/#proyectos" className="hidden md:flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors">
+              <Link to="/proyectos" className="hidden md:flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors">
                 Ver todos <ArrowRight size={18} />
               </Link>
             </div>
@@ -539,7 +551,7 @@ export default function ProjectDetail() {
             </div>
             
             <div className="mt-10 text-center md:hidden">
-              <Link to="/#proyectos" className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors">
+              <Link to="/proyectos" className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-dark transition-colors">
                 Ver todos <ArrowRight size={18} />
               </Link>
             </div>

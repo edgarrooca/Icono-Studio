@@ -5,15 +5,31 @@ import { blogPosts } from '../data/blog';
 import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SeoHead from '../components/SeoHead';
+import { siteConfig } from '../lib/site';
 
 export default function Blog() {
   useEffect(() => {
-    document.title = 'Blog | Icono Studio - Diseño Web y Estrategia Digital';
     window.scrollTo(0, 0);
   }, []);
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": `Blog | ${siteConfig.name}`,
+    "url": `${siteConfig.url}/blog`,
+    "description": "Artículos sobre diseño web, SEO y digitalización para negocios que quieren crecer online.",
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F9FA] selection:bg-brand-lime selection:text-brand-dark">
+      <SeoHead
+        title="Blog de Diseño Web y SEO | Icono Studio"
+        description="Consejos, estrategia y contenidos sobre diseño web, SEO y presencia digital para negocios que quieren conseguir más contactos."
+        path="/blog"
+        schema={blogSchema}
+      />
+
       <Navbar initialTheme="dark" />
       {/* Premium Header */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-brand-dark text-white">

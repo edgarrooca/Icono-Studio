@@ -1,3 +1,4 @@
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { 
@@ -6,9 +7,10 @@ import {
 } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { mainNavLinks } from '../data/navigation';
-import { useEffect, useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SeoHead from '../components/SeoHead';
+import { siteConfig } from '../lib/site';
 
 interface ToCItem {
   id: string;
@@ -26,53 +28,6 @@ export default function BlogPost() {
 
   useEffect(() => {
     if (!post) return;
-
-    document.title = post.metaTitle;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', post.metaDescription);
-    }
-
-    // Schema.org Structured Data
-    const schemaScriptId = 'blog-schema';
-    let schemaScript = document.getElementById(schemaScriptId);
-    if (!schemaScript) {
-      schemaScript = document.createElement('script');
-      schemaScript.id = schemaScriptId;
-      schemaScript.type = 'application/ld+json';
-      document.head.appendChild(schemaScript);
-    }
-    
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BlogPosting",
-          "headline": post.metaTitle,
-          "description": post.metaDescription,
-          "image": [
-            window.location.origin + post.image
-          ],
-          "author": [{
-            "@type": "Organization",
-            "name": post.author,
-            "url": window.location.origin
-          }]
-        },
-        ...(post.faqs && post.faqs.length > 0 ? [{
-          "@type": "FAQPage",
-          "mainEntity": post.faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }] : [])
-      ]
-    };
-    schemaScript.textContent = JSON.stringify(schemaData);
 
     // Generate ToC and Add IDs to content
     const generateToC = () => {
@@ -117,16 +72,18 @@ export default function BlogPost() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      const schemaElement = document.getElementById(schemaScriptId);
-      if (schemaElement) {
-        schemaElement.remove();
-      }
     };
   }, [post]);
 
   if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
+        <SeoHead
+          title="Post no encontrado | Icono Studio"
+          description="El artículo que buscas no está disponible."
+          path="/blog"
+          robots="noindex,nofollow"
+        />
         <div className="text-center">
           <h1 className="text-3xl font-display mb-4 uppercase text-brand-dark">Post no encontrado</h1>
           <RouterLink to="/blog" className="text-brand-blue font-bold hover:underline">Volver al blog</RouterLink>
@@ -151,8 +108,45 @@ export default function BlogPost() {
     }
   };
 
+  const blogPostSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": post.metaTitle,
+        "description": post.metaDescription,
+        "image": [`${siteConfig.url}${post.image}`],
+        "author": [{
+          "@type": "Organization",
+          "name": post.author,
+          "url": siteConfig.url,
+        }],
+        "mainEntityOfPage": `${siteConfig.url}/blog/${post.slug}`,
+      },
+      ...(post.faqs && post.faqs.length > 0 ? [{
+        "@type": "FAQPage",
+        "mainEntity": post.faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer,
+          },
+        })),
+      }] : []),
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
+      <SeoHead
+        title={post.metaTitle}
+        description={post.metaDescription}
+        path={`/blog/${post.slug}`}
+        image={post.image}
+        type="article"
+        schema={blogPostSchema}
+      />
       
       <Navbar initialTheme="dark" />
 

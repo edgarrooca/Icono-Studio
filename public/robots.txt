@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+
+Sitemap: https://icono.studio/sitemap.xml

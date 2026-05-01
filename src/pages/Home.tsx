@@ -1,14 +1,36 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Mail, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart, Phone, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart, Send, Heart } from 'lucide-react';
 import { portfolioProjects, Project } from '../data/projects';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import { mainNavLinks } from '../data/navigation';
 import { blogPosts } from '../data/blog';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SeoHead from '../components/SeoHead';
+import { absoluteUrl, siteConfig } from '../lib/site';
+import { mergeAndDedupeProjects } from '../lib/projectUtils';
+
+// Gradient Blob Component for Hero
+const GradientBlob = ({ color, className, delay = 0 }: { color: string, className: string, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ 
+      opacity: [0.15, 0.3, 0.15],
+      scale: [1, 1.2, 1],
+      x: [0, 50, 0],
+      y: [0, 30, 0],
+    }}
+    transition={{ 
+      duration: 10, 
+      repeat: Infinity, 
+      ease: "easeInOut",
+      delay 
+    }}
+    className={`absolute rounded-full blur-[100px] pointer-events-none ${color} ${className}`}
+  />
+);
 
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No. El dominio no está incluido, aunque podemos recomendarte la mejor opción y ayudarte a dejarlo configurado. El hosting tampoco va incluido en el precio base de la web, pero si quieres podemos gestionarlo nosotros como un servicio aparte." },
@@ -160,60 +182,75 @@ const supportTeaserItems = [
 ];
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('Todo');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   
   const [projects, setProjects] = useState<any[]>(portfolioProjects);
-  const [siteSettings, setSiteSettings] = useState<any>({});
-  
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [activeStep, setActiveStep] = useState(0);
+  const metodologiaRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    
-    try {
-      const response = await fetch('https://formspree.io/f/holaiconostudio@gmail.com', {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        // GTM: Track successful lead generation
-        (window as any).dataLayer?.push({
-          'event': 'generate_lead',
-          'form_name': 'Formulario de Contacto Home',
-          'page_path': window.location.pathname
-        });
-        
-        setFormStatus('success');
-        form.reset();
-      } else {
-        alert('Lo sentimos, hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.');
-        setFormStatus('idle');
-      }
-    } catch (error) {
-      alert('Error de conexión. Revisa tu internet e inténtalo de nuevo.');
-      setFormStatus('idle');
+  const handleMetodologiaScroll = () => {
+    if (metodologiaRef.current) {
+      const scrollPosition = metodologiaRef.current.scrollLeft;
+      const cardWidth = metodologiaRef.current.offsetWidth * 0.85;
+      const index = Math.round(scrollPosition / cardWidth);
+      setActiveStep(index);
     }
   };
 
-  const handleLeadMagnetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    whatsapp: '',
+    email: '',
+    negocio: '',
+    necesidad: '',
+    presupuesto: '',
+    mensaje: '',
+    privacidad: false,
+  });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    if (type === 'checkbox') {
+      const target = e.target as HTMLInputElement;
+      setFormData((prev) => ({ ...prev, [name]: target.checked }));
+      return;
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    (window as any).dataLayer?.push({
-      'event': 'lead_magnet_signup',
-      'lead_magnet_name': 'recurso_gratis_home',
-      'page_path': window.location.pathname
-    });
-    alert('¡Gracias! Te hemos enviado el recurso a tu correo.');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/holaiconostudio@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        (window as any).dataLayer?.push({
+          'event': 'form_submission',
+          'form_id': 'contact_home_integrated',
+          'form_data': {
+            'necesidad': formData.necesidad,
+            'presupuesto': formData.presupuesto,
+          },
+        });
+
+        setIsSubmitted(true);
+      } else {
+        alert('Hubo un error al enviar. Por favor, inténtalo de nuevo.');
+      }
+    } catch (error) {
+      alert('Error de conexión.');
+    }
   };
 
   useEffect(() => {
@@ -222,24 +259,7 @@ export default function Home() {
         const projectsSnapshot = await getDocs(collection(db, 'projects'));
         if (!projectsSnapshot.empty) {
           const fetchedProjects = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Project));
-          
-          // Merge local and Firebase projects, avoiding duplicates by ID
-          const combined = [...portfolioProjects] as Project[];
-          fetchedProjects.forEach(fp => {
-            const index = combined.findIndex(p => p.id.toString() === fp.id.toString());
-            if (index !== -1) {
-              combined[index] = { ...combined[index], ...fp };
-            } else {
-              combined.push(fp);
-            }
-          });
-          
-          setProjects(combined);
-        }
-
-        const settingsDoc = await getDoc(doc(db, 'settings', 'site'));
-        if (settingsDoc.exists()) {
-          setSiteSettings(settingsDoc.data());
+          setProjects(mergeAndDedupeProjects(portfolioProjects, fetchedProjects));
         }
       } catch (error) {
         console.error("Error fetching data from Firebase:", error);
@@ -248,42 +268,85 @@ export default function Home() {
     fetchFirebaseData();
   }, []);
 
-  const projectCategories = ['Todo', 'E-commerce', 'Web Corporativa', 'SEO & CRO', 'Desarrollo a medida', 'Marketing Digital'];
-  const filteredProjects = activeFilter === 'Todo' ? projects : projects.filter(p => p.category === activeFilter);
+  const featuredProjectIds = [
+    'dogcat',
+    'instalaciones-torrijos-fontaneria',
+    'libreria-garcia-lorca',
+  ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const featuredProjects = [
+    ...featuredProjectIds
+      .map((idOrTitle) => projects.find((p) => 
+        p.id.toString() === idOrTitle || 
+        p.title.toLowerCase().includes('dogcat') || // Force match for dogcat
+        (p.title && idOrTitle.toLowerCase().includes(p.title.toLowerCase()))
+      ))
+      .filter((project): project is Project => Boolean(project)),
+    ...projects.filter((p) => !featuredProjectIds.some(id => 
+      p.id.toString() === id || 
+      p.title.toLowerCase().includes('dogcat') ||
+      (p.title && id.toLowerCase().includes(p.title.toLowerCase()))
+    )),
+  ]
+    .filter((project, index, array) => array.findIndex((item) => item.id.toString() === project.id.toString()) === index)
+    .filter(p => p.id !== 'gameshelf-app' && !p.title.toLowerCase().includes('gameshelf')) // Explicitly remove gameshelf
+    .slice(0, 3);
+
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": siteConfig.name,
+        "url": siteConfig.url,
+        "email": siteConfig.email,
+        "telephone": siteConfig.phoneDisplay,
+        "image": absoluteUrl(siteConfig.defaultOgImage),
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": siteConfig.city,
+          "addressCountry": siteConfig.countryCode,
+        },
+      },
+      {
+        "@type": "ProfessionalService",
+        "name": `${siteConfig.name} | Diseño web en ${siteConfig.city}`,
+        "url": siteConfig.url,
+        "areaServed": [siteConfig.city, 'España'],
+        "serviceType": ['Diseño web', 'Desarrollo web', 'SEO', 'Mantenimiento web'],
+      },
+    ],
+  };
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+      <SeoHead
+        title="Diseño Web Valencia y SEO | Icono Studio"
+        description="Diseñamos páginas web en Valencia rápidas, cuidadas y orientadas a captar clientes. Desarrollo web, SEO y soporte continuo para negocios que quieren crecer."
+        path="/"
+        schema={homeSchema}
+      />
+
       <Navbar />
 
       {/* 1. HERO SECTION */}
-      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-brand-blue text-white z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-2xl">
+      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-brand-dark text-white z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-2xl">
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <GradientBlob color="bg-brand-blue" className="w-[600px] h-[600px] -top-48 -left-24" delay={0} />
+          <GradientBlob color="bg-brand-blue/40" className="w-[500px] h-[500px] top-1/2 -right-24" delay={2} />
+          <GradientBlob color="bg-brand-lime/10" className="w-[400px] h-[400px] bottom-0 left-1/4" delay={5} />
+        </div>
+        
         {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-20 bg-blueprint"></div>
+        <div className="absolute inset-0 opacity-10 bg-blueprint"></div>
         
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-6 md:mb-8 border border-white/20 backdrop-blur-sm"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></span>
-            Agencia Creativa Digital en Valencia
-          </motion.div>
-          
           <motion.h1 
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] leading-[0.9] md:leading-[0.85] tracking-tighter uppercase mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.5rem] leading-[0.95] tracking-tighter uppercase mb-6"
           >
             Hacemos webs <br/>
             <span className="text-brand-lime italic">que venden</span>
@@ -295,7 +358,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             className="text-lg md:text-xl max-w-2xl text-white/80 font-medium mb-8"
           >
-            Elevamos marcas a través de diseño estratégico y desarrollo de alto rendimiento.
+            Agencia de diseño web, SEO y desarrollo a medida para negocios que quieren crecer.
           </motion.p>
           
           <motion.div 
@@ -317,8 +380,8 @@ export default function Home() {
             >
               Pedir presupuesto <ArrowRight size={20} />
             </RouterLink>
-            <a 
-              href="#proyectos" 
+            <RouterLink 
+              to="/proyectos" 
               id="cta_hero_projects"
               onClick={() => (window as any).dataLayer?.push({
                 'event': 'cta_click',
@@ -329,15 +392,17 @@ export default function Home() {
               className="bg-transparent border-2 border-white/30 text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               Ver proyectos
-            </a>
+            </RouterLink>
           </motion.div>
         </div>
       </section>
 
       {/* 1.5 INTEGRATIONS / OPTIMIZED FOR */}
       <section className="pt-16 pb-10 bg-zinc-50 overflow-hidden z-10 relative -mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Tecnologías y plataformas con las que trabajamos</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
+          <p className="text-sm sm:text-base text-gray-400 font-medium">
+            Herramientas con las que trabajamos
+          </p>
         </div>
         
         <div className="relative flex flex-col gap-6 overflow-hidden">
@@ -410,31 +475,27 @@ export default function Home() {
       </section>
 
       {/* 2. SERVICIOS PRINCIPALES (SEO) */}
-      <section id="servicios" className="py-16 md:py-20 bg-white">
+      <section id="servicios" className="pt-14 sm:pt-16 md:pt-16 pb-8 sm:pb-10 md:pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12 mb-12 md:mb-16">
-          <div className="md:w-3/5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
-              Nuestros Servicios
+          <div className="mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+              <span className="ui-eyebrow text-brand-dark">Nuestros servicios</span>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.1]">
+            <div className="ui-divider mb-6 mx-auto lg:mx-0"></div>
+            <h2 className="ui-section-title text-brand-dark mb-6">
               Diseño premium <br className="hidden lg:block" />
-              <span className="text-brand-blue">optimizado para SEO</span>
+              <span className="italic font-normal">optimizado para SEO</span>
             </h2>
-          </div>
-          <div className="md:w-2/5 md:pb-2">
-            <p className="text-gray-600 text-base lg:text-lg leading-relaxed border-l-2 border-brand-blue/20 pl-6">
+            <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
               No hacemos webs de plantilla. Creamos activos digitales a medida diseñados para dominar Google y convertir visitas en clientes reales.
             </p>
           </div>
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Card 1 */}
           <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
             <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 break-words">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
                 Diseño Web Valencia
               </h3>
               <img 
@@ -447,7 +508,7 @@ export default function Home() {
               Diseñamos tu página web paso a paso, a medida y centrada en crear una experiencia de usuario (UX/UI) única que represente tu marca.
             </p>
             <RouterLink 
-              to="/#servicios" 
+              to="/diseno-web-valencia" 
               id="cta_service_web"
               onClick={() => (window as any).dataLayer?.push({
                 'event': 'service_view', 
@@ -463,7 +524,7 @@ export default function Home() {
           {/* Card 2 */}
           <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-lime/50 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
             <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 break-words">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
                 Tienda Online
               </h3>
               <img 
@@ -490,9 +551,9 @@ export default function Home() {
           </div>
 
           {/* Card 3 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-300 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-300 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 md:col-span-2 md:max-w-[30rem] md:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0">
             <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 break-words">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
                 Posicionamiento SEO
               </h3>
               <img 
@@ -522,125 +583,122 @@ export default function Home() {
       </section>
 
       {/* 3. PROYECTOS */}
-      <section id="proyectos" className="py-16 md:py-20 bg-zinc-50">
+      <section id="proyectos" className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-[#FAFAFA] border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header & Filtros */}
-          <div className="flex flex-col border-b border-gray-200 pb-6 sm:pb-8 mb-12 md:mb-16 gap-6 sm:gap-8">
-            <div className="max-w-2xl shrink-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
-                Selected Works
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-12 md:mb-16 gap-8 sm:gap-10 text-center lg:text-left">
+            <div className="max-w-2xl shrink-0 flex flex-col items-center lg:items-start">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
+                <span className="text-brand-dark font-black text-[10px] uppercase tracking-[0.2em]">
+                  TRABAJOS DESTACADOS
+                </span>
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">
-                Proyectos Destacados
-              </h2>
+              <div className="w-12 h-[2px] bg-brand-lime mb-8"></div>
+              <h2 className="ui-section-title text-brand-dark mb-4">Proyectos recientes</h2>
             </div>
-          
-          {/* Filtros */}
-          <div className="flex flex-nowrap overflow-x-auto gap-2 sm:gap-3 w-[calc(100%+2rem)] -mx-4 px-4 sm:w-[calc(100%+3rem)] sm:-mx-6 sm:px-6 lg:w-[calc(100%+4rem)] lg:-mx-8 lg:px-8 py-2 min-w-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {projectCategories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`shrink-0 whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300 px-5 py-2.5 rounded-full ${
-                  activeFilter === cat 
-                    ? 'bg-brand-dark text-white shadow-md' 
-                    : 'bg-gray-200/60 text-gray-600 hover:bg-gray-200 hover:text-brand-dark'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-            {/* Spacer invisible para asegurar que el último botón no se corte al hacer scroll */}
-            <div className="w-4 shrink-0"></div>
+            <RouterLink
+              to="/proyectos"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'nav_click',
+                'nav_item': 'Ver todos los proyectos Home',
+                'page_path': window.location.pathname
+              })}
+              className="hidden lg:block text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200 mb-2"
+            >
+              Ver todos los proyectos
+            </RouterLink>
           </div>
-        </div>
 
-        {/* Grid de Proyectos */}
-        <div className="mt-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
-            <AnimatePresence mode="wait">
-              {filteredProjects.slice(0, 6).map((project) => (
-                <motion.div 
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
+            {featuredProjects.map((project, index) => (
+              <div
+                key={project.id}
+                className={index === featuredProjects.length - 1 ? 'sm:col-span-2 sm:max-w-[24rem] sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0' : ''}
+              >
+                <RouterLink
+                  to={`/proyecto/${project.id}`}
+                  id={`project_link_${project.id}`}
+                  onClick={() => (window as any).dataLayer?.push({
+                    'event': 'project_click',
+                    'project_id': project.id,
+                    'project_title': project.title,
+                    'page_path': window.location.pathname
+                  })}
+                  className="group cursor-pointer flex flex-col"
                 >
-                  <RouterLink 
-                    to={`/proyecto/${project.id}`} 
-                    id={`project_link_${project.id}`}
-                    onClick={() => (window as any).dataLayer?.push({
-                      'event': 'project_click',
-                      'project_id': project.id,
-                      'project_title': project.title,
-                      'page_path': window.location.pathname
-                    })}
-                    className="group cursor-pointer flex flex-col"
-                  >
-                    <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[3/4] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-                      <img 
-                        src={project.imgReto || project.img} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
-                        referrerPolicy="no-referrer"
-                        onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
+                  <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[4/5] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+                    <img
+                      src={project.imgReto || project.img}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
+                  </div>
+
+                  <div className="flex justify-between items-start gap-2">
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold text-brand-dark mb-1 group-hover:text-brand-dark transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                      <p className="text-[9px] font-black text-brand-blue uppercase tracking-widest mb-1.5">
+                        {project.category}
+                      </p>
                     </div>
-                    
-                    <div className="flex justify-between items-start gap-3 sm:gap-4">
-                      <div>
-                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-brand-dark mb-1 lg:mb-2 group-hover:text-brand-blue transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm font-medium text-gray-400 mb-1 lg:mb-2 uppercase tracking-wider text-[10px] lg:text-xs">
-                          {project.category}
-                        </p>
-                        <p className="text-sm lg:text-base text-gray-600 line-clamp-2">
-                          {project.description}
-                        </p>
-                      </div>
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-brand-dark group-hover:text-white group-hover:border-brand-dark transition-all duration-300 transform group-hover:rotate-45">
-                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
-                      </div>
+                    <div className="w-8 h-8 shrink-0 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-brand-dark group-hover:text-white group-hover:border-brand-dark transition-all duration-300 transform group-hover:rotate-45">
+                      <ArrowUpRight className="w-4 h-4" />
                     </div>
-                  </RouterLink>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                  </div>
+                </RouterLink>
+              </div>
+            ))}
           </div>
-        </div>
+
+          <div className="mt-12 flex justify-center lg:hidden">
+            <RouterLink
+              to="/proyectos"
+              onClick={() => (window as any).dataLayer?.push({
+                'event': 'nav_click',
+                'nav_item': 'Ver todos los proyectos Home Mobile',
+                'page_path': window.location.pathname
+              })}
+              className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200"
+            >
+              Ver todos los proyectos
+            </RouterLink>
+          </div>
         </div>
       </section>
 
       {/* 4. PROCESO DE TRABAJO */}
-      <section className="py-12 sm:py-16 md:py-20 bg-white">
+      <section className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
-            <div className="md:w-3/5">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
-                Metodología
-              </div>
-              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">
+          <div className="mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+              <span className="ui-eyebrow text-brand-dark">Metodología</span>
+            </div>
+            <div className="ui-divider mb-6 mx-auto lg:mx-0"></div>
+            <h2 className="ui-section-title text-brand-dark mb-5">
                 Cómo trabajamos <br className="hidden md:block" />
-                <span className="text-brand-blue">tu proyecto</span>
+                <span className="italic font-normal">tu proyecto</span>
               </h2>
-            </div>
-            <div className="md:w-2/5 md:pl-8 md:border-l border-gray-200">
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                No creemos en las plantillas genéricas ni en la improvisación. Aplicamos un proceso estructurado en 6 fases para garantizar que tu web no solo sea visualmente impactante, sino que esté optimizada para convertir y posicionar en Google.
+              <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
+                Un proceso claro, sin improvisaciones, para que tu web salga bien planteada desde el principio.
               </p>
-            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div 
+            ref={metodologiaRef}
+            onScroll={handleMetodologiaScroll}
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-1 pr-[10vw] md:pr-0"
+          >
             {workProcess.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className={`bg-white rounded-[2rem] p-5 sm:p-8 lg:p-10 shadow-sm border border-gray-200 ${item.hoverBorder} hover:shadow-xl transition-all duration-300 group relative overflow-hidden`}>
+                <div 
+                  key={i} 
+                  className={`min-w-[85vw] md:min-w-0 bg-white rounded-[2rem] p-7 sm:p-8 lg:p-10 shadow-sm border border-gray-200 ${item.hoverBorder} hover:shadow-xl transition-all duration-300 group relative overflow-hidden snap-center`}
+                >
                   {/* Subtle unified gradient on hover */}
                   <div className={`absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-bl ${item.gradient} to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-16 sm:-mr-20 -mt-16 sm:-mt-20`}></div>
                   
@@ -650,19 +708,19 @@ export default function Home() {
                   </span>
 
                   <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-5 sm:mb-7">
+                    <div className="flex justify-between items-start mb-6 sm:mb-7">
                       <div className="flex items-center gap-3 sm:gap-4">
-                        <div className={`w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${item.iconBg} flex items-center justify-center border border-white/50 group-hover:scale-110 transition-transform duration-300 ${item.iconColor}`}>
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${item.iconBg} flex items-center justify-center border border-white/50 group-hover:scale-110 transition-transform duration-300 ${item.iconColor}`}>
                           <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <p className="text-[11px] sm:text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Fase {item.step}</p>
-                          <h3 className="font-display text-xl sm:text-3xl uppercase text-brand-dark leading-none">{item.title}</h3>
+                          <h3 className="font-display text-xl sm:text-[1.75rem] uppercase text-brand-dark leading-[0.95] text-balance break-words">{item.title}</h3>
                         </div>
                       </div>
                     </div>
                     
-                    <div className="mb-5 sm:mb-6">
+                    <div className="mb-6 sm:mb-6">
                       <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">{item.subtitle}</h4>
                       <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
                     </div>
@@ -682,24 +740,36 @@ export default function Home() {
               );
             })}
           </div>
+
+          {/* Mobile Indicators */}
+          <div className="flex justify-center gap-2 mt-8 md:hidden">
+            {workProcess.map((_, i) => (
+              <div 
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeStep === i ? 'w-8 bg-brand-blue' : 'w-2 bg-gray-200'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* 6. OPINIONES */}
-      <section id="opiniones" className="py-16 md:py-20 bg-zinc-50 overflow-hidden">
+      <section id="opiniones" className="py-14 sm:py-16 md:py-20 bg-[#FAFAFA] overflow-hidden border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
-            <div className="md:w-2/3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
-                Testimonios
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 md:gap-12 text-center lg:text-left">
+            <div className="md:w-2/3 flex flex-col items-center lg:items-start">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                <span className="ui-eyebrow text-brand-dark">Testimonios</span>
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase text-brand-dark tracking-tight leading-none">
+              <div className="ui-divider mb-6"></div>
+              <h2 className="ui-section-title text-brand-dark">
                 Lo que dicen <br className="hidden sm:block" />
-                <span className="text-gray-400">nuestros clientes</span>
+                <span className="italic font-normal">nuestros clientes</span>
               </h2>
             </div>
-            <div className="md:w-1/3 flex md:justify-end pb-2">
+            <div className="md:w-1/3 flex justify-center lg:justify-end pb-2">
               <div className="flex items-center gap-5 bg-white px-6 py-4 rounded-2xl border border-gray-200 shadow-sm">
                 <div className="flex flex-col items-center">
                   <span className="text-4xl font-display text-brand-dark leading-none">5.0</span>
@@ -760,23 +830,22 @@ export default function Home() {
       </section>
 
       {/* 7. PRICING */}
-      <section id="planes" className="py-12 sm:py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto bg-brand-dark rounded-[2rem] sm:rounded-[2.5rem] md:rounded-[3.5rem] p-6 sm:p-10 md:p-12 text-white relative overflow-hidden shadow-2xl">
+      <section id="planes" className="py-12 sm:py-16 md:py-20 bg-brand-dark text-white relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-lime/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
-          
-          <div className="relative z-10 mb-8 sm:mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8">
-            <div className="max-w-2xl">
-              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight mb-4 leading-[1.05] text-balance">
-                Precios <span className="text-brand-lime">claros</span>, sin sorpresas.
-              </h2>
-            </div>
-            <div className="md:w-1/3 md:pb-2">
-              <p className="border-t border-brand-lime/20 pt-4 text-sm sm:text-lg text-white/70 font-light md:border-t-0 md:border-l-2 md:pt-0 md:pl-6">
-                Tarifas transparentes para proyectos de alto rendimiento. Selecciona el plan que mejor se adapte a la fase de tu negocio.
-              </p>
-            </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 relative z-10">
+          <div className="mb-12 sm:mb-16 md:mb-20 flex flex-col items-center text-center max-w-3xl mx-auto">
+            <h2 className="ui-section-title text-white mb-6">
+              <span className="block">
+                Precios <span className="text-brand-lime italic">claros</span>
+              </span>
+              <span className="block">sin sorpresas.</span>
+            </h2>
+            <p className="ui-section-copy text-white/70 max-w-2xl">
+              Tarifas transparentes para proyectos de alto rendimiento. Selecciona el pack que mejor se adapte a tu fase actual.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 relative z-10">
@@ -787,8 +856,8 @@ export default function Home() {
               <div className="mb-5 sm:mb-6">
                 <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight">300</span>
-                  <span className="text-xl text-white/50">€</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight">350</span>
+                  <span className="text-xl text-white/50">€ <span className="text-xs uppercase tracking-tighter opacity-50">+ IVA</span></span>
                 </div>
               </div>
               <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
@@ -824,8 +893,10 @@ export default function Home() {
               <div className="mb-5 sm:mb-6">
                 <span className="text-[10px] text-brand-lime/80 uppercase tracking-widest block mb-1 font-bold">Desde</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight">800</span>
-                  <span className="text-xl text-white/50">€</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-brand-lime">500</span>
+                  <span className="text-2xl text-brand-lime/50 px-1">–</span>
+                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-brand-lime">800</span>
+                  <span className="text-xl text-white/50 ml-1">€ <span className="text-xs uppercase tracking-tighter opacity-50">+ IVA</span></span>
                 </div>
               </div>
               <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
@@ -928,28 +999,28 @@ export default function Home() {
       </section>
 
       {/* 8. SUPPORT TEASER */}
-      <section id="soporte-web" className="pb-12 sm:pb-14 md:pb-16 bg-white px-4 sm:px-6 lg:px-8">
+      <section id="soporte-web" className="pt-14 sm:pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-20 bg-white px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.25rem] md:rounded-[2.75rem] border border-[#D8E2E7] bg-[#F2F6F7] p-5 sm:p-8 lg:p-9 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_26%)]"></div>
             <div className="absolute -top-20 right-0 w-72 h-72 bg-white/80 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-5 sm:gap-6 lg:gap-8 items-center">
-              <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-3 py-1.5 font-bold text-[11px] text-gray-700 sm:text-xs uppercase tracking-wider mb-4 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></span>
-                  Hosting y soporte
+              <div className="max-w-xl mx-auto lg:mx-0 flex flex-col items-center text-center lg:items-start lg:text-left">
+                <div className="flex flex-col items-center lg:items-start">
+                  <span className="ui-eyebrow text-brand-dark mb-3">Hosting y soporte</span>
+                  <div className="ui-divider mb-5"></div>
                 </div>
 
-                <h2 className="font-display text-[2rem] sm:text-4xl md:text-[3.15rem] uppercase tracking-tight text-brand-dark leading-[0.95] text-balance mb-4">
+                <h2 className="ui-section-title text-brand-dark mb-4">
                   Tu web, siempre en buenas manos
                 </h2>
 
-                <p className="text-[15px] sm:text-lg text-gray-600 max-w-xl leading-relaxed mb-5 sm:mb-6">
+                <p className="ui-section-copy max-w-xl mb-5 sm:mb-6">
                   Después de publicar, también podemos seguir a tu lado para que la web esté atendida, actualizada y funcionando para que no tengas que preocuparte por nada.
                 </p>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 justify-center lg:justify-start">
                   <RouterLink
                     to="/hosting-mantenimiento-web"
                     id="cta_support_plans_hero"
@@ -969,7 +1040,7 @@ export default function Home() {
               <div className="rounded-[1.7rem] sm:rounded-[1.9rem] border border-white/85 bg-white/88 p-4 sm:p-6 shadow-[0_12px_32px_rgba(15,23,42,0.05)] backdrop-blur-sm">
                 <div className="mb-3 sm:mb-4">
                   <div>
-                    <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-gray-400 font-bold mb-2">Servicio opcional</p>
+                    <p className="ui-form-label text-gray-400 mb-2">Servicio opcional</p>
                     <h3 className="font-display text-xl sm:text-[2rem] leading-none text-brand-dark">
                       Todo bajo control
                     </h3>
@@ -1007,18 +1078,18 @@ export default function Home() {
       </section>
 
       {/* 9. FAQ */}
-      <section className="py-16 md:py-20 bg-zinc-50">
+      <section className="py-14 sm:py-16 md:py-20 bg-white border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
-              Dudas Resueltas
+            <div className="flex flex-col items-center">
+              <span className="ui-eyebrow text-brand-dark mb-4">Dudas resueltas</span>
+              <div className="ui-divider mb-6"></div>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none mb-6">
-              Preguntas <span className="text-brand-blue">Frecuentes</span>
+            <h2 className="ui-section-title text-brand-dark mb-6">
+              Preguntas <span className="italic font-normal">frecuentes</span>
             </h2>
-            <p className="text-lg text-gray-600">Resolvemos tus dudas antes de empezar.</p>
+            <p className="ui-section-copy">Resolvemos tus dudas antes de empezar.</p>
           </div>
 
           <div className="space-y-4">
@@ -1053,62 +1124,25 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-
-      {/* 10. LEAD MAGNET */}
-      <section className="py-16 md:py-20 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto bg-brand-lime rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-10 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden">
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
-          
-          <div className="md:w-1/2 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-dark/10 text-brand-dark font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
-              <Download size={14} />
-              Recurso Gratuito
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-brand-dark leading-none mb-4">
-              10 errores que arruinan tu conversión
-            </h2>
-            <p className="text-brand-dark/80 text-lg mb-0">
-              Descarga nuestra checklist gratuita y descubre por qué tu web actual no está consiguiendo clientes.
-            </p>
-          </div>
-          
-          <div className="md:w-1/2 w-full relative z-10">
-            <form onSubmit={handleLeadMagnetSubmit} className="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl sm:rounded-full shadow-xl">
-              <div className="flex-grow flex items-center pl-4">
-                <Mail className="text-gray-400 mr-3 shrink-0" size={20} />
-                <input 
-                  type="email" 
-                  placeholder="Tu correo electrónico" 
-                  className="w-full py-3 outline-none text-brand-dark bg-transparent"
-                  required
-                />
-              </div>
-              <button type="submit" className="bg-brand-dark text-white px-8 py-4 rounded-xl sm:rounded-full font-bold hover:bg-black transition-colors whitespace-nowrap">
-                Descargar PDF
-              </button>
-            </form>
-            <p className="text-xs text-brand-dark/60 mt-4 text-center sm:text-left pl-4">
-              * 100% libre de spam. Date de baja cuando quieras.
-            </p>
           </div>
         </div>
       </section>
 
       {/* 11. BLOG */}
-      <section id="blog" className="py-16 md:py-20 bg-zinc-50">
+      <section id="blog" className="py-14 sm:py-16 md:py-20 bg-zinc-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-12 md:mb-16 border-b-2 border-brand-dark pb-6 sm:pb-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-wider mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
-                Novedades
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-6 mb-12 md:mb-16 text-center lg:text-left">
+            <div className="max-w-3xl flex flex-col items-center lg:items-start">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                <span className="ui-eyebrow text-brand-dark">Novedades</span>
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-tight text-brand-dark leading-none">Blog</h2>
+              <div className="ui-divider mb-6"></div>
+              <h2 className="ui-section-title text-brand-dark mb-4">Blog</h2>
+              <p className="ui-section-copy max-w-2xl">
+                Contenido pensado para ayudarte a entender mejor qué necesita una web para captar clientes y crecer con más claridad.
+              </p>
             </div>
-          <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 font-bold text-lg sm:text-xl hover:text-brand-blue transition-colors">
+          <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 font-bold text-base sm:text-lg uppercase tracking-wide hover:text-brand-blue transition-colors">
             Ver todos <ArrowRight size={20} className="sm:w-6 sm:h-6" />
           </RouterLink>
         </div>
@@ -1141,172 +1175,217 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 12. CONTACTO DIRECTO */}
-      <section id="contacto" className="py-24 sm:py-32 bg-white relative z-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            {/* Left: Info Card */}
-            <div className="lg:col-span-5 space-y-8">
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="bg-zinc-50 p-10 rounded-[2.5rem] shadow-xl shadow-brand-blue/5 border border-gray-100"
-              >
-                <h2 className="font-display text-4xl uppercase mb-8 text-brand-dark">¿Hablamos?</h2>
-                <div className="space-y-6">
-                   <a href="https://wa.me/34623783129" className="flex items-center gap-6 p-6 rounded-2xl bg-emerald-50 text-emerald-700 hover:scale-[1.02] transition-transform group shadow-sm">
-                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                        <MessageSquare size={24} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">WhatsApp Directo</p>
-                        <p className="text-lg font-bold">Escríbenos ahora</p>
-                      </div>
-                   </a>
+      {/* 12. INTEGRATED FOOTER (FORM + LINKS) */}
+      <div className="bg-brand-dark relative overflow-hidden border-t border-white/20">
+        <div className="absolute inset-0 opacity-[0.05] bg-blueprint"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-brand-blue/10 to-transparent"></div>
 
-                   <a href="tel:623783129" className="flex items-center gap-6 p-6 rounded-2xl bg-blue-50 text-brand-blue hover:scale-[1.02] transition-transform group shadow-sm">
-                      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300">
-                        <Phone size={24} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Llámanos</p>
-                        <p className="text-lg font-bold">623 783 129</p>
-                      </div>
-                   </a>
-
-                   <a href="mailto:holaiconostudio@gmail.com" className="flex items-center gap-6 p-6 rounded-2xl bg-white border border-gray-100 text-zinc-600 hover:scale-[1.02] transition-transform group shadow-sm">
-                      <div className="w-12 h-12 rounded-xl bg-zinc-50 flex items-center justify-center shadow-sm group-hover:bg-zinc-800 group-hover:text-white transition-colors duration-300">
-                        <Mail size={24} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Correo electrónico</p>
-                        <p className="text-base font-bold">holaiconostudio@gmail.com</p>
-                      </div>
-                   </a>
+        <section id="contacto" className="py-16 sm:py-20 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-12 lg:gap-16 items-start">
+              <div className="lg:sticky lg:top-32 flex flex-col items-center text-center lg:items-start lg:text-left">
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                  <span className="text-brand-lime font-black text-[10px] uppercase tracking-[0.2em]">
+                    TU PRÓXIMO PASO
+                  </span>
                 </div>
+                <div className="w-12 h-[2px] bg-brand-lime mb-6"></div>
+                <h2 className="ui-section-title text-white mb-8">
+                  TU NUEVA WEB <br />
+                  <span className="text-brand-lime italic font-normal">EMPIEZA AQUÍ</span>
+                </h2>
+                <p className="text-[15px] text-white/70 font-medium leading-relaxed mb-8 max-w-sm mx-auto lg:mx-0">
+                  Cuéntanos qué necesitas y te responderemos con una orientación clara para crear una web profesional, cuidada y preparada para captar clientes.
+                </p>
 
-                <div className="mt-12 pt-10 border-t border-gray-200 grid grid-cols-2 gap-6 text-center">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-full bg-brand-lime/10 flex items-center justify-center mx-auto text-brand-blue"><Clock size={20} /></div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Respuesta</p>
-                    <p className="text-sm font-bold">Menos de 24h</p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center mx-auto text-brand-blue"><ShieldCheck size={20} /></div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Servicio</p>
-                    <p className="text-sm font-bold">100% Personalizado</p>
-                  </div>
+                <div className="grid grid-cols-1 gap-4 mb-8 pt-6 border-t border-white/10 w-full max-w-sm">
+                  {[
+                    { t: "Respuesta en menos de 24h", i: Clock },
+                    { t: "Precio definido antes de empezar", i: FileText },
+                    { t: "Atención personalizada", i: Heart },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center justify-center lg:justify-start gap-3 text-xs font-bold text-white/90">
+                      <div className="w-6 h-6 rounded-lg bg-brand-lime/10 flex items-center justify-center text-brand-lime">
+                        <item.i size={14} />
+                      </div>
+                      {item.t}
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
-            </div>
+              </div>
 
-            {/* Right: Modern Form Card */}
-            <div className="lg:col-span-7">
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-zinc-50 p-8 md:p-14 rounded-[2.5rem] shadow-2xl shadow-gray-200 border border-gray-100 h-full"
-              >
-                <div className="mb-10">
-                   <h2 className="text-3xl font-display uppercase text-brand-dark mb-4">Escríbenos sobre tu idea</h2>
-                   <p className="text-gray-500 font-medium text-lg leading-relaxed">Rellena este breve formulario y nos pondremos en contacto contigo lo antes posible para darle forma a tu proyecto juntos.</p>
-                </div>
-
-                <AnimatePresence mode="wait">
-                  {formStatus === 'success' ? (
-                    <motion.div 
-                      key="success"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="py-16 text-center"
+              <div className="bg-white/5 border border-white/10 p-5 md:p-7 rounded-[2.5rem] backdrop-blur-md shadow-2xl relative">
+                {isSubmitted ? (
+                  <div className="text-center py-10">
+                    <div className="w-16 h-16 bg-brand-lime rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(204,255,0,0.2)]">
+                      <Check size={32} className="text-brand-dark" />
+                    </div>
+                    <h3 className="font-display text-2xl uppercase mb-3 text-white italic">Solicitud enviada</h3>
+                    <p className="text-white/60 text-base mb-6 leading-relaxed">
+                      Gracias por contarnos tu proyecto. Te responderemos lo antes posible.
+                    </p>
+                    <a
+                      href="https://wa.me/34623783129"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-all items-center gap-3 shadow-xl"
                     >
-                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle2 size={40} />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2 uppercase">¡Mensaje recibido!</h3>
-                      <p className="text-gray-500 max-w-sm mx-auto mb-8">Gracias por contactar con Icono Studio. Ya estamos analizando tu solicitud.</p>
-                      <button 
-                        onClick={() => setFormStatus('idle')}
-                        className="text-brand-blue font-bold uppercase tracking-widest text-[10px] border-b-2 border-brand-lime pb-1 hover:text-brand-dark transition-colors"
-                      >
-                        Enviar otro mensaje
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans">
-                          <div className="space-y-2">
-                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Nombre Completo</label>
-                             <input 
-                              type="text" 
-                              name="nombre" 
-                              required 
-                              placeholder="Ej. Edgar Roca" 
-                              className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark"
-                             />
-                          </div>
-                          <div className="space-y-2">
-                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Correo Electrónico</label>
-                             <input 
-                              type="email" 
-                              name="email" 
-                              required 
-                              placeholder="tu@email.com" 
-                              className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark"
-                             />
-                          </div>
-                       </div>
+                      Hablar por WhatsApp <Send size={14} />
+                    </a>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mb-6">
+                      <h3 className="font-display text-xl sm:text-2xl uppercase text-white italic tracking-tight leading-none mb-2">Pide tu presupuesto web</h3>
+                      <p className="text-sm text-white/70 font-medium">Te responderemos con una propuesta clara y sin compromiso.</p>
+                    </div>
 
-                       <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">¿Qué necesitas?</label>
-                          <select name="servicio" className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark appearance-none cursor-pointer">
-                             <option>Diseño Web Profesional</option>
-                             <option>E-commerce / Tienda Online</option>
-                             <option>Mantenimiento y Hosting</option>
-                             <option>SEO y Auditoría Digital</option>
-                             <option>Otros servicios</option>
-                          </select>
-                       </div>
-
-                       <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Mensaje o Detalles del proyecto</label>
-                          <textarea 
-                             name="mensaje" 
-                             required 
-                             rows={4}
-                             placeholder="Cuéntanos brevemente cuáles son tus objetivos..."
-                             className="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 transition-all font-medium text-brand-dark resize-none"
+                    <form onSubmit={handleSubmit} className="space-y-3.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="space-y-1">
+                          <label className="ui-form-label text-white/40 ml-1">Nombre</label>
+                          <input
+                            type="text"
+                            name="nombre"
+                            required
+                            value={formData.nombre}
+                            onChange={handleInputChange}
+                            placeholder="Tu nombre"
+                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
                           />
-                       </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
+                          <input
+                            type="text"
+                            name="negocio"
+                            required
+                            value={formData.negocio}
+                            onChange={handleInputChange}
+                            placeholder="Nombre de tu empresa"
+                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                          />
+                        </div>
+                      </div>
 
-                       <button 
-                        type="submit" 
-                        disabled={formStatus === 'submitting'}
-                        className="w-full bg-brand-dark text-white py-6 rounded-2xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-brand-blue hover:shadow-2xl hover:shadow-brand-blue/20 transition-all duration-300 disabled:opacity-50"
-                       >
-                         {formStatus === 'submitting' ? 'Enviando...' : (
-                           <>Enviar Solicitud <ArrowRight size={18} /></>
-                         )}
-                       </button>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="space-y-1">
+                          <label className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
+                          <input
+                            type="tel"
+                            name="whatsapp"
+                            required
+                            value={formData.whatsapp}
+                            onChange={handleInputChange}
+                            placeholder="600 000 000"
+                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="ui-form-label text-white/40 ml-1">Email</label>
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="hola@tuweb.com"
+                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                          />
+                        </div>
+                      </div>
 
-                       <p className="text-center text-[10px] text-gray-400 font-medium">Al enviar este formulario, aceptas nuestra política de privacidad.</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="space-y-1">
+                          <label className="ui-form-label text-white/40 ml-1">Tipo de web</label>
+                          <select
+                            name="necesidad"
+                            required
+                            value={formData.necesidad}
+                            onChange={handleInputChange}
+                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
+                          >
+                            <option value="" className="bg-brand-dark">Selecciona una opción</option>
+                            <option value="corporativa" className="bg-brand-dark">Web corporativa</option>
+                            <option value="landing" className="bg-brand-dark">Landing page</option>
+                            <option value="portfolio" className="bg-brand-dark">Portfolio</option>
+                            <option value="tienda" className="bg-brand-dark">Tienda online</option>
+                            <option value="rediseño" className="bg-brand-dark">Rediseño web</option>
+                            <option value="no-claro" className="bg-brand-dark">No lo tengo claro</option>
+                          </select>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
+                          <select
+                            name="presupuesto"
+                            required
+                            value={formData.presupuesto}
+                            onChange={handleInputChange}
+                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
+                          >
+                            <option value="" className="bg-brand-dark">Selecciona un rango</option>
+                            <option value="350-500" className="bg-brand-dark">350 € – 500 €</option>
+                            <option value="500-800" className="bg-brand-dark">500 € – 800 €</option>
+                            <option value="800-1200" className="bg-brand-dark">800 € – 1.200 €</option>
+                            <option value="1200+" className="bg-brand-dark">Más de 1.200 €</option>
+                            <option value="orientacion" className="bg-brand-dark">Necesito orientación</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
+                        <textarea
+                          name="mensaje"
+                          required
+                          rows={2}
+                          value={formData.mensaje}
+                          onChange={handleInputChange}
+                          placeholder="Ej: necesito una web para mi clínica, con imagen profesional, contacto por WhatsApp y preparada para captar clientes."
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all resize-none"
+                        ></textarea>
+                      </div>
+
+                      <div className="flex items-start gap-3 py-1">
+                        <input
+                          type="checkbox"
+                          name="privacidad"
+                          id="privacidad"
+                          required
+                          checked={formData.privacidad}
+                          onChange={handleInputChange}
+                          className="mt-1 accent-brand-lime"
+                        />
+                        <label htmlFor="privacidad" className="text-[11px] text-white/55 leading-relaxed">
+                          Acepto la{' '}
+                          <RouterLink to="/politica-de-privacidad" className="text-brand-lime hover:text-white underline underline-offset-4">
+                            política de privacidad
+                          </RouterLink>{' '}
+                          y autorizo a Icono Studio a contactar conmigo.
+                        </label>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
+                      >
+                        Pedir presupuesto gratis <Send size={14} />
+                      </button>
+
+                      <p className="text-[9px] text-center text-white/40 font-bold uppercase tracking-widest pt-1">
+                        O <a href="https://wa.me/34623783129" className="text-brand-lime hover:underline">escríbenos por WhatsApp</a> si prefieres hablarlo más rápido.
+                      </p>
                     </form>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 8. FOOTER / BIG CTA */}
-      <Footer />
+
+        <Footer hideCTA={true} />
+      </div>
     </div>
   );
 }
