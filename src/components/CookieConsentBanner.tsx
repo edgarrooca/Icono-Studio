@@ -38,7 +38,7 @@ export default function CookieConsentBanner() {
               Cookies
             </p>
             <p className="text-xs leading-relaxed text-white/72 sm:text-sm">
-              Usamos analítica para medir visitas y campañas. Puedes aceptar o rechazar.
+              Usamos cookies para mejorar tu experiencia y recordar tus preferencias. Puedes aceptar las cookies opcionales o seguir solo con las necesarias.
               {' '}
               <Link to="/politica-de-privacidad" className="text-white hover:text-brand-lime transition-colors underline underline-offset-4">
                 Más info
@@ -52,7 +52,7 @@ export default function CookieConsentBanner() {
               onClick={() => handleConsent('denied')}
               className="rounded-full border border-white/15 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.18em] text-white/70 transition-colors hover:border-white/30 hover:text-white"
             >
-              Rechazar
+              Solo necesarias
             </button>
             <button
               type="button"
