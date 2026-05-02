@@ -13,6 +13,7 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const HostingMaintenance = lazy(() => import('./pages/HostingMaintenance'));
 const Contact = lazy(() => import('./pages/Contact'));
+const GraciasPresupuesto = lazy(() => import('./pages/GraciasPresupuesto'));
 const DisenoWebValencia = lazy(() => import('./pages/DisenoWebValencia'));
 const DisenoWebBarcelona = lazy(() => import('./pages/DisenoWebBarcelona'));
 const DisenoWebMadrid = lazy(() => import('./pages/DisenoWebMadrid'));
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/diseno-web-barcelona" element={<DisenoWebBarcelona />} />
           <Route path="/diseno-web-madrid" element={<DisenoWebMadrid />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/gracias-presupuesto" element={<GraciasPresupuesto />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
           <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
           <Route path="/dashboard" element={<Dashboard />} />

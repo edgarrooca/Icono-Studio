@@ -7,7 +7,7 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
-import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, submitLeadForm } from '../lib/analytics';
+import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import { siteConfig } from '../lib/site';
 
 export default function Contact() {
@@ -59,7 +59,8 @@ export default function Contact() {
       const response = await submitLeadForm('contact_page_main', formData);
       
       if (response.ok) {
-        setIsSubmitted(true);
+        redirectToLeadThankYouPage();
+        return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
       }

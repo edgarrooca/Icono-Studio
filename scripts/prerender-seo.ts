@@ -378,6 +378,13 @@ const staticRoutes: RouteMeta[] = [
     },
   },
   {
+    path: siteConfig.leadThankYouPath,
+    title: 'Gracias por tu solicitud | Icono Studio',
+    description: 'Hemos recibido tu solicitud y te responderemos lo antes posible.',
+    robots: 'noindex,nofollow',
+    includeInSitemap: false,
+  },
+  {
     path: '/aviso-legal',
     title: 'Aviso Legal | Icono Studio',
     description: 'Información legal provisional de Icono Studio para la web icono.studio.',

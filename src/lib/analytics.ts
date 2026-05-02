@@ -553,3 +553,22 @@ export const submitLeadForm = async (formId: string, values: LeadFormValues) => 
     data,
   };
 };
+
+export const redirectToLeadThankYouPage = () => {
+  if (!isBrowser()) {
+    return;
+  }
+
+  const attribution = getAttributionState() || captureAttribution();
+  const targetUrl = new URL(siteConfig.leadThankYouPath, window.location.origin);
+
+  Object.entries(attributionQueryMap).forEach(([stateKey, queryKey]) => {
+    const value = attribution?.[stateKey as keyof AttributionState];
+
+    if (value) {
+      targetUrl.searchParams.set(queryKey, value);
+    }
+  });
+
+  window.location.assign(targetUrl.toString());
+};

@@ -2,6 +2,7 @@ export const siteConfig = {
   name: 'Icono Studio',
   legalName: 'Icono Studio',
   url: 'https://icono.studio',
+  leadThankYouPath: '/gracias-presupuesto',
   locale: 'es_ES',
   gaMeasurementId: 'G-6SN5WBMG0V',
   city: 'Valencia',

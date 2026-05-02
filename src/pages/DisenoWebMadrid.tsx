@@ -46,7 +46,7 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { portfolioProjects } from '../data/projects';
-import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, submitLeadForm } from '../lib/analytics';
+import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
 
@@ -85,7 +85,8 @@ export default function DisenoWebMadrid() {
       const response = await submitLeadForm('contact_madrid_ads', formData);
       
       if (response.ok) {
-        setIsSubmitted(true);
+        redirectToLeadThankYouPage();
+        return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
       }
