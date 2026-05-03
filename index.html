@@ -10,6 +10,7 @@
         var consentState = 'denied';
         var debugMode = false;
         var measurementId = 'G-6SN5WBMG0V';
+        var googleAdsId = 'AW-18121828899';
         try {
           var url = new URL(window.location.href);
           var debugFlag = url.searchParams.get('debug_analytics');
@@ -61,6 +62,7 @@
           allow_google_signals: true,
           debug_mode: debugMode ? true : undefined
         });
+        gtag('config', googleAdsId);
       })();
     </script>
     <meta charset="UTF-8" />
