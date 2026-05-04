@@ -5,6 +5,11 @@ export const siteConfig = {
   leadThankYouPath: '/gracias-presupuesto',
   locale: 'es_ES',
   gaMeasurementId: 'G-6SN5WBMG0V',
+  googleAdsId: 'AW-18121828899',
+  // Pega aquí solo el conversion label o el send_to completo: AW-XXXX/label
+  googleAdsLeadConversionLabel: '',
+  googleAdsLeadDefaultValue: 1,
+  googleAdsLeadCurrency: 'EUR',
   city: 'Valencia',
   countryCode: 'ES',
   email: 'holaiconostudio@gmail.com',

@@ -59,7 +59,7 @@ export default function Contact() {
       const response = await submitLeadForm('contact_page_main', formData);
       
       if (response.ok) {
-        redirectToLeadThankYouPage();
+        redirectToLeadThankYouPage('contact_page_main');
         return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');

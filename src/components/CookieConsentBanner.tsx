@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Cookie } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { consentStorageKey, getConsentState, trackPageView, updateConsentState } from '../lib/analytics';
+import {
+  consentStorageKey,
+  getConsentState,
+  trackLeadThankYouPageConversion,
+  trackPageView,
+  updateConsentState,
+} from '../lib/analytics';
 
 export default function CookieConsentBanner() {
   const [visible, setVisible] = useState(false);
@@ -22,6 +28,7 @@ export default function CookieConsentBanner() {
         page_location: window.location.href,
         page_title: document.title,
       });
+      trackLeadThankYouPageConversion();
     }
     setVisible(false);
   };

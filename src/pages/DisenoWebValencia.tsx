@@ -85,7 +85,7 @@ export default function DisenoWebValencia() {
       const response = await submitLeadForm('contact_valencia_ads', formData);
       
       if (response.ok) {
-        redirectToLeadThankYouPage();
+        redirectToLeadThankYouPage('contact_valencia_ads');
         return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');

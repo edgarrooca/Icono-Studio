@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { ArrowRight, CheckCircle2, Clock3, MessageCircleMore, ShieldCheck } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import SeoHead from '../components/SeoHead';
+import { trackLeadThankYouPageConversion } from '../lib/analytics';
 import { siteConfig } from '../lib/site';
 
 const nextSteps = [
@@ -24,6 +26,10 @@ const nextSteps = [
 ] as const;
 
 export default function GraciasPresupuesto() {
+  useEffect(() => {
+    trackLeadThankYouPageConversion();
+  }, []);
+
   const thankYouSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',

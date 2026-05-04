@@ -229,7 +229,7 @@ export default function Home() {
       const response = await submitLeadForm('contact_home_integrated', formData);
       
       if (response.ok) {
-        redirectToLeadThankYouPage();
+        redirectToLeadThankYouPage('contact_home_integrated');
         return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');

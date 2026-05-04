@@ -40,6 +40,10 @@ declare global {
 export const consentStorageKey = 'icono_cookie_consent_v1';
 const attributionStorageKey = 'icono_attribution_v1';
 const analyticsDebugStorageKey = 'icono_analytics_debug_v1';
+const trackedLeadEventsSessionStorageKey = 'icono_tracked_lead_events_v1';
+const leadEventMarkerParam = 'lead_event';
+const leadEventIdParam = 'lead_event_id';
+const leadFormIdParam = 'lead_form_id';
 
 const attributionQueryMap = {
   utmSource: 'utm_source',
@@ -282,6 +286,31 @@ const writeJsonStorage = (key: string, value: unknown) => {
   }
 };
 
+const readJsonSessionStorage = <T,>(key: string): T | null => {
+  if (!isBrowser()) {
+    return null;
+  }
+
+  try {
+    const raw = window.sessionStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as T) : null;
+  } catch {
+    return null;
+  }
+};
+
+const writeJsonSessionStorage = (key: string, value: unknown) => {
+  if (!isBrowser()) {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Ignore storage errors silently.
+  }
+};
+
 const getConsentPayload = (state: ConsentState) => ({
   ad_storage: state,
   analytics_storage: state,
@@ -435,6 +464,86 @@ export const trackLeadSubmission = (formId: string, values: LeadFormValues = {})
   });
 };
 
+const buildLeadEventId = (formId: string) =>
+  `${formId}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+
+const getGoogleAdsLeadSendTo = () => {
+  const rawLabel = siteConfig.googleAdsLeadConversionLabel.trim();
+
+  if (!rawLabel) {
+    return null;
+  }
+
+  if (rawLabel.startsWith('AW-')) {
+    return rawLabel;
+  }
+
+  return `${siteConfig.googleAdsId}/${rawLabel}`;
+};
+
+const hasTrackedLeadEvent = (leadEventId: string) => {
+  const trackedIds = readJsonSessionStorage<string[]>(trackedLeadEventsSessionStorageKey) || [];
+  return trackedIds.includes(leadEventId);
+};
+
+const markLeadEventAsTracked = (leadEventId: string) => {
+  const trackedIds = readJsonSessionStorage<string[]>(trackedLeadEventsSessionStorageKey) || [];
+
+  if (trackedIds.includes(leadEventId)) {
+    return;
+  }
+
+  trackedIds.push(leadEventId);
+  writeJsonSessionStorage(trackedLeadEventsSessionStorageKey, trackedIds.slice(-100));
+};
+
+const trackGoogleAdsLeadConversion = (formId: string, leadEventId: string) => {
+  if (!isBrowser()) {
+    return false;
+  }
+
+  const sendTo = getGoogleAdsLeadSendTo();
+  if (!sendTo) {
+    debugLog('[Icono Ads] conversion:skipped_missing_label', {
+      formId,
+      leadEventId,
+      googleAdsId: siteConfig.googleAdsId,
+    });
+    return false;
+  }
+
+  if (hasTrackedLeadEvent(leadEventId)) {
+    debugLog('[Icono Ads] conversion:skipped_duplicate', { formId, leadEventId });
+    return false;
+  }
+
+  if (!hasMeasurementConsent() || typeof window.gtag !== 'function') {
+    debugLog('[Icono Ads] conversion:skipped_consent_or_gtag', {
+      formId,
+      leadEventId,
+      hasConsent: hasMeasurementConsent(),
+      gtagReady: typeof window.gtag === 'function',
+    });
+    return false;
+  }
+
+  window.gtag('event', 'conversion', {
+    send_to: sendTo,
+    value: siteConfig.googleAdsLeadDefaultValue,
+    currency: siteConfig.googleAdsLeadCurrency,
+    transaction_id: leadEventId,
+  });
+
+  markLeadEventAsTracked(leadEventId);
+  debugLog('[Icono Ads] conversion:sent', {
+    formId,
+    leadEventId,
+    sendTo,
+  });
+
+  return true;
+};
+
 export const debugLeadFormButtonClick = (formId: string) => {
   debugLog('[Icono Lead] button:click', { formId });
 };
@@ -554,13 +663,14 @@ export const submitLeadForm = async (formId: string, values: LeadFormValues) => 
   };
 };
 
-export const redirectToLeadThankYouPage = () => {
+export const redirectToLeadThankYouPage = (formId: string) => {
   if (!isBrowser()) {
     return;
   }
 
   const attribution = getAttributionState() || captureAttribution();
   const targetUrl = new URL(siteConfig.leadThankYouPath, window.location.origin);
+  const leadEventId = buildLeadEventId(formId);
 
   Object.entries(attributionQueryMap).forEach(([stateKey, queryKey]) => {
     const value = attribution?.[stateKey as keyof AttributionState];
@@ -570,5 +680,45 @@ export const redirectToLeadThankYouPage = () => {
     }
   });
 
+  targetUrl.searchParams.set(leadEventMarkerParam, '1');
+  targetUrl.searchParams.set(leadFormIdParam, formId);
+  targetUrl.searchParams.set(leadEventIdParam, leadEventId);
+
   window.location.assign(targetUrl.toString());
+};
+
+export const trackLeadThankYouPageConversion = () => {
+  if (!isBrowser()) {
+    return false;
+  }
+
+  if (window.location.pathname !== siteConfig.leadThankYouPath) {
+    return false;
+  }
+
+  const url = new URL(window.location.href);
+  if (url.searchParams.get(leadEventMarkerParam) !== '1') {
+    return false;
+  }
+
+  const formId = url.searchParams.get(leadFormIdParam) || 'lead_form';
+  const leadEventId = url.searchParams.get(leadEventIdParam) || buildLeadEventId(formId);
+  const hasConsent = hasMeasurementConsent();
+
+  if (hasTrackedLeadEvent(leadEventId)) {
+    return false;
+  }
+
+  trackEvent('lead_thank_you_view', {
+    form_id: formId,
+    lead_event_id: leadEventId,
+  });
+
+  trackGoogleAdsLeadConversion(formId, leadEventId);
+
+  if (hasConsent) {
+    markLeadEventAsTracked(leadEventId);
+  }
+
+  return true;
 };

@@ -85,7 +85,7 @@ export default function DisenoWebBarcelona() {
       const response = await submitLeadForm('contact_barcelona_ads', formData);
       
       if (response.ok) {
-        redirectToLeadThankYouPage();
+        redirectToLeadThankYouPage('contact_barcelona_ads');
         return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
