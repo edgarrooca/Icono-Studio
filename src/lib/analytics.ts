@@ -467,6 +467,11 @@ export const trackLeadSubmission = (formId: string, values: LeadFormValues = {})
 const buildLeadEventId = (formId: string) =>
   `${formId}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 
+const getGoogleAdsLeadEventName = () => {
+  const rawEventName = siteConfig.googleAdsLeadConversionEventName.trim();
+  return rawEventName || null;
+};
+
 const getGoogleAdsLeadSendTo = () => {
   const rawLabel = siteConfig.googleAdsLeadConversionLabel.trim();
 
@@ -502,9 +507,10 @@ const trackGoogleAdsLeadConversion = (formId: string, leadEventId: string) => {
     return false;
   }
 
+  const eventName = getGoogleAdsLeadEventName();
   const sendTo = getGoogleAdsLeadSendTo();
-  if (!sendTo) {
-    debugLog('[Icono Ads] conversion:skipped_missing_label', {
+  if (!eventName && !sendTo) {
+    debugLog('[Icono Ads] conversion:skipped_missing_config', {
       formId,
       leadEventId,
       googleAdsId: siteConfig.googleAdsId,
@@ -527,18 +533,44 @@ const trackGoogleAdsLeadConversion = (formId: string, leadEventId: string) => {
     return false;
   }
 
-  window.gtag('event', 'conversion', {
-    send_to: sendTo,
+  const payload = sanitizeParams({
     value: siteConfig.googleAdsLeadDefaultValue,
     currency: siteConfig.googleAdsLeadCurrency,
     transaction_id: leadEventId,
   });
 
+  if (eventName) {
+    if (sendTo) {
+      debugLog('[Icono Ads] conversion:both_configured_using_event_name', {
+        formId,
+        leadEventId,
+        eventName,
+        sendTo,
+      });
+    }
+
+    window.gtag('event', eventName, payload);
+    markLeadEventAsTracked(leadEventId);
+    debugLog('[Icono Ads] conversion:sent_event_name', {
+      formId,
+      leadEventId,
+      eventName,
+      payload,
+    });
+    return true;
+  }
+
+  window.gtag('event', 'conversion', {
+    ...payload,
+    send_to: sendTo!,
+  });
+
   markLeadEventAsTracked(leadEventId);
-  debugLog('[Icono Ads] conversion:sent', {
+  debugLog('[Icono Ads] conversion:sent_send_to', {
     formId,
     leadEventId,
     sendTo,
+    payload,
   });
 
   return true;
@@ -703,7 +735,6 @@ export const trackLeadThankYouPageConversion = () => {
 
   const formId = url.searchParams.get(leadFormIdParam) || 'lead_form';
   const leadEventId = url.searchParams.get(leadEventIdParam) || buildLeadEventId(formId);
-  const hasConsent = hasMeasurementConsent();
 
   if (hasTrackedLeadEvent(leadEventId)) {
     return false;
@@ -715,10 +746,6 @@ export const trackLeadThankYouPageConversion = () => {
   });
 
   trackGoogleAdsLeadConversion(formId, leadEventId);
-
-  if (hasConsent) {
-    markLeadEventAsTracked(leadEventId);
-  }
 
   return true;
 };

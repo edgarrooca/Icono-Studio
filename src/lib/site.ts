@@ -6,6 +6,8 @@ export const siteConfig = {
   locale: 'es_ES',
   gaMeasurementId: 'G-6SN5WBMG0V',
   googleAdsId: 'AW-18121828899',
+  // Nombre del evento "Create with code" de Google Ads (formato nuevo de snippet).
+  googleAdsLeadConversionEventName: 'conversion_event_request_quote',
   // Pega aquí solo el conversion label o el send_to completo: AW-XXXX/label
   googleAdsLeadConversionLabel: '',
   googleAdsLeadDefaultValue: 1,
