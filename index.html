@@ -5,12 +5,15 @@
       window.dataLayer = window.dataLayer || [];
       window.__iconoAnalyticsDebug = false;
       window.__iconoGtagScriptStatus = 'idle';
+      window.__iconoClarityScriptStatus = 'idle';
+      window.clarity = window.clarity || function(){(window.clarity.q = window.clarity.q || []).push(arguments);};
       function gtag(){dataLayer.push(arguments);}
       (function() {
-        var consentState = 'denied';
+        var consentState = 'granted';
         var debugMode = false;
         var measurementId = 'G-6SN5WBMG0V';
         var googleAdsId = 'AW-18121828899';
+        var clarityProjectId = 'wp1oy51ixh';
         try {
           var url = new URL(window.location.href);
           var debugFlag = url.searchParams.get('debug_analytics');
@@ -23,8 +26,9 @@
 
           debugMode = window.localStorage.getItem('icono_analytics_debug_v1') === 'true';
 
-          if (window.localStorage.getItem('icono_cookie_consent_v1') === 'granted') {
-            consentState = 'granted';
+          var storedConsent = window.localStorage.getItem('icono_cookie_consent_v1');
+          if (storedConsent === 'granted' || storedConsent === 'denied') {
+            consentState = storedConsent;
           }
         } catch (error) {}
 
@@ -37,6 +41,33 @@
           ad_personalization: consentState,
           wait_for_update: 500
         });
+
+        window.__iconoLoadClarity = function() {
+          if (
+            window.__iconoClarityScriptStatus === 'loading' ||
+            window.__iconoClarityScriptStatus === 'loaded'
+          ) {
+            return;
+          }
+
+          var clarityScript = document.createElement('script');
+          clarityScript.async = true;
+          clarityScript.src = 'https://www.clarity.ms/tag/' + clarityProjectId;
+          window.__iconoClarityScriptStatus = 'loading';
+          clarityScript.onload = function() {
+            window.__iconoClarityScriptStatus = 'loaded';
+            if (window.__iconoAnalyticsDebug) {
+              console.log('[Icono Analytics] clarity-script loaded', { clarityProjectId: clarityProjectId });
+            }
+          };
+          clarityScript.onerror = function(event) {
+            window.__iconoClarityScriptStatus = 'error';
+            if (window.__iconoAnalyticsDebug) {
+              console.log('[Icono Analytics] clarity-script error', event);
+            }
+          };
+          document.head.appendChild(clarityScript);
+        };
 
         var gtagScript = document.createElement('script');
         gtagScript.async = true;
@@ -63,6 +94,10 @@
           debug_mode: debugMode ? true : undefined
         });
         gtag('config', googleAdsId);
+
+        if (consentState === 'granted') {
+          window.__iconoLoadClarity();
+        }
       })();
     </script>
     <meta charset="UTF-8" />

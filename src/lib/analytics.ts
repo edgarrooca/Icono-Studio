@@ -32,7 +32,10 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
+    clarity?: ((...args: unknown[]) => void) & { q?: unknown[][] };
     __iconoAnalyticsEvents?: unknown[];
+    __iconoClarityScriptStatus?: string;
+    __iconoLoadClarity?: () => void;
     google_tag_manager?: Record<string, unknown>;
   }
 }
@@ -353,7 +356,7 @@ export const getConsentState = (): ConsentState | null => {
   return null;
 };
 
-export const hasMeasurementConsent = () => getConsentState() === 'granted';
+export const hasMeasurementConsent = () => getConsentState() !== 'denied';
 
 export const updateConsentState = (state: ConsentState) => {
   if (!isBrowser()) {
@@ -368,6 +371,10 @@ export const updateConsentState = (state: ConsentState) => {
 
   if (typeof window.gtag === 'function') {
     window.gtag('consent', 'update', getConsentPayload(state));
+  }
+
+  if (state === 'granted') {
+    window.__iconoLoadClarity?.();
   }
 
   pushDataLayer('icono_consent_update', {
