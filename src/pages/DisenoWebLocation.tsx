@@ -345,19 +345,14 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="mt-6 flex items-center gap-4 text-white/60 text-sm font-medium"
+            className="mt-6 flex items-center gap-3 text-white/80 text-sm font-medium bg-white/5 border border-white/10 px-4 py-2 rounded-full"
           >
-            <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-full border-2 border-brand-dark bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/100?img=1" alt="Cliente" className="w-full h-full object-cover" /></div>
-              <div className="w-8 h-8 rounded-full border-2 border-brand-dark bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/100?img=2" alt="Cliente" className="w-full h-full object-cover" /></div>
-              <div className="w-8 h-8 rounded-full border-2 border-brand-dark bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/100?img=3" alt="Cliente" className="w-full h-full object-cover" /></div>
+            <div className="flex text-yellow-400">
+              {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
             </div>
-            <div className="flex flex-col items-start text-left">
-              <div className="flex text-brand-lime mb-0.5">
-                {[1,2,3,4,5].map(i => <Star key={i} size={12} className="fill-current" />)}
-              </div>
-              <span className="text-xs">Más de 50 proyectos online</span>
-            </div>
+            <span className="text-xs sm:text-sm font-bold">5.0 en Google Reviews</span>
+            <span className="hidden sm:inline text-white/40">|</span>
+            <span className="hidden sm:inline text-xs sm:text-sm text-brand-lime">Clientes 100% satisfechos</span>
           </motion.div>
         </div>
       </section>
