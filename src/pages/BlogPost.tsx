@@ -239,7 +239,7 @@ export default function BlogPost() {
                    <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Lanzamos tu web?</p>
                    <p className="text-sm text-gray-500 mb-6 leading-relaxed">Pide tu presupuesto sin compromiso hoy mismo.</p>
                    <RouterLink 
-                     to="/#planes" 
+                     to="/contacto" 
                      onClick={() => (window as any).dataLayer?.push({
                        'event': 'cta_click',
                        'cta_id': 'blog_sidebar_budget',
@@ -286,16 +286,16 @@ export default function BlogPost() {
                     <p className="text-gray-500 mb-6 leading-relaxed">Especialistas en diseño web estratégico y desarrollo de alto impacto para negocios.</p>
                     <div className="flex justify-center md:justify-start gap-4">
                        <RouterLink 
-                          to="/#planes" 
+                          to="/contacto" 
                           onClick={() => (window as any).dataLayer?.push({
                             'event': 'cta_click',
-                            'cta_id': 'blog_footer_plans',
-                            'cta_text': 'Nuestros Planes (Blog Footer)',
+                            'cta_id': 'blog_footer_budget',
+                            'cta_text': 'Solicitar Presupuesto (Blog Footer)',
                             'page_path': window.location.pathname
                           })}
                           className="text-xs font-bold uppercase tracking-widest text-brand-dark hover:text-brand-blue underline decoration-brand-lime decoration-4"
                         >
-                          Nuestros Planes
+                          Solicitar Presupuesto
                         </RouterLink>
                     </div>
                  </div>
