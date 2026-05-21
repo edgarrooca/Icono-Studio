@@ -279,7 +279,7 @@ export const blogPosts: BlogPost[] = [
     date: '18 May 2026',
     author: 'Icono Studio',
     tag: 'Diseño & Estrategia',
-    image: 'https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80',
     metaTitle: '5 señales de que tu página web se ha quedado antigua | Icono Studio',
     metaDescription: '¿Tu web ahuyenta a los clientes en lugar de atraerlos? Identifica las 5 señales que demuestran que tu negocio necesita un rediseño web urgente.',
     content: `
