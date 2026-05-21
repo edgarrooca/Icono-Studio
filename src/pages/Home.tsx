@@ -489,30 +489,18 @@ export default function Home() {
       {/* 2. SERVICIOS PRINCIPALES (SEO) */}
       <section id="servicios" className="pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-              <span className="ui-eyebrow text-brand-dark">Nuestros servicios</span>
-            </div>
-            <div className="ui-divider mb-6 mx-auto lg:mx-0"></div>
-            <h2 className="ui-section-title text-brand-dark mb-6">
-              Diseño premium <br className="hidden lg:block" />
-              <span className="italic font-normal">optimizado para SEO</span>
-            </h2>
-            <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
-              No hacemos webs de plantilla. Creamos activos digitales a medida diseñados para dominar Google y convertir visitas en clientes reales.
-            </p>
-          </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Card 1 */}
           <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
             <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
-                Diseño Web Valencia
+                Diseño Web
               </h3>
               <img 
                 src="/lapiz.svg" 
-                alt="Diseño Web Valencia" 
+                alt="Diseño Web" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
                 loading="lazy"
                 decoding="async"
@@ -526,7 +514,7 @@ export default function Home() {
               id="cta_service_web"
               onClick={() => (window as any).dataLayer?.push({
                 'event': 'service_view', 
-                'service_name': 'Diseño Web Valencia',
+                'service_name': 'Diseño Web',
                 'page_path': window.location.pathname
               })} 
               className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
