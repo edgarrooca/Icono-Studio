@@ -1,3 +1,5 @@
+import { seoLocations } from './seoLocations';
+
 export interface NavChildLink {
   name: string;
   href: string;
@@ -15,9 +17,10 @@ export const mainNavLinks: NavLink[] = [
   {
     name: 'SERVICIOS',
     children: [
-      { name: 'Diseño Web Valencia', href: '/diseno-web-valencia' },
-      { name: 'Diseño Web Barcelona', href: '/diseno-web-barcelona' },
-      { name: 'Diseño Web Madrid', href: '/diseno-web-madrid' },
+      ...seoLocations.map(loc => ({
+        name: `Diseño Web ${loc.name}`,
+        href: `/diseno-web-${loc.slug}`
+      })),
       { name: 'Web Express', href: '/pagina-web-gratis' },
     ],
   },
