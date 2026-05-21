@@ -6,56 +6,98 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://icono.studio/</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
-  <priority>1.00</priority>
-</url>
-
-<url>
   <loc>https://icono.studio/diseno-web-valencia</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.95</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/diseno-web-madrid</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.95</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/diseno-web-barcelona</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.95</priority>
 </url>
 
 <url>
+  <loc>https://icono.studio/diseno-web-alicante</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/diseno-web-sevilla</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/diseno-web-malaga</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/diseno-web-zaragoza</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/diseno-web-murcia</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/diseno-web-palma</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/diseno-web-bilbao</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>0.95</priority>
+</url>
+
+<url>
+  <loc>https://icono.studio/</loc>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
+  <priority>1.00</priority>
+</url>
+
+<url>
   <loc>https://icono.studio/hosting-mantenimiento-web</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.80</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/pagina-web-gratis</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.92</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/proyectos</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.90</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/blog</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.80</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/contacto</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.80</priority>
 </url>
 
@@ -121,37 +163,37 @@
 
 <url>
   <loc>https://icono.studio/proyecto/dogcat</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.70</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/proyecto/instalaciones-torrijos-fontaneria</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.70</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/proyecto/libreria-garcia-lorca</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.70</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/proyecto/flesh-fest-videojuego-indie</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.70</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/proyecto/cuidados-paliativos-hospital-cuautitlan</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.70</priority>
 </url>
 
 <url>
   <loc>https://icono.studio/proyecto/gameshelf-app</loc>
-  <lastmod>2026-05-21T15:15:22.079Z</lastmod>
+  <lastmod>2026-05-21T15:46:08.316Z</lastmod>
   <priority>0.70</priority>
 </url>
 

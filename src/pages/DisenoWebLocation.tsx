@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
+import { seoLocations } from '../data/seoLocations';
+
 // motion and AnimatePresence imports removed
 import { Link as RouterLink } from 'react-router-dom';
 import { 
@@ -49,8 +52,13 @@ import { portfolioProjects } from '../data/projects';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
+export default function DisenoWebLocation() {
+  const { location: locationSlug } = useParams();
+  const location = seoLocations.find(loc => loc.slug === locationSlug);
 
-export default function DisenoWebBarcelona() {
+  if (!location) {
+    return <Navigate to="/" replace />;
+  }
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [activePricingIndex, setActivePricingIndex] = useState(0);
 
@@ -82,10 +90,10 @@ export default function DisenoWebBarcelona() {
     e.preventDefault();
     
     try {
-      const response = await submitLeadForm('contact_barcelona_ads', formData);
+      const response = await submitLeadForm('contact_${location.slug}_ads', formData);
       
       if (response.ok) {
-        redirectToLeadThankYouPage('contact_barcelona_ads');
+        redirectToLeadThankYouPage('contact_${location.slug}_ads');
         return;
       } else {
         alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
@@ -108,25 +116,25 @@ export default function DisenoWebBarcelona() {
     document.getElementById('vlc-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const faqs = [
+  const faqs = location.faqs || [
     { q: "¿Cuánto cuesta una página web?", a: "Depende del tipo de proyecto, pero una web básica empieza desde 350 € + IVA." },
     { q: "¿Cuánto tardas en hacerla?", a: "Una web sencilla suele estar lista en 1–3 semanas, dependiendo del contenido y revisiones." },
     { q: "¿Tengo que tener textos y fotos?", a: "No necesariamente. Podemos ayudarte con los textos base y usar imágenes de stock si no tienes material propio." },
     { q: "¿La web será mía?", a: "Sí. Te entregamos tu web publicada y organizada." },
     { q: "¿Incluyes hosting o mantenimiento?", a: "Sí, podemos encargarnos del hosting y soporte mensual si quieres despreocuparte." },
-    { q: "¿Trabajas solo en Barcelona?", a: "No. Trabajamos con clientes de Barcelona y de toda España." }
+    { q: "¿Trabajas solo en {location.name}?", a: "No. Estamos en {location.name}, pero trabajamos con clientes de toda España." }
   ];
 
-  const barcelonaSchema = {
+  const locationSchema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "name": "Diseño Web Barcelona | Icono Studio",
-        "url": `${siteConfig.url}/diseno-web-barcelona`,
-        "description": "Servicio de diseño web en Barcelona para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.",
+        "name": "Diseño Web {location.name} | Icono Studio",
+        "url": `${siteConfig.url}/diseno-web-${location.slug}`,
+        "description": "Servicio de diseño web en {location.name} para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.",
         "image": absoluteUrl(siteConfig.defaultOgImage),
-        "areaServed": ['Barcelona', 'España'],
+        "areaServed": [location.name, 'España'],
         "serviceType": ['Diseño web', 'Landing pages', 'SEO inicial', 'Soporte web'],
         "telephone": siteConfig.phoneDisplay,
         "email": siteConfig.email,
@@ -255,13 +263,13 @@ export default function DisenoWebBarcelona() {
   }, []);
 
   return (
-    <div className="valencia-page barcelona-page min-h-screen bg-white font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+    <div className="valencia-page min-h-screen bg-white font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
       <SeoHead
-        title="Diseño Web Barcelona | Páginas Web Profesionales | Icono Studio"
-        description="Diseñamos páginas web en Barcelona rápidas, cuidadas y preparadas para convertir visitas en clientes. SEO inicial, diseño adaptable y trato directo."
-        path="/diseno-web-barcelona"
+        title={`Diseño Web ${location.name} | Páginas Web Profesionales | Icono Studio`}
+        description={`Diseñamos páginas web en ${location.name} rápidas, cuidadas y preparadas para convertir visitas en clientes. SEO inicial, diseño adaptable y trato directo.`}
+        path={`/diseno-web-${location.slug}`}
         type="service"
-        schema={barcelonaSchema}
+        schema={locationSchema}
       />
 
       <Navbar ctaHref="#vlc-form" />
@@ -289,13 +297,13 @@ export default function DisenoWebBarcelona() {
         
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
           <h1 className="font-display text-[11vw] xs:text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tighter uppercase mb-6 sm:mb-8">
-            <span className="block text-brand-lime text-[10px] sm:text-base md:text-lg font-black tracking-[0.4em] mb-3">DISEÑO WEB EN BARCELONA</span>
+            <span className="block text-brand-lime text-[10px] sm:text-base md:text-lg font-black tracking-[0.4em] mb-3">DISEÑO WEB EN {location.name.toUpperCase()}</span>
             <span className="block">Webs que convierten</span>
             <span className="text-brand-lime italic block">visitas en clientes</span>
           </h1>
           
           <p className="text-base md:text-xl max-w-3xl text-white/70 font-medium mb-10 sm:mb-12 leading-relaxed">
-            Diseñamos páginas web en Barcelona rápidas, cuidadas y preparadas para que tu negocio transmita confianza, aparezca mejor en Google y reciba más contactos.
+            Diseñamos páginas web rápidas, cuidadas y preparadas para que tu negocio transmita confianza, aparezca mejor en Google y reciba más contactos.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
@@ -323,7 +331,7 @@ export default function DisenoWebBarcelona() {
           {[
             { label: "Respuesta", val: "Menos de 24h", icon: Clock },
             { label: "Adaptables", val: "100% Móvil", icon: Smartphone },
-            { label: "Desde Barcelona", val: "Trato directo", icon: Heart },
+            { label: "Desde Valencia", val: "Trato directo", icon: Heart },
             { label: "Optimización", val: "SEO inicial", icon: Search }
           ].map((item, i) => (
             <div key={i} className="flex md:flex-col items-center md:text-center px-1 md:px-4 md:border-r last:border-r-0 border-gray-100 gap-3 md:gap-0">
@@ -347,7 +355,7 @@ export default function DisenoWebBarcelona() {
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-brand-dark font-black text-[10px] uppercase tracking-[0.2em]">
-                    DISEÑO WEB EN BARCELONA
+                    DISEÑO WEB EN {location.name.toUpperCase()}
                   </span>
                 </div>
                 <div className="w-12 h-[2px] bg-brand-lime mb-8"></div>
@@ -612,7 +620,7 @@ export default function DisenoWebBarcelona() {
               </h2>
               
               <p className="text-[16px] md:text-[18px] text-gray-500 font-medium leading-relaxed mb-10 max-w-[420px]">
-                Trabajamos desde Barcelona con negocios de toda España, creando páginas web que transmiten confianza y ayudan a convertir visitas en contactos.
+                Trabajamos desde {location.name} con negocios de toda España, creando páginas web que transmiten confianza y ayudan a convertir visitas en contactos.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
@@ -660,11 +668,11 @@ export default function DisenoWebBarcelona() {
                 <div className="relative z-10">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100 text-gray-600 text-[9px] font-black uppercase tracking-widest mb-8">
                     <MapPin size={10} strokeWidth={2.5} />
-                    BARCELONA · ESTUDIO LOCAL
+                    {location.name.toUpperCase()} · ESTUDIO INDEPENDIENTE
                   </div>
                   
                   <h3 className="font-display uppercase text-xl md:text-3xl text-brand-dark mb-4 leading-[1.1] tracking-tight max-w-[280px]">
-                    Estudio local en Barcelona
+                    Estudio local en {location.name}
                   </h3>
                   
                   <p className="text-[14px] text-gray-500 font-medium leading-relaxed mb-4 max-w-[360px]">
@@ -690,7 +698,7 @@ export default function DisenoWebBarcelona() {
               <div className="w-12 h-[2px] bg-brand-lime mb-8"></div>
               <h2 className="font-display uppercase text-2xl md:text-4xl leading-[1.1] tracking-tight text-brand-dark mb-4">
                 Proyectos recientes <br />
-                <span className="italic font-normal">diseño web Barcelona</span>
+                <span className="italic font-normal">{`diseño web ${location.name}`}</span>
               </h2>
             </div>
             <RouterLink 
@@ -1020,13 +1028,13 @@ export default function DisenoWebBarcelona() {
           </div>
           <div className="w-12 h-[2px] bg-brand-lime mb-6"></div>
           <h2 className="font-display uppercase text-2xl md:text-4xl leading-[1.1] tracking-tight text-brand-dark mb-6">
-            Diseño web en <br/> <span className="italic font-normal">toda Barcelona</span>
+            Diseño web en <br/> <span className="italic font-normal">toda Valencia</span>
           </h2>
           <p className="text-[15px] text-gray-500 font-medium leading-relaxed mb-10 max-w-2xl mx-auto">
-            Trabajamos con negocios de Barcelona y toda la provincia, coordinando reuniones presenciales o gestión 100% online para asegurar un resultado perfecto.
+            Trabajamos con negocios de Valencia y toda la provincia, coordinando reuniones presenciales o gestión 100% online para asegurar un resultado perfecto.
           </p>
           <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
-            {["Barcelona", "L'Hospitalet", "Badalona", "Sabadell", "Terrassa", "Sant Cugat", "Mataró", "Granollers", "Castelldefels", "Cornellà"].map((city) => (
+            {["Valencia", "Torrent", "Paterna", "Gandía", "Sagunto", "Alzira", "Mislata", "Burjassot", "Ontinyent", "Aldaia"].map((city) => (
               <span key={city} className="px-4 py-2 bg-zinc-50 rounded-full text-[10px] font-black text-gray-400 uppercase tracking-widest border border-gray-100">
                 {city}
               </span>
@@ -1143,10 +1151,10 @@ export default function DisenoWebBarcelona() {
 
                   <form
                     onSubmit={handleSubmit}
-                    onSubmitCapture={() => debugLeadFormSubmitCapture('contact_barcelona_ads')}
+                    onSubmitCapture={() => debugLeadFormSubmitCapture('contact_${location.slug}_ads')}
                     onInvalidCapture={(event) => {
                       const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-                      debugLeadFormInvalid('contact_barcelona_ads', target.name, target.validationMessage);
+                      debugLeadFormInvalid('contact_${location.slug}_ads', target.name, target.validationMessage);
                     }}
                     className="space-y-3.5"
                   >
@@ -1274,9 +1282,9 @@ export default function DisenoWebBarcelona() {
                       </label>
                     </div>
 
-                    <button 
+                    <button
                       type="submit" 
-                      onClick={() => debugLeadFormButtonClick('contact_barcelona_ads')}
+                      onClick={() => debugLeadFormButtonClick('contact_${location.slug}_ads')}
                       className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
                     >
                       Pedir presupuesto gratis <Send size={14} />
@@ -1293,7 +1301,6 @@ export default function DisenoWebBarcelona() {
           </div>
         </section>
 
-        {/* Subtle Divider */}
 
         <Footer hideCTA={true} />
       </div>

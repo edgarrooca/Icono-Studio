@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { blogPosts } from '../src/data/blog';
 import { portfolioProjects } from '../src/data/projects';
+import { seoLocations } from '../src/data/seoLocations';
 import { absoluteUrl, siteConfig } from '../src/lib/site';
 
 type PageType = 'website' | 'article' | 'service';
@@ -25,24 +26,8 @@ const publicDir = path.join(rootDir, 'public');
 const templatePath = path.join(distDir, 'index.html');
 const buildDate = new Date().toISOString();
 
-const valenciaFaqs = [
-  { q: '¿Cuánto cuesta una página web?', a: 'Depende del tipo de proyecto, pero una web básica empieza desde 350 € + IVA.' },
-  { q: '¿Cuánto tardas en hacerla?', a: 'Una web sencilla suele estar lista en 1–3 semanas, dependiendo del contenido y revisiones.' },
-  { q: '¿Tengo que tener textos y fotos?', a: 'No necesariamente. Podemos ayudarte con los textos base y usar imágenes de stock si no tienes material propio.' },
-  { q: '¿La web será mía?', a: 'Sí. Te entregamos tu web publicada y organizada.' },
-  { q: '¿Incluyes hosting o mantenimiento?', a: 'Sí, podemos encargarnos del hosting y soporte mensual si quieres despreocuparte.' },
-  { q: '¿Trabajas solo en Valencia?', a: 'No. Estamos en Valencia, pero trabajamos con clientes de toda España.' },
-];
 
-const madridFaqs = [
-  ...valenciaFaqs.slice(0, 5),
-  { q: '¿Trabajas solo en Madrid?', a: 'No. Trabajamos con clientes de Madrid y de toda España.' },
-];
 
-const barcelonaFaqs = [
-  ...valenciaFaqs.slice(0, 5),
-  { q: '¿Trabajas solo en Barcelona?', a: 'No. Trabajamos con clientes de Barcelona y de toda España.' },
-];
 
 const supportFaqs = [
   {
@@ -243,6 +228,22 @@ const parseBlogDate = (rawDate: string) => {
   return `${year}-${month}-${day.padStart(2, '0')}T00:00:00+00:00`;
 };
 
+const locationRoutes: RouteMeta[] = seoLocations.map(loc => ({
+  path: `/diseno-web-${loc.slug}`,
+  title: `Diseño Web ${loc.name} | Páginas Web Profesionales | Icono Studio`,
+  description: `Diseñamos páginas web en ${loc.name} rápidas, cuidadas y preparadas para convertir visitas en clientes. SEO inicial, diseño adaptable y trato directo.`,
+  type: 'service',
+  priority: '0.95',
+  lastmod: buildDate,
+  schema: buildServiceSchema(
+    `Diseño Web ${loc.name}`,
+    `/diseno-web-${loc.slug}`,
+    `Servicio de diseño web en ${loc.name} para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.`,
+    loc.faqs,
+    [loc.name, 'España']
+  ),
+}));
+
 const staticRoutes: RouteMeta[] = [
   {
     path: '/',
@@ -270,51 +271,6 @@ const staticRoutes: RouteMeta[] = [
         },
       ],
     },
-  },
-  {
-    path: '/diseno-web-valencia',
-    title: 'Diseño Web Valencia | Páginas Web Profesionales | Icono Studio',
-    description: 'Diseñamos páginas web en Valencia rápidas, cuidadas y preparadas para convertir visitas en clientes. SEO inicial, diseño adaptable y trato directo.',
-    type: 'service',
-    priority: '0.95',
-    lastmod: buildDate,
-    schema: buildServiceSchema(
-      'Diseño Web Valencia',
-      '/diseno-web-valencia',
-      'Servicio de diseño web en Valencia para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.',
-      valenciaFaqs,
-      ['Valencia', 'España']
-    ),
-  },
-  {
-    path: '/diseno-web-madrid',
-    title: 'Diseño Web Madrid | Páginas Web Profesionales | Icono Studio',
-    description: 'Diseñamos páginas web en Madrid rápidas, cuidadas y preparadas para convertir visitas en clientes. SEO inicial, diseño adaptable y trato directo.',
-    type: 'service',
-    priority: '0.95',
-    lastmod: buildDate,
-    schema: buildServiceSchema(
-      'Diseño Web Madrid',
-      '/diseno-web-madrid',
-      'Servicio de diseño web en Madrid para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.',
-      madridFaqs,
-      ['Madrid', 'España']
-    ),
-  },
-  {
-    path: '/diseno-web-barcelona',
-    title: 'Diseño Web Barcelona | Páginas Web Profesionales | Icono Studio',
-    description: 'Diseñamos páginas web en Barcelona rápidas, cuidadas y preparadas para convertir visitas en clientes. SEO inicial, diseño adaptable y trato directo.',
-    type: 'service',
-    priority: '0.95',
-    lastmod: buildDate,
-    schema: buildServiceSchema(
-      'Diseño Web Barcelona',
-      '/diseno-web-barcelona',
-      'Servicio de diseño web en Barcelona para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.',
-      barcelonaFaqs,
-      ['Barcelona', 'España']
-    ),
   },
   {
     path: '/hosting-mantenimiento-web',
@@ -537,7 +493,7 @@ const projectRoutes: RouteMeta[] = portfolioProjects.map((project) => ({
   schema: buildProjectSchema(project),
 }));
 
-const allRoutes = [...staticRoutes, ...blogRoutes, ...projectRoutes];
+const allRoutes = [...locationRoutes, ...staticRoutes, ...blogRoutes, ...projectRoutes];
 
 async function writeRouteHtml(templateHtml: string, route: RouteMeta) {
   const canonicalUrl = absoluteUrl(route.path);

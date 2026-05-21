@@ -14,9 +14,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const HostingMaintenance = lazy(() => import('./pages/HostingMaintenance'));
 const Contact = lazy(() => import('./pages/Contact'));
 const GraciasPresupuesto = lazy(() => import('./pages/GraciasPresupuesto'));
-const DisenoWebValencia = lazy(() => import('./pages/DisenoWebValencia'));
-const DisenoWebBarcelona = lazy(() => import('./pages/DisenoWebBarcelona'));
-const DisenoWebMadrid = lazy(() => import('./pages/DisenoWebMadrid'));
+const DisenoWebLocation = lazy(() => import('./pages/DisenoWebLocation'));
 const WebExpress = lazy(() => import('./pages/WebExpress'));
 const WebExpressCheckout = lazy(() => import('./pages/WebExpressCheckout'));
 const WebExpressSuccess = lazy(() => import('./pages/WebExpressSuccess'));
@@ -39,9 +37,7 @@ export default function App() {
           <Route path="/proyecto/:id" element={<ProjectDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/diseno-web-valencia" element={<DisenoWebValencia />} />
-          <Route path="/diseno-web-barcelona" element={<DisenoWebBarcelona />} />
-          <Route path="/diseno-web-madrid" element={<DisenoWebMadrid />} />
+          <Route path="/diseno-web-:location" element={<DisenoWebLocation />} />
           <Route path="/pagina-web-gratis" element={<WebExpress />} />
           <Route path="/web-express" element={<Navigate to="/pagina-web-gratis" replace />} />
           <Route path="/contratar-web-express" element={<WebExpressCheckout />} />
