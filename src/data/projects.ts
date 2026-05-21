@@ -170,5 +170,28 @@ export const portfolioProjects: Project[] = [
     philosophy: 'Creemos que las herramientas de gestión de datos personales deben sentirse ligeras, ultrarrápidas y gratificantes de usar. El diseño de producto debe empoderar al usuario dándole control total sobre su información, eliminando la fricción de la entrada de datos y transformando la organización en una actividad placentera, no en una tarea administrativa.',
     technicalDetails: 'Single Page Application (SPA) de alto rendimiento construida con React. Integración compleja y asíncrona de múltiples APIs RESTful de terceros (como IGDB) para la obtención de metadatos en tiempo real. Implementación de gestión de estado global eficiente, virtualización de listas para el renderizado de miles de elementos sin caída de frames, y un motor de búsqueda y filtrado en el lado del cliente altamente optimizado.',
     link: 'https://gameshelf-dusky.vercel.app/login'
+  },
+  {
+    id: 'mudanzas-la-pompa',
+    title: 'Mudanzas La Pompa',
+    subtitle: 'Presupuestador interactivo para empresa de mudanzas',
+    description: 'Diseño y desarrollo de una plataforma web completa para una empresa de mudanzas en Valencia. El proyecto incluye un avanzado presupuestador interactivo donde los usuarios pueden seleccionar el volumen de sus muebles, fechas y servicios, obteniendo una estimación precisa en tiempo real.',
+    category: 'Diseño Web / App',
+    img: '/projects/lapompa/desktop.png',
+    imgPc1: '/projects/lapompa/desktop-form.png',
+    imgReto: '/projects/lapompa/desktop-form.png',
+    imgMobile1: '/projects/lapompa/mobile1.png',
+    imgMobile2: '/projects/lapompa/mobile2.png',
+    clientDescription: 'Mudanzas La Pompa es una empresa de mudanzas de reciente creación en Valencia que buscaba diferenciarse en un mercado tradicional mediante la digitalización de su proceso de cotización.',
+    challenge: 'El principal reto era desarrollar un sistema de presupuestación preciso e interactivo que no resultara abrumador, integrándolo en una web atractiva, junto con un panel de control interno para la gestión de servicios.',
+    objectives: [
+      'Digitalizar la captación de clientes y la estimación de presupuestos.',
+      'Desarrollar un cotizador interactivo paso a paso basado en inventario.',
+      'Implementar un panel de gestión interno robusto.'
+    ],
+    concept: 'Una web dinámica orientada a la usabilidad. El cotizador es el corazón de la experiencia, guiando al usuario visualmente a través del proceso de inventariado sin fricciones.',
+    philosophy: 'Facilitar la mudanza desde el primer clic. Creemos que la tecnología debe simplificar procesos complejos, aportando transparencia y confianza en un momento de estrés.',
+    technicalDetails: 'Desarrollo Full-Stack con integración de un cotizador complejo en React y panel de administración.',
+    link: 'https://mudanzaslapompa.es'
   }
 ];
