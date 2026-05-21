@@ -413,7 +413,7 @@ export const blogPosts: BlogPost[] = [
     date: '26 Abr 2026',
     author: 'Icono Studio',
     tag: 'Diseño & SEO',
-    image: '/blog-hero-valencia-local.png',
+    image: '/blog-hero-valencia-local.webp',
     metaTitle: 'Diseño web para negocios locales en Valencia: qué debe incluir | Icono Studio',
     metaDescription: 'Descubre qué debe incluir una web para negocios locales en Valencia si quieres transmitir confianza, conseguir contactos y destacar frente a la competencia.',
     content: `
@@ -856,7 +856,7 @@ export const blogPosts: BlogPost[] = [
     date: '19 Abr 2026',
     author: 'Icono Studio',
     tag: 'Presupuestos',
-    image: '/blog-hero-pricing.png',
+    image: '/blog-hero-pricing.webp',
     metaTitle: 'Cuánto cuesta una página web profesional en España en 2026 | Icono Studio',
     metaDescription: 'Descubre cuánto cuesta una página web profesional en España en 2026, qué factores influyen en el precio y qué incluye realmente un proyecto web bien hecho.',
     content: `
@@ -935,7 +935,7 @@ export const blogPosts: BlogPost[] = [
     date: '19 Abr 2026',
     author: 'Icono Studio',
     tag: 'Diseño & Estrategia',
-    image: '/blog-hero-conversion.png',
+    image: '/blog-hero-conversion.webp',
     metaTitle: 'Qué debe tener una página web para atraer clientes en 2026 | Icono Studio',
     metaDescription: 'Descubre qué debe tener una página web para atraer clientes de verdad: estructura, diseño, velocidad, confianza, SEO y claves para convertir visitas en contactos.',
     content: `
