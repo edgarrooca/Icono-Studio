@@ -179,7 +179,7 @@ export const portfolioProjects: Project[] = [
     category: 'Diseño Web / App',
     img: '/projects/lapompa/desktop.png',
     imgPc1: '/projects/lapompa/desktop-form.png',
-    imgReto: '/projects/lapompa/desktop-form.png',
+    imgReto: '/projects/lapompa/desktop-full.png',
     imgMobile1: '/projects/lapompa/mobile1.png',
     imgMobile2: '/projects/lapompa/mobile2.png',
     clientDescription: 'Mudanzas La Pompa es una empresa de mudanzas de reciente creación en Valencia que buscaba diferenciarse en un mercado tradicional mediante la digitalización de su proceso de cotización.',
