@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { seoLocations } from '../data/seoLocations';
 
-// motion and AnimatePresence imports removed
+import { motion, AnimatePresence } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { 
   ArrowRight, 
