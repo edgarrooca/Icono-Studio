@@ -52,6 +52,7 @@ import { portfolioProjects } from '../data/projects';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
+import { getSpinVariation, spintaxData } from '../lib/spintax';
 export default function DisenoWebLocation({ locationSlug }: { locationSlug?: string }) {
   const params = useParams();
   const slug = locationSlug || params.location;
@@ -304,7 +305,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
           </h1>
           
           <p className="text-base md:text-xl max-w-3xl text-white/70 font-medium mb-10 sm:mb-12 leading-relaxed">
-            Diseñamos páginas web rápidas, cuidadas y preparadas para que tu negocio transmita confianza, aparezca mejor en Google y reciba más contactos.
+            {getSpinVariation(location.slug, spintaxData.heroTagline)}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
@@ -332,7 +333,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
           {[
             { label: "Respuesta", val: "Menos de 24h", icon: Clock },
             { label: "Adaptables", val: "100% Móvil", icon: Smartphone },
-            { label: "Desde Valencia", val: "Trato directo", icon: Heart },
+            { label: "Servicio", val: "100% Online", icon: Heart },
             { label: "Optimización", val: "SEO inicial", icon: Search }
           ].map((item, i) => (
             <div key={i} className="flex md:flex-col items-center md:text-center px-1 md:px-4 md:border-r last:border-r-0 border-gray-100 gap-3 md:gap-0">
@@ -368,7 +369,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
               </h2>
               
               <p className="text-[16px] md:text-[18px] text-gray-500 font-medium leading-relaxed mb-12 max-w-lg">
-                Si tu página carga lenta, no se entiende en móvil o no guía al usuario hacia el contacto, estás perdiendo oportunidades cada día.
+                {getSpinVariation(location.slug, spintaxData.problemIntro)}
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
@@ -561,7 +562,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                 <span className="italic font-normal">vender.</span>
               </h2>
               <p className="text-[16px] md:text-[18px] text-gray-500 font-medium leading-relaxed mb-10 lg:mb-12 max-w-sm">
-                No solo diseñamos. Te acompañamos en todo el proceso para que tu negocio transmita una imagen impecable y profesional.
+                {getSpinVariation(location.slug, spintaxData.serviceIntro)}
               </p>
               
               <div className="mb-12 lg:mb-0">
@@ -621,7 +622,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
               </h2>
               
               <p className="text-[16px] md:text-[18px] text-gray-500 font-medium leading-relaxed mb-10 max-w-[420px]">
-                Trabajamos desde {location.name} con negocios de toda España, creando páginas web que transmiten confianza y ayudan a convertir visitas en contactos.
+                {getSpinVariation(location.slug, spintaxData.localOutro)}
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
@@ -669,11 +670,11 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                 <div className="relative z-10">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100 text-gray-600 text-[9px] font-black uppercase tracking-widest mb-8">
                     <MapPin size={10} strokeWidth={2.5} />
-                    {location.name.toUpperCase()} · ESTUDIO INDEPENDIENTE
+                    DISEÑO WEB ONLINE
                   </div>
                   
                   <h3 className="font-display uppercase text-xl md:text-3xl text-brand-dark mb-4 leading-[1.1] tracking-tight max-w-[280px]">
-                    Estudio local en {location.name}
+                    Atención y soporte <br/>personalizado
                   </h3>
                   
                   <p className="text-[14px] text-gray-500 font-medium leading-relaxed mb-4 max-w-[360px]">
@@ -1029,17 +1030,19 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
           </div>
           <div className="w-12 h-[2px] bg-brand-lime mb-6"></div>
           <h2 className="font-display uppercase text-2xl md:text-4xl leading-[1.1] tracking-tight text-brand-dark mb-6">
-            Diseño web en <br/> <span className="italic font-normal">toda Valencia</span>
+            Diseño web en <br/> <span className="italic font-normal">toda la provincia</span>
           </h2>
-          <p className="text-[15px] text-gray-500 font-medium leading-relaxed mb-10 max-w-2xl mx-auto">
-            Trabajamos con negocios de Valencia y toda la provincia, coordinando reuniones presenciales o gestión 100% online para asegurar un resultado perfecto.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
-            {["Valencia", "Torrent", "Paterna", "Gandía", "Sagunto", "Alzira", "Mislata", "Burjassot", "Ontinyent", "Aldaia"].map((city) => (
-              <span key={city} className="px-4 py-2 bg-zinc-50 rounded-full text-[10px] font-black text-gray-400 uppercase tracking-widest border border-gray-100">
-                {city}
-              </span>
-            ))}
+          <div className="max-w-2xl mx-auto">
+            <p className="text-[16px] md:text-[18px] text-gray-500 font-medium leading-relaxed mb-10">
+              Trabajamos con negocios de {location.name} y poblaciones cercanas, coordinando la gestión 100% online para asegurar un resultado perfecto de la manera más ágil.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {location.surroundingTowns.map((city) => (
+                <span key={city} className="px-4 py-2 bg-zinc-50 rounded-full text-[10px] font-black text-gray-400 uppercase tracking-widest border border-gray-100">
+                  {city}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
