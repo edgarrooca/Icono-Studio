@@ -4,6 +4,7 @@ import AnalyticsTracker from './components/AnalyticsTracker';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import HashScrollHandler from './components/HashScrollHandler';
 import WhatsAppButton from './components/WhatsAppButton';
+import { seoLocations } from './data/seoLocations';
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -37,7 +38,9 @@ export default function App() {
           <Route path="/proyecto/:id" element={<ProjectDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/diseno-web-:location" element={<DisenoWebLocation />} />
+          {seoLocations.map(loc => (
+            <Route key={loc.slug} path={`/diseno-web-${loc.slug}`} element={<DisenoWebLocation locationSlug={loc.slug} />} />
+          ))}
           <Route path="/pagina-web-gratis" element={<WebExpress />} />
           <Route path="/web-express" element={<Navigate to="/pagina-web-gratis" replace />} />
           <Route path="/contratar-web-express" element={<WebExpressCheckout />} />

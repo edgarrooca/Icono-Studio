@@ -52,9 +52,10 @@ import { portfolioProjects } from '../data/projects';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
-export default function DisenoWebLocation() {
-  const { location: locationSlug } = useParams();
-  const location = seoLocations.find(loc => loc.slug === locationSlug);
+export default function DisenoWebLocation({ locationSlug }: { locationSlug?: string }) {
+  const params = useParams();
+  const slug = locationSlug || params.location;
+  const location = seoLocations.find(loc => loc.slug === slug);
 
   if (!location) {
     return <Navigate to="/" replace />;
