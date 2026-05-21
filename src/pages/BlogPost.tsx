@@ -169,34 +169,35 @@ export default function BlogPost() {
             <span className="text-brand-blue">{post.tag}</span>
           </div>
 
-          {/* Title Section (Smaller Scale) */}
-          <div className="max-w-5xl mx-auto mb-16">
+          {/* Title Section (More Elegant) */}
+          <div className="max-w-4xl mx-auto mb-12 text-center">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display text-3xl sm:text-5xl md:text-6xl text-brand-dark uppercase tracking-tight leading-tighter mb-12"
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-brand-dark tracking-tight leading-[1.1] mb-10 text-balance"
             >
               {post.title}
             </motion.h1>
 
-            <div className="flex flex-wrap items-center gap-y-6 gap-x-12 border-y border-gray-100 py-10 w-full">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-brand-dark flex items-center justify-center text-brand-lime font-display text-lg">I</div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-black mb-1">Escrito por</p>
-                  <p className="text-base font-bold text-brand-dark">{post.author}</p>
+            <div className="flex flex-wrap items-center justify-center gap-y-6 gap-x-8 sm:gap-x-12 w-full">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-gray-100 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center">
+                  <img src="https://i.pravatar.cc/150?img=11" alt={post.author} className="w-full h-full object-cover" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Escrito por</p>
+                  <p className="text-sm font-bold text-brand-dark">{post.author}</p>
                 </div>
               </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-gray-400 font-black mb-1">Publicado el</p>
-                <p className="text-base font-bold text-brand-dark">{post.date}</p>
-              </div>
-              <div className="ml-auto hidden sm:flex gap-4">
-                 <button className="flex items-center gap-2 px-5 py-3 rounded-xl border border-gray-200 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors">
-                    <Copy size={16} /> Enlace
-                 </button>
-                 <div className="flex items-center gap-2">
-                 </div>
+              <div className="w-px h-10 bg-gray-200 hidden sm:block"></div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
+                  <Calendar size={20} />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Publicado el</p>
+                  <p className="text-sm font-bold text-brand-dark">{post.date}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -205,9 +206,9 @@ export default function BlogPost() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="max-w-5xl mx-auto mb-20 rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-100 border border-gray-50"
+            className="max-w-5xl mx-auto mb-20 rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-xl border border-gray-100 bg-white"
           >
-            <img src={post.image} alt={post.title} fetchpriority="high" decoding="async" className="w-full aspect-[21/9] object-cover" />
+            <img src={post.image} alt={post.title} fetchpriority="high" decoding="async" className="w-full aspect-[16/9] lg:aspect-[2/1] object-cover" />
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 xl:gap-24">
