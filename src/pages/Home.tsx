@@ -12,6 +12,8 @@ import SeoHead from '../components/SeoHead';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import { absoluteUrl, siteConfig } from '../lib/site';
 import { mergeAndDedupeProjects } from '../lib/projectUtils';
+import BudgetCalculator from '../components/BudgetCalculator';
+import MobileStickyCTA from '../components/MobileStickyCTA';
 
 // Gradient Blob Component for Hero
 const GradientBlob = ({ color, className, delay = 0 }: { color: string, className: string, delay?: number }) => (
@@ -184,6 +186,7 @@ const supportTeaserItems = [
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   
   const [projects, setProjects] = useState<any[]>(portfolioProjects);
   const [activeStep, setActiveStep] = useState(0);
@@ -314,6 +317,8 @@ export default function Home() {
       />
 
       <Navbar />
+      <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
+      <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
 
       {/* 1. HERO SECTION */}
       <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-brand-dark text-white z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-2xl">
@@ -353,19 +358,21 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <RouterLink 
-              to="/contacto" 
-              id="cta_hero_contact"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'cta_click',
-                'cta_id': 'hero_contact',
-                'cta_text': 'Pedir presupuesto',
-                'page_path': window.location.pathname
-              })}
-              className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto"
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                setIsCalculatorOpen(true);
+                (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'hero_calculator',
+                  'cta_text': 'Calcular precio web',
+                  'page_path': window.location.pathname
+                });
+              }}
+              className="bg-brand-lime text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:scale-105 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg shadow-brand-lime/20"
             >
-              Pedir presupuesto <ArrowRight size={20} />
-            </RouterLink>
+              Calcular precio web <ArrowRight size={20} />
+            </button>
             <RouterLink 
               to="/proyectos" 
               id="cta_hero_projects"
@@ -379,6 +386,26 @@ export default function Home() {
             >
               Ver proyectos
             </RouterLink>
+          </motion.div>
+
+          {/* Social Proof ATF */}
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+            className="mt-8 flex items-center gap-4 text-white/60 text-sm font-medium"
+          >
+            <div className="flex -space-x-2">
+              <div className="w-8 h-8 rounded-full border-2 border-brand-dark bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/100?img=1" alt="Cliente" className="w-full h-full object-cover" /></div>
+              <div className="w-8 h-8 rounded-full border-2 border-brand-dark bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/100?img=2" alt="Cliente" className="w-full h-full object-cover" /></div>
+              <div className="w-8 h-8 rounded-full border-2 border-brand-dark bg-gray-200 overflow-hidden"><img src="https://i.pravatar.cc/100?img=3" alt="Cliente" className="w-full h-full object-cover" /></div>
+            </div>
+            <div className="flex flex-col items-start text-left">
+              <div className="flex text-brand-lime mb-0.5">
+                {[1,2,3,4,5].map(i => <Star key={i} size={12} className="fill-current" />)}
+              </div>
+              <span className="text-xs">Más de 50 proyectos online</span>
+            </div>
           </motion.div>
         </div>
       </section>
