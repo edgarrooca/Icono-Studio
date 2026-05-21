@@ -487,7 +487,7 @@ export default function Home() {
       </section>
 
       {/* 2. SERVICIOS PRINCIPALES (SEO) */}
-      <section id="servicios" className="pt-14 sm:pt-16 md:pt-16 pb-8 sm:pb-10 md:pb-12 bg-white">
+      <section id="servicios" className="pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
@@ -501,13 +501,6 @@ export default function Home() {
             <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
               No hacemos webs de plantilla. Creamos activos digitales a medida diseñados para dominar Google y convertir visitas en clientes reales.
             </p>
-            <RouterLink
-              to="/pagina-web-gratis"
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue/15 bg-brand-blue/[0.03] px-5 py-3 text-[11px] font-black uppercase tracking-[0.22em] text-brand-blue transition-colors hover:bg-brand-blue hover:text-white"
-            >
-              Ver Web Express desde 8 €/mes
-              <ArrowRight size={16} />
-            </RouterLink>
           </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
