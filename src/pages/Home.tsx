@@ -425,6 +425,8 @@ export default function Home() {
                           alt={`${logo.name} icon`} 
                           className="h-7 sm:h-8 w-auto object-contain"
                           referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <span className="text-xl sm:text-2xl font-bold text-zinc-400 tracking-tight">{logo.name}</span>
                       </>
@@ -446,6 +448,8 @@ export default function Home() {
                       alt={`${tech.name} icon`} 
                       className="h-7 sm:h-8 w-auto object-contain"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <span className="text-xl sm:text-2xl font-bold text-zinc-400 tracking-tight">{tech.name}</span>
                   </div>
@@ -475,6 +479,13 @@ export default function Home() {
             <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
               No hacemos webs de plantilla. Creamos activos digitales a medida diseñados para dominar Google y convertir visitas en clientes reales.
             </p>
+            <RouterLink
+              to="/pagina-web-gratis"
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue/15 bg-brand-blue/[0.03] px-5 py-3 text-[11px] font-black uppercase tracking-[0.22em] text-brand-blue transition-colors hover:bg-brand-blue hover:text-white"
+            >
+              Ver Web Express desde 8 €/mes
+              <ArrowRight size={16} />
+            </RouterLink>
           </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -488,6 +499,8 @@ export default function Home() {
                 src="/lapiz.svg" 
                 alt="Diseño Web Valencia" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
@@ -517,6 +530,8 @@ export default function Home() {
                 src="/Teclado.svg" 
                 alt="Tienda Online" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
@@ -546,6 +561,8 @@ export default function Home() {
                 src="/seo.svg" 
                 alt="Posicionamiento SEO" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
@@ -617,6 +634,8 @@ export default function Home() {
                       alt={project.title}
                       className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
@@ -1146,7 +1165,7 @@ export default function Home() {
               className="group cursor-pointer"
             >
               <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
-                <img src={post.image} alt={post.title} className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
                 <div className="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full uppercase tracking-wider">
                   {post.tag}
                 </div>

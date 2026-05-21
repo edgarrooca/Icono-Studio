@@ -18,6 +18,7 @@ export const mainNavLinks: NavLink[] = [
       { name: 'Diseño Web Valencia', href: '/diseno-web-valencia' },
       { name: 'Diseño Web Barcelona', href: '/diseno-web-barcelona' },
       { name: 'Diseño Web Madrid', href: '/diseno-web-madrid' },
+      { name: 'Web Express', href: '/pagina-web-gratis' },
     ],
   },
   { name: 'Soporte web', href: '/hosting-mantenimiento-web' },

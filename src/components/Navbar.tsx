@@ -7,9 +7,10 @@ import { mainNavLinks, type NavLink } from '../data/navigation';
 interface NavbarProps {
   initialTheme?: 'transparent' | 'dark';
   ctaHref?: string;
+  ctaLabel?: string;
 }
 
-export default function Navbar({ initialTheme = 'transparent', ctaHref }: NavbarProps) {
+export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel = 'Presupuesto' }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -157,23 +158,39 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref }: Navbar
             {/* CTA & Mobile Toggle */}
             <div className="flex items-center gap-4 z-50">
               {ctaHref ? (
-                <a 
-                  href={ctaHref}
-                  id="cta_nav_budget"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    (window as any).dataLayer?.push({
+                ctaHref.startsWith('#') ? (
+                  <a 
+                    href={ctaHref}
+                    id="cta_nav_budget"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      (window as any).dataLayer?.push({
+                        'event': 'cta_click',
+                        'cta_id': 'nav_budget',
+                        'cta_text': `${ctaLabel} (Nav)`,
+                        'page_path': window.location.pathname
+                      });
+                      document.querySelector(ctaHref)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
+                  >
+                    {ctaLabel} <ArrowRight size={14} />
+                  </a>
+                ) : (
+                  <RouterLink 
+                    to={ctaHref}
+                    id="cta_nav_budget"
+                    onClick={() => (window as any).dataLayer?.push({
                       'event': 'cta_click',
                       'cta_id': 'nav_budget',
-                      'cta_text': 'Presupuesto (Nav)',
+                      'cta_text': `${ctaLabel} (Nav)`,
                       'page_path': window.location.pathname
-                    });
-                    document.querySelector(ctaHref)?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
-                >
-                  Presupuesto <ArrowRight size={14} />
-                </a>
+                    })}
+                    className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
+                  >
+                    {ctaLabel} <ArrowRight size={14} />
+                  </RouterLink>
+                )
               ) : (
                 <RouterLink 
                   to="/contacto" 
@@ -186,7 +203,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref }: Navbar
                   })}
                   className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
                 >
-                  Presupuesto <ArrowRight size={14} />
+                  {ctaLabel} <ArrowRight size={14} />
                 </RouterLink>
               )}
               

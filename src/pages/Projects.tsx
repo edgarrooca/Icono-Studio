@@ -203,6 +203,8 @@ export default function Projects() {
                       alt={project.title}
                       className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>

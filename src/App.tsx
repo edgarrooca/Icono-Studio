@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom';
 import AnalyticsTracker from './components/AnalyticsTracker';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import HashScrollHandler from './components/HashScrollHandler';
@@ -17,6 +17,10 @@ const GraciasPresupuesto = lazy(() => import('./pages/GraciasPresupuesto'));
 const DisenoWebValencia = lazy(() => import('./pages/DisenoWebValencia'));
 const DisenoWebBarcelona = lazy(() => import('./pages/DisenoWebBarcelona'));
 const DisenoWebMadrid = lazy(() => import('./pages/DisenoWebMadrid'));
+const WebExpress = lazy(() => import('./pages/WebExpress'));
+const WebExpressCheckout = lazy(() => import('./pages/WebExpressCheckout'));
+const WebExpressSuccess = lazy(() => import('./pages/WebExpressSuccess'));
+const CondicionesWebExpress = lazy(() => import('./pages/CondicionesWebExpress'));
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'));
 const PoliticaPrivacidad = lazy(() => import('./pages/PoliticaPrivacidad'));
 
@@ -38,6 +42,11 @@ export default function App() {
           <Route path="/diseno-web-valencia" element={<DisenoWebValencia />} />
           <Route path="/diseno-web-barcelona" element={<DisenoWebBarcelona />} />
           <Route path="/diseno-web-madrid" element={<DisenoWebMadrid />} />
+          <Route path="/pagina-web-gratis" element={<WebExpress />} />
+          <Route path="/web-express" element={<Navigate to="/pagina-web-gratis" replace />} />
+          <Route path="/contratar-web-express" element={<WebExpressCheckout />} />
+          <Route path="/gracias-web-express" element={<WebExpressSuccess />} />
+          <Route path="/condiciones-web-express" element={<CondicionesWebExpress />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/gracias-presupuesto" element={<GraciasPresupuesto />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />

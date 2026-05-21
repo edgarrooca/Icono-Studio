@@ -9,6 +9,14 @@ interface FooterProps {
 }
 
 export default function Footer({ hideCTA = false }: FooterProps) {
+  const footerNavLinks = mainNavLinks.flatMap((link) => {
+    if (link.children?.length) {
+      return link.children;
+    }
+
+    return link.href ? [{ name: link.name, href: link.href }] : [];
+  });
+
   return (
     <footer className={`bg-brand-dark text-white ${hideCTA ? 'pt-8' : 'pt-16 sm:pt-20'} pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full`}>
       {/* TRULY Edge-to-edge separator line - Forces width beyond parent containers */}
@@ -74,8 +82,8 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           <div className="text-center md:text-left">
             <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
             <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-              {mainNavLinks.map(link => (
-                <li key={link.name}>
+              {footerNavLinks.map((link) => (
+                <li key={link.href}>
                   <Link 
                     to={link.href} 
                     onClick={() => (window as any).dataLayer?.push({

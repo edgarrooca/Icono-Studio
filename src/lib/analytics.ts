@@ -702,6 +702,78 @@ export const submitLeadForm = async (formId: string, values: LeadFormValues) => 
   };
 };
 
+export const submitLeadFormWithFiles = async (
+  formId: string,
+  values: LeadFormValues,
+  files: Array<{ fieldName: string; file: File }> = []
+) => {
+  const payload = buildLeadPayload(formId, values);
+  const formData = new FormData();
+
+  Object.entries(payload).forEach(([key, value]) => {
+    formData.append(key, String(value ?? ''));
+  });
+
+  files.forEach(({ fieldName, file }) => {
+    formData.append(fieldName, file, file.name);
+  });
+
+  debugLog('[Icono Lead] submit_files:start', {
+    formId,
+    payload,
+    files: files.map(({ fieldName, file }) => ({
+      fieldName,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+    })),
+  });
+
+  const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.email}`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+    },
+    body: formData,
+  });
+
+  let data: LeadSubmitResponseBody | null = null;
+
+  try {
+    data = (await response.json()) as LeadSubmitResponseBody;
+  } catch {
+    data = null;
+  }
+
+  const formSubmitSuccess = data?.success;
+  const ok =
+    response.ok &&
+    formSubmitSuccess !== false &&
+    formSubmitSuccess !== 'false';
+
+  debugLog('[Icono Lead] submit_files:response', {
+    formId,
+    status: response.status,
+    ok,
+    data,
+  });
+
+  if (ok) {
+    trackLeadSubmission(formId, values);
+  } else {
+    trackEvent('form_submit_error', {
+      form_id: formId,
+      error_message: data?.message || `HTTP ${response.status}`,
+    });
+  }
+
+  return {
+    ok,
+    status: response.status,
+    data,
+  };
+};
+
 export const redirectToLeadThankYouPage = (formId: string) => {
   if (!isBrowser()) {
     return;

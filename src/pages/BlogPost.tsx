@@ -207,7 +207,7 @@ export default function BlogPost() {
             transition={{ delay: 0.2 }}
             className="max-w-5xl mx-auto mb-20 rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-100 border border-gray-50"
           >
-            <img src={post.image} alt={post.title} className="w-full aspect-[21/9] object-cover" />
+            <img src={post.image} alt={post.title} fetchpriority="high" decoding="async" className="w-full aspect-[21/9] object-cover" />
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 xl:gap-24">
@@ -319,7 +319,7 @@ export default function BlogPost() {
               <RouterLink to={`/blog/${p.slug}`} key={p.slug} className="group bg-white rounded-[2.5rem] p-5 shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                 <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-8 relative">
                    <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />
-                   <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                   <img src={p.image} alt={p.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
                 </div>
                 <div className="px-2">
                   <span className="text-[10px] font-bold text-brand-blue uppercase tracking-[0.2em] mb-4 block">{p.tag}</span>

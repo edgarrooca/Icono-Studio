@@ -258,6 +258,8 @@ export default function ProjectDetail() {
                   alt={`${project.title} preview`}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  fetchpriority="high"
+                  decoding="async"
                   onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}mobilepreview/1200/800`; }}
                 />
               </div>
@@ -282,6 +284,8 @@ export default function ProjectDetail() {
                   alt="PC mockup 1" 
                   className="w-full h-full object-cover" 
                   referrerPolicy="no-referrer" 
+                  fetchpriority="high"
+                  decoding="async"
                   onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}pc1/1200/800`; }}
                 />
               </motion.div>
@@ -306,6 +310,8 @@ export default function ProjectDetail() {
                   alt="PC mockup 2" 
                   className="w-full h-full object-cover" 
                   referrerPolicy="no-referrer" 
+                  fetchpriority="high"
+                  decoding="async"
                   onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}pc2/1200/800`; }}
                 />
               </motion.div>
@@ -378,6 +384,8 @@ export default function ProjectDetail() {
                   alt="Mockup" 
                   className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
                   referrerPolicy="no-referrer" 
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}reto/800/2400`; }}
                 />
               </div>
@@ -408,6 +416,8 @@ export default function ProjectDetail() {
                       alt={`Screen ${index + 1}`} 
                       className="w-full h-full object-cover object-top rounded-[1.2rem] md:rounded-[1.5rem]" 
                       referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}showcase${index}/600/1300`; }}
                     />
                   </motion.div>
@@ -432,6 +442,8 @@ export default function ProjectDetail() {
                       src={project.imgObj1} 
                       className="w-full h-full object-cover" 
                       referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}obj1/600/800`; }}
                     />
                   </div>
@@ -442,6 +454,8 @@ export default function ProjectDetail() {
                       src={project.imgObj2} 
                       className="w-full h-full object-cover" 
                       referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}obj2/600/800`; }}
                     />
                   </div>
@@ -529,6 +543,8 @@ export default function ProjectDetail() {
                         alt={rp.title} 
                         className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500"></div>
                     </div>

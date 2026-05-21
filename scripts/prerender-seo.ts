@@ -67,6 +67,33 @@ const supportFaqs = [
   },
 ];
 
+const webExpressFaqs = [
+  {
+    q: '¿La web es mía?',
+    a: 'Tus textos, imágenes, logo y dominio son tuyos. Web Express funciona como un servicio alojado y gestionado por Icono Studio, por lo que la web permanece activa mientras el plan esté contratado.',
+  },
+  {
+    q: '¿Puedo cancelar cuando quiera?',
+    a: 'Sí. El plan mensual no tiene permanencia. Si cancelas o no renuevas, la web deja de estar publicada.',
+  },
+  {
+    q: '¿Puedo llevarme la web a otro hosting?',
+    a: 'Web Express no incluye entrega del código ni migración. Si más adelante necesitas exportar o mover la web, podemos valorarlo como servicio aparte.',
+  },
+  {
+    q: '¿Cuánto tarda en estar lista?',
+    a: 'Cuando recibimos la información básica del negocio, solemos preparar la web en pocos días laborables.',
+  },
+  {
+    q: '¿Incluye dominio?',
+    a: 'El hosting y el SSL sí están incluidos. El dominio es opcional y lo gestionamos aparte por 20 € + IVA al año para extensiones estándar como .es o .com.',
+  },
+  {
+    q: '¿Y si necesito algo más completo?',
+    a: 'Si tu proyecto necesita una web personalizada, varias páginas, tienda online o funcionalidades específicas, podemos prepararte una propuesta a medida.',
+  },
+];
+
 const escapeHtml = (value: string) =>
   value
     .replaceAll('&', '&amp;')
@@ -314,6 +341,88 @@ const staticRoutes: RouteMeta[] = [
         buildFaqSchema(supportFaqs),
       ],
     },
+  },
+  {
+    path: '/pagina-web-gratis',
+    title: 'Página web profesional desde 8 €/mes | Web Express | Icono Studio',
+    description: 'Web Express es una página web profesional para negocios, autónomos y marcas locales desde 8 €/mes, con hosting, SSL, versión móvil y gestión de dominio disponible.',
+    type: 'service',
+    priority: '0.92',
+    lastmod: buildDate,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Service',
+          name: 'Web Express | Icono Studio',
+          url: absoluteUrl('/pagina-web-gratis'),
+          description:
+            'Página web profesional para negocios, autónomos y marcas locales desde 8 €/mes, con hosting, SSL, versión móvil y gestión de dominio disponible.',
+          image: absoluteUrl(siteConfig.defaultOgImage),
+          areaServed: ['España'],
+          serviceType: [
+            'Página web profesional',
+            'Web para autónomos',
+            'Web para negocios locales',
+          ],
+          provider: {
+            '@type': 'Organization',
+            name: siteConfig.name,
+            url: siteConfig.url,
+            email: siteConfig.email,
+            telephone: siteConfig.phoneDisplay,
+          },
+          offers: [
+            {
+              '@type': 'Offer',
+              name: 'Web Express anual',
+              priceCurrency: 'EUR',
+              price: '96',
+              description: 'Pago anual de 96 € + IVA. Equivale a 8 € al mes.',
+              url: absoluteUrl('/pagina-web-gratis#planes'),
+            },
+            {
+              '@type': 'Offer',
+              name: 'Web Express mensual',
+              priceCurrency: 'EUR',
+              price: '12',
+              description: 'Pago mensual de 12 € + IVA sin permanencia.',
+              url: absoluteUrl('/pagina-web-gratis#planes'),
+            },
+            {
+              '@type': 'Offer',
+              name: 'Dominio gestionado',
+              priceCurrency: 'EUR',
+              price: '20',
+              description: 'Registro, renovación y conexión del dominio para extensiones estándar.',
+              url: absoluteUrl('/pagina-web-gratis#dominio'),
+            },
+          ],
+        },
+        buildFaqSchema(webExpressFaqs),
+      ],
+    },
+  },
+  {
+    path: '/contratar-web-express',
+    title: 'Contratar Web Express | Icono Studio',
+    description: 'Completa tus datos y continúa al pago seguro de Web Express.',
+    robots: 'noindex,nofollow',
+    includeInSitemap: false,
+  },
+  {
+    path: '/gracias-web-express',
+    title: 'Pago de Web Express | Icono Studio',
+    description: 'Confirmación del pago y activación de Web Express.',
+    robots: 'noindex,nofollow',
+    includeInSitemap: false,
+  },
+  {
+    path: '/condiciones-web-express',
+    title: 'Condiciones del servicio Web Express | Icono Studio',
+    description: 'Condiciones del servicio Web Express de Icono Studio.',
+    robots: 'noindex,nofollow',
+    includeInSitemap: false,
   },
   {
     path: '/proyectos',
