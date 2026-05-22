@@ -323,15 +323,18 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
         
-        {/* Animated Gradient Background for Light Theme */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <GradientBlob color="bg-brand-blue/10" className="w-[600px] h-[600px] -top-48 -left-24" delay={0} />
-          <GradientBlob color="bg-blue-300/20" className="w-[500px] h-[500px] top-1/2 -right-24" delay={2} />
+        {/* Background Gradients & Pixel Dot Matrix */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#FAFAFA]">
+          <GradientBlob color="bg-brand-blue/15" className="w-[600px] h-[600px] -top-32 -right-32" delay={0} />
+          <GradientBlob color="bg-blue-300/20" className="w-[500px] h-[500px] top-1/4 -left-32" delay={2} />
           <GradientBlob color="bg-brand-lime/20" className="w-[400px] h-[400px] bottom-0 left-1/4" delay={5} />
+          
+          {/* Pixel Dot Matrix Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-[0.2]"></div>
+          
+          {/* Smooth Fade Out to White */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
         </div>
-        
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] bg-[url('/blueprint.png')] mix-blend-multiply pointer-events-none"></div>
         
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
           <motion.h1 
@@ -394,14 +397,12 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-            className="mt-8 flex items-center gap-3 text-gray-700 text-sm font-medium bg-white/80 border border-gray-200 px-4 py-2 rounded-full backdrop-blur-md shadow-sm"
+            className="mt-6 flex flex-wrap justify-center items-center gap-2 text-xs text-gray-500 font-medium"
           >
             <div className="flex text-yellow-500">
               {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
             </div>
-            <span className="text-xs sm:text-sm font-bold text-brand-dark">5.0 en Google Reviews</span>
-            <span className="hidden sm:inline text-gray-300">|</span>
-            <span className="hidden sm:inline text-xs sm:text-sm text-brand-blue">Clientes 100% satisfechos</span>
+            <span>5.0 de 5 en reseñas de clientes</span>
           </motion.div>
         </div>
       </section>
