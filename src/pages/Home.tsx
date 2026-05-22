@@ -338,7 +338,7 @@ export default function Home() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
+            className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[5.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
           >
             Hacemos webs <br/>
             <span className="text-brand-blue">que venden</span>
@@ -348,7 +348,7 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="text-lg md:text-xl max-w-2xl text-gray-700 font-medium mb-8"
+            className="text-lg md:text-xl max-w-2xl text-gray-600 font-normal mb-8 leading-relaxed"
           >
             Creamos el diseño web de tu negocio y lo optimizamos para SEO, sin complicaciones técnicas para ti. Tú te enfocas en tus clientes, nosotros en que tu web funcione.
           </motion.p>
