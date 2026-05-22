@@ -20,13 +20,13 @@ const GradientBlob = ({ color, className, delay = 0 }: { color: string, classNam
   <motion.div
     initial={{ opacity: 0, scale: 0.8 }}
     animate={{ 
-      opacity: [0.15, 0.3, 0.15],
-      scale: [1, 1.2, 1],
-      x: [0, 50, 0],
-      y: [0, 30, 0],
+      opacity: [0.4, 0.8, 0.4],
+      scale: [1, 1.4, 1],
+      x: [0, 100, 0],
+      y: [0, 60, 0],
     }}
     transition={{ 
-      duration: 10, 
+      duration: 12, 
       repeat: Infinity, 
       ease: "easeInOut",
       delay 
