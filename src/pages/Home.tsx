@@ -338,7 +338,7 @@ export default function Home() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
+            className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
           >
             Hacemos webs <br/>
             <span className="text-brand-blue italic">que venden</span>

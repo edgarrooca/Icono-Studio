@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Karla", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Lora", ui-serif, Georgia, serif;
   
   --color-brand-blue: #0A36E8;
@@ -60,7 +60,7 @@
   .ui-section-title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3.6rem);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 0.98;
     text-transform: uppercase;
