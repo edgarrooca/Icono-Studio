@@ -316,7 +316,7 @@ export default function Home() {
         schema={homeSchema}
       />
 
-      <Navbar />
+      <Navbar initialTheme="light" />
       <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
       <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
 

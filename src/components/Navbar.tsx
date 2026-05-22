@@ -5,7 +5,7 @@ import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
 import { mainNavLinks, type NavLink } from '../data/navigation';
 
 interface NavbarProps {
-  initialTheme?: 'transparent' | 'dark';
+  initialTheme?: 'transparent' | 'dark' | 'light';
   ctaHref?: string;
   ctaLabel?: string;
 }
@@ -28,6 +28,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
   // Determine if we should show the solid background
   // If initialTheme is dark, it's ALWAYS solid
   const isSolid = initialTheme === 'dark' || isScrolled;
+  const isTransparentLight = initialTheme === 'light' && !isScrolled;
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -65,20 +66,20 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
   };
 
   const desktopLinkClass = (active: boolean) =>
-    `transition-colors uppercase ${active ? 'text-brand-lime' : 'hover:text-brand-lime text-white/80'}`;
+    `transition-colors uppercase ${active ? 'text-brand-lime' : isTransparentLight ? 'hover:text-brand-lime text-brand-dark/80 font-bold' : 'hover:text-brand-lime text-white/80'}`;
 
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isSolid ? 'py-4' : 'py-6'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isSolid ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg text-white border border-white/5' : 'bg-transparent text-white'}`}>
+          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isSolid ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg text-white border border-white/5' : isTransparentLight ? 'bg-transparent text-brand-dark' : 'bg-transparent text-white'}`}>
             
             {/* Logo */}
             <RouterLink to="/" className="flex items-center gap-2 z-50 transition-transform hover:scale-105">
               <img 
                 src="/icono-studio-logo.png" 
                 alt="Icono Studio" 
-                className="h-8 sm:h-10 w-auto object-contain brightness-0 invert" 
+                className={`h-8 sm:h-10 w-auto object-contain ${isTransparentLight ? '' : 'brightness-0 invert'}`} 
               />
             </RouterLink>
             
@@ -208,7 +209,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
               )}
               
               <button 
-                className="lg:hidden p-2 text-white"
+                className={`lg:hidden p-2 ${isTransparentLight ? 'text-brand-dark' : 'text-white'}`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Menu"
               >
