@@ -324,11 +324,9 @@ export default function Home() {
       <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
         
         {/* Beautiful Gradient Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-blue-50/80 via-white to-zinc-50">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-blue-100/50 via-white to-zinc-100/50">
           <GradientBlob color="bg-brand-blue/15" className="w-[700px] h-[700px] -top-40 -right-40" delay={0} />
-          <GradientBlob color="bg-brand-lime/10" className="w-[500px] h-[500px] top-1/3 -left-32" delay={2} />
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
+          <GradientBlob color="bg-brand-lime/15" className="w-[500px] h-[500px] top-1/3 -left-32" delay={2} />
         </div>
         
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
@@ -348,7 +346,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             className="text-base sm:text-lg max-w-xl text-gray-500 font-medium mb-8 leading-relaxed mx-auto"
           >
-            Diseño web optimizado para SEO, sin complicaciones técnicas. Tú te enfocas en tus clientes, nosotros en que tu web funcione y venda.
+            Diseño web optimizado para SEO, sin complicaciones técnicas. Tú te enfocas en tus clientes, nosotros en que tu web venda.
           </motion.p>
           
           <motion.div 
