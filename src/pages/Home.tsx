@@ -588,12 +588,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-12 md:mb-16 gap-8 sm:gap-10 text-center lg:text-left">
             <div className="max-w-2xl shrink-0 flex flex-col items-center lg:items-start">
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-                <span className="text-brand-dark font-black text-[10px] uppercase tracking-[0.2em]">
-                  TRABAJOS DESTACADOS
-                </span>
-              </div>
-              <div className="w-12 h-[2px] bg-brand-lime mb-8"></div>
+
               <h2 className="ui-section-title text-brand-dark mb-4">Proyectos recientes</h2>
             </div>
             <RouterLink
@@ -1187,12 +1182,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-12 lg:gap-16 items-start">
               <div className="lg:sticky lg:top-32 flex flex-col items-center text-center lg:items-start lg:text-left">
-                <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-                  <span className="text-brand-lime font-black text-[10px] uppercase tracking-[0.2em]">
-                    TU PRÓXIMO PASO
-                  </span>
-                </div>
-                <div className="w-12 h-[2px] bg-brand-lime mb-6"></div>
+
                 <h2 className="ui-section-title text-white mb-8">
                   TU NUEVA WEB <br />
                   <span className="text-brand-lime italic font-normal">EMPIEZA AQUÍ</span>
