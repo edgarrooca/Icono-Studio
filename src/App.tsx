@@ -22,6 +22,7 @@ const WebExpressSuccess = lazy(() => import('./pages/WebExpressSuccess'));
 const CondicionesWebExpress = lazy(() => import('./pages/CondicionesWebExpress'));
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'));
 const PoliticaPrivacidad = lazy(() => import('./pages/PoliticaPrivacidad'));
+const Pricing = lazy(() => import('./pages/Pricing'));
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/proyectos" element={<Projects />} />
+          <Route path="/precios" element={<Pricing />} />
           <Route path="/hosting-mantenimiento-web" element={<HostingMaintenance />} />
           <Route path="/proyecto/:id" element={<ProjectDetail />} />
           <Route path="/blog" element={<Blog />} />

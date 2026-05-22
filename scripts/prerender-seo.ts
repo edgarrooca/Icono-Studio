@@ -299,6 +299,30 @@ const staticRoutes: RouteMeta[] = [
     },
   },
   {
+    path: '/precios',
+    title: 'Precios Diseño Web | Icono Studio',
+    description: 'Descubre nuestros planes de diseño web corporativo, landing pages y tiendas online. Tarifas claras, transparentes y orientadas a resultados para tu negocio.',
+    priority: '0.90',
+    lastmod: buildDate,
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Service',
+          name: 'Planes y Precios de Diseño Web | Icono Studio',
+          url: absoluteUrl('/precios'),
+          description: 'Tarifas claras para Landing Pages, Webs Corporativas y Tiendas Online.',
+          provider: {
+            '@type': 'Organization',
+            name: siteConfig.name,
+            url: siteConfig.url,
+          },
+          image: absoluteUrl(siteConfig.defaultOgImage),
+        },
+      ],
+    },
+  },
+  {
     path: '/pagina-web-gratis',
     title: 'Página web profesional desde 8 €/mes | Web Express | Icono Studio',
     description: 'Web Express es una página web profesional para negocios, autónomos y marcas locales desde 8 €/mes, con hosting, SSL, versión móvil y gestión de dominio disponible.',

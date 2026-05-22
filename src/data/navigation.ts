@@ -26,5 +26,6 @@ export const mainNavLinks: NavLink[] = [
   },
   { name: 'Soporte web', href: '/hosting-mantenimiento-web' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Precios', href: '/precios' },
   { name: 'Contacto', href: '/contacto' },
 ];
