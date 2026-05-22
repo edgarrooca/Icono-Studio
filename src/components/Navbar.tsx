@@ -65,8 +65,10 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
     return link.href ? isHrefActive(link.href) : false;
   };
 
-  const desktopLinkClass = (active: boolean) =>
-    `transition-colors uppercase ${active ? 'text-brand-lime' : isTransparentLight ? 'hover:text-brand-lime text-brand-dark/80 font-bold' : 'hover:text-brand-lime text-white/80'}`;
+  const desktopLinkClass = (active: boolean) => {
+    if (active) return `transition-colors uppercase font-bold ${isTransparentLight ? 'text-brand-blue' : 'text-brand-lime'}`;
+    return `transition-colors uppercase font-bold ${isTransparentLight ? 'text-brand-dark hover:text-brand-blue' : 'hover:text-brand-lime text-white/80'}`;
+  };
 
   return (
     <>
@@ -79,7 +81,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
               <img 
                 src="/icono-studio-logo.png" 
                 alt="Icono Studio" 
-                className={`h-8 sm:h-10 w-auto object-contain ${isTransparentLight ? '' : 'brightness-0 invert'}`} 
+                className={`h-8 sm:h-10 w-auto object-contain ${isTransparentLight ? 'brightness-0 opacity-90' : 'brightness-0 invert'}`} 
               />
             </RouterLink>
             
