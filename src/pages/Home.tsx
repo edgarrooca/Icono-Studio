@@ -672,10 +672,7 @@ export default function Home() {
       <section className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-              <span className="ui-eyebrow text-brand-dark">Metodología</span>
-            </div>
-            <div className="ui-divider mb-6 mx-auto lg:mx-0"></div>
+
             <h2 className="ui-section-title text-brand-dark mb-5">
                 Cómo trabajamos <br className="hidden md:block" />
                 <span className="italic font-normal">tu proyecto</span>
@@ -758,10 +755,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 md:gap-12 text-center lg:text-left">
             <div className="md:w-2/3 flex flex-col items-center lg:items-start">
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-                <span className="ui-eyebrow text-brand-dark">Testimonios</span>
-              </div>
-              <div className="ui-divider mb-6"></div>
+
               <h2 className="ui-section-title text-brand-dark">
                 Lo que dicen <br className="hidden sm:block" />
                 <span className="italic font-normal">nuestros clientes</span>
@@ -838,10 +832,7 @@ export default function Home() {
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-5 sm:gap-6 lg:gap-8 items-center">
               <div className="max-w-xl mx-auto lg:mx-0 flex flex-col items-center text-center lg:items-start lg:text-left">
-                <div className="flex flex-col items-center lg:items-start">
-                  <span className="ui-eyebrow text-brand-dark mb-3">Hosting y soporte</span>
-                  <div className="ui-divider mb-5"></div>
-                </div>
+
 
                 <h2 className="ui-section-title text-brand-dark mb-4">
                   Tu web, siempre en buenas manos
@@ -913,10 +904,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
-            <div className="flex flex-col items-center">
-              <span className="ui-eyebrow text-brand-dark mb-4">Dudas resueltas</span>
-              <div className="ui-divider mb-6"></div>
-            </div>
+
             <h2 className="ui-section-title text-brand-dark mb-6">
               Preguntas <span className="italic font-normal">frecuentes</span>
             </h2>
@@ -964,10 +952,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-6 mb-12 md:mb-16 text-center lg:text-left">
             <div className="max-w-3xl flex flex-col items-center lg:items-start">
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-                <span className="ui-eyebrow text-brand-dark">Novedades</span>
-              </div>
-              <div className="ui-divider mb-6"></div>
+
               <h2 className="ui-section-title text-brand-dark mb-4">Blog</h2>
               <p className="ui-section-copy max-w-2xl">
                 Contenido pensado para ayudarte a entender mejor qué necesita una web para captar clientes y crecer con más claridad.
