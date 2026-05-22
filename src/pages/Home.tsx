@@ -321,17 +321,24 @@ export default function Home() {
       <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
 
       {/* 1. HERO SECTION */}
-      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-[#F2F6F7] text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
-        {/* Soft Light Gradient Background (Similar to Hosting Section) */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_26%)] pointer-events-none"></div>
-        <div className="absolute -top-20 right-0 w-96 h-96 bg-white/80 rounded-full blur-3xl pointer-events-none"></div>
+      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
+        
+        {/* Animated Gradient Background for Light Theme */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <GradientBlob color="bg-brand-blue/10" className="w-[600px] h-[600px] -top-48 -left-24" delay={0} />
+          <GradientBlob color="bg-blue-300/20" className="w-[500px] h-[500px] top-1/2 -right-24" delay={2} />
+          <GradientBlob color="bg-brand-lime/20" className="w-[400px] h-[400px] bottom-0 left-1/4" delay={5} />
+        </div>
+        
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('/blueprint.png')] mix-blend-multiply pointer-events-none"></div>
         
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
           <motion.h1 
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.5rem] leading-[0.95] tracking-tighter uppercase mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[4.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
           >
             Hacemos webs <br/>
             <span className="text-brand-blue italic">que venden</span>
@@ -341,7 +348,7 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="text-lg md:text-xl max-w-2xl text-gray-600 font-medium mb-8"
+            className="text-lg md:text-xl max-w-2xl text-gray-700 font-medium mb-8"
           >
             Creamos el diseño web de tu negocio y lo optimizamos para SEO, sin complicaciones técnicas para ti. Tú te enfocas en tus clientes, nosotros en que tu web funcione.
           </motion.p>
@@ -387,9 +394,9 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-            className="mt-8 flex items-center gap-3 text-gray-600 text-sm font-medium bg-white/60 border border-gray-200 px-4 py-2 rounded-full backdrop-blur-sm"
+            className="mt-8 flex items-center gap-3 text-gray-700 text-sm font-medium bg-white/80 border border-gray-200 px-4 py-2 rounded-full backdrop-blur-md shadow-sm"
           >
-            <div className="flex text-yellow-400">
+            <div className="flex text-yellow-500">
               {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
             </div>
             <span className="text-xs sm:text-sm font-bold text-brand-dark">5.0 en Google Reviews</span>
