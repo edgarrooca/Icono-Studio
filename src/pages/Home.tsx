@@ -323,16 +323,11 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
         
-        {/* Background Gradients & Pixel Dot Matrix */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#FAFAFA]">
-          <GradientBlob color="bg-brand-blue/15" className="w-[600px] h-[600px] -top-32 -right-32" delay={0} />
-          <GradientBlob color="bg-blue-300/20" className="w-[500px] h-[500px] top-1/4 -left-32" delay={2} />
-          <GradientBlob color="bg-brand-lime/20" className="w-[400px] h-[400px] bottom-0 left-1/4" delay={5} />
-          
-          {/* Pixel Dot Matrix Overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.5px,transparent_1.5px)] [background-size:32px_32px] opacity-[0.2]"></div>
-          
-          {/* Smooth Fade Out to White */}
+        {/* Beautiful Gradient Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-blue-50/80 via-white to-zinc-50">
+          <GradientBlob color="bg-brand-blue/15" className="w-[700px] h-[700px] -top-40 -right-40" delay={0} />
+          <GradientBlob color="bg-brand-lime/10" className="w-[500px] h-[500px] top-1/3 -left-32" delay={2} />
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
         </div>
         
@@ -351,9 +346,9 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="text-lg md:text-xl max-w-2xl text-gray-600 font-normal mb-8 leading-relaxed"
+            className="text-base sm:text-lg max-w-xl text-gray-500 font-medium mb-8 leading-relaxed mx-auto"
           >
-            Creamos el diseño web de tu negocio y lo optimizamos para SEO, sin complicaciones técnicas para ti. Tú te enfocas en tus clientes, nosotros en que tu web funcione.
+            Diseño web optimizado para SEO, sin complicaciones técnicas. Tú te enfocas en tus clientes, nosotros en que tu web funcione y venda.
           </motion.p>
           
           <motion.div 
