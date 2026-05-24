@@ -20,32 +20,40 @@ export default function SalesNotification() {
   useEffect(() => {
     if (hasDismissed) return;
 
-    // Wait a bit before showing the first one
-    const initialDelay = setTimeout(() => {
-      showRandomNotification();
-    }, 5000);
+    let showTimeout: NodeJS.Timeout;
+    let hideTimeout: NodeJS.Timeout;
 
-    return () => clearTimeout(initialDelay);
+    const scheduleNext = () => {
+      const delay = Math.floor(Math.random() * (15000 - 8000 + 1)) + 8000; // 8 to 15 seconds
+      showTimeout = setTimeout(() => {
+        const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
+        setCurrentNotification(randomNotif);
+        setIsVisible(true);
+
+        hideTimeout = setTimeout(() => {
+          setIsVisible(false);
+          scheduleNext();
+        }, 5000);
+      }, delay);
+    };
+
+    // First notification after 3 seconds
+    showTimeout = setTimeout(() => {
+      const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
+      setCurrentNotification(randomNotif);
+      setIsVisible(true);
+
+      hideTimeout = setTimeout(() => {
+        setIsVisible(false);
+        scheduleNext();
+      }, 5000);
+    }, 3000);
+
+    return () => {
+      clearTimeout(showTimeout);
+      clearTimeout(hideTimeout);
+    };
   }, [hasDismissed]);
-
-  const showRandomNotification = () => {
-    if (hasDismissed) return;
-    
-    const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
-    setCurrentNotification(randomNotif);
-    setIsVisible(true);
-
-    // Hide after 5 seconds
-    setTimeout(() => {
-      setIsVisible(false);
-      
-      // Schedule next one between 15 and 30 seconds later
-      if (!hasDismissed) {
-        const nextDelay = Math.floor(Math.random() * (30000 - 15000 + 1)) + 15000;
-        setTimeout(showRandomNotification, nextDelay);
-      }
-    }, 5000);
-  };
 
   if (hasDismissed) return null;
 
