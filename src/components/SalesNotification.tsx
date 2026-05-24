@@ -68,15 +68,15 @@ export default function SalesNotification() {
           className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 pointer-events-auto"
         >
           <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 p-3 sm:p-4 pr-10 flex items-center gap-3 sm:gap-4 max-w-[320px] sm:max-w-sm relative overflow-hidden group">
-            {/* Pulsing indicator */}
-            <div className="absolute top-0 left-0 w-1 h-full bg-brand-lime"></div>
+            {/* Left border indicator */}
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-blue"></div>
             
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#F2F6F7] rounded-full flex items-center justify-center shrink-0 border border-brand-lime/20 relative">
-              <CheckCircle2 size={20} className="text-brand-blue" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-brand-blue rounded-full flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(10,54,232,0.4)] relative">
+              <CheckCircle2 size={22} className="text-white" />
               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
                 </span>
               </div>
             </div>
