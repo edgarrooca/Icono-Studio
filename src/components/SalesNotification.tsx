@@ -2,18 +2,29 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, X } from 'lucide-react';
 
-const notifications = [
-  { name: 'María', location: 'Madrid', action: 'acaba de contratar el Plan Corporativo' },
-  { name: 'Carlos', location: 'Valencia', action: 'ha solicitado presupuesto a medida' },
-  { name: 'Elena', location: 'Barcelona', action: 'acaba de contratar una Landing Page' },
-  { name: 'Javier', location: 'Sevilla', action: 'está diseñando su nueva Tienda Online' },
-  { name: 'Laura', location: 'Bilbao', action: 'acaba de renovar su plan de Mantenimiento' },
-  { name: 'David', location: 'Alicante', action: 'ha contratado el Plan Corporativo' },
-  { name: 'Sofía', location: 'Zaragoza', action: 'ha solicitado presupuesto a medida' },
+const names = ['María', 'Carlos', 'Elena', 'Javier', 'Laura', 'David', 'Sofía', 'Alejandro', 'Carmen', 'Daniel', 'Marta', 'Pablo', 'Ana', 'Hugo', 'Lucía', 'Diego', 'Paula'];
+const locations = ['Madrid', 'Valencia', 'Barcelona', 'Sevilla', 'Bilbao', 'Alicante', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Vigo', 'Gijón', 'Granada', 'A Coruña'];
+const actions = [
+  'acaba de contratar el Plan Corporativo',
+  'ha solicitado presupuesto a medida',
+  'acaba de contratar una Landing Page',
+  'está diseñando su nueva Tienda Online',
+  'acaba de renovar su plan de Mantenimiento',
+  'ha contratado el Plan Landing',
+  'ha reservado una consultoría web',
+  'está empezando su proyecto web con nosotros',
+  'ha contratado el servicio Web Express',
+  'acaba de empezar su e-commerce'
 ];
 
+interface Notification {
+  name: string;
+  location: string;
+  action: string;
+}
+
 export default function SalesNotification() {
-  const [currentNotification, setCurrentNotification] = useState<typeof notifications[0] | null>(null);
+  const [currentNotification, setCurrentNotification] = useState<Notification | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasDismissed, setHasDismissed] = useState(false);
 
@@ -22,12 +33,25 @@ export default function SalesNotification() {
 
     let showTimeout: NodeJS.Timeout;
     let hideTimeout: NodeJS.Timeout;
+    let lastGeneratedName = '';
+
+    const getRandomNotification = (): Notification => {
+      let randomName = '';
+      do {
+        randomName = names[Math.floor(Math.random() * names.length)];
+      } while (randomName === lastGeneratedName);
+      
+      lastGeneratedName = randomName;
+      const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+      const randomAction = actions[Math.floor(Math.random() * actions.length)];
+      
+      return { name: randomName, location: randomLocation, action: randomAction };
+    };
 
     const scheduleNext = () => {
       const delay = Math.floor(Math.random() * (15000 - 8000 + 1)) + 8000; // 8 to 15 seconds
       showTimeout = setTimeout(() => {
-        const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
-        setCurrentNotification(randomNotif);
+        setCurrentNotification(getRandomNotification());
         setIsVisible(true);
 
         hideTimeout = setTimeout(() => {
@@ -39,8 +63,7 @@ export default function SalesNotification() {
 
     // First notification after 3 seconds
     showTimeout = setTimeout(() => {
-      const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
-      setCurrentNotification(randomNotif);
+      setCurrentNotification(getRandomNotification());
       setIsVisible(true);
 
       hideTimeout = setTimeout(() => {
