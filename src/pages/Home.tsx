@@ -390,12 +390,24 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-            className="mt-6 flex flex-wrap justify-center items-center gap-2 text-xs text-gray-500 font-medium"
+            className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4 text-xs text-gray-500 font-medium"
           >
-            <div className="flex text-yellow-500">
-              {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
+            <div className="flex items-center gap-2">
+              <div className="flex text-yellow-500">
+                {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
+              </div>
+              <span>5.0 de 5 en reseñas de clientes</span>
             </div>
-            <span>5.0 de 5 en reseñas de clientes</span>
+
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-300"></div>
+
+            <div className="flex items-center gap-2 text-brand-dark font-semibold bg-white/50 px-3 py-1.5 rounded-full border border-gray-200">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+              </span>
+              14 personas están solicitando presupuesto
+            </div>
           </motion.div>
         </div>
       </section>

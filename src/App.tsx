@@ -4,6 +4,7 @@ import AnalyticsTracker from './components/AnalyticsTracker';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import HashScrollHandler from './components/HashScrollHandler';
 import WhatsAppButton from './components/WhatsAppButton';
+import SalesNotification from './components/SalesNotification';
 import { seoLocations } from './data/seoLocations';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -31,6 +32,7 @@ export default function App() {
       <HashScrollHandler />
       <WhatsAppButton />
       <CookieConsentBanner />
+      <SalesNotification />
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
