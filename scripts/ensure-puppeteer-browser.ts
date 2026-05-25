@@ -6,11 +6,16 @@ import puppeteer from 'puppeteer';
 
 const rootDir = process.cwd();
 const puppeteerCacheDir = process.env.PUPPETEER_CACHE_DIR || path.join(rootDir, '.cache', 'puppeteer');
+const useHeadlessShell = process.env.PUPPETEER_HEADLESS_MODE === 'shell' || process.env.VERCEL === '1';
 
 process.env.PUPPETEER_CACHE_DIR = puppeteerCacheDir;
 
+async function resolveExpectedExecutablePath() {
+  return useHeadlessShell ? puppeteer.executablePath({ headless: 'shell' }) : puppeteer.executablePath();
+}
+
 async function browserExists() {
-  const executablePath = await Promise.resolve(puppeteer.executablePath());
+  const executablePath = await resolveExpectedExecutablePath();
 
   try {
     await access(executablePath, constants.X_OK);
@@ -22,16 +27,16 @@ async function browserExists() {
 
 async function installBrowser() {
   await mkdir(puppeteerCacheDir, { recursive: true });
-
-  const cliName = process.platform === 'win32' ? 'puppeteer.cmd' : 'puppeteer';
-  const cliPath = path.join(rootDir, 'node_modules', '.bin', cliName);
+  const browserToInstall = useHeadlessShell ? 'chrome-headless-shell' : 'chrome';
+  const cliPath = path.join(rootDir, 'node_modules', 'puppeteer', 'lib', 'puppeteer', 'node', 'cli.js');
 
   await new Promise<void>((resolve, reject) => {
-    const child = spawn(cliPath, ['browsers', 'install', 'chrome'], {
+    const child = spawn(process.execPath, [cliPath, 'browsers', 'install', browserToInstall], {
       stdio: 'inherit',
       env: {
         ...process.env,
         PUPPETEER_CACHE_DIR: puppeteerCacheDir,
+        PUPPETEER_SKIP_DOWNLOAD: 'false',
       },
     });
 
@@ -42,7 +47,7 @@ async function installBrowser() {
         return;
       }
 
-      reject(new Error(`La instalación de Chrome para Puppeteer terminó con código ${code ?? 'desconocido'}.`));
+      reject(new Error(`La instalación de ${browserToInstall} para Puppeteer terminó con código ${code ?? 'desconocido'}.`));
     });
   });
 }

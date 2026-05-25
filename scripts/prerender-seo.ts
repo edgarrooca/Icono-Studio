@@ -32,6 +32,7 @@ const templatePath = path.join(distDir, 'index.html');
 const buildDate = new Date().toISOString();
 const prerenderUserAgent = 'IconoPrerender/1.0';
 const puppeteerCacheDir = process.env.PUPPETEER_CACHE_DIR || path.join(rootDir, '.cache', 'puppeteer');
+const useHeadlessShell = process.env.PUPPETEER_HEADLESS_MODE === 'shell' || process.env.VERCEL === '1';
 
 process.env.PUPPETEER_CACHE_DIR = puppeteerCacheDir;
 
@@ -547,7 +548,9 @@ function buildSitemapXml(routes: RouteMeta[]) {
 }
 
 async function resolveChromeExecutablePath() {
-  const executablePath = await Promise.resolve(puppeteer.executablePath());
+  const executablePath = await (useHeadlessShell
+    ? puppeteer.executablePath({ headless: 'shell' })
+    : puppeteer.executablePath());
   await access(executablePath, constants.X_OK);
   return executablePath;
 }
@@ -581,7 +584,7 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
     }
 
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: useHeadlessShell ? 'shell' : true,
       executablePath: await resolveChromeExecutablePath(),
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     });
