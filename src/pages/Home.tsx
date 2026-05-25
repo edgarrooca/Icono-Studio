@@ -3,17 +3,17 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart, Send, Heart } from 'lucide-react';
 import { portfolioProjects, Project } from '../data/projects';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
 import { blogPosts } from '../data/blog';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { mergeAndDedupeProjects } from '../lib/projectUtils';
+import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
 import BudgetCalculator from '../components/BudgetCalculator';
 import MobileStickyCTA from '../components/MobileStickyCTA';
+import { loadMergedProjects } from '../lib/publicProjects';
+import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
 
 // Gradient Blob Component for Hero
 const GradientBlob = ({ color, className, delay = 0 }: { color: string, className: string, delay?: number }) => (
@@ -243,18 +243,14 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const fetchFirebaseData = async () => {
-      try {
-        const projectsSnapshot = await getDocs(collection(db, 'projects'));
-        if (!projectsSnapshot.empty) {
-          const fetchedProjects = projectsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Project));
-          setProjects(mergeAndDedupeProjects(portfolioProjects, fetchedProjects));
-        }
-      } catch (error) {
-        console.error("Error fetching data from Firebase:", error);
-      }
-    };
-    fetchFirebaseData();
+    if (isPrerenderUserAgent()) {
+      return;
+    }
+
+    return scheduleIdleTask(async () => {
+      const mergedProjects = await loadMergedProjects();
+      setProjects(mergedProjects);
+    }, { delay: 4000, timeout: 2000 });
   }, []);
 
   const featuredProjectIds = [
@@ -284,25 +280,18 @@ export default function Home() {
   const homeSchema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "name": siteConfig.name,
-        "url": siteConfig.url,
-        "email": siteConfig.email,
-        "telephone": siteConfig.phoneDisplay,
-        "image": absoluteUrl(siteConfig.defaultOgImage),
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": siteConfig.city,
-          "addressCountry": siteConfig.countryCode,
-        },
-      },
+      buildOrganizationSchema(),
       {
         "@type": "ProfessionalService",
+        "@id": absoluteUrl('/#service'),
         "name": `${siteConfig.name} | Diseño web en ${siteConfig.city}`,
         "url": siteConfig.url,
+        "description": "Diseño web, SEO y soporte continuo para negocios que quieren crecer con una web rápida, clara y orientada a captar clientes.",
         "areaServed": [siteConfig.city, 'España'],
         "serviceType": ['Diseño web', 'Desarrollo web', 'SEO', 'Mantenimiento web'],
+        "availableLanguage": ['es'],
+        "image": absoluteUrl(siteConfig.defaultOgImage),
+        "provider": buildProviderReference(),
       },
     ],
   };
@@ -319,6 +308,7 @@ export default function Home() {
       <Navbar initialTheme="light" />
       <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
       <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
+      <main>
 
       {/* 1. HERO SECTION */}
       <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
@@ -415,7 +405,7 @@ export default function Home() {
       {/* 1.5 INTEGRATIONS / OPTIMIZED FOR */}
       <section className="pt-16 pb-10 bg-zinc-50 overflow-hidden z-10 relative -mt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
-          <p className="text-sm sm:text-base text-gray-400 font-medium">
+          <p className="text-sm sm:text-base text-gray-600 font-medium">
             Herramientas con las que trabajamos
           </p>
         </div>
@@ -440,26 +430,10 @@ export default function Home() {
             {[1, 2].map((group) => (
               <div key={`platforms-${group}`} className="flex gap-12 sm:gap-20 px-6 sm:px-10 items-center">
                 {platformLogos.map((logo, i) => (
-                  <div key={`logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-default">
-                    {logo.isCustom ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333334 199332" className="h-8 sm:h-10 w-auto fill-[#52525b]">
-                        <path d="M93937 72393c0 4102 443 7428 1219 9867 887 2439 1996 5100 3548 7982 554 887 776 1774 776 2550 0 1109-665 2217-2106 3326l-6985 4656c-998 665-1995 998-2882 998-1109 0-2217-554-3326-1552-1552-1663-2882-3437-3991-5211-1109-1885-2217-3991-3437-6541-8648 10200-19512 15299-32594 15299-9312 0-16740-2661-22172-7982-5432-5322-8204-12417-8204-21286 0-9424 3326-17073 10089-22838s15743-8647 27161-8647c3769 0 7650 332 11752 887 4102 554 8315 1441 12749 2439v-8093c0-8426-1774-14301-5211-17738-3548-3437-9534-5100-18071-5100-3880 0-7871 443-11973 1441s-8093 2217-11973 3769c-1774 776-3104 1219-3880 1441s-1330 332-1774 332c-1552 0-2328-1109-2328-3437v-5432c0-1774 222-3104 776-3880s1552-1552 3104-2328c3880-1996 8537-3659 13969-4989C43606 885 49370 220 55468 220c13193 0 22838 2993 29046 8980 6098 5987 9202 15077 9202 27272v35920h222zM48926 89244c3659 0 7428-665 11419-1995s7539-3769 10532-7095c1774-2106 3104-4435 3770-7095 665-2661 1108-5876 1108-9645v-4656c-3215-776-6652-1441-10199-1885-3548-443-6984-665-10421-665-7428 0-12860 1441-16519 4435-3659 2993-5432 7206-5432 12749 0 5211 1330 9091 4102 11751 2661 2772 6541 4102 11641 4102zm89023 11973c-1996 0-3326-332-4213-1109-887-665-1663-2217-2328-4324l-26053-85697c-665-2217-998-3658-998-4434 0-1774 887-2772 2661-2772h10865c2106 0 3548 333 4324 1109 887 665 1552 2217 2217 4324l18625 73391 17295-73391c554-2217 1219-3659 2106-4324s2439-1109 4435-1109h8869c2106 0 3548 333 4435 1109 887 665 1663 2217 2106 4324l17516 74278 19180-74278c665-2217 1441-3659 2217-4324 887-665 2328-1109 4324-1109h10310c1774 0 2772 887 2772 2772 0 554-111 1109-222 1774s-333 1552-776 2772l-26718 85697c-665 2217-1441 3658-2328 4324-887 665-2328 1109-4213 1109h-9534c-2107 0-3548-333-4435-1109s-1663-2217-2106-4435l-17184-71507-17073 71396c-554 2217-1220 3658-2107 4434s-2439 1109-4434 1109h-9534zm142459 2993c-5765 0-11530-665-17073-1995s-9867-2772-12749-4435c-1774-998-2993-2106-3437-3104-443-998-665-2106-665-3104v-5654c0-2328 887-3437 2550-3437 665 0 1330 111 1995 333s1663 665 2772 1109c3769 1663 7871 2993 12195 3880 4435 887 8758 1330 13193 1330 6984 0 12417-1220 16186-3659s5765-5987 5765-10532c0-3104-998-5654-2993-7760-1996-2107-5765-3991-11197-5765l-16075-4989c-8093-2550-14080-6319-17738-11308-3658-4878-5543-10310-5543-16075 0-4656 998-8758 2993-12306s4656-6652 7982-9091c3326-2550 7095-4434 11530-5765S279190-2 284068-2c2439 0 4989 111 7428 443 2550 333 4878 776 7206 1219 2217 554 4324 1109 6319 1774s3548 1330 4656 1996c1552 887 2661 1774 3326 2771 665 887 998 2107 998 3659v5211c0 2328-887 3548-2550 3548-887 0-2328-444-4213-1331-6319-2882-13415-4324-21286-4324-6319 0-11308 998-14745 3104s-5211 5321-5211 9867c0 3104 1109 5765 3326 7871s6319 4213 12195 6097l15743 4989c7982 2550 13747 6098 17184 10643s5100 9756 5100 15521c0 4767-998 9091-2882 12860-1996 3770-4656 7095-8093 9756-3437 2771-7539 4767-12306 6208-4989 1552-10199 2328-15854 2328z" />
-                        <path d="M301362 158091c-36474 26940-89467 41241-135031 41241-63858 0-121395-23614-164854-62859-3437-3104-332-7317 3770-4878 47006 27272 104988 43791 164964 43791 40465 0 84921-8426 125830-25721 6097-2772 11308 3991 5321 8426z" />
-                        <path d="M316550 140796c-4656-5987-30820-2883-42682-1441-3548 443-4102-2661-887-4989 20842-14634 55099-10421 59090-5543 3991 4989-1109 39246-20620 55653-2993 2550-5876 1220-4545-2106 4435-10976 14301-35698 9645-41574z" />
-                      </svg>
-                    ) : (
-                      <>
-                        <img 
-                          src={`https://cdn.simpleicons.org/${logo.slug}/52525b`} 
-                          alt={`${logo.name} icon`} 
-                          className="h-7 sm:h-8 w-auto object-contain"
-                          referrerPolicy="no-referrer"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <span className="text-xl sm:text-2xl font-bold text-zinc-600 tracking-tight">{logo.name}</span>
-                      </>
-                    )}
+                  <div key={`logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-default">
+                    <span className="rounded-full border border-zinc-200 bg-white px-4 py-2 text-base font-bold tracking-tight text-zinc-700 shadow-sm sm:text-lg">
+                      {logo.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -471,16 +445,10 @@ export default function Home() {
             {[1, 2].map((group) => (
               <div key={`tech-${group}`} className="flex gap-12 sm:gap-20 px-6 sm:px-10 items-center">
                 {techStack.map((tech, i) => (
-                  <div key={`tech-logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default">
-                    <img 
-                      src={`https://cdn.simpleicons.org/${tech.slug}/a1a1aa`} 
-                      alt={`${tech.name} icon`} 
-                      className="h-7 sm:h-8 w-auto object-contain"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span className="text-xl sm:text-2xl font-bold text-zinc-400 tracking-tight">{tech.name}</span>
+                  <div key={`tech-logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-default">
+                    <span className="rounded-full border border-zinc-200 bg-zinc-100 px-4 py-2 text-base font-bold tracking-tight text-zinc-700 shadow-sm sm:text-lg">
+                      {tech.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -496,6 +464,13 @@ export default function Home() {
       {/* 2. SERVICIOS PRINCIPALES (SEO) */}
       <section id="servicios" className="pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 max-w-3xl text-center md:text-left">
+          <p className="text-[11px] font-black uppercase tracking-[0.28em] text-brand-blue mb-3">Servicios principales</p>
+          <h2 className="ui-section-title text-brand-dark mb-4">Diseño web, SEO y soluciones listas para captar clientes</h2>
+          <p className="text-base text-gray-600 leading-relaxed">
+            Planteamos cada servicio para que tu web no solo se vea bien, sino que sea clara, rápida y fácil de convertir en contactos reales.
+          </p>
+        </div>
 
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -610,7 +585,7 @@ export default function Home() {
                 'nav_item': 'Ver todos los proyectos Home',
                 'page_path': window.location.pathname
               })}
-              className="hidden lg:block text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200 mb-2"
+              className="hidden lg:block text-xs font-black uppercase tracking-[0.3em] text-gray-700 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200 mb-2"
             >
               Ver todos los proyectos
             </RouterLink>
@@ -635,7 +610,7 @@ export default function Home() {
                 >
                   <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[4/5] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                     <img
-                      src={project.imgReto || project.img}
+                      src={project.img}
                       alt={project.title}
                       className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
                       referrerPolicy="no-referrer"
@@ -672,7 +647,7 @@ export default function Home() {
                 'nav_item': 'Ver todos los proyectos Home Mobile',
                 'page_path': window.location.pathname
               })}
-              className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200"
+              className="text-xs font-black uppercase tracking-[0.3em] text-gray-700 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200"
             >
               Ver todos los proyectos
             </RouterLink>
@@ -710,7 +685,7 @@ export default function Home() {
                   <div className={`absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-bl ${item.gradient} to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-16 sm:-mr-20 -mt-16 sm:-mt-20`}></div>
                   
                   {/* Watermark Number */}
-                  <span className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 text-7xl sm:text-9xl font-display font-bold text-zinc-50 opacity-50 transition-colors duration-500 select-none pointer-events-none">
+                  <span className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 text-7xl sm:text-9xl font-display font-bold text-gray-500/30 transition-colors duration-500 select-none pointer-events-none">
                     {item.step}
                   </span>
 
@@ -721,7 +696,7 @@ export default function Home() {
                           <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[11px] sm:text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Fase {item.step}</p>
+                          <p className="text-[11px] sm:text-sm font-bold text-gray-600 uppercase tracking-wider mb-1">Fase {item.step}</p>
                           <h3 className="font-display text-xl sm:text-[1.75rem] uppercase text-brand-dark leading-[0.95] text-balance break-words">{item.title}</h3>
                         </div>
                       </div>
@@ -803,8 +778,8 @@ export default function Home() {
                           {review.name.charAt(0)}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-brand-dark text-sm leading-none">{review.name}</h4>
-                          <p className="text-[11px] text-gray-400 mt-1">{review.date}</p>
+                          <p className="font-semibold text-brand-dark text-sm leading-none">{review.name}</p>
+                          <p className="text-[11px] text-gray-600 mt-1">{review.date}</p>
                         </div>
                       </div>
                       <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
@@ -1074,8 +1049,9 @@ export default function Home() {
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                         <div className="space-y-1">
-                          <label className="ui-form-label text-white/40 ml-1">Nombre</label>
+                          <label htmlFor="home-name" className="ui-form-label text-white/40 ml-1">Nombre</label>
                           <input
+                            id="home-name"
                             type="text"
                             name="nombre"
                             required
@@ -1086,8 +1062,9 @@ export default function Home() {
                           />
                         </div>
                         <div className="space-y-1">
-                          <label className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
+                          <label htmlFor="home-business" className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
                           <input
+                            id="home-business"
                             type="text"
                             name="negocio"
                             required
@@ -1101,8 +1078,9 @@ export default function Home() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                         <div className="space-y-1">
-                          <label className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
+                          <label htmlFor="home-phone" className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
                           <input
+                            id="home-phone"
                             type="tel"
                             name="whatsapp"
                             required
@@ -1113,8 +1091,9 @@ export default function Home() {
                           />
                         </div>
                         <div className="space-y-1">
-                          <label className="ui-form-label text-white/40 ml-1">Email</label>
+                          <label htmlFor="home-email" className="ui-form-label text-white/40 ml-1">Email</label>
                           <input
+                            id="home-email"
                             type="email"
                             name="email"
                             required
@@ -1128,8 +1107,9 @@ export default function Home() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                         <div className="space-y-1">
-                          <label className="ui-form-label text-white/40 ml-1">Tipo de web</label>
+                          <label htmlFor="home-need" className="ui-form-label text-white/40 ml-1">Tipo de web</label>
                           <select
+                            id="home-need"
                             name="necesidad"
                             required
                             value={formData.necesidad}
@@ -1146,8 +1126,9 @@ export default function Home() {
                           </select>
                         </div>
                         <div className="space-y-1">
-                          <label className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
+                          <label htmlFor="home-budget" className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
                           <select
+                            id="home-budget"
                             name="presupuesto"
                             required
                             value={formData.presupuesto}
@@ -1165,8 +1146,9 @@ export default function Home() {
                       </div>
 
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
+                        <label htmlFor="home-message" className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
                         <textarea
+                          id="home-message"
                           name="mensaje"
                           required
                           rows={2}
@@ -1214,10 +1196,10 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-
-        <Footer hideCTA={true} />
       </div>
+      </main>
+
+      <Footer hideCTA={true} />
     </div>
   );
 }

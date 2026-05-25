@@ -2,6 +2,24 @@
   "framework": "vite",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/web-express",
+      "destination": "/pagina-web-gratis",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.icono.studio"
+        }
+      ],
+      "destination": "https://icono.studio/:path*",
+      "permanent": true
+    }
+  ],
   "routes": [
     {
       "handle": "filesystem"

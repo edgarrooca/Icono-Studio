@@ -158,8 +158,9 @@ export default function Contact() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Nombre</label>
+                        <label htmlFor="contact-name" className="ui-form-label text-white/40 ml-1">Nombre</label>
                         <input 
+                          id="contact-name"
                           type="text" 
                           name="nombre"
                           required
@@ -170,8 +171,9 @@ export default function Contact() {
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
+                        <label htmlFor="contact-business" className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
                         <input 
+                          id="contact-business"
                           type="text" 
                           name="negocio"
                           required
@@ -185,8 +187,9 @@ export default function Contact() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
+                        <label htmlFor="contact-phone" className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
                         <input 
+                          id="contact-phone"
                           type="tel" 
                           name="whatsapp"
                           required
@@ -197,8 +200,9 @@ export default function Contact() {
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Email</label>
+                        <label htmlFor="contact-email" className="ui-form-label text-white/40 ml-1">Email</label>
                         <input 
+                          id="contact-email"
                           type="email" 
                           name="email"
                           required
@@ -212,8 +216,9 @@ export default function Contact() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Tipo de web</label>
+                        <label htmlFor="contact-need" className="ui-form-label text-white/40 ml-1">Tipo de web</label>
                         <select 
+                          id="contact-need"
                           name="necesidad"
                           required
                           value={formData.necesidad}
@@ -230,8 +235,9 @@ export default function Contact() {
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
+                        <label htmlFor="contact-budget" className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
                         <select 
+                          id="contact-budget"
                           name="presupuesto"
                           required
                           value={formData.presupuesto}
@@ -249,8 +255,9 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
+                      <label htmlFor="contact-message" className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
                       <textarea 
+                        id="contact-message"
                         name="mensaje"
                         required
                         rows={2} 

@@ -10,11 +10,16 @@ import {
   trackEvent,
   trackPageView,
 } from '../lib/analytics';
+import { isPrerenderUserAgent } from '../lib/runtime';
 
 export default function AnalyticsTracker() {
   const location = useLocation();
   const previousUrlRef = useRef<string>('');
   const trackedRouteRef = useRef<string>('');
+
+  if (isPrerenderUserAgent()) {
+    return null;
+  }
 
   useEffect(() => {
     captureAttribution();

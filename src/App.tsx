@@ -43,7 +43,7 @@ export default function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           {seoLocations.map(loc => (
-            <Route key={loc.slug} path={`/diseno-web-${loc.slug}`} element={<DisenoWebLocation locationSlug={loc.slug} />} />
+            <Route path={`/diseno-web-${loc.slug}`} element={<DisenoWebLocation key={loc.slug} locationSlug={loc.slug} />} />
           ))}
           <Route path="/pagina-web-gratis" element={<WebExpress />} />
           <Route path="/web-express" element={<Navigate to="/pagina-web-gratis" replace />} />

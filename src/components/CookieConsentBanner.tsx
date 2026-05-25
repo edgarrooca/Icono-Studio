@@ -8,11 +8,17 @@ import {
   trackPageView,
   updateConsentState,
 } from '../lib/analytics';
+import { isPrerenderUserAgent } from '../lib/runtime';
 
 export default function CookieConsentBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (isPrerenderUserAgent()) {
+      setVisible(false);
+      return;
+    }
+
     try {
       setVisible(!window.localStorage.getItem(consentStorageKey));
     } catch {
@@ -58,7 +64,7 @@ export default function CookieConsentBanner() {
             <button
               type="button"
               onClick={() => handleConsent('denied')}
-              className="text-[9px] font-black uppercase tracking-[0.18em] text-white/48 transition-colors hover:text-white lg:text-[10px]"
+              className="text-[9px] font-black uppercase tracking-[0.18em] text-white/72 transition-colors hover:text-white lg:text-[10px]"
             >
               Solo necesarias
             </button>

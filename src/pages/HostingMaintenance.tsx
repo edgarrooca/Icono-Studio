@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
+import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
 
 const supportHeroPills = [
   {
@@ -175,16 +176,16 @@ export default function HostingMaintenance() {
   const supportSchema = {
     "@context": "https://schema.org",
     "@graph": [
+      buildOrganizationSchema(),
       {
         "@type": "Service",
+        "@id": absoluteUrl('/hosting-mantenimiento-web#service'),
         "name": "Hosting y mantenimiento web | Icono Studio",
         "url": `${siteConfig.url}/hosting-mantenimiento-web`,
         "description": "Servicio de hosting, mantenimiento y soporte web para mantener tu proyecto rápido, seguro y actualizado.",
-        "provider": {
-          "@type": "Organization",
-          "name": siteConfig.name,
-          "url": siteConfig.url,
-        },
+        "provider": buildProviderReference(),
+        "serviceType": ['Hosting web', 'Mantenimiento web', 'Soporte técnico'],
+        "areaServed": ['España'],
         "image": absoluteUrl(siteConfig.defaultOgImage),
       },
       {
@@ -212,6 +213,7 @@ export default function HostingMaintenance() {
       />
       
       <Navbar />
+      <main>
 
       {/* STRATOSPHERE TRANSITION - CLEAN & DYNAMIC */}
       <div 
@@ -747,6 +749,7 @@ export default function HostingMaintenance() {
       </section>
 
       <Footer />
+      </main>
     </div>
   );
 }

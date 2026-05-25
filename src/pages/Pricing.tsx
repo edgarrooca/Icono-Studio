@@ -23,7 +23,7 @@ export default function Pricing() {
       <SeoHead 
         title="Precios Diseño Web | Icono Studio"
         description="Descubre nuestros planes de diseño web corporativo, landing pages y tiendas online. Tarifas claras, transparentes y orientadas a resultados para tu negocio."
-        canonicalUrl="https://icono-studio.com/precios"
+        path="/precios"
       />
       <Navbar />
 

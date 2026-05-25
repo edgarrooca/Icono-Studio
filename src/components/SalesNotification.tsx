@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, X } from 'lucide-react';
+import { isPrerenderUserAgent } from '../lib/runtime';
 
 const names = ['María', 'Carlos', 'Elena', 'Javier', 'Laura', 'David', 'Sofía', 'Alejandro', 'Carmen', 'Daniel', 'Marta', 'Pablo', 'Ana', 'Hugo', 'Lucía', 'Diego', 'Paula'];
 const locations = ['Madrid', 'Valencia', 'Barcelona', 'Sevilla', 'Bilbao', 'Alicante', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Vigo', 'Gijón', 'Granada', 'A Coruña'];
@@ -23,6 +24,7 @@ export default function SalesNotification() {
   const [hasDismissed, setHasDismissed] = useState(false);
 
   useEffect(() => {
+    if (isPrerenderUserAgent()) return;
     if (hasDismissed) return;
 
     let showTimeout: NodeJS.Timeout;
@@ -72,7 +74,7 @@ export default function SalesNotification() {
     };
   }, [hasDismissed]);
 
-  if (hasDismissed) return null;
+  if (hasDismissed || isPrerenderUserAgent()) return null;
 
   return (
     <AnimatePresence>
@@ -105,7 +107,7 @@ export default function SalesNotification() {
               <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">
                 {currentNotification.action}
               </p>
-              <p className="text-[9px] text-gray-400 mt-1 uppercase tracking-wider font-bold">Hace unos minutos</p>
+              <p className="text-[9px] text-gray-600 mt-1 uppercase tracking-wider font-bold">Hace unos minutos</p>
             </div>
 
             <button

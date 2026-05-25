@@ -10,7 +10,8 @@ import { mainNavLinks } from '../data/navigation';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
-import { siteConfig } from '../lib/site';
+import { absoluteUrl, siteConfig } from '../lib/site';
+import { buildProviderReference, parseStructuredDate } from '../lib/structuredData';
 
 interface ToCItem {
   id: string;
@@ -115,12 +116,12 @@ export default function BlogPost() {
         "@type": "BlogPosting",
         "headline": post.metaTitle,
         "description": post.metaDescription,
-        "image": [`${siteConfig.url}${post.image}`],
-        "author": [{
-          "@type": "Organization",
-          "name": post.author,
-          "url": siteConfig.url,
-        }],
+        "image": [absoluteUrl(post.image)],
+        "author": [buildProviderReference()],
+        "publisher": buildProviderReference(),
+        "datePublished": parseStructuredDate(post.date),
+        "dateModified": parseStructuredDate(post.date),
+        "inLanguage": "es-ES",
         "mainEntityOfPage": `${siteConfig.url}/blog/${post.slug}`,
       },
       ...(post.faqs && post.faqs.length > 0 ? [{

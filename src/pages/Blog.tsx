@@ -31,6 +31,7 @@ export default function Blog() {
       />
 
       <Navbar initialTheme="dark" />
+      <main>
       {/* Premium Header */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-brand-dark text-white">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
@@ -180,6 +181,7 @@ export default function Blog() {
         </div>
       </section>
       <Footer />
+      </main>
     </div>
   );
 }

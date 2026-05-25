@@ -52,6 +52,7 @@ import { portfolioProjects } from '../data/projects';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
+import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
 import { getSpinVariation, spintaxData } from '../lib/spintax';
 import BudgetCalculator from '../components/BudgetCalculator';
 import MobileStickyCTA from '../components/MobileStickyCTA';
@@ -134,16 +135,20 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
   const locationSchema = {
     "@context": "https://schema.org",
     "@graph": [
+      buildOrganizationSchema(),
       {
         "@type": "ProfessionalService",
+        "@id": absoluteUrl(`/diseno-web-${location.slug}#service`),
         "name": `Diseño Web ${location.name} | Icono Studio`,
-        "url": `${siteConfig.url}/diseno-web-${location.slug}`,
+        "url": absoluteUrl(`/diseno-web-${location.slug}`),
         "description": `Servicio de diseño web en ${location.name} para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.`,
         "image": absoluteUrl(siteConfig.defaultOgImage),
         "areaServed": [location.name, 'España'],
         "serviceType": ['Diseño web', 'Landing pages', 'SEO inicial', 'Soporte web'],
         "telephone": siteConfig.phoneDisplay,
         "email": siteConfig.email,
+        "availableLanguage": ['es'],
+        "provider": buildProviderReference(),
       },
       {
         "@type": "FAQPage",
@@ -164,31 +169,31 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
       step: "01", 
       title: "Briefing inicial", 
       desc: "Entendemos tu negocio, tus objetivos y qué necesita comunicar tu web.",
-      img: "/images/metodologia/formulario.png"
+      img: "/images/metodologia/formulario.webp"
     },
     { 
       step: "02", 
       title: "Estructura y contenido", 
       desc: "Organizamos las páginas, secciones y mensajes principales.",
-      img: "/images/metodologia/construccion.png"
+      img: "/images/metodologia/construccion.webp"
     },
     { 
       step: "03", 
       title: "Diseño y desarrollo", 
       desc: "Creamos una web cuidada, rápida y adaptada a móvil.",
-      img: "/images/metodologia/diseno.png"
+      img: "/images/metodologia/diseno.webp"
     },
     { 
       step: "04", 
       title: "Revisión contigo", 
       desc: "Te presentamos la web y aplicamos los ajustes necesarios.",
-      img: "/images/metodologia/revision.png"
+      img: "/images/metodologia/revision.webp"
     },
     { 
       step: "05", 
       title: "Publicación y soporte", 
       desc: "Publicamos la web, configuramos lo esencial y te dejamos todo preparado.",
-      img: "/images/metodologia/lanzamiento.png"
+      img: "/images/metodologia/lanzamiento.webp"
     }
   ];
 
@@ -281,6 +286,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
       <Navbar />
       <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
       <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
+      <main>
 
       {/* 1. HERO - MAXIMUM SEO & CONVERSION */}
       <section id="vlc-hero" className="relative pt-32 pb-12 sm:pt-40 sm:pb-20 lg:pt-44 lg:pb-24 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-brand-dark text-white z-20 rounded-b-[2.5rem] md:rounded-b-[4rem] shadow-2xl">
@@ -750,7 +756,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                 >
                   <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[3/4] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                     <img 
-                      src={project.imgReto || project.img} 
+                      src={project.img} 
                       alt={project.title} 
                       className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
                       referrerPolicy="no-referrer"
@@ -1021,8 +1027,8 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                           {review.name.charAt(0)}
                         </div>
                         <div>
-                          <h4 className="font-bold text-brand-dark text-sm leading-none">{review.name}</h4>
-                          <p className="text-[10px] text-gray-400 mt-1 uppercase font-bold tracking-widest">{review.date}</p>
+                          <p className="font-bold text-brand-dark text-sm leading-none">{review.name}</p>
+                          <p className="text-[10px] text-gray-600 mt-1 uppercase font-bold tracking-widest">{review.date}</p>
                         </div>
                       </div>
                       <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
@@ -1185,17 +1191,18 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
 
                   <form
                     onSubmit={handleSubmit}
-                    onSubmitCapture={() => debugLeadFormSubmitCapture('contact_${location.slug}_ads')}
+                    onSubmitCapture={() => debugLeadFormSubmitCapture(`contact_${location.slug}_ads`)}
                     onInvalidCapture={(event) => {
                       const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-                      debugLeadFormInvalid('contact_${location.slug}_ads', target.name, target.validationMessage);
+                      debugLeadFormInvalid(`contact_${location.slug}_ads`, target.name, target.validationMessage);
                     }}
                     className="space-y-3.5"
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Nombre</label>
+                        <label htmlFor={`location-name-${location.slug}`} className="ui-form-label text-white/40 ml-1">Nombre</label>
                         <input 
+                          id={`location-name-${location.slug}`}
                           type="text" 
                           name="nombre"
                           required
@@ -1206,8 +1213,9 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
+                        <label htmlFor={`location-business-${location.slug}`} className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
                         <input 
+                          id={`location-business-${location.slug}`}
                           type="text" 
                           name="negocio"
                           required
@@ -1221,8 +1229,9 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
+                        <label htmlFor={`location-phone-${location.slug}`} className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
                         <input 
+                          id={`location-phone-${location.slug}`}
                           type="tel" 
                           name="whatsapp"
                           required
@@ -1233,8 +1242,9 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Email</label>
+                        <label htmlFor={`location-email-${location.slug}`} className="ui-form-label text-white/40 ml-1">Email</label>
                         <input 
+                          id={`location-email-${location.slug}`}
                           type="email" 
                           name="email"
                           required
@@ -1248,8 +1258,9 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Tipo de web</label>
+                        <label htmlFor={`location-need-${location.slug}`} className="ui-form-label text-white/40 ml-1">Tipo de web</label>
                         <select 
+                          id={`location-need-${location.slug}`}
                           name="necesidad"
                           required
                           value={formData.necesidad}
@@ -1266,8 +1277,9 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
+                        <label htmlFor={`location-budget-${location.slug}`} className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
                         <select 
+                          id={`location-budget-${location.slug}`}
                           name="presupuesto"
                           required
                           value={formData.presupuesto}
@@ -1285,8 +1297,9 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                     </div>
 
                     <div className="space-y-1">
-                      <label className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
+                      <label htmlFor={`location-message-${location.slug}`} className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
                       <textarea 
+                        id={`location-message-${location.slug}`}
                         name="mensaje"
                         required
                         rows={2} 
@@ -1318,7 +1331,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
 
                     <button
                       type="submit" 
-                      onClick={() => debugLeadFormButtonClick('contact_${location.slug}_ads')}
+                      onClick={() => debugLeadFormButtonClick(`contact_${location.slug}_ads`)}
                       className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
                     >
                       Pedir presupuesto gratis <Send size={14} />
@@ -1333,11 +1346,11 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
               </div>
             </div>
           </div>
-        </section>
+	        </section>
+	      </div>
 
-
-        <Footer hideCTA={true} />
-      </div>
-    </div>
-  );
-}
+	        </main>
+	      <Footer hideCTA={true} />
+	    </div>
+	  );
+	}

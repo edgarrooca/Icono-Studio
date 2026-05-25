@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { portfolioProjects, Project } from '../data/projects';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { mergeAndDedupeProjects } from '../lib/projectUtils';
+import { loadMergedProjects } from '../lib/publicProjects';
+import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
 
 const projectFilters = [
   { id: 'all', label: 'Todos' },
@@ -66,21 +65,14 @@ export default function Projects() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const fetchProjects = async () => {
-      try {
-        const projectsSnapshot = await getDocs(collection(db, 'projects'));
-        if (projectsSnapshot.empty) {
-          return;
-        }
+    if (isPrerenderUserAgent()) {
+      return;
+    }
 
-        const fetchedProjects = projectsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Project));
-        setProjects(mergeAndDedupeProjects(portfolioProjects, fetchedProjects));
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
-    };
-
-    fetchProjects();
+    return scheduleIdleTask(async () => {
+      const mergedProjects = await loadMergedProjects();
+      setProjects(mergedProjects);
+    }, { delay: 2500, timeout: 2000 });
   }, []);
 
   const projectsDescription =
@@ -122,7 +114,7 @@ export default function Projects() {
           "position": index + 1,
           "url": `${siteConfig.url}/proyecto/${project.id}`,
           "name": project.title,
-          "image": absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage),
+          "image": absoluteUrl(project.img || project.imgReto || siteConfig.defaultOgImage),
         })),
       },
     ],
@@ -138,6 +130,7 @@ export default function Projects() {
       />
 
       <Navbar initialTheme="dark" />
+      <main>
 
       <section className="relative pt-24 sm:pt-28 md:pt-32 pb-10 sm:pb-12 md:pb-14 overflow-hidden bg-brand-dark text-white">
         <div className="absolute inset-0 opacity-[0.12] bg-blueprint"></div>
@@ -199,7 +192,7 @@ export default function Projects() {
                 >
                   <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[4/5] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                     <img
-                      src={project.imgReto || project.img}
+                      src={project.img}
                       alt={project.title}
                       className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
                       referrerPolicy="no-referrer"
@@ -231,6 +224,7 @@ export default function Projects() {
       </section>
 
       <Footer />
+      </main>
     </div>
   );
 }

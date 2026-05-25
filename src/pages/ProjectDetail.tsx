@@ -3,13 +3,12 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, ArrowUpRight, Check, ArrowRight, Menu, X, Mouse, ChevronDown, Download, Mail, Plus } from 'lucide-react';
 import { portfolioProjects, Project } from '../data/projects';
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { mergeAndDedupeProjects } from '../lib/projectUtils';
+import { loadMergedProjects } from '../lib/publicProjects';
+import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -21,6 +20,7 @@ export default function ProjectDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
     let isMounted = true;
+    let cancelScheduledSync = () => {};
 
     const localProject = id ? portfolioProjects.find((p) => p.id.toString() === id) ?? null : null;
     const localRelatedProjects = portfolioProjects.filter((p) => p.id.toString() !== id).slice(0, 3);
@@ -30,14 +30,7 @@ export default function ProjectDetail() {
       setLoading(false);
     }
 
-    const withTimeout = async <T,>(promise: Promise<T>, ms = 3500): Promise<T | null> => (
-      Promise.race([
-        promise,
-        new Promise<null>((resolve) => setTimeout(() => resolve(null), ms)),
-      ])
-    );
-    
-    const fetchProject = async () => {
+    const syncRemoteProjects = async () => {
       if (!id) {
         if (isMounted) {
           setRelatedProjects(localRelatedProjects);
@@ -47,44 +40,23 @@ export default function ProjectDetail() {
       }
       
       try {
-        // Try to fetch from Firebase first
-        const docRef = doc(db, 'projects', id);
-        const docSnap = await withTimeout(getDoc(docRef));
-        
-        let currentProject = null;
-        
-        if (docSnap && docSnap.exists()) {
-          currentProject = { id: docSnap.id, ...docSnap.data() };
-        } else {
-          // Fallback to static data if not found in Firebase (for backwards compatibility)
-          currentProject = localProject;
+        const mergedProjects = await loadMergedProjects();
+        const currentProject = mergedProjects.find((candidate) => candidate.id.toString() === id) ?? localProject;
+        const nextRelatedProjects = mergedProjects
+          .filter((candidate) => candidate.id.toString() !== id)
+          .slice(0, 3);
+
+        if (!isMounted) {
+          return;
         }
-        
-        if (isMounted && currentProject) {
+
+        if (currentProject) {
           setProject(currentProject);
         }
 
-        // Fetch related projects
-        const projectsSnapshot = await withTimeout(getDocs(collection(db, 'projects')));
-        let allProjects = localRelatedProjects;
-
-        if (projectsSnapshot) {
-          const fetchedProjects = projectsSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Project));
-          const uniqueProjects = mergeAndDedupeProjects(portfolioProjects, fetchedProjects);
-          allProjects = uniqueProjects.filter((p) => p.id.toString() !== id).slice(0, 3);
-        }
-
-        if (isMounted) {
-          setRelatedProjects(allProjects);
-        }
+        setRelatedProjects(nextRelatedProjects.length > 0 ? nextRelatedProjects : localRelatedProjects);
       } catch (error) {
-        console.error("Error fetching project:", error);
-        if (isMounted) {
-          if (localProject) {
-            setProject(localProject);
-          }
-          setRelatedProjects(localRelatedProjects);
-        }
+        console.error('Error syncing project catalog:', error);
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -92,9 +64,17 @@ export default function ProjectDetail() {
       }
     };
 
-    fetchProject();
+    if (!localProject && !isPrerenderUserAgent()) {
+      void syncRemoteProjects();
+    } else if (!isPrerenderUserAgent()) {
+      cancelScheduledSync = scheduleIdleTask(syncRemoteProjects, { delay: 3000, timeout: 2000 });
+    } else {
+      setRelatedProjects(localRelatedProjects);
+    }
+
     return () => {
       isMounted = false;
+      cancelScheduledSync();
     };
   }, [id]);
 

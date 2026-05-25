@@ -6,14 +6,18 @@
       window.__iconoAnalyticsDebug = false;
       window.__iconoGtagScriptStatus = 'idle';
       window.__iconoClarityScriptStatus = 'idle';
+      window.__iconoIsPrerender = false;
+      window.__iconoAnalyticsInitialized = false;
       window.clarity = window.clarity || function(){(window.clarity.q = window.clarity.q || []).push(arguments);};
       function gtag(){dataLayer.push(arguments);}
       (function() {
-        var consentState = 'granted';
+        var consentState = 'denied';
         var debugMode = false;
+        var isPrerender = false;
         var measurementId = 'G-6SN5WBMG0V';
         var googleAdsId = 'AW-18121828899';
         var clarityProjectId = 'wp1oy51ixh';
+        var prerenderUserAgentToken = 'IconoPrerender';
         try {
           var url = new URL(window.location.href);
           var debugFlag = url.searchParams.get('debug_analytics');
@@ -30,8 +34,11 @@
           if (storedConsent === 'granted' || storedConsent === 'denied') {
             consentState = storedConsent;
           }
+
+          isPrerender = window.navigator.userAgent.indexOf(prerenderUserAgentToken) !== -1;
         } catch (error) {}
 
+        window.__iconoIsPrerender = isPrerender;
         window.__iconoAnalyticsDebug = debugMode;
 
         gtag('consent', 'default', {
@@ -42,8 +49,49 @@
           wait_for_update: 500
         });
 
+        window.__iconoInitializeAnalytics = function() {
+          if (
+            window.__iconoIsPrerender ||
+            window.__iconoAnalyticsInitialized ||
+            window.__iconoGtagScriptStatus === 'loading' ||
+            window.__iconoGtagScriptStatus === 'loaded'
+          ) {
+            return;
+          }
+
+          window.__iconoAnalyticsInitialized = true;
+
+          var gtagScript = document.createElement('script');
+          gtagScript.async = true;
+          gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+          window.__iconoGtagScriptStatus = 'loading';
+          gtagScript.onload = function() {
+            window.__iconoGtagScriptStatus = 'loaded';
+            if (window.__iconoAnalyticsDebug) {
+              console.log('[Icono Analytics] gtag-script loaded', { measurementId: measurementId });
+            }
+          };
+          gtagScript.onerror = function(event) {
+            window.__iconoGtagScriptStatus = 'error';
+            if (window.__iconoAnalyticsDebug) {
+              console.log('[Icono Analytics] gtag-script error', event);
+            }
+          };
+          document.head.appendChild(gtagScript);
+
+          gtag('js', new Date());
+          gtag('config', measurementId, {
+            send_page_view: false,
+            allow_google_signals: true,
+            debug_mode: debugMode ? true : undefined
+          });
+          gtag('config', googleAdsId);
+        };
+
         window.__iconoLoadClarity = function() {
           if (
+            window.__iconoIsPrerender ||
+            consentState !== 'granted' ||
             window.__iconoClarityScriptStatus === 'loading' ||
             window.__iconoClarityScriptStatus === 'loaded'
           ) {
@@ -69,33 +117,8 @@
           document.head.appendChild(clarityScript);
         };
 
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
-        window.__iconoGtagScriptStatus = 'loading';
-        gtagScript.onload = function() {
-          window.__iconoGtagScriptStatus = 'loaded';
-          if (window.__iconoAnalyticsDebug) {
-            console.log('[Icono Analytics] gtag-script loaded', { measurementId: measurementId });
-          }
-        };
-        gtagScript.onerror = function(event) {
-          window.__iconoGtagScriptStatus = 'error';
-          if (window.__iconoAnalyticsDebug) {
-            console.log('[Icono Analytics] gtag-script error', event);
-          }
-        };
-        document.head.appendChild(gtagScript);
-
-        gtag('js', new Date());
-        gtag('config', measurementId, {
-          send_page_view: false,
-          allow_google_signals: true,
-          debug_mode: debugMode ? true : undefined
-        });
-        gtag('config', googleAdsId);
-
         if (consentState === 'granted') {
+          window.__iconoInitializeAnalytics();
           window.__iconoLoadClarity();
         }
       })();
@@ -104,8 +127,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="preconnect" href="https://cdn.simpleicons.org" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'" />
     <noscript>

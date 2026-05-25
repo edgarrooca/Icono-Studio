@@ -1,9 +1,12 @@
+import express from 'express';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import puppeteer from 'puppeteer';
 import { blogPosts } from '../src/data/blog';
 import { portfolioProjects } from '../src/data/projects';
 import { seoLocations } from '../src/data/seoLocations';
 import { absoluteUrl, siteConfig } from '../src/lib/site';
+import { buildOrganizationSchema, buildProviderReference, parseStructuredDate } from '../src/lib/structuredData';
 
 type PageType = 'website' | 'article' | 'service';
 
@@ -25,9 +28,7 @@ const distDir = path.join(rootDir, 'dist');
 const publicDir = path.join(rootDir, 'public');
 const templatePath = path.join(distDir, 'index.html');
 const buildDate = new Date().toISOString();
-
-
-
+const prerenderUserAgent = 'IconoPrerender/1.0';
 
 const supportFaqs = [
   {
@@ -133,8 +134,10 @@ const buildFaqSchema = (faqs: Array<{ q: string; a: string }>) => ({
 const buildServiceSchema = (serviceName: string, servicePath: string, description: string, faqs: Array<{ q: string; a: string }>, areaServed: string[]) => ({
   '@context': 'https://schema.org',
   '@graph': [
+    buildOrganizationSchema(),
     {
       '@type': 'ProfessionalService',
+      '@id': absoluteUrl(`${servicePath}#service`),
       name: `${serviceName} | ${siteConfig.name}`,
       url: absoluteUrl(servicePath),
       description,
@@ -143,6 +146,8 @@ const buildServiceSchema = (serviceName: string, servicePath: string, descriptio
       serviceType: ['Diseño web', 'Landing pages', 'SEO inicial', 'Soporte web'],
       telephone: siteConfig.phoneDisplay,
       email: siteConfig.email,
+      availableLanguage: ['es'],
+      provider: buildProviderReference(),
     },
     buildFaqSchema(faqs),
   ],
@@ -156,13 +161,11 @@ const buildBlogPostSchema = (post: (typeof blogPosts)[number]) => ({
       headline: post.metaTitle,
       description: post.metaDescription,
       image: [absoluteUrl(post.image)],
-      author: [
-        {
-          '@type': 'Organization',
-          name: post.author,
-          url: siteConfig.url,
-        },
-      ],
+      author: [buildProviderReference()],
+      publisher: buildProviderReference(),
+      datePublished: parseStructuredDate(post.date, buildDate),
+      dateModified: parseStructuredDate(post.date, buildDate),
+      inLanguage: 'es-ES',
       mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
     },
     ...(post.faqs && post.faqs.length > 0
@@ -190,43 +193,9 @@ const buildProjectSchema = (project: (typeof portfolioProjects)[number]) => ({
   description: project.description || project.clientDescription || project.subtitle,
   url: absoluteUrl(`/proyecto/${project.id}`),
   image: absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage),
-  creator: {
-    '@type': 'Organization',
-    name: siteConfig.name,
-    url: siteConfig.url,
-  },
+  creator: buildProviderReference(),
   about: project.category || 'Diseño web',
 });
-
-const parseBlogDate = (rawDate: string) => {
-  const monthMap: Record<string, string> = {
-    ene: '01',
-    feb: '02',
-    mar: '03',
-    abr: '04',
-    may: '05',
-    jun: '06',
-    jul: '07',
-    ago: '08',
-    sep: '09',
-    oct: '10',
-    nov: '11',
-    dic: '12',
-  };
-
-  const match = rawDate.match(/(\d{1,2})\s+([A-Za-zÁÉÍÓÚáéíóú]{3})\s+(\d{4})/);
-  if (!match) {
-    return buildDate;
-  }
-
-  const [, day, rawMonth, year] = match;
-  const month = monthMap[rawMonth.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')];
-  if (!month) {
-    return buildDate;
-  }
-
-  return `${year}-${month}-${day.padStart(2, '0')}T00:00:00+00:00`;
-};
 
 const locationRoutes: RouteMeta[] = seoLocations.map(loc => ({
   path: `/diseno-web-${loc.slug}`,
@@ -254,20 +223,16 @@ const staticRoutes: RouteMeta[] = [
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
-        {
-          '@type': 'Organization',
-          name: siteConfig.name,
-          url: siteConfig.url,
-          email: siteConfig.email,
-          telephone: siteConfig.phoneDisplay,
-          image: absoluteUrl(siteConfig.defaultOgImage),
-        },
+        buildOrganizationSchema(),
         {
           '@type': 'ProfessionalService',
+          '@id': absoluteUrl('/#service'),
           name: `${siteConfig.name} | Diseño web y SEO en Valencia`,
           url: siteConfig.url,
           description: 'Diseño web, SEO y desarrollo a medida para negocios que quieren crecer con una web más clara, rápida y orientada a captar clientes.',
           areaServed: ['Valencia', 'España'],
+          serviceType: ['Diseño web', 'Desarrollo web', 'SEO', 'Mantenimiento web'],
+          provider: buildProviderReference(),
         },
       ],
     },
@@ -282,16 +247,16 @@ const staticRoutes: RouteMeta[] = [
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
+        buildOrganizationSchema(),
         {
           '@type': 'Service',
+          '@id': absoluteUrl('/hosting-mantenimiento-web#service'),
           name: 'Hosting y mantenimiento web | Icono Studio',
           url: absoluteUrl('/hosting-mantenimiento-web'),
           description: 'Servicio de hosting, mantenimiento y soporte web para mantener tu proyecto rápido, seguro y actualizado.',
-          provider: {
-            '@type': 'Organization',
-            name: siteConfig.name,
-            url: siteConfig.url,
-          },
+          provider: buildProviderReference(),
+          serviceType: ['Hosting web', 'Mantenimiento web', 'Soporte técnico'],
+          areaServed: ['España'],
           image: absoluteUrl(siteConfig.defaultOgImage),
         },
         buildFaqSchema(supportFaqs),
@@ -307,16 +272,13 @@ const staticRoutes: RouteMeta[] = [
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
+        buildOrganizationSchema(),
         {
           '@type': 'Service',
           name: 'Planes y Precios de Diseño Web | Icono Studio',
           url: absoluteUrl('/precios'),
           description: 'Tarifas claras para Landing Pages, Webs Corporativas y Tiendas Online.',
-          provider: {
-            '@type': 'Organization',
-            name: siteConfig.name,
-            url: siteConfig.url,
-          },
+          provider: buildProviderReference(),
           image: absoluteUrl(siteConfig.defaultOgImage),
         },
       ],
@@ -332,8 +294,10 @@ const staticRoutes: RouteMeta[] = [
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
+        buildOrganizationSchema(),
         {
           '@type': 'Service',
+          '@id': absoluteUrl('/pagina-web-gratis#service'),
           name: 'Web Express | Icono Studio',
           url: absoluteUrl('/pagina-web-gratis'),
           description:
@@ -345,13 +309,7 @@ const staticRoutes: RouteMeta[] = [
             'Web para autónomos',
             'Web para negocios locales',
           ],
-          provider: {
-            '@type': 'Organization',
-            name: siteConfig.name,
-            url: siteConfig.url,
-            email: siteConfig.email,
-            telephone: siteConfig.phoneDisplay,
-          },
+          provider: buildProviderReference(),
           offers: [
             {
               '@type': 'Offer',
@@ -426,7 +384,7 @@ const staticRoutes: RouteMeta[] = [
             position: index + 1,
             url: absoluteUrl(`/proyecto/${project.id}`),
             name: project.title,
-            image: absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage),
+            image: absoluteUrl(project.img || project.imgReto || siteConfig.defaultOgImage),
           })),
         },
       ],
@@ -501,9 +459,9 @@ const blogRoutes: RouteMeta[] = blogPosts.map((post) => ({
   title: post.metaTitle,
   description: post.metaDescription,
   image: post.image,
-  type: 'article',
-  priority: '0.70',
-  lastmod: parseBlogDate(post.date),
+    type: 'article',
+    priority: '0.70',
+  lastmod: parseStructuredDate(post.date, buildDate),
   schema: buildBlogPostSchema(post),
 }));
 
@@ -518,6 +476,14 @@ const projectRoutes: RouteMeta[] = portfolioProjects.map((project) => ({
 }));
 
 const allRoutes = [...locationRoutes, ...staticRoutes, ...blogRoutes, ...projectRoutes];
+
+const resolveOutputPath = (routePath: string) =>
+  routePath === '/'
+    ? path.join(distDir, 'index.html')
+    : path.join(distDir, routePath.replace(/^\//, ''), 'index.html');
+
+const ensureDoctype = (html: string) =>
+  html.toLowerCase().startsWith('<!doctype html>') ? html : `<!DOCTYPE html>\n${html}`;
 
 async function writeRouteHtml(templateHtml: string, route: RouteMeta) {
   const canonicalUrl = absoluteUrl(route.path);
@@ -544,13 +510,9 @@ async function writeRouteHtml(templateHtml: string, route: RouteMeta) {
   html = upsertCanonical(html, canonicalUrl);
   html = upsertSchema(html, route.schema);
 
-  const outputPath =
-    route.path === '/'
-      ? path.join(distDir, 'index.html')
-      : path.join(distDir, route.path.replace(/^\//, ''), 'index.html');
-
+  const outputPath = resolveOutputPath(route.path);
   await mkdir(path.dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, html, 'utf8');
+  await writeFile(outputPath, ensureDoctype(html), 'utf8');
 }
 
 function buildSitemapXml(routes: RouteMeta[]) {
@@ -579,6 +541,92 @@ function buildSitemapXml(routes: RouteMeta[]) {
   return lines.join('\n');
 }
 
+async function renderRoutesWithBrowser(routes: RouteMeta[]) {
+  const app = express();
+
+  app.use(express.static(distDir, { index: false }));
+
+  app.get('*', (req, res) => {
+    const normalizedPath = req.path === '/' ? '/' : `/${req.path.replace(/^\/+|\/+$/g, '')}`;
+    const outputPath = resolveOutputPath(normalizedPath);
+
+    res.sendFile(outputPath, (error) => {
+      if (!error) {
+        return;
+      }
+
+      res.sendFile(path.join(distDir, 'index.html'));
+    });
+  });
+
+  const server = await new Promise<ReturnType<typeof app.listen>>((resolve) => {
+    const nextServer = app.listen(0, '127.0.0.1', () => resolve(nextServer));
+  });
+
+  try {
+    const address = server.address();
+    if (!address || typeof address === 'string') {
+      throw new Error('No se pudo resolver el puerto del servidor de prerender.');
+    }
+
+    const browser = await puppeteer.launch({ headless: true });
+
+    try {
+      const page = await browser.newPage();
+      await page.setUserAgent(prerenderUserAgent);
+      await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+      await page.setCacheEnabled(false);
+      await page.setRequestInterception(true);
+      page.on('request', (request) => {
+        const resourceType = request.resourceType();
+
+        if (resourceType === 'media' || resourceType === 'font') {
+          request.abort();
+          return;
+        }
+
+        request.continue();
+      });
+
+      for (const route of routes) {
+        console.log(`Prerender SEO: ${route.path}`);
+        const targetUrl = `http://127.0.0.1:${address.port}${route.path}`;
+        const response = await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+
+        if (response && !response.ok()) {
+          console.warn(`Prerender con respuesta ${response.status()} en ${route.path}`);
+        }
+
+        await page.waitForFunction(
+          () => {
+            const root = document.getElementById('root');
+            return Boolean(root && root.children.length > 0);
+          },
+          { timeout: 15000 }
+        );
+
+        await new Promise((resolve) => setTimeout(resolve, 400));
+
+        const html = ensureDoctype(await page.content());
+        await writeFile(resolveOutputPath(route.path), html, 'utf8');
+      }
+    } finally {
+      await browser.close();
+    }
+  } finally {
+    await new Promise<void>((resolve, reject) => {
+      server.close((error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+}
+
 async function main() {
   const templateHtml = await readFile(templatePath, 'utf8');
 
@@ -589,6 +637,7 @@ async function main() {
   const sitemapXml = buildSitemapXml(allRoutes);
   await writeFile(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf8');
   await writeFile(path.join(publicDir, 'sitemap.xml'), sitemapXml, 'utf8');
+  await renderRoutesWithBrowser(allRoutes);
 }
 
 main().catch((error) => {

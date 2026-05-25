@@ -21,6 +21,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
+import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
 
 const heroBenefits = [
   'Imagen profesional desde el primer día',
@@ -132,8 +133,10 @@ export default function WebExpress() {
   const webExpressSchema = {
     '@context': 'https://schema.org',
     '@graph': [
+      buildOrganizationSchema(),
       {
         '@type': 'Service',
+        '@id': absoluteUrl('/pagina-web-gratis#service'),
         name: 'Web Express | Icono Studio',
         url: absoluteUrl('/pagina-web-gratis'),
         description:
@@ -145,13 +148,8 @@ export default function WebExpress() {
           'Web para autónomos',
           'Web para negocios locales',
         ],
-        provider: {
-          '@type': 'Organization',
-          name: siteConfig.name,
-          url: siteConfig.url,
-          email: siteConfig.email,
-          telephone: siteConfig.phoneDisplay,
-        },
+        provider: buildProviderReference(),
+        availableLanguage: ['es'],
         offers: [
           {
             '@type': 'Offer',
