@@ -631,11 +631,23 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
         }
 
         await page.waitForFunction(
-          () => {
+          (requirePrimaryContent) => {
             const root = document.getElementById('root');
-            return Boolean(root && root.children.length > 0);
+            if (!root || root.children.length === 0) {
+              return false;
+            }
+
+            const normalizedText = (root.textContent || '').replace(/\s+/g, ' ').trim();
+            const hasPrimaryContent = Boolean(root.querySelector('main, article, h1, [role="main"]'));
+
+            if (!requirePrimaryContent) {
+              return normalizedText.length > 40;
+            }
+
+            return hasPrimaryContent && normalizedText.length > 120;
           },
-          { timeout: 15000 }
+          { timeout: 15000 },
+          route.robots !== 'noindex,nofollow'
         );
 
         await new Promise((resolve) => setTimeout(resolve, 400));
