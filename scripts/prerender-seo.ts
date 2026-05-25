@@ -31,8 +31,9 @@ const publicDir = path.join(rootDir, 'public');
 const templatePath = path.join(distDir, 'index.html');
 const buildDate = new Date().toISOString();
 const prerenderUserAgent = 'IconoPrerender/1.0';
+const isVercel = process.env.VERCEL === '1';
 const puppeteerCacheDir = process.env.PUPPETEER_CACHE_DIR || path.join(rootDir, '.cache', 'puppeteer');
-const useHeadlessShell = process.env.PUPPETEER_HEADLESS_MODE === 'shell' || process.env.VERCEL === '1';
+const useHeadlessShell = process.env.PUPPETEER_HEADLESS_MODE === 'shell';
 
 process.env.PUPPETEER_CACHE_DIR = puppeteerCacheDir;
 
@@ -583,11 +584,25 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
       throw new Error('No se pudo resolver el puerto del servidor de prerender.');
     }
 
-    const browser = await puppeteer.launch({
-      headless: useHeadlessShell ? 'shell' : true,
-      executablePath: await resolveChromeExecutablePath(),
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    });
+    let browser;
+    
+    if (isVercel) {
+      const { default: chromium } = (await import('@sparticuz/chromium')) as any;
+      const { default: puppeteerCore } = await import('puppeteer-core');
+      
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } else {
+      browser = await puppeteer.launch({
+        headless: useHeadlessShell ? 'shell' : true,
+        executablePath: await resolveChromeExecutablePath(),
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      });
+    }
 
     try {
       const page = await browser.newPage();

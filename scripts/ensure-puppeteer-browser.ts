@@ -53,6 +53,11 @@ async function installBrowser() {
 }
 
 async function main() {
+  if (process.env.VERCEL === '1') {
+    console.log('Entorno Vercel detectado. Se usará @sparticuz/chromium, saltando instalación manual de navegador.');
+    return;
+  }
+
   if (await browserExists()) {
     console.log(`Chrome para Puppeteer ya disponible en ${puppeteerCacheDir}`);
     return;
