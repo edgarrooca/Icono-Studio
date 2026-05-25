@@ -756,7 +756,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                 >
                   <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[3/4] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                     <img 
-                      src={project.img} 
+                      src={project.imgReto || project.img} 
                       alt={project.title} 
                       className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom" 
                       referrerPolicy="no-referrer"
@@ -1028,7 +1028,7 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
                         </div>
                         <div>
                           <p className="font-bold text-brand-dark text-sm leading-none">{review.name}</p>
-                          <p className="text-[10px] text-gray-600 mt-1 uppercase font-bold tracking-widest">{review.date}</p>
+                          <p className="text-[10px] text-gray-400 mt-1 uppercase font-bold tracking-widest">{review.date}</p>
                         </div>
                       </div>
                       <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
