@@ -5,16 +5,10 @@ import { CheckCircle2, X } from 'lucide-react';
 const names = ['María', 'Carlos', 'Elena', 'Javier', 'Laura', 'David', 'Sofía', 'Alejandro', 'Carmen', 'Daniel', 'Marta', 'Pablo', 'Ana', 'Hugo', 'Lucía', 'Diego', 'Paula'];
 const locations = ['Madrid', 'Valencia', 'Barcelona', 'Sevilla', 'Bilbao', 'Alicante', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Vigo', 'Gijón', 'Granada', 'A Coruña'];
 const actions = [
-  'acaba de contratar el Plan Corporativo',
   'ha solicitado presupuesto a medida',
+  'acaba de contratar el Plan Corporativo',
   'acaba de contratar una Landing Page',
-  'está diseñando su nueva Tienda Online',
-  'acaba de renovar su plan de Mantenimiento',
-  'ha contratado el Plan Landing',
-  'ha reservado una consultoría web',
-  'está empezando su proyecto web con nosotros',
-  'ha contratado el servicio Web Express',
-  'acaba de empezar su e-commerce'
+  'está diseñando su nueva Tienda Online'
 ];
 
 interface Notification {
