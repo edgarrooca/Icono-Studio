@@ -1,5 +1,7 @@
 import express from 'express';
+import { constants } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access } from 'node:fs/promises';
 import path from 'node:path';
 import puppeteer from 'puppeteer';
 import { blogPosts } from '../src/data/blog';
@@ -29,6 +31,9 @@ const publicDir = path.join(rootDir, 'public');
 const templatePath = path.join(distDir, 'index.html');
 const buildDate = new Date().toISOString();
 const prerenderUserAgent = 'IconoPrerender/1.0';
+const puppeteerCacheDir = process.env.PUPPETEER_CACHE_DIR || path.join(rootDir, '.cache', 'puppeteer');
+
+process.env.PUPPETEER_CACHE_DIR = puppeteerCacheDir;
 
 const supportFaqs = [
   {
@@ -541,6 +546,12 @@ function buildSitemapXml(routes: RouteMeta[]) {
   return lines.join('\n');
 }
 
+async function resolveChromeExecutablePath() {
+  const executablePath = await Promise.resolve(puppeteer.executablePath());
+  await access(executablePath, constants.X_OK);
+  return executablePath;
+}
+
 async function renderRoutesWithBrowser(routes: RouteMeta[]) {
   const app = express();
 
@@ -571,6 +582,7 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
 
     const browser = await puppeteer.launch({
       headless: true,
+      executablePath: await resolveChromeExecutablePath(),
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     });
 

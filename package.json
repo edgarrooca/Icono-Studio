@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build && tsx scripts/prerender-seo.ts",
+    "build": "vite build && npm run seo:prerender",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "seo:prerender": "tsx scripts/prerender-seo.ts"
+    "seo:browser": "tsx scripts/ensure-puppeteer-browser.ts",
+    "seo:prerender": "npm run seo:browser && tsx scripts/prerender-seo.ts"
   },
   "dependencies": {
     "@google/genai": "^1.46.0",
