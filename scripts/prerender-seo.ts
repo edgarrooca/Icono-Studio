@@ -569,7 +569,10 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
       throw new Error('No se pudo resolver el puerto del servidor de prerender.');
     }
 
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    });
 
     try {
       const page = await browser.newPage();
