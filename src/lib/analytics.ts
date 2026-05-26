@@ -292,6 +292,9 @@ const sendRedditEvent = (eventName: 'PageVisit' | 'Lead', params: EventParams = 
   return true;
 };
 
+const buildTrackingEventId = (prefix: string) =>
+  `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+
 const readJsonStorage = <T,>(key: string): T | null => {
   if (!isBrowser()) {
     return null;
@@ -480,7 +483,9 @@ export const trackPageView = (params: EventParams = {}) => {
 
   pushDataLayer('icono_page_view', finalParams);
   sendGtagEvent('page_view', finalParams);
-  sendRedditEvent('PageVisit');
+  sendRedditEvent('PageVisit', {
+    conversionId: buildTrackingEventId('pagevisit'),
+  });
 };
 
 export const trackEvent = (eventName: string, params: EventParams = {}) => {
@@ -855,7 +860,9 @@ export const trackLeadThankYouPageConversion = () => {
     lead_event_id: leadEventId,
   });
 
-  const redditTracked = sendRedditEvent('Lead');
+  const redditTracked = sendRedditEvent('Lead', {
+    conversionId: leadEventId,
+  });
   const googleAdsTracked = trackGoogleAdsLeadConversion(formId, leadEventId);
 
   if (redditTracked || googleAdsTracked) {
