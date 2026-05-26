@@ -26,6 +26,7 @@ interface AttributionState {
   wbraid: string;
   fbclid: string;
   msclkid: string;
+  rdtCid: string;
 }
 
 declare global {
@@ -63,6 +64,7 @@ const attributionQueryMap = {
   wbraid: 'wbraid',
   fbclid: 'fbclid',
   msclkid: 'msclkid',
+  rdtCid: 'rdt_cid',
 } as const;
 
 const isBrowser = () => typeof window !== 'undefined';
@@ -292,6 +294,106 @@ const sendRedditEvent = (eventName: 'PageVisit' | 'Lead', params: EventParams = 
   return true;
 };
 
+type RedditConversionTrackingType =
+  | 'PAGE_VISIT'
+  | 'VIEW_CONTENT'
+  | 'SEARCH'
+  | 'ADD_TO_CART'
+  | 'ADD_TO_WISHLIST'
+  | 'PURCHASE'
+  | 'LEAD'
+  | 'SIGN_UP'
+  | 'CUSTOM';
+
+const getCookieValue = (cookieName: string) => {
+  if (!isBrowser()) {
+    return '';
+  }
+
+  const escapedName = cookieName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = document.cookie.match(new RegExp(`(?:^|; )${escapedName}=([^;]*)`));
+  if (!match) {
+    return '';
+  }
+
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return match[1];
+  }
+};
+
+const sendRedditServerConversionEvent = async ({
+  trackingType,
+  conversionId,
+  eventSourceUrl,
+  clickId,
+  customEventName,
+  eventAt,
+}: {
+  trackingType: RedditConversionTrackingType;
+  conversionId: string;
+  eventSourceUrl?: string;
+  clickId?: string;
+  customEventName?: string;
+  eventAt?: number;
+}) => {
+  if (!isBrowser() || !hasMeasurementConsent()) {
+    return false;
+  }
+
+  if (!conversionId) {
+    return false;
+  }
+
+  const uuid = getCookieValue('_rdt_uuid') || undefined;
+
+  const payload = {
+    trackingType,
+    conversionId,
+    eventAt: eventAt || Date.now(),
+    actionSource: 'WEBSITE',
+    eventSourceUrl: eventSourceUrl || window.location.href,
+    clickId,
+    customEventName,
+    uuid,
+  };
+
+  try {
+    const response = await fetch('/api/reddit-conversion-event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      keepalive: true,
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok) {
+      debugLog('[Icono Reddit:CAPI:error]', {
+        status: response.status,
+        payload,
+        data,
+      });
+      return false;
+    }
+
+    debugLog('[Icono Reddit:CAPI:ok]', {
+      payload,
+      data,
+    });
+    return true;
+  } catch (error) {
+    debugLog('[Icono Reddit:CAPI:request_error]', {
+      payload,
+      error,
+    });
+    return false;
+  }
+};
+
 const buildTrackingEventId = (prefix: string) =>
   `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 
@@ -368,6 +470,7 @@ const getDefaultAttributionState = (): AttributionState => ({
   wbraid: '',
   fbclid: '',
   msclkid: '',
+  rdtCid: '',
 });
 
 export const getConsentState = (): ConsentState | null => {
@@ -472,6 +575,7 @@ const getEventContext = () => {
     wbraid: attribution.wbraid,
     fbclid: attribution.fbclid,
     msclkid: attribution.msclkid,
+    rdt_cid: attribution.rdtCid,
   });
 };
 
@@ -681,6 +785,7 @@ export const buildLeadPayload = (formId: string, values: LeadFormValues) => {
     tracking_wbraid: attribution.wbraid,
     tracking_fbclid: attribution.fbclid,
     tracking_msclkid: attribution.msclkid,
+    tracking_rdt_cid: attribution.rdtCid,
   };
 };
 
@@ -850,6 +955,10 @@ export const trackLeadThankYouPageConversion = () => {
 
   const formId = url.searchParams.get(leadFormIdParam) || 'lead_form';
   const leadEventId = url.searchParams.get(leadEventIdParam) || buildLeadEventId(formId);
+  const clickId =
+    url.searchParams.get(attributionQueryMap.rdtCid) ||
+    getAttributionState()?.rdtCid ||
+    undefined;
 
   if (hasTrackedLeadEvent(leadEventId)) {
     return false;
@@ -863,6 +972,17 @@ export const trackLeadThankYouPageConversion = () => {
   const redditTracked = sendRedditEvent('Lead', {
     conversionId: leadEventId,
   });
+
+  if (redditTracked) {
+    void sendRedditServerConversionEvent({
+      trackingType: 'LEAD',
+      conversionId: leadEventId,
+      eventSourceUrl: window.location.href,
+      clickId,
+      eventAt: Date.now(),
+    });
+  }
+
   const googleAdsTracked = trackGoogleAdsLeadConversion(formId, leadEventId);
 
   if (redditTracked || googleAdsTracked) {
