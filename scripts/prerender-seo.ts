@@ -34,6 +34,8 @@ const prerenderUserAgent = 'IconoPrerender/1.0';
 const isVercel = process.env.VERCEL === '1';
 const puppeteerCacheDir = process.env.PUPPETEER_CACHE_DIR || path.join(rootDir, '.cache', 'puppeteer');
 const useHeadlessShell = process.env.PUPPETEER_HEADLESS_MODE === 'shell';
+const primaryContentWaitTimeoutMs = Number.parseInt(process.env.PRERENDER_PRIMARY_TIMEOUT_MS || '20000', 10);
+const noindexContentWaitTimeoutMs = Number.parseInt(process.env.PRERENDER_NOINDEX_TIMEOUT_MS || '8000', 10);
 
 process.env.PUPPETEER_CACHE_DIR = puppeteerCacheDir;
 
@@ -484,6 +486,8 @@ const projectRoutes: RouteMeta[] = portfolioProjects.map((project) => ({
 
 const allRoutes = [...locationRoutes, ...staticRoutes, ...blogRoutes, ...projectRoutes];
 
+const isNoindexRoute = (route: RouteMeta) => (route.robots || '').toLowerCase().includes('noindex');
+
 const resolveOutputPath = (routePath: string) =>
   routePath === '/'
     ? path.join(distDir, 'index.html')
@@ -625,30 +629,45 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
         console.log(`Prerender SEO: ${route.path}`);
         const targetUrl = `http://127.0.0.1:${address.port}${route.path}`;
         const response = await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+        const requirePrimaryContent = !isNoindexRoute(route);
 
         if (response && !response.ok()) {
           console.warn(`Prerender con respuesta ${response.status()} en ${route.path}`);
         }
 
-        await page.waitForFunction(
-          (requirePrimaryContent) => {
-            const root = document.getElementById('root');
-            if (!root || root.children.length === 0) {
-              return false;
-            }
+        try {
+          await page.waitForFunction(
+            (mustHavePrimaryContent) => {
+              const root = document.getElementById('root');
+              if (!root || root.children.length === 0) {
+                return false;
+              }
 
-            const normalizedText = (root.textContent || '').replace(/\s+/g, ' ').trim();
-            const hasPrimaryContent = Boolean(root.querySelector('main, article, h1, [role="main"]'));
+              const normalizedText = (root.textContent || '').replace(/\s+/g, ' ').trim();
+              const hasPrimaryContent = Boolean(root.querySelector('main, article, h1, [role="main"]'));
 
-            if (!requirePrimaryContent) {
-              return normalizedText.length > 40;
-            }
+              if (!mustHavePrimaryContent) {
+                return normalizedText.length > 40;
+              }
 
-            return hasPrimaryContent && normalizedText.length > 120;
-          },
-          { timeout: 15000 },
-          route.robots !== 'noindex,nofollow'
-        );
+              return hasPrimaryContent && normalizedText.length > 120;
+            },
+            {
+              timeout: requirePrimaryContent
+                ? primaryContentWaitTimeoutMs
+                : noindexContentWaitTimeoutMs,
+            },
+            requirePrimaryContent
+          );
+        } catch (error) {
+          if (!requirePrimaryContent && error instanceof Error && error.name === 'TimeoutError') {
+            console.warn(
+              `Prerender timeout noindex en ${route.path} (${noindexContentWaitTimeoutMs}ms). Continuamos con HTML disponible.`
+            );
+          } else {
+            throw error;
+          }
+        }
 
         await new Promise((resolve) => setTimeout(resolve, 400));
 
