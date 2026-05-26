@@ -44,37 +44,46 @@ export default function CookieConsentBanner() {
   }
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[70] flex justify-start px-3 pb-3 sm:justify-center sm:px-4 sm:pb-4 lg:px-6 lg:pb-6">
-      <div className="pointer-events-auto w-[calc(100%-5.5rem)] max-w-[20rem] rounded-[1.25rem] border border-white/8 bg-brand-dark/88 px-3.5 py-3 text-white shadow-[0_16px_40px_rgba(2,8,23,0.22)] backdrop-blur-xl sm:w-full sm:max-w-[28rem] sm:rounded-[1.35rem] sm:px-4 sm:py-3.5 md:max-w-[34rem] lg:max-w-[46rem] lg:rounded-full lg:px-5 lg:py-3">
-        <div className="flex flex-col gap-2.5 sm:gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-start gap-3 lg:min-w-0 lg:flex-1 lg:items-center">
-            <span className="mt-0.5 shrink-0 rounded-full bg-white/6 p-2.5 text-brand-lime/90 lg:mt-0 lg:p-3">
-              <Cookie size={18} strokeWidth={2.25} className="lg:h-5 lg:w-5" />
-            </span>
-            <p className="max-w-xl text-[11px] leading-relaxed text-white/72 sm:text-[12px] lg:max-w-none lg:flex-1 lg:text-[13px]">
-              Usamos cookies para mejorar tu experiencia y recordar tus preferencias.
-              {' '}
-              <Link to="/politica-de-privacidad" className="text-white hover:text-brand-lime transition-colors underline underline-offset-4">
-                Más info
-              </Link>
-            </p>
-          </div>
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[95] px-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] sm:px-4 sm:pb-4 lg:px-6 lg:pb-6">
+      <div className="pointer-events-auto mx-auto w-full max-w-5xl overflow-hidden rounded-[1.45rem] border border-white/12 bg-brand-dark/94 text-white shadow-[0_26px_68px_rgba(2,8,23,0.38)] backdrop-blur-xl">
+        <div className="relative">
+          <div className="pointer-events-none absolute -top-16 left-1/2 h-28 w-56 -translate-x-1/2 rounded-full bg-brand-blue/28 blur-2xl" />
+          <div className="relative grid gap-4 p-4 sm:p-5 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-6 lg:p-6">
+            <div className="flex items-start gap-3.5 lg:min-w-0">
+              <span className="mt-0.5 shrink-0 rounded-2xl border border-brand-lime/25 bg-white/6 p-2.5 text-brand-lime">
+                <Cookie size={18} strokeWidth={2.3} />
+              </span>
 
-          <div className="flex items-center gap-3 pl-[3.25rem] md:pl-[3.5rem] lg:shrink-0 lg:pl-0">
-            <button
-              type="button"
-              onClick={() => handleConsent('denied')}
-              className="text-[9px] font-black uppercase tracking-[0.18em] text-white/72 transition-colors hover:text-white lg:text-[10px]"
-            >
-              Solo necesarias
-            </button>
-            <button
-              type="button"
-              onClick={() => handleConsent('granted')}
-              className="rounded-full bg-brand-lime px-4 py-2 text-[9px] font-black uppercase tracking-[0.18em] text-brand-dark transition-transform hover:scale-[1.02] lg:px-[18px] lg:text-[10px]"
-            >
-              Aceptar
-            </button>
+              <div className="min-w-0">
+                <p className="text-[12px] font-black uppercase tracking-[0.16em] text-white sm:text-[12.5px]">
+                  Privacidad y medición
+                </p>
+                <p className="mt-1.5 text-[12px] leading-relaxed text-white/78 sm:text-[13px]">
+                  Usamos cookies para medir visitas y mejorar la web. Puedes aceptar o usar solo las necesarias.
+                  {' '}
+                  <Link to="/politica-de-privacidad" className="text-white underline underline-offset-4 transition-colors hover:text-brand-lime">
+                    Más info
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:min-w-[21rem]">
+              <button
+                type="button"
+                onClick={() => handleConsent('denied')}
+                className="h-11 rounded-full border border-white/32 bg-white/6 px-4 text-[10px] font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-white/12"
+              >
+                Solo necesarias
+              </button>
+              <button
+                type="button"
+                onClick={() => handleConsent('granted')}
+                className="h-11 rounded-full border border-brand-lime/60 bg-brand-lime px-4 text-[10px] font-black uppercase tracking-[0.18em] text-brand-dark transition-all hover:brightness-95"
+              >
+                Aceptar todo
+              </button>
+            </div>
           </div>
         </div>
       </div>

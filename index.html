@@ -6,8 +6,10 @@
       window.__iconoAnalyticsDebug = false;
       window.__iconoGtagScriptStatus = 'idle';
       window.__iconoClarityScriptStatus = 'idle';
+      window.__iconoRedditPixelScriptStatus = 'idle';
       window.__iconoIsPrerender = false;
       window.__iconoAnalyticsInitialized = false;
+      window.__iconoRedditPixelInitialized = false;
       window.clarity = window.clarity || function(){(window.clarity.q = window.clarity.q || []).push(arguments);};
       function gtag(){dataLayer.push(arguments);}
       (function() {
@@ -16,6 +18,7 @@
         var isPrerender = false;
         var measurementId = 'G-6SN5WBMG0V';
         var googleAdsId = 'AW-18121828899';
+        var redditPixelId = 'a2_j2mpb3v49ipk';
         var clarityProjectId = 'wp1oy51ixh';
         var prerenderUserAgentToken = 'IconoPrerender';
         try {
@@ -40,6 +43,14 @@
 
         window.__iconoIsPrerender = isPrerender;
         window.__iconoAnalyticsDebug = debugMode;
+
+        var hasGrantedConsent = function() {
+          try {
+            return window.localStorage.getItem('icono_cookie_consent_v1') === 'granted';
+          } catch (error) {
+            return consentState === 'granted';
+          }
+        };
 
         gtag('consent', 'default', {
           ad_storage: consentState,
@@ -88,10 +99,63 @@
           gtag('config', googleAdsId);
         };
 
+        window.__iconoInitializeRedditPixel = function() {
+          if (
+            window.__iconoIsPrerender ||
+            !hasGrantedConsent() ||
+            window.__iconoRedditPixelInitialized ||
+            window.__iconoRedditPixelScriptStatus === 'loading' ||
+            window.__iconoRedditPixelScriptStatus === 'loaded'
+          ) {
+            return;
+          }
+
+          window.__iconoRedditPixelInitialized = true;
+
+          if (!window.rdt) {
+            var rdtQueue = function() {
+              if (rdtQueue.sendEvent) {
+                rdtQueue.sendEvent.apply(rdtQueue, arguments);
+              } else {
+                rdtQueue.callQueue.push(arguments);
+              }
+            };
+            rdtQueue.callQueue = [];
+            window.rdt = rdtQueue;
+          }
+
+          var redditScript = document.createElement('script');
+          redditScript.async = true;
+          redditScript.src = 'https://www.redditstatic.com/ads/pixel.js?pixel_id=' + redditPixelId;
+          window.__iconoRedditPixelScriptStatus = 'loading';
+          redditScript.onload = function() {
+            window.__iconoRedditPixelScriptStatus = 'loaded';
+            if (window.__iconoAnalyticsDebug) {
+              console.log('[Icono Analytics] reddit-pixel-script loaded', { redditPixelId: redditPixelId });
+            }
+          };
+          redditScript.onerror = function(event) {
+            window.__iconoRedditPixelScriptStatus = 'error';
+            window.__iconoRedditPixelInitialized = false;
+            if (window.__iconoAnalyticsDebug) {
+              console.log('[Icono Analytics] reddit-pixel-script error', event);
+            }
+          };
+
+          var firstScript = document.getElementsByTagName('script')[0];
+          if (firstScript && firstScript.parentNode) {
+            firstScript.parentNode.insertBefore(redditScript, firstScript);
+          } else {
+            document.head.appendChild(redditScript);
+          }
+
+          window.rdt('init', redditPixelId);
+        };
+
         window.__iconoLoadClarity = function() {
           if (
             window.__iconoIsPrerender ||
-            consentState !== 'granted' ||
+            !hasGrantedConsent() ||
             window.__iconoClarityScriptStatus === 'loading' ||
             window.__iconoClarityScriptStatus === 'loaded'
           ) {
@@ -119,6 +183,7 @@
 
         if (consentState === 'granted') {
           window.__iconoInitializeAnalytics();
+          window.__iconoInitializeRedditPixel();
           window.__iconoLoadClarity();
         }
       })();

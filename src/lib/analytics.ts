@@ -32,11 +32,13 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
+    rdt?: (...args: unknown[]) => void;
     clarity?: ((...args: unknown[]) => void) & { q?: unknown[][] };
     __iconoAnalyticsEvents?: unknown[];
     __iconoClarityScriptStatus?: string;
     __iconoLoadClarity?: () => void;
     __iconoInitializeAnalytics?: () => void;
+    __iconoInitializeRedditPixel?: () => void;
     google_tag_manager?: Record<string, unknown>;
   }
 }
@@ -265,6 +267,31 @@ const sendGtagEvent = (eventName: string, params: EventParams = {}) => {
   debugLog('[Icono Analytics:gtag]', eventName, payload);
 };
 
+const sendRedditEvent = (eventName: 'PageVisit' | 'Lead', params: EventParams = {}) => {
+  if (!isBrowser() || typeof window.rdt !== 'function' || !hasMeasurementConsent()) {
+    return false;
+  }
+
+  const payload = sanitizeParams(params);
+
+  try {
+    if (Object.keys(payload).length > 0) {
+      window.rdt('track', eventName, payload);
+    } else {
+      window.rdt('track', eventName);
+    }
+  } catch (error) {
+    debugLog('[Icono Reddit:error]', {
+      eventName,
+      error,
+    });
+    return false;
+  }
+
+  debugLog('[Icono Reddit:track]', eventName, payload);
+  return true;
+};
+
 const readJsonStorage = <T,>(key: string): T | null => {
   if (!isBrowser()) {
     return null;
@@ -376,6 +403,7 @@ export const updateConsentState = (state: ConsentState) => {
 
   if (state === 'granted') {
     window.__iconoInitializeAnalytics?.();
+    window.__iconoInitializeRedditPixel?.();
     window.__iconoLoadClarity?.();
   }
 
@@ -452,6 +480,7 @@ export const trackPageView = (params: EventParams = {}) => {
 
   pushDataLayer('icono_page_view', finalParams);
   sendGtagEvent('page_view', finalParams);
+  sendRedditEvent('PageVisit');
 };
 
 export const trackEvent = (eventName: string, params: EventParams = {}) => {
@@ -826,7 +855,12 @@ export const trackLeadThankYouPageConversion = () => {
     lead_event_id: leadEventId,
   });
 
-  trackGoogleAdsLeadConversion(formId, leadEventId);
+  const redditTracked = sendRedditEvent('Lead');
+  const googleAdsTracked = trackGoogleAdsLeadConversion(formId, leadEventId);
+
+  if (redditTracked || googleAdsTracked) {
+    markLeadEventAsTracked(leadEventId);
+  }
 
   return true;
 };
