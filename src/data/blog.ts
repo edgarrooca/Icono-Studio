@@ -2,6 +2,379 @@ import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: 'Photopea, el Photoshop online: guía rápida para editar imágenes gratis',
+    subtitle: 'Si buscas un editor potente sin instalar programas, Photopea puede ser la mejor alternativa online para trabajar con PSD, PNG, JPG y más.',
+    slug: 'photopea-photoshop-online-guia',
+    date: '27 May 2026',
+    author: 'Icono Studio',
+    tag: 'Diseño',
+    image: 'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=80',
+    metaTitle: 'Photopea, el Photoshop online: guía práctica | Icono Studio',
+    metaDescription: 'Aprende qué es Photopea, cómo usar este Photoshop online gratis y cuándo conviene frente a otras opciones para editar imágenes web.',
+    content: `
+      <p>Si has buscado <strong>"Photoshop online"</strong>, casi seguro te has encontrado con Photopea. Y no es casualidad: hoy es una de las herramientas más completas para editar imágenes desde el navegador sin pagar una suscripción mensual.</p>
+      <p>En esta guía te explicamos qué es Photopea, para qué sirve y cómo aprovecharlo para tareas reales de diseño web y contenidos.</p>
+
+      <h2>¿Qué es Photopea?</h2>
+      <p><strong>Photopea</strong> es un editor de imágenes online que funciona directamente en tu navegador. No necesitas descargar software ni instalar nada en tu ordenador.</p>
+      <p>Su interfaz recuerda bastante a Photoshop, y eso hace que la curva de aprendizaje sea rápida para quien ya ha tocado programas de diseño.</p>
+
+      <h2>Por qué se conoce como "el Photoshop online"</h2>
+      <p>Muchos usuarios lo llaman así porque incluye funciones que normalmente asociamos a herramientas profesionales:</p>
+      <ul>
+        <li>Trabajo por capas y grupos.</li>
+        <li>Máscaras, modos de fusión y filtros.</li>
+        <li>Soporte para archivos PSD.</li>
+        <li>Exportación en PNG, JPG, SVG, PDF y WebP.</li>
+      </ul>
+      <p>Para trabajos rápidos, creatividades de anuncios o edición de recursos para blog, es más que suficiente en la mayoría de casos.</p>
+
+      <img src="https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?auto=format&fit=crop&q=80" alt="Photopea como Photoshop online para editar imágenes" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo usar Photopea paso a paso</h2>
+      <h3>1. Abre la herramienta en el navegador</h3>
+      <p>Entra en su web y elige <em>New Project</em> para crear un lienzo nuevo o <em>Open From Computer</em> para editar una imagen existente.</p>
+
+      <h3>2. Ajusta tamaño y resolución</h3>
+      <p>Si la imagen es para web, define desde el principio el tamaño final para no cargar peso innecesario.</p>
+
+      <h3>3. Edita por capas</h3>
+      <p>Trabaja textos, fondos y elementos por separado. Así podrás retocar sin romper el resto del diseño.</p>
+
+      <h3>4. Exporta en formato optimizado</h3>
+      <p>Para web, normalmente conviene exportar en WebP o JPG comprimido. Esto ayuda a mejorar la velocidad de carga, algo clave para SEO y conversión. Si quieres profundizar, mira nuestro artículo sobre <a href="/blog/velocidad-web-importancia">la importancia de la velocidad web</a>.</p>
+
+      <h2>¿Cuándo conviene Photopea y cuándo no?</h2>
+      <h3>Ideal para:</h3>
+      <ul>
+        <li>Ediciones rápidas de imágenes para blog o redes.</li>
+        <li>Abrir y modificar PSD sin pagar Adobe.</li>
+        <li>Equipos pequeños que necesitan agilidad.</li>
+      </ul>
+
+      <h3>Menos recomendable para:</h3>
+      <ul>
+        <li>Flujos avanzados de impresión de gran formato.</li>
+        <li>Proyectos creativos muy complejos con alta carga de recursos.</li>
+        <li>Entornos corporativos con procesos cerrados de Adobe.</li>
+      </ul>
+
+      <h2>Errores comunes al usar Photoshop online</h2>
+      <ul>
+        <li>Exportar imágenes demasiado pesadas.</li>
+        <li>No revisar licencias de tipografías o recursos.</li>
+        <li>Diseñar sin pensar en móvil.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Photopea es una alternativa muy sólida si buscas un <strong>Photoshop online gratis</strong> para tareas de diseño web cotidianas. La clave está en usarlo con criterio: tamaño correcto, formatos optimizados y una estructura visual clara.</p>
+      <p><strong>¿Quieres que tu web no solo se vea bien, sino que también convierta?</strong> En Icono Studio diseñamos páginas rápidas, limpias y orientadas a negocio. <a href="/#contacto">Hablemos de tu proyecto</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Photopea es gratis?',
+        answer: 'Sí, tiene versión gratuita en navegador. También ofrece opciones de pago para reducir anuncios y mejorar la experiencia.'
+      },
+      {
+        question: '¿Photopea abre archivos PSD de Photoshop?',
+        answer: 'Sí, Photopea permite abrir y editar PSD en la mayoría de casos, lo que lo convierte en una alternativa muy práctica.'
+      },
+      {
+        question: '¿Photopea sirve para diseño web?',
+        answer: 'Sí, especialmente para preparar banners, imágenes de blog, miniaturas y recursos visuales optimizados para web.'
+      }
+    ]
+  },
+  {
+    title: 'WhatTheFont: detectar la tipografía con una foto en 1 minuto',
+    subtitle: 'Aprende a identificar fuentes visualmente usando WhatTheFont y mejora tu proceso de diseño sin perder horas buscando tipografías parecidas.',
+    slug: 'what-the-font-detectar-tipografia-con-foto',
+    date: '27 May 2026',
+    author: 'Icono Studio',
+    tag: 'Diseño',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80',
+    metaTitle: 'WhatTheFont: detectar tipografía con una foto | Icono Studio',
+    metaDescription: 'Guía para usar WhatTheFont y encontrar una tipografía a partir de una imagen. Trucos para mejorar resultados y alternativas útiles.',
+    content: `
+      <p>Seguro que te ha pasado: ves una tipografía en un cartel, en una web o en una imagen y piensas "¿qué fuente es esta?". Ahí entra en juego <strong>WhatTheFont</strong>, una de las herramientas más conocidas para detectar tipografías con una foto.</p>
+      <p>En esta guía te enseñamos cómo usarla, qué calidad de imagen necesitas y qué hacer cuando no te da una coincidencia exacta.</p>
+
+      <h2>¿Qué es WhatTheFont?</h2>
+      <p><strong>WhatTheFont</strong> es un identificador de tipografías. Subes una imagen con texto y la herramienta analiza las formas de cada letra para sugerirte fuentes similares o idénticas.</p>
+
+      <h2>Cómo detectar una tipografía con una foto</h2>
+      <h3>1. Haz una captura nítida</h3>
+      <p>Cuanto más clara esté la imagen, mejores resultados tendrás. Evita fotos borrosas, inclinadas o con sombras fuertes.</p>
+
+      <h3>2. Recorta solo el texto</h3>
+      <p>No subas toda la imagen si hay muchos elementos de fondo. Recortar el texto mejora mucho la precisión del reconocimiento.</p>
+
+      <h3>3. Revisa letras clave</h3>
+      <p>Compara letras como "a", "g", "R", "Q" o números. Son las que más te ayudan a confirmar si la coincidencia es real.</p>
+
+      <h3>4. Comprueba la licencia</h3>
+      <p>Encontrar una fuente no significa que puedas usarla libremente. Si necesitas alternativas gratuitas, revisa también <a href="/blog/font-squirrel-tipografias-gratuitas-uso-comercial">esta guía de Font Squirrel</a>.</p>
+
+      <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&q=80" alt="WhatTheFont para identificar tipografías desde una imagen" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Errores que reducen la precisión</h2>
+      <ul>
+        <li>Texto demasiado pequeño.</li>
+        <li>Letras superpuestas o deformadas.</li>
+        <li>Fondos con bajo contraste.</li>
+        <li>Usar imágenes comprimidas en exceso.</li>
+      </ul>
+
+      <h2>Alternativas si WhatTheFont no acierta</h2>
+      <ul>
+        <li><strong>Matcherator (Font Squirrel):</strong> otra opción muy popular.</li>
+        <li><strong>Google Fonts:</strong> para buscar equivalencias gratuitas.</li>
+        <li><strong>Comparación manual:</strong> útil para validar familia, peso y estilo.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>WhatTheFont te ahorra muchísimo tiempo cuando necesitas detectar una tipografía con rapidez. Si además combinas la búsqueda con revisión de licencia y criterios de legibilidad, tus diseños ganan coherencia y profesionalidad.</p>
+      <p><strong>¿Quieres mejorar la identidad visual de tu web?</strong> En Icono Studio diseñamos páginas con tipografía, jerarquía y estilo pensados para convertir mejor. <a href="/#contacto">Te ayudamos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿WhatTheFont es gratis?',
+        answer: 'Sí, puedes usarlo gratis para identificar fuentes. Algunas coincidencias pueden llevarte a tipografías de pago.'
+      },
+      {
+        question: '¿Qué tipo de imagen funciona mejor?',
+        answer: 'Una imagen nítida, con buen contraste y texto recto. Cuanto más limpia sea la muestra, mayor precisión tendrás.'
+      },
+      {
+        question: '¿Qué hago si no encuentro la tipografía exacta?',
+        answer: 'Busca una alternativa visualmente parecida y revisa su licencia. Para proyectos web, suele bastar una familia equivalente bien elegida.'
+      }
+    ]
+  },
+  {
+    title: '¿Qué es Google Search Console y para qué sirve? Guía clara para empezar',
+    subtitle: 'Si quieres mejorar tu SEO sin adivinar, Search Console es una herramienta imprescindible para ver cómo te encuentra Google y qué debes corregir.',
+    slug: 'que-es-google-search-console-guia-basica',
+    date: '26 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO',
+    image: 'https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&q=80',
+    metaTitle: 'Qué es Google Search Console: guía básica | Icono Studio',
+    metaDescription: 'Descubre qué es Google Search Console, para qué sirve y cómo configurarlo paso a paso para mejorar indexación, clics y SEO.',
+    content: `
+      <p>Si tienes una web y quieres crecer en Google, necesitas datos reales. <strong>Google Search Console</strong> es la herramienta gratuita de Google que te muestra cómo aparece tu sitio en los resultados de búsqueda.</p>
+      <p>No sustituye a Google Analytics: Search Console se centra en visibilidad orgánica, indexación y consultas de búsqueda.</p>
+
+      <h2>¿Qué es Google Search Console?</h2>
+      <p>Google Search Console es una plataforma oficial para propietarios de sitios web. Te permite comprobar si Google puede rastrear e indexar tus páginas y ver qué búsquedas te están trayendo tráfico.</p>
+
+      <h2>¿Para qué sirve Search Console?</h2>
+      <ul>
+        <li><strong>Ver consultas y posiciones:</strong> qué palabras clave activan tu web.</li>
+        <li><strong>Controlar indexación:</strong> qué páginas están dentro o fuera del índice.</li>
+        <li><strong>Detectar errores:</strong> problemas de cobertura, rastreo o experiencia.</li>
+        <li><strong>Enviar sitemaps:</strong> para facilitar descubrimiento de URLs nuevas.</li>
+        <li><strong>Analizar CTR:</strong> mejorar títulos y metadescripciones para ganar clics.</li>
+      </ul>
+
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Panel de Google Search Console para análisis SEO" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo configurar Google Search Console paso a paso</h2>
+      <h3>1. Añade tu propiedad</h3>
+      <p>Lo más recomendable es usar tipo <strong>Dominio</strong> para cubrir todas las variantes (http, https, subdominios).</p>
+
+      <h3>2. Verifica la propiedad</h3>
+      <p>La verificación suele hacerse por DNS. También existen métodos alternativos por HTML o etiquetas, según el caso.</p>
+
+      <h3>3. Envía tu sitemap</h3>
+      <p>Sube la URL de tu sitemap para acelerar descubrimiento de páginas. En tu caso, es clave para nuevos artículos del blog.</p>
+
+      <h3>4. Revisa el informe de rendimiento</h3>
+      <p>Mira qué páginas reciben impresiones pero poco clic. Ahí suele haber oportunidades rápidas de optimización.</p>
+
+      <h2>Métricas clave que debes mirar cada semana</h2>
+      <ul>
+        <li><strong>Impresiones:</strong> cuántas veces apareces en Google.</li>
+        <li><strong>Clics:</strong> visitas orgánicas reales.</li>
+        <li><strong>CTR:</strong> porcentaje de clics sobre impresiones.</li>
+        <li><strong>Posición media:</strong> referencia general para cada consulta.</li>
+      </ul>
+
+      <h2>Cómo usar Search Console para captar más clientes</h2>
+      <p>Si detectas consultas con intención comercial, crea o mejora contenido específico para responder justo a esa necesidad. Puedes apoyarte en artículos como <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">nuestra guía de SEO local</a> para conectar visibilidad y negocio.</p>
+      <p>También conviene revisar páginas con mucha impresión y bajo CTR: a veces un cambio en título y metadescripción ya mejora el rendimiento.</p>
+
+      <h2>Conclusión</h2>
+      <p>Google Search Console es la base mínima para trabajar SEO con criterio. Te dice dónde estás, qué te falta y dónde tienes oportunidades rápidas para crecer en tráfico de calidad.</p>
+      <p><strong>¿Quieres que revisemos tu Search Console y definamos acciones concretas?</strong> En Icono Studio te ayudamos a convertir datos en mejoras reales de posicionamiento y captación. <a href="/#contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Google Search Console es gratis?',
+        answer: 'Sí, es una herramienta oficial y gratuita de Google para analizar el rendimiento orgánico de tu sitio web.'
+      },
+      {
+        question: '¿Search Console y Google Analytics son lo mismo?',
+        answer: 'No. Search Console muestra datos de búsqueda orgánica e indexación; Analytics analiza comportamiento de usuarios dentro de la web.'
+      },
+      {
+        question: '¿Cada cuánto debería revisar Search Console?',
+        answer: 'Lo recomendable es revisar al menos una vez por semana y hacer un análisis más profundo cada mes.'
+      }
+    ]
+  },
+  {
+    title: 'Font Squirrel: tipografías gratuitas para uso comercial (sin sorpresas)',
+    subtitle: 'Aprende a encontrar fuentes gratuitas y revisar bien licencias antes de usarlas en tu web, marca o materiales de cliente.',
+    slug: 'font-squirrel-tipografias-gratuitas-uso-comercial',
+    date: '26 May 2026',
+    author: 'Icono Studio',
+    tag: 'Diseño',
+    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80',
+    metaTitle: 'Font Squirrel: tipografías gratuitas para uso comercial | Icono Studio',
+    metaDescription: 'Guía de Font Squirrel para descargar tipografías gratuitas y revisar licencias de uso comercial antes de aplicarlas en diseño web.',
+    content: `
+      <p>Cuando diseñas una web o identidad visual, elegir una buena tipografía es clave. El problema viene después: muchas fuentes son bonitas, pero no tienen licencia clara para uso comercial.</p>
+      <p>Ahí es donde destaca <strong>Font Squirrel</strong>, un recurso muy útil para encontrar tipografías gratuitas con mejores garantías de uso.</p>
+
+      <h2>¿Qué es Font Squirrel?</h2>
+      <p>Font Squirrel es un directorio de fuentes y herramientas de tipografía para diseñadores. Su principal valor es que prioriza fuentes gratuitas y suele indicar de forma visible el tipo de licencia.</p>
+
+      <h2>Cómo encontrar tipografías gratuitas en Font Squirrel</h2>
+      <h3>1. Filtra por uso comercial</h3>
+      <p>Antes de enamorarte de una fuente, revisa que permita uso comercial y qué condiciones aplica.</p>
+
+      <h3>2. Revisa estilos y pesos</h3>
+      <p>Para una web profesional necesitas más de un estilo: regular, semibold, bold e itálica ayudan a mantener jerarquía visual.</p>
+
+      <h3>3. Prueba legibilidad en móvil</h3>
+      <p>Una fuente puede verse espectacular en escritorio y fallar en pantallas pequeñas. Haz pruebas reales antes de publicarla.</p>
+
+      <h3>4. Usa el Webfont Generator cuando toque</h3>
+      <p>Font Squirrel incluye utilidades para preparar fuentes para web, algo útil si trabajas proyectos personalizados.</p>
+
+      <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&q=80" alt="Font Squirrel para descargar tipografías gratuitas" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Errores frecuentes al descargar fuentes gratis</h2>
+      <ul>
+        <li>No leer la licencia completa.</li>
+        <li>Usar demasiadas familias tipográficas en una sola web.</li>
+        <li>Olvidar optimización de carga de fuentes.</li>
+        <li>Elegir fuentes poco legibles para textos largos.</li>
+      </ul>
+
+      <h2>Buenas prácticas para web</h2>
+      <ul>
+        <li><strong>Máximo 2 familias:</strong> una para titulares y otra para cuerpo.</li>
+        <li><strong>Cargar solo pesos necesarios:</strong> evita sobrecargar el rendimiento.</li>
+        <li><strong>Definir fallback fonts:</strong> mejora estabilidad visual.</li>
+      </ul>
+      <p>Si te preocupa el rendimiento, te interesa también nuestra guía sobre <a href="/blog/velocidad-web-importancia">velocidad de carga web</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>Font Squirrel puede ahorrarte tiempo y problemas legales si eliges con criterio. La combinación ganadora es simple: buena licencia, legibilidad real y coherencia con tu marca.</p>
+      <p><strong>¿Necesitas ayuda para definir una identidad visual sólida en tu web?</strong> En Icono Studio te ayudamos a elegir tipografías y diseño con foco en imagen y conversión. <a href="/#contacto">Te asesoramos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Las tipografías de Font Squirrel son 100% libres?',
+        answer: 'Muchas son gratuitas, pero cada fuente tiene su propia licencia. Siempre debes revisar condiciones exactas antes de usarla comercialmente.'
+      },
+      {
+        question: '¿Puedo usar una fuente gratis en la web de un cliente?',
+        answer: 'Depende de la licencia de esa fuente. Algunas lo permiten y otras limitan usos comerciales o redistribución.'
+      },
+      {
+        question: '¿Cuántas tipografías debería usar en una web?',
+        answer: 'Lo habitual es usar una o dos familias para mantener coherencia visual y rendimiento óptimo.'
+      }
+    ]
+  },
+  {
+    title: 'Cómo indicar colores en HTML: HEX, RGB, RGBA y HSL explicado fácil',
+    subtitle: 'Guía práctica para elegir y aplicar colores en CSS/HTML con ejemplos claros y buenas prácticas para diseño web profesional.',
+    slug: 'como-indicar-colores-en-html-hex-rgb-hsl-rgba',
+    date: '25 May 2026',
+    author: 'Icono Studio',
+    tag: 'Desarrollo',
+    image: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&q=80',
+    metaTitle: 'Cómo indicar colores en HTML: HEX, RGB, RGBA y HSL | Icono Studio',
+    metaDescription: 'Aprende a usar colores en HTML y CSS con formatos HEX, RGB, RGBA y HSL. Ejemplos y consejos para una paleta web coherente.',
+    content: `
+      <p>Si estás diseñando o tocando código web, tarde o temprano aparece esta duda: <strong>¿cómo indicar colores en HTML?</strong></p>
+      <p>Aunque solemos decir "en HTML", en realidad los colores se aplican sobre todo con CSS. Lo importante es entender los formatos más usados para elegir el correcto según cada caso.</p>
+
+      <h2>Formatos principales de color en web</h2>
+      <h3>1. HEX (hexadecimal)</h3>
+      <p>Es el formato más conocido. Usa seis caracteres para representar rojo, verde y azul.</p>
+      <pre><code>color: #1a73e8;
+background-color: #f5f7fb;</code></pre>
+
+      <h3>2. RGB</h3>
+      <p>Define color con valores de 0 a 255 para cada canal.</p>
+      <pre><code>color: rgb(26, 115, 232);</code></pre>
+
+      <h3>3. RGBA</h3>
+      <p>Igual que RGB, pero añade transparencia (alpha) de 0 a 1.</p>
+      <pre><code>background-color: rgba(26, 115, 232, 0.15);</code></pre>
+
+      <h3>4. HSL</h3>
+      <p>Usa tono, saturación y luminosidad. Es muy práctico para crear variaciones de una misma paleta.</p>
+      <pre><code>color: hsl(214, 82%, 51%);</code></pre>
+
+      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80" alt="Ejemplos de colores en HTML y CSS" class="w-full rounded-[2rem] my-12" />
+
+      <h2>¿Qué formato de color conviene usar?</h2>
+      <ul>
+        <li><strong>HEX:</strong> simple y estándar para la mayoría de estilos.</li>
+        <li><strong>RGB/RGBA:</strong> útil cuando necesitas transparencia.</li>
+        <li><strong>HSL:</strong> excelente para sistemas de diseño y ajustes rápidos de tono/luz.</li>
+      </ul>
+
+      <h2>Buenas prácticas para elegir colores web</h2>
+      <h3>1. Define una paleta base</h3>
+      <p>Evita improvisar color por color. Trabaja con variables y una paleta limitada para mantener coherencia.</p>
+
+      <h3>2. Cuida contraste y accesibilidad</h3>
+      <p>Texto y fondo deben tener contraste suficiente para lectura cómoda, especialmente en móvil.</p>
+
+      <h3>3. Usa variables CSS</h3>
+      <pre><code>:root {
+  --color-primary: #1a73e8;
+  --color-text: #1f2937;
+  --color-bg: #f9fafb;
+}</code></pre>
+
+      <h3>4. Piensa en marca y conversión</h3>
+      <p>El color no es solo estética. También guía la atención y afecta al comportamiento del usuario en botones y llamadas a la acción.</p>
+
+      <h2>Errores comunes al indicar colores en HTML/CSS</h2>
+      <ul>
+        <li>Usar demasiados colores sin jerarquía.</li>
+        <li>No definir estados hover/active.</li>
+        <li>Ignorar el modo móvil y la legibilidad.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Para trabajar colores web con criterio, no basta con saber un código HEX. Lo importante es combinar formato técnico, coherencia visual y accesibilidad.</p>
+      <p><strong>¿Quieres una web con diseño profesional y paleta bien trabajada?</strong> En Icono Studio cuidamos cada detalle visual para que tu marca se vea mejor y convierta más. <a href="/#contacto">Cuéntanos tu idea</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué significa color HEX en HTML?',
+        answer: 'Es una forma hexadecimal de representar colores RGB en web, por ejemplo #ff0000 para rojo.'
+      },
+      {
+        question: '¿Cuál es la diferencia entre RGB y RGBA?',
+        answer: 'RGBA añade un cuarto valor de opacidad (alpha), lo que permite crear transparencias.'
+      },
+      {
+        question: '¿Se ponen los colores en HTML o en CSS?',
+        answer: 'En proyectos actuales se definen principalmente en CSS, aunque comúnmente se habla de “colores en HTML”.'
+      }
+    ]
+  },
+  {
     title: 'GEO para negocios locales en 2026: cómo aparecer en ChatGPT, Gemini y Google AI Overviews',
     subtitle: 'El SEO ya no termina en Google clásico. Aprende a preparar tu web para ganar visibilidad en motores de respuesta con intención local y comercial.',
     slug: 'geo-negocios-locales-2026-chatgpt-gemini-ai-overviews',
