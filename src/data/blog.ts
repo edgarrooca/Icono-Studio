@@ -2,6 +2,414 @@ import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: 'GEO para negocios locales en 2026: cómo aparecer en ChatGPT, Gemini y Google AI Overviews',
+    subtitle: 'El SEO ya no termina en Google clásico. Aprende a preparar tu web para ganar visibilidad en motores de respuesta con intención local y comercial.',
+    slug: 'geo-negocios-locales-2026-chatgpt-gemini-ai-overviews',
+    date: '27 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80',
+    metaTitle: 'GEO para negocios locales en 2026 | Icono Studio',
+    metaDescription: 'Guía práctica de GEO para negocios locales: cómo ganar visibilidad en ChatGPT, Gemini y Google AI Overviews sin abandonar los fundamentos del SEO.',
+    content: `
+      <p>Durante años, la estrategia era clara: posicionar una página en Google y captar clics. En 2026, el escenario ha cambiado. Antes de visitar una web, muchos usuarios ya hacen preguntas en motores de respuesta como ChatGPT, Gemini, Perplexity o en las experiencias de IA del propio Google.</p>
+      <p>Esto no significa que el SEO haya muerto. Significa que ahora compites en dos capas: <strong>la capa de ranking tradicional</strong> y <strong>la capa de recomendación o cita en respuestas de IA</strong>.</p>
+      <p>A esa segunda capa se la suele llamar GEO (<em>Generative Engine Optimization</em>): optimizar tu marca y tu contenido para ser entendible, fiable y citable por sistemas de IA.</p>
+
+      <h2>Qué está cambiando en Google en 2026</h2>
+      <p>Google explica en su documentación oficial de Search Central que, para aparecer en AI Overviews y AI Mode, <strong>no hay requisitos técnicos extra</strong> distintos al SEO base: indexación correcta, contenido útil, buena experiencia y datos claros.</p>
+      <p>La clave no es buscar "trucos para IA", sino hacer muy bien lo esencial:</p>
+      <ul>
+        <li><strong>Contenido útil y específico:</strong> textos orientados a resolver necesidades reales del cliente.</li>
+        <li><strong>Estructura técnica sólida:</strong> rastreo e indexación sin bloqueos.</li>
+        <li><strong>Contexto de negocio claro:</strong> marca, servicios, ubicación y especialidad bien definidos.</li>
+        <li><strong>Señales de confianza:</strong> menciones, reseñas y consistencia en la información pública.</li>
+      </ul>
+
+      <h2>GEO no sustituye al SEO local: lo amplía</h2>
+      <p>Si ya trabajas <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">SEO local</a>, tienes parte del trabajo avanzado. Lo que hace GEO es añadir un enfoque de "entidad" para que la IA entienda mejor quién eres, qué haces y en qué zona eres relevante.</p>
+      <p>Para un negocio local o de servicios, esta es la pregunta importante: cuando alguien pregunte "¿qué empresa me recomiendas para X en mi ciudad?", ¿tu marca tiene suficientes señales como para salir en esa recomendación?</p>
+
+      <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&q=80" alt="Estrategia GEO para aparecer en respuestas de IA" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Las 6 señales GEO que más impacto tienen</h2>
+      <h3>1. Claridad total de tu propuesta</h3>
+      <p>Evita textos genéricos tipo "ofrecemos soluciones integrales". Define con precisión tus servicios, público, ciudad y proceso. Cuanto más concreta sea tu web, más fácil es que un modelo te cite cuando encajas en una consulta.</p>
+
+      <h3>2. Páginas por intención, no por relleno</h3>
+      <p>Trabaja contenidos para búsquedas con intención real: comparativas, precios, dudas previas a contratar, tiempos de entrega, garantías o casos reales. Este tipo de contenido suele tener más valor en respuestas largas de IA que artículos superficiales.</p>
+
+      <h3>3. Datos estructurados bien implementados</h3>
+      <p>Schema no es magia, pero ayuda a desambiguar. Usa marcado coherente con el contenido visible y revisa propiedades clave en páginas de servicio, negocio local y preguntas frecuentes.</p>
+
+      <h3>4. Consistencia de entidad</h3>
+      <p>Nombre comercial, teléfono, dirección de servicio, perfiles sociales y mensajes de marca deben coincidir en web, perfiles y directorios. Esa consistencia refuerza la confianza algorítmica.</p>
+
+      <h3>5. Prueba social verificable</h3>
+      <p>Reseñas reales, testimonios con contexto y proyectos documentados tienen más valor que claims vacíos. En servicios locales, la reputación observable pesa cada vez más.</p>
+
+      <h3>6. Arquitectura interna y enlazado útil</h3>
+      <p>Un buen enlazado interno ayuda a Google y a otros sistemas a entender profundidad temática. Por ejemplo, conecta guías generales con páginas de servicio y artículos de apoyo como <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una web para atraer clientes</a>.</p>
+
+      <h2>Plan GEO de 30 días para una pyme de servicios</h2>
+      <ul>
+        <li><strong>Semana 1:</strong> auditoría de entidad (marca, NAP, servicios, categorías, canónicos, indexación).</li>
+        <li><strong>Semana 2:</strong> actualización de páginas de servicio con copy específico y FAQs de intención comercial.</li>
+        <li><strong>Semana 3:</strong> publicación de 2 piezas evergreen (comparativa + guía práctica local).</li>
+        <li><strong>Semana 4:</strong> optimización de enlazado interno, snippets y seguimiento de conversiones.</li>
+      </ul>
+
+      <h2>Cómo medir si GEO te está funcionando</h2>
+      <p>No te quedes solo con posiciones. Mide:</p>
+      <ul>
+        <li><strong>Consultas nuevas en Search Console</strong> con intención de problema/solución.</li>
+        <li><strong>Crecimiento de branded search</strong> (más gente buscando tu marca).</li>
+        <li><strong>Calidad del tráfico</strong> en GA4 (tiempo, scroll, conversiones por página).</li>
+        <li><strong>Leads cualificados</strong> por tipo de contenido y página de entrada.</li>
+      </ul>
+      <p>Si sube el tráfico pero no suben los contactos, revisa tu capa de conversión: propuesta, confianza y llamada a la acción.</p>
+
+      <h2>Conclusión</h2>
+      <p>GEO no es una moda aislada. Es una evolución natural del SEO en un buscador más conversacional. La ventaja para negocios locales es clara: quien tenga una web bien estructurada, con mensajes concretos y reputación real, tendrá más opciones de aparecer tanto en resultados clásicos como en respuestas de IA.</p>
+      <p><strong>¿Quieres que adaptemos tu web para SEO + GEO sin improvisaciones?</strong> En Icono Studio te ayudamos a definir arquitectura, contenidos y medición para captar más oportunidades reales. <a href="/#contacto">Hablamos de tu proyecto</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué diferencia hay entre SEO y GEO?',
+        answer: 'SEO busca visibilidad en resultados tradicionales de búsqueda y GEO amplía ese trabajo para mejorar la probabilidad de que tu marca sea citada o recomendada en respuestas generativas de IA.'
+      },
+      {
+        question: '¿Necesito un marcado especial para salir en AI Overviews?',
+        answer: 'No. Google indica que no hay un marcado especial obligatorio para AI Overviews; lo importante es cumplir fundamentos SEO, indexación y contenido útil.'
+      },
+      {
+        question: '¿GEO sirve para negocios pequeños o solo para grandes marcas?',
+        answer: 'Sirve especialmente a negocios pequeños y locales porque muchas consultas de IA son comparativas y de recomendación. Una marca local bien definida puede competir muy bien.'
+      }
+    ]
+  },
+  {
+    title: 'Google Ads 2026 para servicios: cómo usar AI Max sin quemar presupuesto',
+    subtitle: 'Con los cambios recientes de Google Ads, la estructura de campaña y la medición pesan más que nunca. Esta guía te ayuda a evitar errores caros.',
+    slug: 'google-ads-2026-servicios-ai-max-estructura-campanas',
+    date: '26 May 2026',
+    author: 'Icono Studio',
+    tag: 'Ads & Captación',
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80',
+    metaTitle: 'Google Ads 2026 para servicios con AI Max | Icono Studio',
+    metaDescription: 'Aprende a estructurar Google Ads en 2026 para negocios de servicios con AI Max, mejor atribución y landing pages orientadas a lead.',
+    content: `
+      <p>Si haces campañas para captar presupuestos, llamadas o formularios, 2026 está siendo un año de cambios fuertes en Google Ads. Google está empujando más automatización con IA y, al mismo tiempo, castiga cada vez más la mala medición.</p>
+      <p>Dos señales importantes:</p>
+      <ul>
+        <li>Google anunció en abril de 2026 que las funciones de Dynamic Search Ads migrarán hacia <strong>AI Max</strong> en septiembre.</li>
+        <li>En mayo de 2026, en Google Marketing Live, presentó nuevos formatos de anuncios para experiencias de búsqueda más conversacionales.</li>
+      </ul>
+      <p>Traducción práctica: si tu cuenta no tiene una base limpia (objetivos, conversiones y landings), la automatización no te va a salvar.</p>
+
+      <h2>Qué estructura está funcionando mejor para negocios de servicios</h2>
+      <p>Para evitar mezclar intención y malgastar presupuesto, suele funcionar una estructura por capas:</p>
+      <h3>1. Campañas de alta intención comercial</h3>
+      <p>Keywords de contratar ya: "precio", "presupuesto", "empresa", "servicio + ciudad". Aquí es donde suelen salir los mejores leads a corto plazo.</p>
+
+      <h3>2. Campañas de descubrimiento controlado</h3>
+      <p>Segmentos más amplios para ampliar cobertura, siempre con límites y con creatividades específicas. No mezcles esto con tu núcleo de captación directa.</p>
+
+      <h3>3. Remarketing con mensaje de cierre</h3>
+      <p>Usuarios que visitaron páginas clave pero no contactaron. Mensajes de prueba social, caso real o propuesta concreta para cerrar la decisión.</p>
+
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80" alt="Estructura de campañas Google Ads para negocios de servicios" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Lo que más impacto tiene en rendimiento (y casi nadie hace bien)</h2>
+      <h3>1. Medir conversiones de verdad, no solo clics</h3>
+      <p>No te quedes en "visitas" o "tiempo en página". Configura eventos de negocio real: envío de formulario, clic en WhatsApp, clic en teléfono, reserva o solicitud de presupuesto.</p>
+      <p>Si aún no lo tienes claro, revisa también nuestra guía sobre <a href="/blog/google-tag-vs-tag-manager-configuracion-medicion-2026">Google Tag y Tag Manager para medir bien</a>.</p>
+
+      <h3>2. Separar conversiones principales y secundarias</h3>
+      <p>Las acciones que alimentan puja automática deben ser realmente valiosas. Mezclar microeventos con eventos finales suele distorsionar el algoritmo.</p>
+
+      <h3>3. Landing por intención</h3>
+      <p>Enviar todo a la home sigue siendo uno de los mayores errores. El anuncio debe llevar a una página que responda exactamente a la promesa y al problema del usuario.</p>
+      <p>Para comparar enfoques, te puede ayudar esta lectura: <a href="/blog/landing-page-o-pagina-web-completa-diferencias">landing page vs web completa</a>.</p>
+
+      <h2>Checklist rápido para adaptar tu cuenta a 2026</h2>
+      <ul>
+        <li><strong>Tracking revisado:</strong> Google Ads, GA4 y eventos clave sin duplicidades.</li>
+        <li><strong>Etiquetas limpias:</strong> sin scripts repetidos ni eventos disparando en páginas incorrectas.</li>
+        <li><strong>Arquitectura por intención:</strong> campañas separadas por objetivo real de negocio.</li>
+        <li><strong>Creatividades sólidas:</strong> propuesta concreta, diferencial y prueba social.</li>
+        <li><strong>Páginas de destino rápidas:</strong> velocidad y claridad para no perder clics pagados.</li>
+      </ul>
+
+      <h2>Errores caros que debes evitar</h2>
+      <ul>
+        <li><strong>Automatizar sin datos:</strong> AI Max necesita señales buenas para optimizar bien.</li>
+        <li><strong>No cerrar el embudo:</strong> campañas sin seguimiento de lead cualificado acaban inflando costes.</li>
+        <li><strong>Ignorar experiencia móvil:</strong> gran parte del tráfico de servicios llega desde móvil.</li>
+        <li><strong>Cambiar todo cada semana:</strong> sin periodos de aprendizaje no hay estabilidad.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Google Ads 2026 ofrece más alcance y más automatización, pero también exige más disciplina técnica. La combinación ganadora para negocios de servicios es simple: <strong>estructura clara + medición fiable + landing enfocada a conversión</strong>.</p>
+      <p><strong>¿Quieres que revisemos tu cuenta y dejemos una base rentable?</strong> En Icono Studio unimos diseño, tracking y captación para que cada clic tenga más opciones de convertirse en cliente. <a href="/#contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿AI Max sustituye por completo a la estrategia manual?',
+        answer: 'No. AI Max mejora la automatización, pero sigue necesitando una buena estructura de campaña, objetivos claros y conversiones bien definidas para rendir.'
+      },
+      {
+        question: '¿Puedo enviar el tráfico de Ads a la home?',
+        answer: 'Se puede, pero normalmente reduce la conversión. Para captación de leads suele funcionar mejor una landing específica por servicio e intención.'
+      },
+      {
+        question: '¿Qué métricas son clave en campañas de servicios?',
+        answer: 'Coste por lead real, tasa de conversión por landing, calidad de lead y porcentaje de cierre comercial, además de volumen de conversiones.'
+      }
+    ]
+  },
+  {
+    title: 'Google Tag o Google Tag Manager en 2026: qué conviene para medir bien (GA4, Ads y Reddit)',
+    subtitle: 'Comparativa práctica para evitar líos de etiquetas, duplicidades y datos incompletos cuando haces campañas de captación.',
+    slug: 'google-tag-vs-tag-manager-configuracion-medicion-2026',
+    date: '25 May 2026',
+    author: 'Icono Studio',
+    tag: 'Analítica',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
+    metaTitle: 'Google Tag vs Tag Manager en 2026 | Icono Studio',
+    metaDescription: 'Qué elegir entre Google Tag y Google Tag Manager en 2026. Guía para configurar GA4, Google Ads y Reddit Pixel con medición fiable.',
+    content: `
+      <p>Si estás invirtiendo en anuncios, medir bien no es opcional. El problema es que mucha gente mezcla scripts, dispara eventos duplicados y termina tomando decisiones con datos rotos.</p>
+      <p>La duda clásica es: <strong>¿me basta con Google Tag o necesito Google Tag Manager?</strong></p>
+
+      <h2>Diferencia rápida y clara</h2>
+      <ul>
+        <li><strong>Google Tag (gtag.js):</strong> implementación directa en código. Es simple para casos muy básicos.</li>
+        <li><strong>Google Tag Manager (GTM):</strong> capa de gestión de etiquetas y eventos sin tocar código cada vez.</li>
+      </ul>
+      <p>Si tu web solo mide una acción simple, gtag.js puede ser suficiente. Si gestionas GA4, Google Ads, Reddit Pixel, Meta o varios eventos de negocio, GTM suele ser la opción más escalable.</p>
+
+      <h2>Stack recomendado para una pyme de servicios en 2026</h2>
+      <h3>1. Base de analítica</h3>
+      <ul>
+        <li>GA4 para comportamiento y embudo.</li>
+        <li>Google Ads para optimización de campañas.</li>
+        <li>Eventos de negocio definidos (no solo pageviews).</li>
+      </ul>
+
+      <h3>2. Capa de etiquetado</h3>
+      <ul>
+        <li>GTM Web Container para centralizar eventos.</li>
+        <li>Nomenclatura de eventos estable.</li>
+        <li>Triggers claros por URL, clic y envío de formulario.</li>
+      </ul>
+
+      <h3>3. Publicidad y terceros</h3>
+      <ul>
+        <li>Google Ads conversion tag.</li>
+        <li>Reddit Pixel (PageVisit + Lead si aplica).</li>
+        <li>Deduplicación si combinas pixel y CAPI.</li>
+      </ul>
+
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80" alt="Configuración de medición con Google Tag Manager y GA4" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Qué eventos sí debes medir en una web de captación</h2>
+      <ul>
+        <li><strong>generate_lead:</strong> envío de formulario principal.</li>
+        <li><strong>click_whatsapp:</strong> clic en botón de WhatsApp.</li>
+        <li><strong>click_phone:</strong> clic en teléfono desde móvil.</li>
+        <li><strong>view_service_page:</strong> visita a páginas de servicio de alta intención.</li>
+      </ul>
+      <p>Con esto puedes ver no solo cuántas visitas llegan, sino qué canales traen usuarios con mayor intención real.</p>
+
+      <h2>Consentimiento y cumplimiento: no lo dejes para después</h2>
+      <p>Si tienes tráfico de la UE, Google exige pasar señales de consentimiento para casos aplicables de medición y personalización. Ignorarlo puede afectar a tus audiencias, tu modelado de conversiones y tu capacidad de optimizar campañas.</p>
+      <p>No es asesoría legal, pero a nivel operativo la recomendación suele ser:</p>
+      <ul>
+        <li>Banner CMP bien implementado.</li>
+        <li>Estados de consentimiento claros antes de disparar etiquetas sensibles.</li>
+        <li>Verificación técnica con Tag Assistant y pruebas reales de formulario.</li>
+      </ul>
+
+      <h2>Errores frecuentes que rompen la atribución</h2>
+      <ul>
+        <li><strong>Etiquetas duplicadas:</strong> mismo evento disparado por código y por GTM.</li>
+        <li><strong>Eventos sin contexto:</strong> se registra el lead pero no la fuente o landing.</li>
+        <li><strong>Cambios sin QA:</strong> publicar sin validar en entorno real.</li>
+        <li><strong>Nombres inconsistentes:</strong> dificulta reportes y optimización automática.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Para un negocio que hace captación constante, GTM suele ganar por control y escalabilidad. Lo importante no es solo "poner una etiqueta", sino diseñar una medición que te permita decidir mejor dónde invertir y qué canales te traen clientes reales.</p>
+      <p><strong>¿Quieres que te dejemos la medición limpia y lista para crecer?</strong> En Icono Studio configuramos tracking de forma ordenada para que tus campañas se apoyen en datos fiables, no en intuiciones. <a href="/#contacto">Lo vemos contigo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Es obligatorio usar Google Tag Manager?',
+        answer: 'No es obligatorio. Para implementaciones simples puede bastar Google Tag directo, pero GTM facilita escalar eventos y controlar mejor etiquetas de varias plataformas.'
+      },
+      {
+        question: '¿Qué pasa si tengo etiquetas duplicadas?',
+        answer: 'Se inflan conversiones, se distorsiona el coste por lead y los algoritmos de puja optimizan con señales incorrectas.'
+      },
+      {
+        question: '¿Puedo medir Google Ads y Reddit con la misma base?',
+        answer: 'Sí. Puedes usar una estrategia común de eventos en GTM y enviar cada conversión a las plataformas correspondientes con reglas claras de deduplicación.'
+      }
+    ]
+  },
+  {
+    title: 'llms.txt, schema y entidad de marca: qué sí funciona en 2026 para ganar visibilidad en IA',
+    subtitle: 'Mucho ruido y pocas certezas. Te explicamos qué priorizar de verdad para que tu negocio sea entendible y citable por motores de IA.',
+    slug: 'llms-txt-schema-entidad-marca-visibilidad-ia-2026',
+    date: '24 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Técnico',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80',
+    metaTitle: 'llms.txt, schema y marca en IA (2026) | Icono Studio',
+    metaDescription: 'Qué papel tienen llms.txt, schema y la entidad de marca en 2026. Guía práctica para priorizar acciones SEO técnicas con impacto real.',
+    content: `
+      <p>En 2026 se habla mucho de GEO, AI Search y nuevos formatos. Entre tanta novedad, aparece una duda frecuente: <strong>¿tengo que crear un llms.txt para que Google me muestre en AI Overviews?</strong></p>
+      <p>Respuesta corta: Google Search Central indica que no necesitas crear archivos especiales de IA para aparecer en sus funciones de IA. Lo esencial sigue siendo SEO técnico sólido y contenido útil.</p>
+      <p>Entonces, ¿llms.txt sirve para algo? Puede servir como documento de contexto para algunos ecosistemas o herramientas, pero no debería desplazar prioridades que sí impactan de forma más directa.</p>
+
+      <h2>Orden correcto de prioridades</h2>
+      <h3>Prioridad 1: indexación y arquitectura limpia</h3>
+      <p>Sin rastreo ni cobertura correcta, no hay visibilidad posible. Revisa robots, canónicos, sitemap, paginación y enlazado interno antes de abrir frentes nuevos.</p>
+
+      <h3>Prioridad 2: entidad de marca consistente</h3>
+      <p>Tu empresa debe ser fácil de identificar: nombre, teléfono, zona de servicio, especialidad y mensajes clave coherentes en web, perfiles y directorios.</p>
+
+      <h3>Prioridad 3: marcado schema bien implementado</h3>
+      <p>Utiliza datos estructurados en páginas donde aporte contexto real. En negocios locales, <code>LocalBusiness</code> y páginas de servicio bien modeladas ayudan a reducir ambigüedad.</p>
+
+      <h3>Prioridad 4: contenido transaccional y comparativo</h3>
+      <p>Publica piezas que respondan a decisiones de compra: precios, comparativas, errores comunes, preguntas previas a contratar y metodología.</p>
+
+      <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&q=80" alt="Prioridades SEO técnico y visibilidad en buscadores de IA" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Dónde encaja llms.txt sin sobrevalorarlo</h2>
+      <p>Si quieres implementarlo, trátalo como una capa complementaria:</p>
+      <ul>
+        <li>Resumen breve de tu negocio y propuesta.</li>
+        <li>Enlaces a páginas estratégicas (servicios, casos, contacto, recursos).</li>
+        <li>Lenguaje claro y mantenible, actualizado cada cierto tiempo.</li>
+      </ul>
+      <p>Pero recuerda: publicar llms.txt sin resolver base técnica y contenido útil no te va a dar ventaja sostenible.</p>
+
+      <h2>Checklist técnico mínimo para una web de servicios</h2>
+      <ul>
+        <li><strong>Core Web Vitals en rango saludable.</strong></li>
+        <li><strong>Datos de negocio consistentes</strong> en footer, contacto y páginas clave.</li>
+        <li><strong>Schema coherente</strong> con lo que el usuario realmente ve en pantalla.</li>
+        <li><strong>FAQs útiles</strong> en páginas de alta intención.</li>
+        <li><strong>Enlazado interno lógico</strong> entre servicios, ciudad y recursos.</li>
+      </ul>
+
+      <h2>Qué hacen ahora las agencias que mejor están creciendo</h2>
+      <p>Los competidores que mejor rendimiento están obteniendo en 2026 combinan tres cosas: especialización clara por nicho, contenido muy accionable y arquitectura técnica limpia. No dependen de una sola táctica.</p>
+      <p>Esa combinación también reduce dependencia de un único canal y protege mejor frente a cambios de algoritmo.</p>
+
+      <h2>Conclusión</h2>
+      <p>En la era de la IA, ganar visibilidad va de <strong>claridad + consistencia + utilidad real</strong>. llms.txt puede ser una pieza opcional, pero la palanca principal sigue siendo una web técnicamente sólida, con entidad bien definida y contenido que ayude a decidir.</p>
+      <p><strong>¿Quieres una auditoría técnica enfocada a resultados de negocio?</strong> En Icono Studio te ayudamos a priorizar lo que de verdad mueve leads y posicionamiento, sin humo. <a href="/#contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿llms.txt es obligatorio para salir en Google AI Overviews?',
+        answer: 'No. Google indica que no necesitas archivos especiales de IA para aparecer en sus funciones de IA; los fundamentos SEO siguen siendo la base.'
+      },
+      {
+        question: '¿Qué pesa más: schema o contenido?',
+        answer: 'Ambos son importantes, pero el contenido útil y específico suele tener más impacto directo. Schema ayuda a entender mejor el contexto y reducir ambigüedad.'
+      },
+      {
+        question: '¿Qué prioridad técnica debería revisar primero?',
+        answer: 'Primero indexación y rastreo, después consistencia de entidad y marcado estructurado, y luego expansión de contenido por intención comercial.'
+      }
+    ]
+  },
+  {
+    title: 'Agentes de IA en tu web: cuándo aumentan los leads y cuándo espantan clientes',
+    subtitle: 'No todo chatbot convierte. Guía práctica para implementar asistentes de IA con enfoque comercial, sin dañar la experiencia de usuario.',
+    slug: 'agentes-ia-web-cuando-aumentan-leads',
+    date: '23 May 2026',
+    author: 'Icono Studio',
+    tag: 'Conversión & IA',
+    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&q=80',
+    metaTitle: 'Agentes de IA en tu web: guía para captar leads | Icono Studio',
+    metaDescription: 'Cuándo conviene usar agentes de IA en una web de servicios y cómo configurarlos para mejorar conversiones sin perjudicar UX ni confianza.',
+    content: `
+      <p>En 2026, cada vez más negocios quieren poner un asistente de IA en su web. La idea suena bien: responder más rápido, filtrar dudas y convertir visitas en oportunidades.</p>
+      <p>Pero en la práctica vemos dos escenarios muy distintos:</p>
+      <ul>
+        <li><strong>Escenario A:</strong> el agente reduce fricción, resuelve dudas y aumenta contactos.</li>
+        <li><strong>Escenario B:</strong> el agente interrumpe, confunde y baja la conversión del formulario principal.</li>
+      </ul>
+      <p>La diferencia no está en "tener IA" o no, sino en cómo la integras en la estrategia de captación.</p>
+
+      <h2>Qué puede hacer bien un agente de IA en una web de servicios</h2>
+      <h3>1. Precalificar leads sin fricción</h3>
+      <p>Preguntas breves para identificar necesidad, presupuesto aproximado, plazo y ciudad. Así el equipo comercial recibe contactos más preparados.</p>
+
+      <h3>2. Resolver objeciones repetidas</h3>
+      <p>Precios orientativos, tiempos de entrega, proceso de trabajo, garantías o ejemplos. Si esta información está bien diseñada, el agente acelera la decisión.</p>
+
+      <h3>3. Derivar al canal correcto</h3>
+      <p>No todo es formulario. Algunos usuarios prefieren WhatsApp, llamada o email. El agente debe guiar, no bloquear.</p>
+
+      <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80" alt="Asistente de IA para mejorar captación de leads en una web" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Señales de que lo estás implementando mal</h2>
+      <ul>
+        <li><strong>Pop-up invasivo en los primeros segundos.</strong></li>
+        <li><strong>Respuestas genéricas</strong> que no reflejan tu oferta real.</li>
+        <li><strong>Sin salida humana clara</strong> cuando la conversación se complica.</li>
+        <li><strong>No mide conversiones</strong> (habla mucho, convierte poco).</li>
+      </ul>
+
+      <h2>Modelo híbrido que sí suele funcionar</h2>
+      <p>Para pymes de servicios, suele ir mejor un enfoque híbrido:</p>
+      <ul>
+        <li><strong>Web principal clara</strong> con propuesta, servicios y CTA visibles.</li>
+        <li><strong>Agente en segundo plano</strong> para dudas y precualificación, no para sustituir toda la experiencia.</li>
+        <li><strong>Escalado a humano</strong> cuando hay intención de contratar.</li>
+      </ul>
+      <p>Este modelo protege la claridad de la página y aprovecha la IA donde realmente aporta.</p>
+
+      <h2>Qué medir para saber si merece la pena</h2>
+      <ul>
+        <li><strong>Tasa de inicio de chat</strong> vs. tasa de finalización.</li>
+        <li><strong>Leads generados por chat</strong> y calidad de esos leads.</li>
+        <li><strong>Impacto en el formulario principal</strong> (si cae, algo falla).</li>
+        <li><strong>Tiempo hasta contacto comercial</strong> y tasa de cierre.</li>
+      </ul>
+      <p>Sin este cuadro de mando, el agente puede parecer "activo" pero no aportar negocio real.</p>
+
+      <h2>Cómo integrarlo con tu estrategia SEO y Ads</h2>
+      <p>El agente no debe ser una capa aislada. Conéctalo con páginas de alta intención y campañas de captación para responder exactamente a lo que el usuario viene buscando.</p>
+      <p>Además, evita que tape elementos clave en móvil. Si la experiencia se vuelve incómoda, subirás rebote y bajarás rendimiento publicitario.</p>
+
+      <h2>Conclusión</h2>
+      <p>Los agentes de IA pueden mejorar mucho la captación, pero solo si están diseñados para apoyar el proceso comercial, no para distraer. La prioridad sigue siendo una web clara, rápida y orientada a conversión. La IA entra después como acelerador.</p>
+      <p><strong>¿Quieres implementar IA sin romper tu conversión?</strong> En Icono Studio diseñamos experiencias híbridas donde la tecnología suma al negocio. <a href="/#contacto">Te ayudamos a plantearlo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Un chatbot de IA sustituye al formulario de contacto?',
+        answer: 'No debería sustituirlo por completo. En la mayoría de webs de servicios funciona mejor como complemento para resolver dudas y precualificar antes de la conversión.'
+      },
+      {
+        question: '¿Cómo sé si el agente está ayudando o molestando?',
+        answer: 'Midiendo su impacto real en leads y calidad comercial. Si suben las conversaciones pero no suben contactos útiles, hay que rediseñar flujos.'
+      },
+      {
+        question: '¿Es mejor mostrar el chat nada más entrar?',
+        answer: 'Normalmente no. Suele funcionar mejor activarlo con intención de salida, scroll o permanencia mínima para no interrumpir al usuario.'
+      }
+    ]
+  },
+  {
     title: 'Guía de SEO Local para pequeñas empresas: cómo aparecer en Google Maps y atraer clientes en tu zona',
     subtitle: 'Aprende los pasos esenciales para optimizar tu presencia local, mejorar tu ficha de Google Business Profile y posicionar tu web para búsquedas en tu ciudad.',
     slug: 'seo-local-pequenas-empresas-guia-google-maps',
