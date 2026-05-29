@@ -5,6 +5,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
+import { absoluteUrl, siteConfig } from '../lib/site';
+import { buildBreadcrumbSchema, buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
+import RelatedGuidesSection from '../components/RelatedGuidesSection';
+import { getBlogEntriesBySlugs } from '../lib/blogUtils';
+import { blogSummariesSorted } from '../data/blogSummaries';
 
 export default function Pricing() {
   useEffect(() => {
@@ -18,12 +23,96 @@ export default function Pricing() {
     { q: "¿Ofrecéis facilidades de pago o cuotas?", a: "Para proyectos a medida grandes, podemos estudiar dividir el pago en hitos de entrega. También disponemos de nuestro servicio Web Express, donde puedes pagar una cuota mensual por tener la web lista sin gran inversión inicial." }
   ];
 
+  const pricingSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Precios' },
+      ]),
+      {
+        "@type": "CollectionPage",
+        "@id": absoluteUrl('/precios#page'),
+        "name": `Precios | ${siteConfig.name}`,
+        "url": absoluteUrl('/precios'),
+        "description": 'Tarifas base para landing pages, webs corporativas, e-commerce y desarrollo a medida con enfoque comercial.',
+        "about": {
+          "@id": absoluteUrl('/#organization'),
+        },
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": absoluteUrl('/precios#offers'),
+        "name": 'Catálogo base de servicios web',
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": 'Landing Page',
+            "priceCurrency": 'EUR',
+            "price": '350',
+            "url": absoluteUrl('/precios'),
+            "itemOffered": {
+              "@type": "Service",
+              "name": 'Landing page de captación',
+              "provider": buildProviderReference(),
+            },
+          },
+          {
+            "@type": "AggregateOffer",
+            "name": 'Web corporativa',
+            "priceCurrency": 'EUR',
+            "lowPrice": '500',
+            "highPrice": '800',
+            "url": absoluteUrl('/precios'),
+            "itemOffered": {
+              "@type": "Service",
+              "name": 'Web corporativa',
+              "provider": buildProviderReference(),
+            },
+          },
+          {
+            "@type": "Offer",
+            "name": 'Tienda online',
+            "priceCurrency": 'EUR',
+            "price": '1300',
+            "url": absoluteUrl('/precios'),
+            "itemOffered": {
+              "@type": "Service",
+              "name": 'E-commerce',
+              "provider": buildProviderReference(),
+            },
+          },
+          {
+            "@type": "Offer",
+            "name": 'Proyecto a medida',
+            "priceCurrency": 'EUR',
+            "price": '2000',
+            "url": absoluteUrl('/precios'),
+            "itemOffered": {
+              "@type": "Service",
+              "name": 'Desarrollo web a medida',
+              "provider": buildProviderReference(),
+            },
+          },
+        ],
+      },
+    ],
+  };
+
+  const pricingGuides = getBlogEntriesBySlugs(blogSummariesSorted, [
+    'cuanto-cuesta-pagina-web-profesional-espana-2026',
+    'pagina-web-barata-vs-profesional-comparativa',
+    'landing-page-o-pagina-web-completa-diferencias',
+  ]);
+
   return (
     <div className="min-h-screen bg-brand-dark selection:bg-brand-lime/30 selection:text-brand-lime flex flex-col font-sans">
       <SeoHead 
         title="Precios Diseño Web | Icono Studio"
         description="Descubre nuestros planes de diseño web corporativo, landing pages y tiendas online. Tarifas claras, transparentes y orientadas a resultados para tu negocio."
         path="/precios"
+        schema={pricingSchema}
       />
       <Navbar />
 
@@ -217,6 +306,15 @@ export default function Pricing() {
                 Cuéntanos tu proyecto <ArrowRight size={18} />
               </RouterLink>
             </div>
+          </div>
+
+          <div className="mt-16 sm:mt-20">
+            <RelatedGuidesSection
+              theme="dark"
+              title="Guías que ayudan a decidir mejor"
+              description="Estas lecturas resuelven las objeciones más habituales sobre precio, diferencia entre una web barata y una profesional, y cuándo compensa una landing frente a una web completa."
+              posts={pricingGuides}
+            />
           </div>
 
         </div>

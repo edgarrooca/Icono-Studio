@@ -11,6 +11,10 @@ interface SeoHeadProps {
   type?: 'website' | 'article' | 'service';
   robots?: string;
   schema?: SchemaValue;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
 }
 
 const upsertMeta = (attribute: 'name' | 'property', key: string, content: string) => {
@@ -23,6 +27,10 @@ const upsertMeta = (attribute: 'name' | 'property', key: string, content: string
   }
 
   element.setAttribute('content', content);
+};
+
+const removeMeta = (attribute: 'name' | 'property', key: string) => {
+  document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`)?.remove();
 };
 
 const upsertLink = (rel: string, href: string) => {
@@ -45,6 +53,10 @@ export default function SeoHead({
   type = 'website',
   robots = 'index,follow',
   schema,
+  publishedTime,
+  modifiedTime,
+  author,
+  section,
 }: SeoHeadProps) {
   useEffect(() => {
     const canonicalUrl = absoluteUrl(path || window.location.pathname);
@@ -66,6 +78,18 @@ export default function SeoHead({
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:url', canonicalUrl);
     upsertMeta('property', 'og:image', imageUrl);
+
+    if (type === 'article') {
+      if (publishedTime) upsertMeta('property', 'article:published_time', publishedTime);
+      if (modifiedTime) upsertMeta('property', 'article:modified_time', modifiedTime);
+      if (author) upsertMeta('property', 'article:author', author);
+      if (section) upsertMeta('property', 'article:section', section);
+    } else {
+      removeMeta('property', 'article:published_time');
+      removeMeta('property', 'article:modified_time');
+      removeMeta('property', 'article:author');
+      removeMeta('property', 'article:section');
+    }
 
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', title);
@@ -94,7 +118,7 @@ export default function SeoHead({
         document.getElementById(schemaScriptId)?.remove();
       }
     };
-  }, [description, image, path, robots, schema, title, type]);
+  }, [author, description, image, modifiedTime, path, publishedTime, robots, schema, section, title, type]);
 
   return null;
 }

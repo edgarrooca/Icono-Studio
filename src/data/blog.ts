@@ -1,6 +1,405 @@
+import { sortBlogEntries } from '../lib/blogUtils';
 import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: 'Google Business Profile (Google My Business): checklist 2026 para salir mejor en Maps',
+    subtitle: 'Guía práctica para optimizar tu ficha de Google, evitar errores típicos y convertir más búsquedas locales en llamadas, clics y visitas.',
+    slug: 'google-business-profile-google-my-business-checklist-maps',
+    date: '28 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80',
+    metaTitle: 'Google Business Profile: checklist 2026 para Maps | Icono Studio',
+    metaDescription: 'Checklist práctica para optimizar Google Business Profile, mejorar visibilidad en Maps y convertir más búsquedas locales en contactos.',
+    keywords: ['google business profile', 'google my business', 'seo local', 'google maps', 'perfil de empresa de google'],
+    content: `
+      <p>Muchísima gente sigue buscando <strong>Google My Business</strong>, aunque el nombre oficial sea <strong>Google Business Profile</strong> o <strong>Perfil de Empresa de Google</strong>. Da igual cómo lo llame tu cliente: si tienes un negocio local, esta ficha es una de las piezas que más impacto puede tener en llamadas, clics y visitas desde Google Maps.</p>
+      <p>La mayoría de fichas no están mal por un gran fallo, sino por muchos detalles pequeños mal resueltos. Esta guía te sirve como checklist clara para poner orden.</p>
+
+      <h2>Por qué tu ficha pesa tanto en el SEO local</h2>
+      <p>Cuando alguien busca un servicio con intención local, Google suele enseñar primero el mapa y las fichas destacadas antes que muchos resultados orgánicos. Ahí compites en segundos: nombre, categoría, reseñas, fotos, horarios, botones y coherencia de la información.</p>
+      <p>Si todavía no has trabajado bien esta parte, te conviene empezar por nuestra <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">guía general de SEO local</a> y después volver a este checklist para profundizar.</p>
+
+      <h2>Checklist de optimización de Google Business Profile</h2>
+      <h3>1. Elige bien la categoría principal</h3>
+      <p>La categoría principal le dice a Google qué haces de verdad. No elijas la más bonita ni la más amplia: elige la que mejor describa tu servicio principal. Luego añade categorías secundarias solo si representan líneas reales de negocio.</p>
+
+      <h3>2. Revisa nombre, teléfono, horarios y zona de servicio</h3>
+      <p>Tu nombre debe coincidir con tu marca real. El teléfono, la web y los horarios deben estar actualizados y ser consistentes con lo que aparece en tu sitio y otros perfiles. Si trabajas por zonas, configura correctamente el área de servicio en vez de improvisar con textos confusos.</p>
+
+      <h3>3. Completa servicios, descripción y atributos</h3>
+      <p>Muchísimas fichas se quedan a medio llenar. Añade servicios concretos, atributos relevantes y una descripción útil para el usuario, escrita con naturalidad. No hace falta meter palabras clave a martillazos; hace falta explicar bien qué haces, para quién y en qué contexto.</p>
+
+      <h3>4. Sube fotos recientes y específicas</h3>
+      <p>Google quiere fichas vivas. No basta con un logo y una fachada antigua. Sube fotos del equipo, del trabajo real, del espacio, de antes y después si aplica, y del resultado que espera ver el cliente. La confianza visual pesa mucho en la decisión.</p>
+
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80" alt="Optimización de Google Business Profile para aparecer mejor en Google Maps" class="w-full rounded-[2rem] my-12" />
+
+      <h3>5. Activa una estrategia continua de reseñas</h3>
+      <p>La ficha mejora cuando recibe señales reales de confianza. Eso significa <strong>reseñas frecuentes, auténticas y respondidas</strong>. No necesitas cientos de golpe; necesitas constancia. Más abajo verás un artículo específico sobre <a href="/blog/como-conseguir-resenas-google-y-responderlas-bien">cómo pedir y responder reseñas sin meterte en problemas</a>.</p>
+
+      <h3>6. Usa preguntas, publicaciones y enlaces con intención</h3>
+      <p>Las preguntas frecuentes, los Google Posts y los botones hacia páginas concretas ayudan a que el usuario no se quede a medias. Si haces campañas o promocionas servicios puntuales, no mandes siempre a la home: manda a la página más relevante.</p>
+
+      <h2>Cómo conectar tu ficha con tu web para subir más</h2>
+      <p>Una ficha potente y una web débil se frenan mutuamente. Lo ideal es que cada servicio importante tenga su página propia, que las URLs sean claras y que la web refuerce exactamente lo que prometes en la ficha.</p>
+      <p>También conviene revisar en <a href="/blog/que-es-google-search-console-guia-basica">Google Search Console</a> qué consultas te activan ya, porque ahí suelen aparecer oportunidades para mejorar títulos, crear nuevas páginas o afinar el copy local.</p>
+
+      <h2>Errores que frenan tu visibilidad en Maps</h2>
+      <ul>
+        <li>Elegir una categoría principal demasiado genérica.</li>
+        <li>Usar un nombre con spam de palabras clave.</li>
+        <li>Tener horarios desactualizados o inconsistentes.</li>
+        <li>Enviar todos los clics a una página genérica.</li>
+        <li>Abandonar reseñas, preguntas o fotos durante meses.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Una ficha de Google bien trabajada no es un trámite: es una página comercial dentro del ecosistema de Google. Cuanto más clara, completa y viva esté, más fácil será convertir búsquedas locales en negocio real.</p>
+      <p><strong>¿Quieres que revisemos tu ficha y tu web como un sistema conjunto?</strong> En Icono Studio podemos ayudarte a detectar qué te está frenando y qué acciones tienen más retorno. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Google My Business y Google Business Profile son lo mismo?',
+        answer: 'Sí. Google My Business es el nombre antiguo. Hoy la herramienta se llama Google Business Profile o Perfil de Empresa de Google.'
+      },
+      {
+        question: '¿Cuánto tarda en notarse una optimización de la ficha?',
+        answer: 'Depende del sector y la competencia, pero normalmente se ven señales en pocas semanas si mejoras datos, reseñas, enlaces y actividad de forma consistente.'
+      },
+      {
+        question: '¿Puedo posicionar en Maps sin una web fuerte?',
+        answer: 'Puedes mejorar la ficha, pero el mejor resultado llega cuando la ficha y la web se refuerzan entre sí con páginas de servicio claras, buena experiencia móvil y señales de confianza.'
+      }
+    ]
+  },
+  {
+    title: 'Google Posts en 2026: cómo usarlos bien en tu ficha para conseguir clics y llamadas',
+    subtitle: 'Qué publicar, con qué frecuencia y qué errores evitar para que las publicaciones de tu ficha no sean solo relleno.',
+    slug: 'google-posts-2026-como-usarlos-google-business-profile',
+    date: '28 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',
+    metaTitle: 'Google Posts en 2026: cómo usarlos bien | Icono Studio',
+    metaDescription: 'Aprende a usar Google Posts en tu Business Profile para generar clics, llamadas y más señales de actividad local.',
+    keywords: ['google posts', 'google business profile posts', 'publicaciones google my business', 'seo local google maps'],
+    content: `
+      <p>Los <strong>Google Posts</strong> siguen siendo una de las funciones más desaprovechadas de una ficha local. Muchas empresas publican como si estuvieran en una red social y luego concluyen que “no sirven”. El problema casi nunca es la herramienta: es el enfoque.</p>
+      <p>Si tu ficha ya es importante para aparecer en Maps, las publicaciones deben ayudarte a cerrar el siguiente paso: más clics, más llamadas o más visitas a una página concreta.</p>
+
+      <h2>Qué son los Google Posts y dónde se ven</h2>
+      <p>Son publicaciones que haces dentro de tu <strong>Google Business Profile</strong>. Pueden aparecer en la ficha cuando alguien te encuentra en Google Search o Maps, y funcionan como una capa extra de actualidad y contexto.</p>
+      <p>No sustituyen a tu web, pero sí pueden reforzarla. Si todavía no has trabajado bien la base, te recomiendo leer antes este <a href="/blog/google-business-profile-google-my-business-checklist-maps">checklist de Google Business Profile</a>.</p>
+
+      <h2>Cuándo sí merece la pena publicar</h2>
+      <ul>
+        <li>Cuando tienes un servicio estrella que quieres empujar.</li>
+        <li>Cuando lanzas una promoción, un evento o una novedad real.</li>
+        <li>Cuando necesitas dar razones para hacer clic ahora y no después.</li>
+        <li>Cuando quieres que la ficha parezca viva y bien gestionada.</li>
+      </ul>
+      <p>Si no tienes nada concreto que decir, mejor no rellenar por rellenar. Un mal post añade ruido; uno bueno reduce dudas.</p>
+
+      <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&q=80" alt="Google Posts como apoyo a la captación local" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Tipos de Google Posts y cuándo usar cada uno</h2>
+      <h3>Actualizaciones</h3>
+      <p>Úsalas para anunciar servicios, nuevas páginas, cambios relevantes o contenidos útiles. Son ideales para empujar tráfico a una página de servicio o a un artículo del blog.</p>
+
+      <h3>Ofertas</h3>
+      <p>Funcionan bien cuando hay una promoción con fecha clara. Si el usuario hace clic, debe aterrizar en una página que continúe exactamente el mensaje de la oferta.</p>
+
+      <h3>Eventos</h3>
+      <p>Son útiles si impartes talleres, jornadas, aperturas o actividades puntuales. Si tu negocio no trabaja eventos de verdad, no fuerces esta opción.</p>
+
+      <h2>Estructura de un post que sí genera clics</h2>
+      <ul>
+        <li><strong>Primera línea clara:</strong> di qué ofreces y para quién.</li>
+        <li><strong>Una sola idea:</strong> no mezcles tres servicios en la misma publicación.</li>
+        <li><strong>Una sola acción:</strong> pedir presupuesto, reservar, ver oferta o leer más.</li>
+        <li><strong>Imagen coherente:</strong> mejor una foto útil que un diseño lleno de texto.</li>
+        <li><strong>Destino relevante:</strong> no mandes siempre a la home.</li>
+      </ul>
+      <p>Si trabajas campañas de pago, este punto es todavía más importante. El usuario debe notar que el mensaje del post y el de la página de destino son parte de la misma conversación. Si quieres profundizar en eso, aquí tienes nuestra comparación entre <a href="/blog/landing-page-o-pagina-web-completa-diferencias">landing page y web completa</a>.</p>
+
+      <h2>Ideas de publicaciones para tres meses sin improvisar</h2>
+      <ul>
+        <li>Un servicio principal explicado con un caso real o problema frecuente.</li>
+        <li>Una promoción con fecha límite.</li>
+        <li>Un antes y después o resultado de un proyecto.</li>
+        <li>Una novedad operativa: horarios, nueva zona, nuevo servicio.</li>
+        <li>Un artículo del blog que responda una duda muy concreta.</li>
+      </ul>
+
+      <h2>Errores que hacen perder tiempo con Google Posts</h2>
+      <ul>
+        <li>Publicar textos vagos del tipo “hola, aquí seguimos”.</li>
+        <li>Usar creatividades llenas de texto ilegible en móvil.</li>
+        <li>Hablar de todo a la vez en una sola publicación.</li>
+        <li>Mandar siempre al usuario a una página genérica.</li>
+        <li>Escribir descripciones que parecen spam o anuncios gritados.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Los Google Posts no son una bala mágica, pero sí una forma sencilla de darle intención comercial a una ficha que ya está captando atención. Si publicas con criterio, ayudan a mover al usuario del “te veo” al “te contacto”.</p>
+      <p><strong>¿Quieres una estrategia local donde ficha, web y campañas remen hacia la misma conversión?</strong> En Icono Studio podemos prepararla contigo. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cada cuánto conviene publicar en Google Posts?',
+        answer: 'No hay una frecuencia universal, pero para la mayoría de negocios locales suele ser mejor publicar poco y con intención que llenar la ficha de publicaciones irrelevantes.'
+      },
+      {
+        question: '¿Los Google Posts ayudan al SEO local?',
+        answer: 'No sustituyen a los fundamentos del SEO local, pero sí refuerzan actividad, claridad comercial y capacidad de atraer clics desde la propia ficha.'
+      },
+      {
+        question: '¿Puedo enlazar a cualquier página desde un Google Post?',
+        answer: 'Sí, pero tiene sentido enviar al usuario a la página más alineada con la oferta o el servicio mencionado en la publicación.'
+      }
+    ]
+  },
+  {
+    title: 'Cómo conseguir reseñas en Google y responderlas bien sin arriesgar tu ficha',
+    subtitle: 'Sistema simple para pedir opiniones reales, responder mejor y evitar prácticas que pueden meterte en problemas.',
+    slug: 'como-conseguir-resenas-google-y-responderlas-bien',
+    date: '28 May 2026',
+    author: 'Icono Studio',
+    tag: 'Reputación',
+    image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80',
+    metaTitle: 'Reseñas en Google: cómo pedirlas y responderlas | Icono Studio',
+    metaDescription: 'Aprende a conseguir reseñas reales en Google, responderlas bien y proteger tu ficha sin incumplir políticas.',
+    keywords: ['reseñas google', 'como pedir reseñas google', 'responder reseñas google', 'google business profile reseñas'],
+    content: `
+      <p>Las reseñas no solo influyen en la confianza del usuario. También afectan a la forma en la que tu negocio se percibe dentro de Google Maps y en cómo se compara contigo alguien que está mirando tres fichas casi iguales.</p>
+      <p>El error típico es intentar forzarlas demasiado o responderlas con mensajes fríos, repetidos y sin contexto. Se nota. Y resta.</p>
+
+      <h2>Por qué las reseñas pesan tanto en la decisión del cliente</h2>
+      <p>Antes de llamar, reservar o pedir presupuesto, muchos usuarios hacen una lectura rápida: nota media, volumen, recencia y tono de las respuestas. En sectores locales, esa mini auditoría ocurre en segundos.</p>
+      <p>Por eso una estrategia de reseñas no va solo de “tener estrellas”. Va de transmitir que el negocio existe, responde y genera experiencias reales.</p>
+
+      <h2>Qué permite Google y qué no deberías hacer</h2>
+      <p>Pedir reseñas está bien. Incentivarlas con descuentos, regalos o presión está mal. Tampoco conviene filtrar solo a clientes felices con procesos dudosos o pedir cambios de reseña a cambio de algo.</p>
+      <p>Si aún estás ordenando la base de tu presencia local, combina esta parte con una ficha sólida. Aquí te dejamos nuestro <a href="/blog/google-business-profile-google-my-business-checklist-maps">checklist de Google Business Profile</a>.</p>
+
+      <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80" alt="Gestión de reseñas en Google para negocios locales" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Sistema simple para pedir reseñas sin parecer pesado</h2>
+      <h3>1. Pide la reseña justo después de un buen momento</h3>
+      <p>No esperes tres semanas. El mejor momento es cuando el cliente acaba de recibir el servicio, se ha solucionado el problema o te ha dicho claramente que ha quedado satisfecho.</p>
+
+      <h3>2. Pon el camino fácil</h3>
+      <p>Usa un enlace directo o un QR. Cuantos menos pasos, más respuestas. Si obligas al cliente a buscarte, iniciar sesión, encontrar la ficha y luego localizar el botón, perderás muchas oportunidades.</p>
+
+      <h3>3. Pide honestidad, no cinco estrellas</h3>
+      <p>La mejor petición es sencilla: “Si te ha ayudado nuestra atención, ¿nos dejas una reseña contando tu experiencia?”. Eso suena natural y reduce el riesgo de parecer manipulador.</p>
+
+      <h3>4. Crea un pequeño hábito interno</h3>
+      <p>El problema no suele ser saber pedirlas; suele ser olvidarse. Define quién lo hace, en qué momento y por qué canal. Mejor diez reseñas nuevas al mes que cuarenta en una semana y luego silencio durante medio año.</p>
+
+      <h2>Cómo responder bien las reseñas positivas y negativas</h2>
+      <p>Responder no es copiar y pegar “gracias por confiar en nosotros”. Intenta mencionar el servicio, el contexto o el tipo de ayuda recibida. Eso transmite escucha real.</p>
+      <p>En las negativas, evita discutir en público. Agradece el feedback, aclara lo necesario sin entrar en confrontación y ofrece una vía directa para resolverlo. La respuesta muchas veces convence más al próximo cliente que la propia reseña.</p>
+
+      <h2>Qué hacer si recibes una reseña falsa</h2>
+      <p>Primero, no entres en pánico ni contestes con agresividad. Revisa si realmente infringe políticas, repórtala y documenta lo que puedas. Mientras tanto, responde con educación para que otros usuarios vean que el negocio no se esconde.</p>
+      <p>La mejor defensa a medio plazo sigue siendo una base fuerte de reseñas reales y recientes. Una opinión dudosa hace menos daño cuando el resto del perfil transmite normalidad y consistencia.</p>
+
+      <h2>Errores que te pueden complicar la ficha</h2>
+      <ul>
+        <li>Pedir reseñas a cambio de descuentos o regalos.</li>
+        <li>Responder con el mismo texto a todo el mundo.</li>
+        <li>Ignorar reseñas negativas durante semanas.</li>
+        <li>Contestar con tono defensivo o sarcástico.</li>
+        <li>Depender de campañas puntuales en vez de crear un sistema continuo.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Una estrategia de reseñas bien hecha mejora confianza, alimenta el SEO local y hace que tu ficha convierta mejor. No hace falta complicarlo: momento correcto, enlace directo, opiniones reales y respuestas humanas.</p>
+      <p><strong>¿Quieres que te ayudemos a ordenar tu reputación y la conversión de tu ficha?</strong> En Icono Studio podemos revisar contigo el proceso completo. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Puedo ofrecer un descuento a cambio de una reseña?',
+        answer: 'No es recomendable. Pedir reseñas incentivadas puede ir contra las políticas de Google y dañar la credibilidad del perfil.'
+      },
+      {
+        question: '¿Debo responder también a las reseñas positivas?',
+        answer: 'Sí. Responder las positivas transmite atención y hace que la ficha parezca viva y bien gestionada.'
+      },
+      {
+        question: '¿Google elimina cualquier reseña negativa?',
+        answer: 'No. Solo suele retirar las que incumplen políticas. Si la reseña es legítima aunque sea dura, lo correcto es responderla con profesionalidad.'
+      }
+    ]
+  },
+  {
+    title: 'Keyword research para negocios locales: cómo encontrar palabras clave que sí traen clientes',
+    subtitle: 'Método práctico para dejar de escribir “por intuición” y empezar a crear páginas y posts con intención real de negocio.',
+    slug: 'keyword-research-negocios-locales-palabras-clave-clientes',
+    date: '28 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Estratégico',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
+    metaTitle: 'Keyword research para negocios locales | Icono Studio',
+    metaDescription: 'Aprende a encontrar palabras clave para negocios locales y a decidir qué contenido crear para atraer clientes de verdad.',
+    keywords: ['keyword research negocios locales', 'palabras clave negocio local', 'seo local keywords', 'keyword research valencia'],
+    content: `
+      <p>Uno de los errores más caros en SEO local es escribir contenidos sin una hipótesis clara de búsqueda. Se publica “algo sobre el sector”, pero no se sabe qué consulta concreta debe traer visitas ni qué intención hay detrás.</p>
+      <p>El resultado suele ser tráfico poco útil, canibalización y artículos que no ayudan ni a Google ni al usuario a entender qué servicio quieres vender.</p>
+
+      <h2>Por qué atraer tráfico no basta</h2>
+      <p>No todas las visitas valen lo mismo. Para un negocio local, suele importar más captar una búsqueda con intención comercial clara que miles de visitas vagas. La pregunta útil no es “¿esto tiene volumen?”, sino “¿esto puede traer una llamada, una reserva o una solicitud real?”.</p>
+
+      <h2>Los cuatro grupos de keywords que mejor funcionan en local</h2>
+      <h3>1. Servicio + ciudad o zona</h3>
+      <p>Ejemplos: “diseño web valencia”, “dentista russafa” o “abogado mercantil madrid”. Son búsquedas muy directas y suelen merecer páginas de servicio bien trabajadas.</p>
+
+      <h3>2. Problema + solución</h3>
+      <p>Ejemplos: “web lenta no convierte”, “cómo salir en google maps” o “arreglar ficha suspendida google”. Aquí nacen muchos buenos artículos del blog.</p>
+
+      <h3>3. Comparativas y precio</h3>
+      <p>Ejemplos: “landing page o web completa”, “cuánto cuesta una página web” o “google ads o meta ads”. El usuario aún compara, pero ya está cerca de una decisión.</p>
+
+      <h3>4. Intención urgente o muy concreta</h3>
+      <p>Ejemplos: “fontanero urgente cerca”, “cerrajero 24 horas” o “clínica dental abierta sábado”. Estas consultas suelen exigir páginas específicas y una ficha local impecable.</p>
+
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80" alt="Investigación de palabras clave para negocios locales" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Paso a paso para hacer keyword research sin herramientas caras</h2>
+      <h3>1. Lista tus servicios y los que más margen dejan</h3>
+      <p>No empieces por la herramienta. Empieza por negocio real. Haz una lista de servicios, tickets medios, urgencia, frecuencia y capacidad comercial.</p>
+
+      <h3>2. Mira cómo busca la gente de verdad</h3>
+      <p>Usa autocompletado, búsquedas relacionadas, Google Maps, preguntas frecuentes de clientes y el informe de rendimiento de <a href="/blog/que-es-google-search-console-guia-basica">Search Console</a>. Ahí aparece el lenguaje real, no el que imaginamos en la oficina.</p>
+
+      <h3>3. Observa qué tipo de página está premiando Google</h3>
+      <p>Si una búsqueda enseña fichas de Maps y páginas de servicio, no intentes atacarla con un post genérico. Si enseña guías, comparativas o explicaciones, entonces sí puede tener sentido una entrada del blog.</p>
+
+      <h3>4. Agrupa keywords por intención</h3>
+      <p>Junta variaciones cercanas en un mismo clúster y decide cuál es la keyword principal. Así evitarás crear varias páginas casi iguales que compiten entre sí.</p>
+
+      <h3>5. Asigna cada clúster a su tipo de página</h3>
+      <p>Una keyword puede pedir una página de servicio, una landing, una ficha local reforzada o un artículo. La clave es no mezclar objetivos.</p>
+
+      <h2>Cómo decidir si una keyword va a una página, una landing o un post</h2>
+      <ul>
+        <li><strong>Página de servicio:</strong> cuando la intención es comercial y estable.</li>
+        <li><strong>Landing:</strong> cuando el tráfico viene de campañas o de una oferta muy concreta.</li>
+        <li><strong>Post de blog:</strong> cuando la duda necesita desarrollo, contexto o comparación.</li>
+      </ul>
+      <p>Si necesitas aclarar mejor la diferencia entre cada formato, aquí tienes nuestra guía sobre <a href="/blog/landing-page-o-pagina-web-completa-diferencias">landing page o página web completa</a>.</p>
+
+      <h2>Errores que bloquean el crecimiento orgánico</h2>
+      <ul>
+        <li>Querer posicionar una sola página para todo.</li>
+        <li>Escoger keywords por ego en vez de por intención comercial.</li>
+        <li>Crear posts sin enlazarlos a páginas de servicio o conversión.</li>
+        <li>Copiar títulos de la competencia sin adaptar el enfoque.</li>
+        <li>No revisar cada mes lo que Search Console ya está sugiriendo.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>El keyword research local no consiste en perseguir listas enormes, sino en entender qué busca tu cliente, qué espera ver y qué formato de página necesita esa búsqueda para convertir.</p>
+      <p><strong>¿Quieres que te ayudemos a priorizar qué páginas y artículos crear primero?</strong> En Icono Studio podemos convertir ese análisis en una hoja de ruta realista. <a href="/contacto">Cuéntanos tu objetivo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Necesito una herramienta de pago para hacer keyword research local?',
+        answer: 'Ayuda, pero no es imprescindible para empezar. Search Console, autocompletado, SERPs y preguntas reales de clientes ya dan muchísima información útil.'
+      },
+      {
+        question: '¿Cuántas palabras clave debería atacar una página?',
+        answer: 'Lo normal es trabajar una intención principal y varias variaciones cercanas, no intentar meter temas distintos que merecen páginas separadas.'
+      },
+      {
+        question: '¿Vale la pena crear artículos para búsquedas informacionales?',
+        answer: 'Sí, si conectan con una necesidad comercial posterior y enlazan bien hacia servicios, comparativas o páginas de contacto.'
+      }
+    ]
+  },
+  {
+    title: 'Rediseñar o migrar una web sin perder SEO: checklist antes de publicar',
+    subtitle: 'Qué revisar antes, durante y después del cambio para evitar caídas de tráfico, errores 404 y pérdidas de visibilidad evitables.',
+    slug: 'redisenar-migrar-web-sin-perder-seo-checklist',
+    date: '28 May 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Técnico',
+    image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80',
+    metaTitle: 'Migrar web sin perder SEO: checklist | Icono Studio',
+    metaDescription: 'Checklist clara para rediseñar o migrar una web sin perder SEO, tráfico ni páginas valiosas en Google.',
+    keywords: ['migrar web sin perder seo', 'rediseño web seo', 'redirecciones 301', 'checklist migracion web'],
+    content: `
+      <p>Cambiar una web no debería significar empezar de cero en Google. Sin embargo, sigue pasando muchísimo: rediseños bonitos que salen a producción con URLs rotas, títulos perdidos, páginas clave eliminadas o un staging indexable por error.</p>
+      <p>La buena noticia es que la mayoría de caídas graves se pueden prevenir si el SEO entra antes del lanzamiento, no después.</p>
+
+      <h2>Cuándo un rediseño se convierte en una migración SEO</h2>
+      <p>No hace falta cambiar de dominio para correr riesgo. Si modificas arquitectura, URLs, contenidos, CMS, idioma, hosting o plantillas que afectan al renderizado, ya estás tocando elementos sensibles para Google.</p>
+      <p>Incluso si mantienes el mismo dominio, un rediseño puede dañar el posicionamiento si borra contenido útil, empeora la velocidad o rompe el enlazado interno.</p>
+
+      <h2>Checklist antes de tocar nada</h2>
+      <h3>1. Saca inventario de las URLs actuales</h3>
+      <p>Necesitas saber qué páginas existen, cuáles atraen tráfico y cuáles tienen enlaces o conversiones. Si no haces este mapa, luego es facilísimo perder páginas valiosas sin darte cuenta.</p>
+
+      <h3>2. Identifica las páginas que no te puedes permitir perder</h3>
+      <p>Mira impresiones, clics, leads y URLs enlazadas. Apóyate en <a href="/blog/que-es-google-search-console-guia-basica">Search Console</a> para detectar qué contenidos ya tienen visibilidad.</p>
+
+      <h3>3. Prepara el mapa de redirecciones 301</h3>
+      <p>Si cambia una URL, debe tener un destino claro. No vale con “ya lo arreglaremos luego”. El documento de equivalencias debe estar listo antes del lanzamiento.</p>
+
+      <h3>4. Protege el staging con noindex</h3>
+      <p>La nueva web debe poder revisarse sin que Google la confunda con la versión definitiva. Un staging abierto puede duplicar contenidos y provocar problemas evitables.</p>
+
+      <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&q=80" alt="Checklist técnica para migrar una web sin perder SEO" class="w-full rounded-[2rem] my-12" />
+
+      <h3>5. Conserva lo que ya funciona</h3>
+      <p>No elimines de golpe títulos, H1, bloques de contenido o secciones que ya están posicionando. Mejorar no es vaciar. Si una página funciona, el rediseño debe conservar su intención y, si puede, reforzarla.</p>
+
+      <h2>Qué revisar el día del lanzamiento</h2>
+      <ul>
+        <li>Redirecciones 301 activas y probadas.</li>
+        <li>Canonicals correctas en las páginas importantes.</li>
+        <li>Sitemap nuevo generado y coherente.</li>
+        <li>Robots.txt sin bloqueos accidentales.</li>
+        <li>Tracking de analítica y conversiones funcionando.</li>
+        <li>Enlazado interno revisado, especialmente menú y páginas de servicio.</li>
+      </ul>
+      <p>Además, comprueba la velocidad. Un rediseño que empeora el rendimiento puede echar por tierra parte de la mejora. Si quieres revisar esta parte, enlaza con nuestra guía sobre <a href="/blog/velocidad-web-importancia">velocidad web y Core Web Vitals</a>.</p>
+
+      <h2>Qué monitorizar durante las primeras semanas</h2>
+      <p>Es normal ver pequeñas fluctuaciones, pero no deberías ir a ciegas. Revisa cobertura, 404, impresiones, clics y páginas clave. Inspecciona manualmente las URLs más importantes y vuelve a enviar el sitemap si hace falta.</p>
+      <p>También conviene mirar el negocio, no solo el tráfico: formularios, llamadas y calidad de lead. A veces el problema no es de visibilidad, sino de fricción en la nueva experiencia.</p>
+
+      <h2>Errores que más tráfico hacen perder</h2>
+      <ul>
+        <li>Lanzar sin mapa de redirecciones.</li>
+        <li>Cambiar diseño, copy, URLs y estructura todo a la vez sin control.</li>
+        <li>Eliminar contenido útil por querer una web “más limpia”.</li>
+        <li>Olvidar la versión móvil y la velocidad.</li>
+        <li>Revisar solo el home y no las páginas que generan negocio.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Una migración bien llevada puede mantener e incluso mejorar el SEO. La diferencia está en la preparación: inventario, redirecciones, control técnico y seguimiento real tras publicar.</p>
+      <p><strong>Si vas a rediseñar tu web y no quieres jugarte lo que ya has ganado en Google</strong>, en Icono Studio podemos ayudarte a planificar el cambio con criterio. <a href="/contacto">Lo revisamos contigo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Es normal perder algo de tráfico justo después de una migración?',
+        answer: 'Puede haber pequeñas fluctuaciones, pero una caída fuerte y sostenida suele indicar errores técnicos, redirecciones mal resueltas o pérdida de contenido importante.'
+      },
+      {
+        question: '¿Necesito redirecciones si mantengo el mismo dominio?',
+        answer: 'Sí, siempre que cambien las URLs. El dominio puede ser el mismo y aun así necesitar un mapa de redirecciones completo.'
+      },
+      {
+        question: '¿Un rediseño puede mejorar el SEO?',
+        answer: 'Sí. Si mejoras arquitectura, claridad de páginas, enlazado interno, velocidad y experiencia móvil, el rediseño puede ser una oportunidad real de crecer.'
+      }
+    ]
+  },
   {
     title: 'Photopea, el Photoshop online: guía rápida para editar imágenes gratis',
     subtitle: 'Si buscas un editor potente sin instalar programas, Photopea puede ser la mejor alternativa online para trabajar con PSD, PNG, JPG y más.',
@@ -1865,3 +2264,5 @@ background-color: #f5f7fb;</code></pre>
     ]
   }
 ];
+
+export const blogPostsSorted = sortBlogEntries(blogPosts);

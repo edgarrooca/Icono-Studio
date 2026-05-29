@@ -3,16 +3,21 @@ export interface FAQItem {
   answer: string;
 }
 
-export interface BlogPost {
+export interface BlogPostSummary {
   title: string;
   subtitle?: string;
-  content: string; // HTML or Markdown formatted string
   date: string;
+  modifiedDate?: string;
   author: string;
   tag: string;
   image: string;
   slug: string;
   metaTitle: string;
   metaDescription: string;
+  keywords?: string[];
+}
+
+export interface BlogPost extends BlogPostSummary {
+  content: string; // HTML or Markdown formatted string
   faqs?: FAQItem[];
 }

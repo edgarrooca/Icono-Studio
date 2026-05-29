@@ -21,7 +21,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
+import { buildBreadcrumbSchema, buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
 
 const heroBenefits = [
   'Imagen profesional desde el primer día',
@@ -134,6 +134,10 @@ export default function WebExpress() {
     '@context': 'https://schema.org',
     '@graph': [
       buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Web Express' },
+      ]),
       {
         '@type': 'Service',
         '@id': absoluteUrl('/pagina-web-gratis#service'),

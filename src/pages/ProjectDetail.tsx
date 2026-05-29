@@ -1,19 +1,93 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, ArrowUpRight, Check, ArrowRight, Menu, X, Mouse, ChevronDown, Download, Mail, Plus } from 'lucide-react';
+import { ArrowUpRight, Check, ArrowRight, Mouse, ChevronDown } from 'lucide-react';
 import { portfolioProjects, Project } from '../data/projects';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import RelatedGuidesSection from '../components/RelatedGuidesSection';
 import SeoHead from '../components/SeoHead';
-import { absoluteUrl, siteConfig } from '../lib/site';
+import { siteConfig } from '../lib/site';
+import { blogSummariesSorted } from '../data/blogSummaries';
+import { getBlogEntriesBySlugs } from '../lib/blogUtils';
 import { loadMergedProjects } from '../lib/publicProjects';
 import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
+import { buildProjectCaseStudySchema } from '../lib/structuredData';
+
+const tokenize = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean);
+
+const getRelatedProjects = (projects: Project[], currentProject: Project | null, currentId?: string) => {
+  const currentTokens = new Set(
+    tokenize(
+      `${currentProject?.title || ''} ${currentProject?.subtitle || ''} ${currentProject?.category || ''}`,
+    ),
+  );
+
+  return projects
+    .filter((candidate) => candidate.id.toString() !== currentId)
+    .map((candidate) => {
+      let score = 0;
+      const candidateTokens = tokenize(`${candidate.title} ${candidate.subtitle} ${candidate.category}`);
+
+      if (
+        currentProject?.category &&
+        candidate.category &&
+        candidate.category.toLowerCase() === currentProject.category.toLowerCase()
+      ) {
+        score += 6;
+      }
+
+      score += candidateTokens.filter((token) => currentTokens.has(token)).length;
+
+      return { candidate, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ candidate }) => candidate);
+};
+
+const getGuideSlugsForProject = (project: Project) => {
+  const haystack = `${project.title} ${project.subtitle} ${project.category} ${project.description}`.toLowerCase();
+
+  if (haystack.includes('seo') || haystack.includes('local') || haystack.includes('valencia') || haystack.includes('negocio')) {
+    return [
+      'google-business-profile-google-my-business-checklist-maps',
+      'keyword-research-negocios-locales-palabras-clave-clientes',
+      'como-conseguir-resenas-google-y-responderlas-bien',
+    ];
+  }
+
+  if (haystack.includes('app') || haystack.includes('producto') || haystack.includes('ux') || haystack.includes('experiencia')) {
+    return [
+      'redisenar-migrar-web-sin-perder-seo-checklist',
+      'que-es-google-search-console-guia-basica',
+      'landing-page-o-pagina-web-completa-diferencias',
+    ];
+  }
+
+  return [
+    'redisenar-migrar-web-sin-perder-seo-checklist',
+    'keyword-research-negocios-locales-palabras-clave-clientes',
+    'landing-page-o-pagina-web-completa-diferencias',
+  ];
+};
+
+const renderParagraphs = (content?: string) =>
+  content
+    ?.split('\n\n')
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean) || [];
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  const [project, setProject] = useState<any>(null);
-  const [relatedProjects, setRelatedProjects] = useState<any[]>([]);
+  const [project, setProject] = useState<Project | null>(null);
+  const [relatedProjects, setRelatedProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeMockup, setActiveMockup] = useState<1 | 2>(2);
 
@@ -23,10 +97,11 @@ export default function ProjectDetail() {
     let cancelScheduledSync = () => {};
 
     const localProject = id ? portfolioProjects.find((p) => p.id.toString() === id) ?? null : null;
-    const localRelatedProjects = portfolioProjects.filter((p) => p.id.toString() !== id).slice(0, 3);
+    const localRelatedProjects = getRelatedProjects(portfolioProjects, localProject, id);
 
     if (localProject) {
       setProject(localProject);
+      setRelatedProjects(localRelatedProjects);
       setLoading(false);
     }
 
@@ -42,9 +117,7 @@ export default function ProjectDetail() {
       try {
         const mergedProjects = await loadMergedProjects();
         const currentProject = mergedProjects.find((candidate) => candidate.id.toString() === id) ?? localProject;
-        const nextRelatedProjects = mergedProjects
-          .filter((candidate) => candidate.id.toString() !== id)
-          .slice(0, 3);
+        const nextRelatedProjects = getRelatedProjects(mergedProjects, currentProject, id);
 
         if (!isMounted) {
           return;
@@ -123,21 +196,25 @@ export default function ProjectDetail() {
     project.subtitle ||
     'Caso de estudio de diseño y desarrollo web.';
   const hasPublicLink = typeof project.link === 'string' && project.link.trim() !== '';
-
-  const projectSchema = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": project.title,
-    "description": projectDescription,
-    "url": `${siteConfig.url}/proyecto/${project.id}`,
-    "image": absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage),
-    "creator": {
-      "@type": "Organization",
-      "name": siteConfig.name,
-      "url": siteConfig.url,
+  const projectSchema = buildProjectCaseStudySchema(project);
+  const strategyBlocks = [
+    {
+      eyebrow: 'Concepto',
+      title: 'Dirección del proyecto',
+      content: project.concept,
     },
-    "about": project.category || 'Diseño web',
-  };
+    {
+      eyebrow: 'Enfoque',
+      title: 'Cómo planteamos la experiencia',
+      content: project.philosophy,
+    },
+    {
+      eyebrow: 'Base técnica',
+      title: 'Rendimiento, semántica y publicación',
+      content: project.technicalDetails,
+    },
+  ].filter((block) => typeof block.content === 'string' && block.content.trim() !== '');
+  const relatedGuides = getBlogEntriesBySlugs(blogSummariesSorted, getGuideSlugsForProject(project));
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
@@ -161,6 +238,24 @@ export default function ProjectDetail() {
             
             {/* Left: Text Content */}
             <div className="flex flex-col items-start text-left relative">
+              <nav aria-label="Breadcrumb" className="mb-4">
+                <ol className="flex flex-wrap items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-white/55">
+                  <li>
+                    <Link to="/" className="transition-colors hover:text-white">
+                      Inicio
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li>
+                    <Link to="/proyectos" className="transition-colors hover:text-white">
+                      Proyectos
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li className="text-white/82">{project.title}</li>
+                </ol>
+              </nav>
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -316,8 +411,8 @@ export default function ProjectDetail() {
                 Diseño web estratégico para un referente
               </h2>
               <div className="prose prose-lg text-gray-600 font-light leading-relaxed mb-10">
-                {project.challenge?.split('\n\n').map((p: string, i: number) => (
-                  <p key={i} className="mb-4">{p}</p>
+                {renderParagraphs(project.challenge).map((paragraph, i) => (
+                  <p key={i} className="mb-4">{paragraph}</p>
                 ))}
               </div>
               {hasPublicLink ? (
@@ -479,6 +574,77 @@ export default function ProjectDetail() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {strategyBlocks.length > 0 && (
+          <section className="relative bg-white py-14 text-brand-dark sm:py-20 md:py-28">
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0F172A 2px, transparent 2px)', backgroundSize: '32px 32px' }}></div>
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+              <div className="max-w-3xl">
+                <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">Caso de estudio</p>
+                <h2 className="font-display text-3xl leading-tight sm:text-4xl md:text-5xl">
+                  Estrategia, ejecución y base técnica del proyecto
+                </h2>
+                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-gray-500 sm:text-base">
+                  No nos quedamos en la parte visual. Cada proyecto se plantea para sostener mejor la conversión, la claridad del mensaje y una publicación limpia a nivel técnico.
+                </p>
+              </div>
+
+              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+                {strategyBlocks.map((block) => (
+                  <article key={block.title} className="rounded-[2rem] border border-gray-100 bg-[#F8F9FA] p-6 shadow-sm">
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-brand-blue">{block.eyebrow}</p>
+                    <h3 className="mt-4 font-display text-2xl uppercase leading-[1.02] tracking-tight text-brand-dark">
+                      {block.title}
+                    </h3>
+                    <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-600 sm:text-[15px]">
+                      {renderParagraphs(block.content).map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-10 flex flex-col gap-3 rounded-[2rem] border border-brand-dark/10 bg-brand-dark p-6 text-white shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8">
+                <div className="max-w-2xl">
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-brand-lime">Quieres algo parecido</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/74 sm:text-base">
+                    Si buscas una web con esta misma mezcla de claridad visual, enfoque comercial y base SEO limpia, podemos preparar una propuesta adaptada a tu negocio.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    to="/contacto"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-lime px-6 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-brand-dark transition-transform hover:scale-[1.02]"
+                  >
+                    Pedir propuesta
+                    <ArrowRight size={16} />
+                  </Link>
+                  <Link
+                    to="/precios"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-brand-dark"
+                  >
+                    Ver precios
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section className="bg-[#F8F9FA] px-4 py-0 sm:px-6">
+          <div className="mx-auto max-w-7xl pb-14 sm:pb-20 md:pb-24">
+            <RelatedGuidesSection
+              eyebrow="Guías que refuerzan este tipo de proyecto"
+              title="Contenido útil para mejorar visibilidad y conversión"
+              description="Si te interesa este caso, estas guías te ayudan a entender mejor la parte de SEO, estructura y captación que hay detrás de una web bien planteada."
+              posts={relatedGuides}
+              ctaLabel="Ir al blog"
+              ctaTo="/blog"
+            />
           </div>
         </section>
 

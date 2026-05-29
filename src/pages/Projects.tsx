@@ -5,10 +5,11 @@ import { ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
-import { portfolioProjects, Project } from '../data/projects';
+import { type ProjectSummary, projectSummaries } from '../data/projectSummaries';
 import { absoluteUrl, siteConfig } from '../lib/site';
 import { loadMergedProjects } from '../lib/publicProjects';
 import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
+import { buildBreadcrumbSchema, buildOrganizationSchema } from '../lib/structuredData';
 
 const projectFilters = [
   { id: 'all', label: 'Todos' },
@@ -29,7 +30,7 @@ const projectFilterMap: Record<string, ProjectFilterId[]> = {
   'dogcat': ['visibility', 'brand'],
 };
 
-const getProjectSegments = (project: Project): ProjectFilterId[] => {
+const getProjectSegments = (project: ProjectSummary): ProjectFilterId[] => {
   const mapped = projectFilterMap[project.id.toString()];
   if (mapped) {
     return mapped;
@@ -59,7 +60,7 @@ const getProjectSegments = (project: Project): ProjectFilterId[] => {
 };
 
 export default function Projects() {
-  const [projects, setProjects] = useState<Project[]>(portfolioProjects);
+  const [projects, setProjects] = useState<ProjectSummary[]>(projectSummaries);
   const [activeFilter, setActiveFilter] = useState<ProjectFilterId>('all');
 
   useEffect(() => {
@@ -101,10 +102,16 @@ export default function Projects() {
   const projectsSchema = {
     "@context": "https://schema.org",
     "@graph": [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Proyectos' },
+      ]),
       {
         "@type": "CollectionPage",
+        "@id": absoluteUrl('/proyectos#page'),
         "name": `Proyectos | ${siteConfig.name}`,
-        "url": `${siteConfig.url}/proyectos`,
+        "url": absoluteUrl('/proyectos'),
         "description": projectsDescription,
       },
       {

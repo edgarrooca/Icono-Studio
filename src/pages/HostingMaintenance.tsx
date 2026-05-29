@@ -6,7 +6,10 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
+import { buildBreadcrumbSchema, buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
+import RelatedGuidesSection from '../components/RelatedGuidesSection';
+import { getBlogEntriesBySlugs } from '../lib/blogUtils';
+import { blogSummariesSorted } from '../data/blogSummaries';
 
 const supportHeroPills = [
   {
@@ -177,6 +180,10 @@ export default function HostingMaintenance() {
     "@context": "https://schema.org",
     "@graph": [
       buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Hosting y mantenimiento' },
+      ]),
       {
         "@type": "Service",
         "@id": absoluteUrl('/hosting-mantenimiento-web#service'),
@@ -201,6 +208,12 @@ export default function HostingMaintenance() {
       },
     ],
   };
+
+  const supportGuides = getBlogEntriesBySlugs(blogSummariesSorted, [
+    'importancia-mantenimiento-web-negocio',
+    'velocidad-web-importancia',
+    'redisenar-migrar-web-sin-perder-seo-checklist',
+  ]);
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
@@ -745,6 +758,16 @@ export default function HostingMaintenance() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="pb-24 bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RelatedGuidesSection
+            title="Lecturas útiles para cuidar la web sin sustos"
+            description="Si estás valorando soporte, estas guías te ayudan a entender mejor el impacto real del mantenimiento, la velocidad y las migraciones hechas con prisas."
+            posts={supportGuides}
+          />
         </div>
       </section>
 

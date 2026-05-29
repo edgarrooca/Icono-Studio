@@ -4,11 +4,17 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { access } from 'node:fs/promises';
 import path from 'node:path';
 import puppeteer from 'puppeteer';
-import { blogPosts } from '../src/data/blog';
+import { blogPostsSorted } from '../src/data/blog';
 import { portfolioProjects } from '../src/data/projects';
 import { seoLocations } from '../src/data/seoLocations';
 import { absoluteUrl, siteConfig } from '../src/lib/site';
-import { buildOrganizationSchema, buildProviderReference, parseStructuredDate } from '../src/lib/structuredData';
+import {
+  buildBreadcrumbSchema,
+  buildOrganizationSchema,
+  buildProjectCaseStudySchema,
+  buildProviderReference,
+  parseStructuredDate,
+} from '../src/lib/structuredData';
 
 type PageType = 'website' | 'article' | 'service';
 
@@ -162,19 +168,32 @@ const buildServiceSchema = (serviceName: string, servicePath: string, descriptio
   ],
 });
 
-const buildBlogPostSchema = (post: (typeof blogPosts)[number]) => ({
+const buildBlogPostSchema = (post: (typeof blogPostsSorted)[number]) => ({
   '@context': 'https://schema.org',
   '@graph': [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: 'Inicio', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: post.title },
+    ]),
     {
       '@type': 'BlogPosting',
-      headline: post.metaTitle,
+      '@id': absoluteUrl(`/blog/${post.slug}#article`),
+      headline: post.title,
+      name: post.metaTitle,
       description: post.metaDescription,
       image: [absoluteUrl(post.image)],
       author: [buildProviderReference()],
       publisher: buildProviderReference(),
       datePublished: parseStructuredDate(post.date, buildDate),
-      dateModified: parseStructuredDate(post.date, buildDate),
+      dateModified: parseStructuredDate(post.modifiedDate || post.date, buildDate),
       inLanguage: 'es-ES',
+      articleSection: post.tag,
+      ...(post.keywords ? { keywords: post.keywords.join(', ') } : {}),
+      isPartOf: {
+        '@id': absoluteUrl('/blog#blog'),
+      },
       mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
     },
     ...(post.faqs && post.faqs.length > 0
@@ -195,17 +214,6 @@ const buildBlogPostSchema = (post: (typeof blogPosts)[number]) => ({
   ],
 });
 
-const buildProjectSchema = (project: (typeof portfolioProjects)[number]) => ({
-  '@context': 'https://schema.org',
-  '@type': 'CreativeWork',
-  name: project.title,
-  description: project.description || project.clientDescription || project.subtitle,
-  url: absoluteUrl(`/proyecto/${project.id}`),
-  image: absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage),
-  creator: buildProviderReference(),
-  about: project.category || 'Diseño web',
-});
-
 const locationRoutes: RouteMeta[] = seoLocations.map(loc => ({
   path: `/diseno-web-${loc.slug}`,
   title: `Diseño Web ${loc.name} | Páginas Web Profesionales | Icono Studio`,
@@ -213,13 +221,31 @@ const locationRoutes: RouteMeta[] = seoLocations.map(loc => ({
   type: 'service',
   priority: '0.95',
   lastmod: buildDate,
-  schema: buildServiceSchema(
-    `Diseño Web ${loc.name}`,
-    `/diseno-web-${loc.slug}`,
-    `Servicio de diseño web en ${loc.name} para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.`,
-    loc.faqs,
-    [loc.name, 'España']
-  ),
+  schema: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: `Diseño web ${loc.name}` },
+      ]),
+      {
+        '@type': 'ProfessionalService',
+        '@id': absoluteUrl(`/diseno-web-${loc.slug}#service`),
+        name: `Diseño Web ${loc.name} | ${siteConfig.name}`,
+        url: absoluteUrl(`/diseno-web-${loc.slug}`),
+        description: `Servicio de diseño web en ${loc.name} para negocios que necesitan una web rápida, cuidada y orientada a captar clientes.`,
+        image: absoluteUrl(siteConfig.defaultOgImage),
+        areaServed: [loc.name, 'España'],
+        serviceType: ['Diseño web', 'Landing pages', 'SEO inicial', 'Soporte web'],
+        telephone: siteConfig.phoneDisplay,
+        email: siteConfig.email,
+        availableLanguage: ['es'],
+        provider: buildProviderReference(),
+      },
+      buildFaqSchema(loc.faqs),
+    ],
+  },
 }));
 
 const staticRoutes: RouteMeta[] = [
@@ -233,6 +259,16 @@ const staticRoutes: RouteMeta[] = [
       '@context': 'https://schema.org',
       '@graph': [
         buildOrganizationSchema(),
+        {
+          '@type': 'WebSite',
+          '@id': absoluteUrl('/#website'),
+          name: siteConfig.name,
+          url: siteConfig.url,
+          inLanguage: 'es-ES',
+          publisher: {
+            '@id': absoluteUrl('/#organization'),
+          },
+        },
         {
           '@type': 'ProfessionalService',
           '@id': absoluteUrl('/#service'),
@@ -257,6 +293,10 @@ const staticRoutes: RouteMeta[] = [
       '@context': 'https://schema.org',
       '@graph': [
         buildOrganizationSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Hosting y mantenimiento' },
+        ]),
         {
           '@type': 'Service',
           '@id': absoluteUrl('/hosting-mantenimiento-web#service'),
@@ -282,13 +322,75 @@ const staticRoutes: RouteMeta[] = [
       '@context': 'https://schema.org',
       '@graph': [
         buildOrganizationSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Precios' },
+        ]),
         {
-          '@type': 'Service',
-          name: 'Planes y Precios de Diseño Web | Icono Studio',
+          '@type': 'CollectionPage',
+          '@id': absoluteUrl('/precios#page'),
+          name: 'Precios Diseño Web | Icono Studio',
           url: absoluteUrl('/precios'),
           description: 'Tarifas claras para Landing Pages, Webs Corporativas y Tiendas Online.',
-          provider: buildProviderReference(),
-          image: absoluteUrl(siteConfig.defaultOgImage),
+          about: {
+            '@id': absoluteUrl('/#organization'),
+          },
+        },
+        {
+          '@type': 'OfferCatalog',
+          '@id': absoluteUrl('/precios#offers'),
+          name: 'Catalogo base de servicios web',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              name: 'Landing Page',
+              priceCurrency: 'EUR',
+              price: '350',
+              url: absoluteUrl('/precios'),
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Landing page de captacion',
+                provider: buildProviderReference(),
+              },
+            },
+            {
+              '@type': 'AggregateOffer',
+              name: 'Web corporativa',
+              priceCurrency: 'EUR',
+              lowPrice: '500',
+              highPrice: '800',
+              url: absoluteUrl('/precios'),
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Web corporativa',
+                provider: buildProviderReference(),
+              },
+            },
+            {
+              '@type': 'Offer',
+              name: 'Tienda online',
+              priceCurrency: 'EUR',
+              price: '1300',
+              url: absoluteUrl('/precios'),
+              itemOffered: {
+                '@type': 'Service',
+                name: 'E-commerce',
+                provider: buildProviderReference(),
+              },
+            },
+            {
+              '@type': 'Offer',
+              name: 'Proyecto a medida',
+              priceCurrency: 'EUR',
+              price: '2000',
+              url: absoluteUrl('/precios'),
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Desarrollo web a medida',
+                provider: buildProviderReference(),
+              },
+            },
+          ],
         },
       ],
     },
@@ -304,6 +406,10 @@ const staticRoutes: RouteMeta[] = [
       '@context': 'https://schema.org',
       '@graph': [
         buildOrganizationSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Web Express' },
+        ]),
         {
           '@type': 'Service',
           '@id': absoluteUrl('/pagina-web-gratis#service'),
@@ -380,8 +486,14 @@ const staticRoutes: RouteMeta[] = [
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
+        buildOrganizationSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Proyectos' },
+        ]),
         {
           '@type': 'CollectionPage',
+          '@id': absoluteUrl('/proyectos#page'),
           name: `Proyectos | ${siteConfig.name}`,
           url: absoluteUrl('/proyectos'),
           description: 'Casos de estudio y proyectos web de Icono Studio: diseño, desarrollo y experiencias digitales pensadas para transmitir confianza y convertir mejor.',
@@ -407,10 +519,34 @@ const staticRoutes: RouteMeta[] = [
     lastmod: buildDate,
     schema: {
       '@context': 'https://schema.org',
-      '@type': 'Blog',
-      name: `Blog | ${siteConfig.name}`,
-      url: absoluteUrl('/blog'),
-      description: 'Artículos sobre diseño web, SEO y digitalización para negocios que quieren crecer online.',
+      '@graph': [
+        buildOrganizationSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Blog' },
+        ]),
+        {
+          '@type': 'Blog',
+          '@id': absoluteUrl('/blog#blog'),
+          name: `Blog | ${siteConfig.name}`,
+          url: absoluteUrl('/blog'),
+          description: 'Artículos sobre diseño web, SEO y digitalización para negocios que quieren crecer online.',
+          inLanguage: 'es-ES',
+          publisher: {
+            '@id': absoluteUrl('/#organization'),
+          },
+        },
+        {
+          '@type': 'ItemList',
+          itemListElement: blogPostsSorted.map((post, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            url: absoluteUrl(`/blog/${post.slug}`),
+            name: post.title,
+            image: absoluteUrl(post.image),
+          })),
+        },
+      ],
     },
   },
   {
@@ -422,15 +558,22 @@ const staticRoutes: RouteMeta[] = [
     lastmod: buildDate,
     schema: {
       '@context': 'https://schema.org',
-      '@type': 'ContactPage',
-      name: `Contacto | ${siteConfig.name}`,
-      url: absoluteUrl('/contacto'),
-      about: {
-        '@type': 'Organization',
-        name: siteConfig.name,
-        email: siteConfig.email,
-        telephone: siteConfig.phoneDisplay,
-      },
+      '@graph': [
+        buildOrganizationSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Contacto' },
+        ]),
+        {
+          '@type': 'ContactPage',
+          '@id': absoluteUrl('/contacto#page'),
+          name: `Contacto | ${siteConfig.name}`,
+          url: absoluteUrl('/contacto'),
+          about: {
+            '@id': absoluteUrl('/#organization'),
+          },
+        },
+      ],
     },
   },
   {
@@ -463,14 +606,14 @@ const staticRoutes: RouteMeta[] = [
   },
 ];
 
-const blogRoutes: RouteMeta[] = blogPosts.map((post) => ({
+const blogRoutes: RouteMeta[] = blogPostsSorted.map((post) => ({
   path: `/blog/${post.slug}`,
   title: post.metaTitle,
   description: post.metaDescription,
   image: post.image,
     type: 'article',
     priority: '0.70',
-  lastmod: parseStructuredDate(post.date, buildDate),
+  lastmod: parseStructuredDate(post.modifiedDate || post.date, buildDate),
   schema: buildBlogPostSchema(post),
 }));
 
@@ -481,7 +624,7 @@ const projectRoutes: RouteMeta[] = portfolioProjects.map((project) => ({
   image: project.imgReto || project.img || siteConfig.defaultOgImage,
   priority: '0.70',
   lastmod: buildDate,
-  schema: buildProjectSchema(project),
+  schema: buildProjectCaseStudySchema(project),
 }));
 
 const allRoutes = [...locationRoutes, ...staticRoutes, ...blogRoutes, ...projectRoutes];
@@ -672,7 +815,9 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
         await new Promise((resolve) => setTimeout(resolve, 400));
 
         const html = ensureDoctype(await page.content());
-        await writeFile(resolveOutputPath(route.path), html, 'utf8');
+        const outputPath = resolveOutputPath(route.path);
+        await mkdir(path.dirname(outputPath), { recursive: true });
+        await writeFile(outputPath, html, 'utf8');
       }
     } finally {
       await browser.close();

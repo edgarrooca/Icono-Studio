@@ -1,11 +1,12 @@
-import { portfolioProjects, type Project } from '../data/projects';
-import { mergeAndDedupeProjects } from './projectUtils';
+import type { Project } from '../data/projects';
 
 export const loadMergedProjects = async (): Promise<Project[]> => {
   try {
-    const [{ collection, getDocs }, { db }] = await Promise.all([
+    const [{ collection, getDocs }, { db }, { portfolioProjects }, { mergeAndDedupeProjects }] = await Promise.all([
       import('firebase/firestore'),
       import('../firebase'),
+      import('../data/projects'),
+      import('./projectUtils'),
     ]);
 
     const projectsSnapshot = await getDocs(collection(db, 'projects'));
@@ -20,6 +21,7 @@ export const loadMergedProjects = async (): Promise<Project[]> => {
     return mergeAndDedupeProjects(portfolioProjects, remoteProjects);
   } catch (error) {
     console.error('Error loading remote projects:', error);
+    const { portfolioProjects } = await import('../data/projects');
     return portfolioProjects;
   }
 };

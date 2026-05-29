@@ -52,10 +52,13 @@ import { portfolioProjects } from '../data/projects';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
+import { buildBreadcrumbSchema, buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
 import { getSpinVariation, spintaxData } from '../lib/spintax';
 import BudgetCalculator from '../components/BudgetCalculator';
 import MobileStickyCTA from '../components/MobileStickyCTA';
+import RelatedGuidesSection from '../components/RelatedGuidesSection';
+import { blogSummariesSorted } from '../data/blogSummaries';
+import { getBlogEntriesBySlugs } from '../lib/blogUtils';
 
 export default function DisenoWebLocation({ locationSlug }: { locationSlug?: string }) {
   const params = useParams();
@@ -136,6 +139,10 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
     "@context": "https://schema.org",
     "@graph": [
       buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: `Diseño web ${location.name}` },
+      ]),
       {
         "@type": "ProfessionalService",
         "@id": absoluteUrl(`/diseno-web-${location.slug}#service`),
@@ -163,6 +170,12 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
       },
     ],
   };
+
+  const locationGuides = getBlogEntriesBySlugs(blogSummariesSorted, [
+    'seo-local-pequenas-empresas-guia-google-maps',
+    'google-business-profile-google-my-business-checklist-maps',
+    'como-conseguir-resenas-google-y-responderlas-bien',
+  ]);
 
   const workProcess = [
     { 
@@ -1348,6 +1361,16 @@ export default function DisenoWebLocation({ locationSlug }: { locationSlug?: str
           </div>
 	        </section>
 	      </div>
+
+        <section className="bg-[#F8F9FA] px-4 pb-16 pt-2 sm:px-6 sm:pb-20 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <RelatedGuidesSection
+              title={`Guías para ganar visibilidad en ${location.name}`}
+              description={`Si quieres que la web y tu captación local remen juntas, estas lecturas te ayudan a reforzar Google Maps, reseñas y señales de confianza alrededor de ${location.name}.`}
+              posts={locationGuides}
+            />
+          </div>
+        </section>
 
 	        </main>
 	      <Footer hideCTA={true} />

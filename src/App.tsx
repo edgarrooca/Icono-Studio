@@ -1,11 +1,9 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, startTransition, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom';
 import AnalyticsTracker from './components/AnalyticsTracker';
-import CookieConsentBanner from './components/CookieConsentBanner';
 import HashScrollHandler from './components/HashScrollHandler';
-import WhatsAppButton from './components/WhatsAppButton';
-import SalesNotification from './components/SalesNotification';
 import { seoLocations } from './data/seoLocations';
+import { isPrerenderUserAgent, scheduleIdleTask } from './lib/runtime';
 
 const Home = lazy(() => import('./pages/Home'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -24,15 +22,42 @@ const CondicionesWebExpress = lazy(() => import('./pages/CondicionesWebExpress')
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'));
 const PoliticaPrivacidad = lazy(() => import('./pages/PoliticaPrivacidad'));
 const Pricing = lazy(() => import('./pages/Pricing'));
+const CookieConsentBanner = lazy(() => import('./components/CookieConsentBanner'));
+const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
+const SalesNotification = lazy(() => import('./components/SalesNotification'));
+
+function DeferredGlobalUi() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (isPrerenderUserAgent()) {
+      return;
+    }
+
+    return scheduleIdleTask(() => {
+      startTransition(() => setIsReady(true));
+    }, { delay: 1200, timeout: 2000 });
+  }, []);
+
+  if (!isReady) {
+    return null;
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <WhatsAppButton />
+      <CookieConsentBanner />
+      <SalesNotification />
+    </Suspense>
+  );
+}
 
 export default function App() {
   return (
     <Router>
       <AnalyticsTracker />
       <HashScrollHandler />
-      <WhatsAppButton />
-      <CookieConsentBanner />
-      <SalesNotification />
+      <DeferredGlobalUi />
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -8,7 +8,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
-import { siteConfig } from '../lib/site';
+import { absoluteUrl, siteConfig } from '../lib/site';
+import { buildBreadcrumbSchema, buildOrganizationSchema } from '../lib/structuredData';
+import RelatedGuidesSection from '../components/RelatedGuidesSection';
+import { getBlogEntriesBySlugs } from '../lib/blogUtils';
+import { blogSummariesSorted } from '../data/blogSummaries';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -31,16 +35,29 @@ export default function Contact() {
 
   const contactSchema = {
     "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": `Contacto | ${siteConfig.name}`,
-    "url": `${siteConfig.url}/contacto`,
-    "about": {
-      "@type": "Organization",
-      "name": siteConfig.name,
-      "email": siteConfig.email,
-      "telephone": siteConfig.phoneDisplay,
-    },
+    "@graph": [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Contacto' },
+      ]),
+      {
+        "@type": "ContactPage",
+        "@id": absoluteUrl('/contacto#page'),
+        "name": `Contacto | ${siteConfig.name}`,
+        "url": absoluteUrl('/contacto'),
+        "about": {
+          "@id": absoluteUrl('/#organization'),
+        },
+      },
+    ],
   };
+
+  const contactGuides = getBlogEntriesBySlugs(blogSummariesSorted, [
+    'que-debe-tener-una-pagina-web-para-atraer-clientes',
+    'cuanto-cuesta-pagina-web-profesional-espana-2026',
+    'errores-pagina-web-no-consigue-clientes',
+  ]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -299,6 +316,17 @@ export default function Contact() {
                 )}
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="pb-16 sm:pb-20 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <RelatedGuidesSection
+              theme="dark"
+              title="Si aún estás comparando, empieza por estas guías"
+              description="Suelen ayudar mucho cuando todavía estás valorando presupuesto, qué debería incluir tu web y qué errores conviene evitar antes de arrancar."
+              posts={contactGuides}
+            />
           </div>
         </section>
       </main>

@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart, Send, Heart } from 'lucide-react';
-import { portfolioProjects, Project } from '../data/projects';
-import { blogPosts } from '../data/blog';
+import { blogSummariesSorted } from '../data/blogSummaries';
+import { projectSummaries, type ProjectSummary } from '../data/projectSummaries';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
-import BudgetCalculator from '../components/BudgetCalculator';
+import { buildOrganizationSchema, buildProviderReference, parseStructuredDate } from '../lib/structuredData';
 import MobileStickyCTA from '../components/MobileStickyCTA';
 import { loadMergedProjects } from '../lib/publicProjects';
 import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
+import { getBlogEntriesBySlugs } from '../lib/blogUtils';
+
+const BudgetCalculator = lazy(() => import('../components/BudgetCalculator'));
 
 // Gradient Blob Component for Hero
 const GradientBlob = ({ color, className, delay = 0 }: { color: string, className: string, delay?: number }) => (
@@ -188,7 +190,7 @@ export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   
-  const [projects, setProjects] = useState<any[]>(portfolioProjects);
+  const [projects, setProjects] = useState<ProjectSummary[]>(projectSummaries);
   const [activeStep, setActiveStep] = useState(0);
   const metodologiaRef = useRef<HTMLDivElement>(null);
 
@@ -266,7 +268,7 @@ export default function Home() {
         p.title.toLowerCase().includes('dogcat') || // Force match for dogcat
         (p.title && idOrTitle.toLowerCase().includes(p.title.toLowerCase()))
       ))
-      .filter((project): project is Project => Boolean(project)),
+      .filter((project): project is ProjectSummary => Boolean(project)),
     ...projects.filter((p) => !featuredProjectIds.some(id => 
       p.id.toString() === id || 
       p.title.toLowerCase().includes('dogcat') ||
@@ -277,10 +279,26 @@ export default function Home() {
     .filter(p => p.id !== 'gameshelf-app' && !p.title.toLowerCase().includes('gameshelf')) // Explicitly remove gameshelf
     .slice(0, 3);
 
+  const homeBlogPosts = getBlogEntriesBySlugs(blogSummariesSorted, [
+    'que-debe-tener-una-pagina-web-para-atraer-clientes',
+    'cuanto-cuesta-pagina-web-profesional-espana-2026',
+    'seo-local-pequenas-empresas-guia-google-maps',
+  ]);
+
   const homeSchema = {
     "@context": "https://schema.org",
     "@graph": [
       buildOrganizationSchema(),
+      {
+        "@type": "WebSite",
+        "@id": absoluteUrl('/#website'),
+        "name": siteConfig.name,
+        "url": siteConfig.url,
+        "inLanguage": "es-ES",
+        "publisher": {
+          "@id": absoluteUrl('/#organization'),
+        },
+      },
       {
         "@type": "ProfessionalService",
         "@id": absoluteUrl('/#service'),
@@ -306,7 +324,11 @@ export default function Home() {
       />
 
       <Navbar initialTheme="light" />
-      <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
+      {isCalculatorOpen && (
+        <Suspense fallback={null}>
+          <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
+        </Suspense>
+      )}
       <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
       <main>
 
@@ -955,7 +977,7 @@ export default function Home() {
 
               <h2 className="ui-section-title text-brand-dark mb-4">Blog</h2>
               <p className="ui-section-copy max-w-2xl">
-                Contenido pensado para ayudarte a entender mejor qué necesita una web para captar clientes y crecer con más claridad.
+                Hemos priorizado tres guías base que responden a las dudas que más influyen en la decisión de contratar una web.
               </p>
             </div>
           <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 font-bold text-base sm:text-lg uppercase tracking-wide hover:text-brand-blue transition-colors">
@@ -964,7 +986,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.slice(0, 3).map((post, i) => (
+          {homeBlogPosts.map((post) => (
             <RouterLink 
               key={post.slug} 
               to={`/blog/${post.slug}`} 
@@ -974,15 +996,17 @@ export default function Home() {
                 'page_path': window.location.pathname
               })}
               className="group cursor-pointer"
-            >
-              <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
+              >
+                <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
                 <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
                 <div className="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full uppercase tracking-wider">
                   {post.tag}
                 </div>
               </div>
               <div className="flex items-center gap-4 mb-2 sm:mb-3">
-                <span className="text-xs sm:text-sm text-gray-500 font-mono">{post.date}</span>
+                <time dateTime={parseStructuredDate(post.modifiedDate || post.date)} className="text-xs sm:text-sm text-gray-500 font-mono">
+                  {post.date}
+                </time>
               </div>
               <h3 className="font-display text-xl sm:text-2xl uppercase leading-tight group-hover:text-brand-blue transition-colors">{post.title}</h3>
             </RouterLink>

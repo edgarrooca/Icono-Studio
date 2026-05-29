@@ -5,13 +5,20 @@ import {
   ArrowLeft, Calendar, User, ChevronRight, Share2, 
   Copy, Menu, X, ArrowRight 
 } from 'lucide-react';
-import { blogPosts } from '../data/blog';
+import { blogPostsSorted } from '../data/blog';
+import { blogSummariesSorted } from '../data/blogSummaries';
 import { mainNavLinks } from '../data/navigation';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
-import { absoluteUrl, siteConfig } from '../lib/site';
-import { buildProviderReference, parseStructuredDate } from '../lib/structuredData';
+import { absoluteUrl } from '../lib/site';
+import {
+  buildBreadcrumbSchema,
+  buildOrganizationSchema,
+  buildProviderReference,
+  parseStructuredDate,
+} from '../lib/structuredData';
+import { getRelatedBlogEntries } from '../lib/blogUtils';
 
 interface ToCItem {
   id: string;
@@ -20,7 +27,7 @@ interface ToCItem {
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const post = blogPosts.find(p => p.slug === slug);
+  const post = blogPostsSorted.find(p => p.slug === slug);
   const [readingProgress, setReadingProgress] = useState(0);
   const [toc, setToc] = useState<ToCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
@@ -112,17 +119,30 @@ export default function BlogPost() {
   const blogPostSchema = {
     "@context": "https://schema.org",
     "@graph": [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: post.title },
+      ]),
       {
         "@type": "BlogPosting",
-        "headline": post.metaTitle,
+        "@id": absoluteUrl(`/blog/${post.slug}#article`),
+        "headline": post.title,
+        "name": post.metaTitle,
         "description": post.metaDescription,
         "image": [absoluteUrl(post.image)],
         "author": [buildProviderReference()],
         "publisher": buildProviderReference(),
         "datePublished": parseStructuredDate(post.date),
-        "dateModified": parseStructuredDate(post.date),
+        "dateModified": parseStructuredDate(post.modifiedDate || post.date),
         "inLanguage": "es-ES",
-        "mainEntityOfPage": `${siteConfig.url}/blog/${post.slug}`,
+        "articleSection": post.tag,
+        ...(post.keywords ? { "keywords": post.keywords.join(', ') } : {}),
+        "isPartOf": {
+          "@id": absoluteUrl('/blog#blog'),
+        },
+        "mainEntityOfPage": absoluteUrl(`/blog/${post.slug}`),
       },
       ...(post.faqs && post.faqs.length > 0 ? [{
         "@type": "FAQPage",
@@ -138,6 +158,8 @@ export default function BlogPost() {
     ],
   };
 
+  const relatedPosts = getRelatedBlogEntries(blogSummariesSorted, post, 3);
+
   return (
     <div className="min-h-screen bg-white selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
       <SeoHead
@@ -146,6 +168,10 @@ export default function BlogPost() {
         path={`/blog/${post.slug}`}
         image={post.image}
         type="article"
+        publishedTime={parseStructuredDate(post.date)}
+        modifiedTime={parseStructuredDate(post.modifiedDate || post.date)}
+        author={post.author}
+        section={post.tag}
         schema={blogPostSchema}
       />
       
@@ -182,8 +208,8 @@ export default function BlogPost() {
 
             <div className="flex flex-wrap items-center justify-center gap-y-6 gap-x-8 sm:gap-x-12 w-full">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gray-100 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center">
-                  <img src="https://i.pravatar.cc/150?img=11" alt={post.author} className="w-full h-full object-cover" />
+                <div className="w-12 h-12 rounded-full bg-brand-dark text-brand-lime border-2 border-white shadow-sm overflow-hidden flex items-center justify-center font-display text-xl">
+                  I
                 </div>
                 <div className="text-left">
                   <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Escrito por</p>
@@ -197,7 +223,9 @@ export default function BlogPost() {
                 </div>
                 <div className="text-left">
                   <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Publicado el</p>
-                  <p className="text-sm font-bold text-brand-dark">{post.date}</p>
+                  <time dateTime={parseStructuredDate(post.modifiedDate || post.date)} className="text-sm font-bold text-brand-dark">
+                    {post.date}
+                  </time>
                 </div>
               </div>
             </div>
@@ -317,7 +345,7 @@ export default function BlogPost() {
             <RouterLink to="/blog" className="hidden sm:flex items-center gap-2 font-bold uppercase tracking-widest text-xs hover:text-brand-blue transition-colors">Todos los artículos <ArrowRight size={14} /></RouterLink>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.filter(p => p.slug !== slug).slice(0, 3).map(p => (
+            {relatedPosts.map((p) => (
               <RouterLink to={`/blog/${p.slug}`} key={p.slug} className="group bg-white rounded-[2.5rem] p-5 shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                 <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-8 relative">
                    <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />

@@ -5,6 +5,7 @@ import { collection, addDoc, getDocs, doc, deleteDoc, setDoc, getDoc } from 'fir
 import { LayoutDashboard, Settings, Plus, LogOut, Trash2, Image as ImageIcon, Link as LinkIcon, Folder, FileText, CheckCircle2, Sparkles, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GoogleGenAI, Type } from '@google/genai';
+import SeoHead from '../components/SeoHead';
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -371,6 +372,12 @@ export default function Dashboard() {
   if (loading) {
     return (
       <div className="min-h-screen bg-zinc-50 flex items-center justify-center">
+        <SeoHead
+          title="Dashboard | Icono Studio"
+          description="Área interna de gestión de proyectos de Icono Studio."
+          path="/dashboard"
+          robots="noindex,nofollow"
+        />
         <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -379,6 +386,12 @@ export default function Dashboard() {
   if (!user) {
     return (
       <div className="min-h-screen bg-zinc-50 flex items-center justify-center p-4">
+        <SeoHead
+          title="Dashboard | Icono Studio"
+          description="Área interna de gestión de proyectos de Icono Studio."
+          path="/dashboard"
+          robots="noindex,nofollow"
+        />
         <div className="bg-white p-10 rounded-[2.5rem] shadow-xl max-w-md w-full text-center border border-gray-100">
           <div className="w-20 h-20 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <LayoutDashboard className="w-10 h-10 text-brand-blue" />
@@ -398,6 +411,13 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-zinc-50 flex flex-col md:flex-row">
+      <SeoHead
+        title="Dashboard | Icono Studio"
+        description="Área interna de gestión de proyectos de Icono Studio."
+        path="/dashboard"
+        robots="noindex,nofollow"
+      />
+
       {/* Toast Notification */}
       <AnimatePresence>
         {toast && (

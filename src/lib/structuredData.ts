@@ -1,4 +1,10 @@
+import type { Project } from '../data/projects';
 import { absoluteUrl, siteConfig } from './site';
+
+interface BreadcrumbItem {
+  name: string;
+  path?: string;
+}
 
 const monthMap: Record<string, string> = {
   ene: '01',
@@ -111,3 +117,73 @@ export const buildProviderReference = () => ({
   email: siteConfig.email,
   telephone: siteConfig.phoneDisplay,
 });
+
+export const buildBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    ...(item.path ? { item: absoluteUrl(item.path) } : {}),
+  })),
+});
+
+type ProjectSchemaSource = Pick<
+  Project,
+  'id' | 'title' | 'subtitle' | 'description' | 'clientDescription' | 'category' | 'img' | 'imgReto' | 'link'
+>;
+
+export const buildProjectCaseStudySchema = (project: ProjectSchemaSource) => {
+  const description =
+    project.description ||
+    project.clientDescription ||
+    project.subtitle ||
+    'Caso de estudio de diseño y desarrollo web.';
+  const projectPath = `/proyecto/${project.id}`;
+  const imageUrl = absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage);
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Proyectos', path: '/proyectos' },
+        { name: project.title },
+      ]),
+      {
+        '@type': 'WebPage',
+        '@id': absoluteUrl(`${projectPath}#page`),
+        name: `${project.title} | Proyecto Web | ${siteConfig.name}`,
+        url: absoluteUrl(projectPath),
+        description,
+        isPartOf: {
+          '@id': absoluteUrl('/proyectos#page'),
+        },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: imageUrl,
+        },
+        about: {
+          '@id': absoluteUrl(`${projectPath}#work`),
+        },
+      },
+      {
+        '@type': 'CreativeWork',
+        '@id': absoluteUrl(`${projectPath}#work`),
+        name: project.title,
+        headline: project.subtitle || project.title,
+        description,
+        image: imageUrl,
+        creator: buildProviderReference(),
+        publisher: buildProviderReference(),
+        genre: project.category || 'Diseño web',
+        keywords: [project.category, project.title, project.subtitle].filter(Boolean).join(', '),
+        mainEntityOfPage: absoluteUrl(projectPath),
+        ...(typeof project.link === 'string' && project.link.trim() !== ''
+          ? { mentions: [{ '@type': 'WebSite', url: project.link.trim() }] }
+          : {}),
+      },
+    ],
+  };
+};
