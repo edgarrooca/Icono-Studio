@@ -8,8 +8,6 @@ import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
 import { absoluteUrl, siteConfig } from '../lib/site';
 import { buildBreadcrumbSchema, buildOrganizationSchema, parseStructuredDate } from '../lib/structuredData';
-import { getBlogEntriesBySlugs } from '../lib/blogUtils';
-import RelatedGuidesSection from '../components/RelatedGuidesSection';
 
 export default function Blog() {
   useEffect(() => {
@@ -47,12 +45,6 @@ export default function Blog() {
       },
     ],
   };
-
-  const quickStartPosts = getBlogEntriesBySlugs(blogSummariesSorted, [
-    'que-debe-tener-una-pagina-web-para-atraer-clientes',
-    'google-business-profile-google-my-business-checklist-maps',
-    'redisenar-migrar-web-sin-perder-seo-checklist',
-  ]);
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] selection:bg-brand-lime selection:text-brand-dark">
@@ -99,17 +91,6 @@ export default function Blog() {
       {/* Blog Feed */}
       <section className="py-24 relative z-20 -mt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16">
-            <RelatedGuidesSection
-              eyebrow="Empieza por aquí"
-              title="Tres lecturas para orientarte rápido"
-              description="Si acabas de llegar al blog, estas guías te ponen en contexto sobre captación, SEO local y rediseño web sin que tengas que ir saltando entre artículos."
-              posts={quickStartPosts}
-              ctaLabel="Pedir ayuda"
-              ctaTo="/contacto"
-            />
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
             {blogSummariesSorted.map((post, i) => (
               <motion.article
