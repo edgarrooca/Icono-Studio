@@ -3,6 +3,387 @@ import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: 'AI Mode y keyword research en 2026: cómo encontrar búsquedas largas que sí convierten',
+    subtitle: 'La búsqueda conversacional ya no se parece a la de hace dos años. Aprende a detectar consultas más largas, de planificación y con intención comercial real.',
+    slug: 'ai-mode-keyword-research-2026-busquedas-largas-convierten',
+    date: '01 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80',
+    metaTitle: 'AI Mode y keyword research en 2026 | Icono Studio',
+    metaDescription: 'Aprende a adaptar tu keyword research a AI Mode, búsquedas largas y consultas de planificación para atraer leads con más intención.',
+    keywords: ['ai mode seo', 'keyword research 2026', 'busquedas largas seo', 'seo conversacional', 'intencion de busqueda ia'],
+    content: `
+      <p>El <strong>keyword research</strong> de una web de servicios ya no puede limitarse a sacar una lista de términos cortos y repetirlos en títulos. Google está enseñando una realidad distinta: en los datos publicados sobre <strong>AI Mode</strong> el 19 de mayo de 2026, la compañía explicó que la consulta media en ese entorno ya es <strong>tres veces más larga</strong> que una búsqueda tradicional y que las búsquedas relacionadas con planificación crecen más rápido que la media.</p>
+      <p>Esto cambia el tipo de contenido que merece la pena crear. Si tus potenciales clientes preguntan con más contexto, comparan, afinan y reformulan, tu estrategia debe capturar esas conversaciones sin perder foco comercial.</p>
+
+      <h2>Qué cambia con AI Mode para el keyword research</h2>
+      <p>Antes muchas estrategias SEO se construían alrededor de combinaciones como "diseno web valencia" o "abogado laboral madrid". Siguen siendo útiles, pero cada vez conviven más con consultas del tipo "que pagina necesito para captar presupuestos de reformas" o "como elegir agencia seo local si tengo varias sedes".</p>
+      <p>Eso no significa perseguir frases larguísimas sin criterio. Significa entender que la intención de búsqueda ahora llega más desarrollada y que Google procesa mejor el contexto. Si quieres la base clásica, aquí tienes nuestra guía de <a href="/blog/keyword-research-negocios-locales-palabras-clave-clientes">keyword research para negocios locales</a>. Este artículo va un paso más allá: cómo encontrar esas consultas nuevas y convertirlas en páginas y contenidos que sí traen negocio.</p>
+
+      <h2>Las tres familias de keywords que más están creciendo</h2>
+      <h3>1. Búsquedas de planificación</h3>
+      <p>Son las que empiezan con "cómo organizar", "qué necesito para", "cuánto debería invertir" o "qué pasos seguir". Google ha indicado que las consultas de planificación en AI Mode han crecido un 80% más rápido que la media en los últimos seis meses. Para una empresa de servicios, esto suele anticipar una compra futura.</p>
+
+      <h3>2. Búsquedas de decisión</h3>
+      <p>Incluyen comparativas, dudas de encaje y objeciones: "landing page o web completa", "agencia local o freelance", "wordpress o desarrollo a medida". Son búsquedas menos masivas, pero más cercanas a lead. De hecho, uno de nuestros artículos que mejor encaja aquí es el de <a href="/blog/landing-page-o-pagina-web-completa-diferencias">landing page vs. web completa</a>.</p>
+
+      <h3>3. Búsquedas conversacionales locales</h3>
+      <p>Aquí entran las frases que mezclan servicio, contexto y zona sin seguir el patrón exacto "servicio + ciudad". Ejemplos: "quien me puede hacer una web para reservas en valencia" o "donde encontrar una agencia que lleve google ads para clinicas". Son búsquedas imperfectas, humanas y muy útiles para detectar oportunidades de contenido.</p>
+
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Keyword research adaptado a AI Mode y búsquedas largas" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo detectar keywords largas sin perder semanas</h2>
+      <h3>Empieza por Search Console</h3>
+      <p>Filtra consultas por páginas que ya atraen impresiones y busca preguntas largas, verbos y matices locales. Muchas veces la oportunidad no está en una keyword nueva, sino en un patrón de intención que ya asoma en tus datos. Si todavía no trabajas esta herramienta, revisa nuestra <a href="/blog/que-es-google-search-console-guia-basica">guía de Google Search Console</a>.</p>
+
+      <h3>Escucha al equipo comercial</h3>
+      <p>Las mejores keywords conversacionales salen de llamadas, presupuestos y mensajes de WhatsApp. Si varios leads preguntan lo mismo con palabras parecidas, ya tienes una señal. Google puede cambiar interfaces; la fricción mental del cliente sigue siendo la misma.</p>
+
+      <h3>Analiza búsquedas de decisión, no solo de descubrimiento</h3>
+      <p>En AI Mode están creciendo fórmulas como "where should I", "where to" e "ideas for". Llevado al español comercial, eso suele traducirse en "dónde", "qué opción", "qué tipo de página", "qué presupuesto" o "qué conviene". Esas consultas suelen merecer contenidos comparativos, no artículos genéricos.</p>
+
+      <h2>Cómo convertir esas consultas en arquitectura útil</h2>
+      <ul>
+        <li><strong>Página de servicio:</strong> para keywords con intención clara de contratar.</li>
+        <li><strong>Artículo comparativo:</strong> para búsquedas de decisión y objeción.</li>
+        <li><strong>Guía práctica:</strong> para planificación y diagnóstico.</li>
+        <li><strong>FAQ visible:</strong> para microdudas que bloquean el siguiente paso.</li>
+      </ul>
+      <p>Si lo mezclas todo en una sola URL, canibalizas. Si lo separas demasiado, dispersas autoridad. La clave está en agrupar por intención, no solo por parecido semántico.</p>
+
+      <h2>Errores comunes al hacer keyword research en 2026</h2>
+      <ul>
+        <li>Seguir obsesionado solo con keywords cortas de alto volumen.</li>
+        <li>Ignorar preguntas largas porque "no salen en la herramienta".</li>
+        <li>Crear posts informativos sin enlazarlos a páginas de servicio.</li>
+        <li>Tratar AI Mode como una moda en vez de como un cambio de comportamiento.</li>
+        <li>Medir el éxito por tráfico y no por llamadas, formularios o presupuestos.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>El nuevo keyword research no consiste en perseguir frases raras, sino en entender mejor cómo formula el usuario sus decisiones. Cuanto más contexto añade en la búsqueda, más importante es que tu contenido responda con claridad, estructura y una siguiente acción evidente.</p>
+      <p><strong>¿Quieres que detectemos qué búsquedas largas pueden traerte leads reales?</strong> En Icono Studio te ayudamos a convertir datos de Search Console, ventas y captación en una estrategia de contenidos útil. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Las keywords largas convierten mejor que las cortas?',
+        answer: 'Muchas veces sí, porque suelen reflejar una intención más madura. No siempre tienen más volumen, pero a menudo están más cerca de la decisión comercial.'
+      },
+      {
+        question: '¿AI Mode sustituye al keyword research tradicional?',
+        answer: 'No. Lo amplía. Las búsquedas clásicas siguen importando, pero ahora conviene incorporar consultas conversacionales, comparativas y de planificación.'
+      },
+      {
+        question: '¿Qué herramienta conviene mirar primero?',
+        answer: 'Para una web ya publicada, Search Console suele ser el punto de partida más útil porque muestra consultas reales con impresiones y clics de tu propio proyecto.'
+      }
+    ]
+  },
+  {
+    title: 'SEO para imágenes en 2026: cómo preparar tu web para búsquedas visuales y clientes locales',
+    subtitle: 'Las fotos ya no son solo apoyo estético. Si tu negocio vende con resultados visuales, debes tratarlas como una capa real de descubrimiento orgánico.',
+    slug: 'seo-imagenes-2026-busquedas-visuales-clientes-locales',
+    date: '01 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80',
+    metaTitle: 'SEO para imágenes en 2026 | Icono Studio',
+    metaDescription: 'Guía práctica para optimizar imágenes, páginas y contexto visual de tu web y captar más búsquedas visuales en 2026.',
+    keywords: ['seo para imagenes', 'busqueda visual google', 'google images seo', 'seo local imagenes', 'optimizacion imagenes web'],
+    content: `
+      <p>Google ha confirmado en mayo de 2026 que <strong>más de una de cada seis búsquedas</strong> en Estados Unidos ya usan voz o imagen, y que las búsquedas con imágenes en AI Mode crecen más de un 40% mes a mes. Para muchos negocios de servicios, esto no es un detalle técnico: es una oportunidad clara.</p>
+      <p>Si tu trabajo se entiende mejor al verlo que al describirlo, necesitas dejar de tratar las imágenes como simple decoración. Reformas, interiorismo, clínicas, hostelería, estética, fotografía, eventos o diseño web compiten también por confianza visual.</p>
+
+      <h2>Por qué el SEO para imágenes importa más ahora</h2>
+      <p>El usuario no siempre busca escribiendo. Puede subir una foto, comparar un resultado, buscar inspiración o verificar si un acabado encaja con lo que necesita. Cuanto más visual es el servicio, más sentido tiene preparar tu web para ese recorrido.</p>
+      <p>Google también insiste en sus buenas prácticas de <strong>Google Images</strong>: no basta con que la imagen exista; necesita contexto, una página de destino sólida y señales claras sobre qué representa. Esto encaja muy bien con negocios locales que muestran trabajos reales, equipo, instalaciones o antes y después.</p>
+
+      <h2>Qué imágenes merece la pena optimizar</h2>
+      <ul>
+        <li>Casos reales de proyectos o trabajos terminados.</li>
+        <li>Fotos del equipo y del proceso, no solo del resultado final.</li>
+        <li>Imágenes de ubicación, instalaciones o zonas de servicio cuando aportan confianza.</li>
+        <li>Creatividades de servicios concretos que acompañan una landing relevante.</li>
+      </ul>
+      <p>Si aún estás trabajando la base local, combina esto con una ficha sólida. Nuestro <a href="/blog/google-business-profile-google-my-business-checklist-maps">checklist de Google Business Profile</a> y la <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">guía de SEO local</a> te ayudan a conectar ficha, web y prueba visual.</p>
+
+      <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80" alt="SEO para imágenes y búsquedas visuales en servicios locales" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Checklist práctico de SEO para imágenes</h2>
+      <h3>1. Usa imágenes originales siempre que puedas</h3>
+      <p>Las fotos de stock ayudan a maquetar, pero rara vez diferencian un negocio local. Si puedes enseñar proyectos, equipo, instalaciones o detalles reales, generas más confianza y más contexto semántico para Google.</p>
+
+      <h3>2. Nombra bien los archivos</h3>
+      <p>Un archivo llamado <code>reforma-cocina-valencia-russafa.webp</code> aporta más información que <code>IMG_4821.webp</code>. No hace milagros por sí solo, pero suma cuando la página, el alt y el contenido apuntan en la misma dirección.</p>
+
+      <h3>3. Escribe textos alternativos útiles</h3>
+      <p>El <em>alt</em> no es un cubo para meter keywords a presión. Debe describir de forma natural lo que se ve y, si aporta valor, el contexto del servicio o del lugar. Piensa primero en accesibilidad y luego en SEO.</p>
+
+      <h3>4. Cuida la página de destino</h3>
+      <p>Google recomienda optimizar la <strong>image landing page</strong>. Eso significa que la página donde vive la imagen tiene que explicar el servicio, mostrar texto relevante, cargar rápido y no estar huérfana. Una imagen buena en una página débil pierde mucha fuerza.</p>
+
+      <h3>5. Optimiza peso y formato</h3>
+      <p>Compresión, dimensiones adecuadas y formatos modernos como WebP siguen siendo obligatorios. Una foto muy pesada no solo perjudica la experiencia; también puede arruinar la conversión. Si la velocidad sigue siendo una deuda, revisa nuestro artículo sobre <a href="/blog/velocidad-web-importancia">velocidad web</a>.</p>
+
+      <h2>Cómo usar lo visual para captar mejor en local</h2>
+      <p>Si trabajas por zonas, crea páginas donde las imágenes refuercen el servicio concreto. Si haces reformas, muestra acabados reales. Si diseñas webs, enseña capturas de proyectos. Si llevas campañas, acompaña la landing con ejemplos y resultados tangibles. La imagen correcta puede resolver una objeción en dos segundos.</p>
+      <p>También conviene pensar en intención: una foto para inspirar no cumple la misma función que una foto para convencer. La primera ayuda al descubrimiento; la segunda a cerrar el lead.</p>
+
+      <h2>Errores comunes</h2>
+      <ul>
+        <li>Subir imágenes enormes y confiar en que el navegador lo arregle.</li>
+        <li>Duplicar el mismo alt en toda la web.</li>
+        <li>Usar solo stock genérico cuando el negocio necesita prueba real.</li>
+        <li>Olvidar enlazar imágenes a páginas de servicio con contexto.</li>
+        <li>Separar demasiado SEO visual y estrategia comercial.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>La búsqueda visual ya no es una curiosidad. Para muchos servicios es parte de cómo el usuario descubre, compara y valida. Si preparas bien tus imágenes, tus páginas y tu contexto local, conviertes una capa estética en una ventaja competitiva.</p>
+      <p><strong>¿Tu web necesita una auditoría visual orientada a SEO y conversión?</strong> En Icono Studio podemos revisar qué imágenes ayudan, cuáles frenan y cómo integrarlas mejor en tu captación. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Sirve de algo renombrar imágenes antiguas?',
+        answer: 'Puede ayudar si también mejoras el contexto de la página, el texto alternativo y el rendimiento. Renombrar por sí solo tiene un impacto limitado.'
+      },
+      {
+        question: '¿El alt debe llevar siempre la ciudad?',
+        answer: 'Solo cuando aporta contexto real. Si la ubicación no es relevante para la imagen, es mejor describir lo que se ve con naturalidad.'
+      },
+      {
+        question: '¿Las imágenes influyen también en la conversión?',
+        answer: 'Sí. En servicios donde la confianza visual pesa mucho, una buena selección de fotos reduce dudas y mejora la calidad percibida antes del contacto.'
+      }
+    ]
+  },
+  {
+    title: 'Micro-intents en páginas de servicio: la estructura que convierte mejor en 2026',
+    subtitle: 'Cuando Google resume y el usuario compara más rápido, una página de servicio no puede responder solo a una duda principal. Tiene que resolver varias microfricciones a la vez.',
+    slug: 'micro-intents-paginas-servicio-estructura-convierte-2026',
+    date: '01 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Estratégico',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80',
+    metaTitle: 'Micro-intents en páginas de servicio | Icono Studio',
+    metaDescription: 'Aprende a estructurar páginas de servicio con micro-intents para mejorar SEO, claridad y conversión en un entorno dominado por IA.',
+    keywords: ['micro intents seo', 'paginas de servicio seo', 'conversion web servicios', 'estructura landing servicios', 'seo 2026'],
+    content: `
+      <p>Una de las ideas que más están empujando agencias competidoras durante 2026 es la de los <strong>micro-intents</strong>: pequeñas dudas o fricciones que el usuario necesita resolver antes de pedir presupuesto. Tiene sentido. Cada vez más búsquedas terminan con un resumen, una comparación o una vista rápida, así que cuando alguien entra por fin en tu página, espera encontrar respuestas muy concretas.</p>
+      <p>El error habitual es diseñar páginas de servicio demasiado simples: un título, un bloque genérico, una lista de ventajas y un formulario. Eso rara vez basta para un usuario que llega con objeciones, plazos, dudas de precio, miedo a equivocarse y necesidad de contexto.</p>
+
+      <h2>Qué es un micro-intent y por qué importa</h2>
+      <p>La intención principal puede ser "contratar diseño web en Valencia". Los micro-intents debajo de esa intención suelen ser cosas como: cuánto tardará, qué incluye, si habrá mantenimiento, qué tipo de página conviene, cuánto cuesta de forma orientativa o si la agencia entiende negocios como el suyo.</p>
+      <p>Si no resuelves esas microdudas, el usuario vuelve atrás, compara o aplaza la decisión. Y con más respuestas directas en Google y más competencia en IA, ese margen se reduce todavía más.</p>
+
+      <h2>La estructura que mejor funciona en una página de servicio</h2>
+      <h3>1. Promesa principal clara</h3>
+      <p>El primer bloque debe dejar claro qué haces, para quién y con qué beneficio. Nada de titulares bonitos que obligan a descifrar el servicio.</p>
+
+      <h3>2. Prueba rápida</h3>
+      <p>Justo después de la promesa conviene introducir credenciales, casos o señales de experiencia. Si el usuario no ve prueba pronto, la página parece intercambiable.</p>
+
+      <h3>3. Resolución de objeciones clave</h3>
+      <p>Aquí entran precio orientativo, tiempos, proceso, soporte, tecnología o encaje. No hace falta convertir la página en una biblia, pero sí cubrir las fricciones que más aparecen en ventas y captación.</p>
+
+      <h3>4. CTA coherente con la madurez del lead</h3>
+      <p>No todos están listos para "contratar ahora". A veces conviene ofrecer presupuesto, auditoría, llamada o guía de comparación. Esto conecta muy bien con búsquedas de decisión como las que comentamos en <a href="/blog/ai-mode-keyword-research-2026-busquedas-largas-convierten">nuestro artículo sobre keyword research y AI Mode</a>.</p>
+
+      <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&q=80" alt="Estructura de micro-intents en páginas de servicio" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo detectar los micro-intents correctos</h2>
+      <ul>
+        <li>Revisa llamadas comerciales y preguntas repetidas por correo o WhatsApp.</li>
+        <li>Mira consultas largas en Search Console que aterrizan en páginas de servicio.</li>
+        <li>Analiza qué objeciones aparecen antes de cerrar un proyecto.</li>
+        <li>Observa comparativas y enfoques que usan competidores directos.</li>
+      </ul>
+      <p>La página no debe responder a todo el universo del tema, sino a las preguntas que desbloquean el siguiente paso. Si quieres reforzar esto con captación, aquí tienes también nuestra guía sobre <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una web para atraer clientes</a>.</p>
+
+      <h2>Ejemplos de micro-intents útiles para servicios</h2>
+      <ul>
+        <li><strong>Precio:</strong> "¿de qué rango estamos hablando?"</li>
+        <li><strong>Plazo:</strong> "¿cuánto tardará en estar listo?"</li>
+        <li><strong>Proceso:</strong> "¿qué tengo que aportar yo?"</li>
+        <li><strong>Riesgo:</strong> "¿y si luego necesito cambios o soporte?"</li>
+        <li><strong>Encaje:</strong> "¿esto sirve para mi tipo de negocio?"</li>
+        <li><strong>Prueba:</strong> "¿hay ejemplos o resultados que lo demuestren?"</li>
+      </ul>
+
+      <h2>Errores que hacen perder conversión</h2>
+      <ul>
+        <li>Escribir pensando solo en la keyword principal.</li>
+        <li>Esconder información clave por miedo a "dar demasiados detalles".</li>
+        <li>Usar CTAs agresivos cuando el usuario todavía necesita contexto.</li>
+        <li>Duplicar la misma estructura en todos los servicios sin adaptar objeciones.</li>
+        <li>Publicar textos correctos pero sin casos, prueba ni diferenciación real.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 no gana la página que repite mejor una keyword. Gana la que reduce fricción más rápido. Trabajar micro-intents te obliga a pensar menos como redactor SEO y más como alguien que entiende cómo decide un cliente.</p>
+      <p><strong>¿Quieres rediseñar tus páginas de servicio con foco en SEO y conversión?</strong> En Icono Studio podemos ayudarte a estructurarlas para que respondan mejor a la búsqueda real y conviertan más. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Micro-intents y FAQs son lo mismo?',
+        answer: 'No exactamente. Las FAQs pueden ser una forma de resolver micro-intents, pero estos también se trabajan en bloques de proceso, prueba, precio, casos o CTAs.'
+      },
+      {
+        question: '¿Esto sirve solo para landings?',
+        answer: 'No. También mejora páginas de servicio corporativas, páginas por sector y muchas páginas locales donde la decisión requiere más contexto.'
+      },
+      {
+        question: '¿Cuántos micro-intents conviene cubrir?',
+        answer: 'Depende del servicio, pero normalmente una intención principal clara con varias microdudas clave suele funcionar mejor que una página demasiado breve o demasiado dispersa.'
+      }
+    ]
+  },
+  {
+    title: 'Enhanced conversions for leads: cómo medir mejor tus campañas de Google Ads en 2026',
+    subtitle: 'Si tus leads se cualifican fuera de la web, seguir midiendo solo formularios enviados te deja medio ciego. Esta guía te explica cómo corregirlo.',
+    slug: 'enhanced-conversions-leads-google-ads-2026',
+    date: '01 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Ads & Captación',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',
+    metaTitle: 'Enhanced conversions for leads en Google Ads | Icono Studio',
+    metaDescription: 'Guía para implementar enhanced conversions for leads y mejorar la medición, atribución y puja de Google Ads en 2026.',
+    keywords: ['enhanced conversions for leads', 'google ads leads 2026', 'medicion google ads leads', 'offline conversion import', 'atribucion google ads'],
+    content: `
+      <p>Muchas campañas de captación se optimizan con una señal pobre: el envío de formulario. El problema es evidente. No todos los formularios son oportunidades reales y no todos los leads buenos cierran dentro de la web. Si solo miras esa primera conversión, Google Ads aprende a perseguir cantidad, no calidad.</p>
+      <p>Por eso Google está empujando <strong>enhanced conversions for leads</strong> como evolución de la importación offline tradicional. Su documentación de 2026 insiste en que, si ya trabajas con offline conversions, conviene migrar a este sistema mejorado para ganar precisión, durabilidad y mejores señales para Smart Bidding.</p>
+
+      <h2>Qué son exactamente las enhanced conversions for leads</h2>
+      <p>Es un sistema que combina datos propios del lead, como email o teléfono cifrados, con la información capturada por tu etiqueta y tus importaciones posteriores. El objetivo es atribuir mejor qué clic acabó generando un lead cualificado o una venta.</p>
+      <p>Dicho de otra forma: no te quedas solo con "alguien envió el formulario", sino que puedes enseñar a Google qué leads merecían de verdad la inversión.</p>
+
+      <h2>Cuándo tiene sentido implementarlas</h2>
+      <ul>
+        <li>Si vendes servicios y el lead se cualifica después por llamada, email o CRM.</li>
+        <li>Si tienes ciclos de venta de varios días o semanas.</li>
+        <li>Si varias campañas generan formularios, pero no todos con la misma calidad.</li>
+        <li>Si estás usando AI Max, Smart Bidding o automatización y necesitas mejores señales.</li>
+      </ul>
+      <p>Si todavía no has ordenado la base de medición, primero revisa nuestra comparativa entre <a href="/blog/google-tag-vs-tag-manager-configuracion-medicion-2026">Google Tag y Google Tag Manager</a>. La implementación técnica importa mucho aquí.</p>
+
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Medición avanzada de leads con enhanced conversions en Google Ads" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Implementación básica sin complicarte más de la cuenta</h2>
+      <h3>1. Define qué conversión importa de verdad</h3>
+      <p>Google recomienda crear acciones diferenciadas como <strong>Qualified Lead</strong> o <strong>Converted Lead</strong>. Esa decisión es estratégica: sin una definición clara, la medición avanzada no arregla nada.</p>
+
+      <h3>2. Captura datos propios con Google Tag o GTM</h3>
+      <p>Necesitas recoger correctamente los datos que el usuario deja en el formulario para que luego puedan emparejarse de forma segura con la conversión offline. Esto puede hacerse con Google Tag o con Google Tag Manager según tu stack.</p>
+
+      <h3>3. Importa el resultado offline</h3>
+      <p>Puedes hacerlo con Data Manager, API o integraciones como Zapier o HubSpot, según tu proceso comercial. La clave es que el CRM devuelva a Google qué lead se cualificó o cerró, no solo cuál entró.</p>
+
+      <h3>4. Verifica diagnósticos antes de cambiar la puja</h3>
+      <p>Google tiene un <strong>diagnostics report</strong> específico para enhanced conversions for leads. Úsalo. El error habitual es activar la funcionalidad y asumir que todo está bien cuando todavía faltan datos, campos o correspondencias.</p>
+
+      <h2>Relación entre medición avanzada y AI Max</h2>
+      <p>Las campañas automatizadas solo son tan buenas como la señal que reciben. Si AI Max o Smart Bidding optimizan contra formularios basura, su aprendizaje será mediocre. Si en cambio reciben datos de lead cualificado o venta, la automatización empieza a parecerse mucho más al negocio real.</p>
+      <p>Por eso esta capa encaja muy bien con nuestro artículo sobre <a href="/blog/google-ads-2026-servicios-ai-max-estructura-campanas">Google Ads 2026 para servicios y AI Max</a>. Automatizar sin medición robusta es una forma cara de improvisar.</p>
+
+      <h2>Errores típicos</h2>
+      <ul>
+        <li>Optimizar a "lead enviado" cuando el comercial descarta la mayoría.</li>
+        <li>No activar auto-tagging o no conservar bien los identificadores.</li>
+        <li>Mezclar conversiones blandas y duras en la misma acción.</li>
+        <li>No revisar el diagnóstico después del setup.</li>
+        <li>Pedir a Google resultados avanzados sin devolverle datos avanzados.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Si tu negocio vende fuera de la web, tu medición también debe salir de la web. Enhanced conversions for leads no es un adorno técnico: es una forma de decirle a Google qué clic genera valor de verdad.</p>
+      <p><strong>¿Quieres revisar tu stack de medición, formularios y CRM para que Ads optimice mejor?</strong> En Icono Studio podemos ayudarte a ordenar esa capa antes de seguir metiendo presupuesto. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Esto sustituye al seguimiento normal de formularios?',
+        answer: 'No. Lo complementa. El envío del formulario sigue siendo útil, pero enhanced conversions for leads añade contexto sobre qué ocurrió después con ese lead.'
+      },
+      {
+        question: '¿Necesito un CRM para usarlo?',
+        answer: 'Ayuda mucho, porque facilita devolver estados de lead cualificado o cerrado. Aun así, también puede montarse con otros flujos de importación si el proceso está bien definido.'
+      },
+      {
+        question: '¿Mejora solo la medición o también el rendimiento?',
+        answer: 'Puede mejorar ambos. Una medición más precisa alimenta mejor las pujas automáticas y ayuda a asignar presupuesto hacia leads de mayor calidad.'
+      }
+    ]
+  },
+  {
+    title: 'Personal Intelligence y SEO local: cómo hacer que tu marca entre en recomendaciones personalizadas',
+    subtitle: 'La búsqueda ya no solo responde a la consulta. Cada vez intenta filtrar la opción más relevante para ese usuario concreto. Eso obliga a trabajar marca, prueba y contexto.',
+    slug: 'personal-intelligence-seo-local-recomendaciones-personalizadas',
+    date: '01 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80',
+    metaTitle: 'Personal Intelligence y SEO local | Icono Studio',
+    metaDescription: 'Qué implica Personal Intelligence para el SEO local y cómo preparar tu marca para recomendaciones más personalizadas en la búsqueda con IA.',
+    keywords: ['personal intelligence google', 'seo local ia', 'recomendaciones personalizadas google', 'marca local ia', 'ai mode local seo'],
+    content: `
+      <p>En enero de 2026 Google anunció la llegada de <strong>Personal Intelligence</strong> a AI Mode y en marzo amplió esa capacidad en Estados Unidos. Aunque hoy su despliegue siga centrado allí, la dirección es clara: la búsqueda quiere dar respuestas cada vez más <strong>adaptadas al contexto y preferencias del usuario</strong>.</p>
+      <p>Para un negocio local o de servicios esto tiene una consecuencia importante. Ya no basta con "estar indexado". Cada vez pesa más si tu marca resulta entendible, confiable y fácil de recomendar cuando el usuario pregunta por una opción que encaje con su situación.</p>
+
+      <h2>Qué significa esto en la práctica</h2>
+      <p>Si Google puede cruzar mejor intención, contexto y preferencias, la recomendación deja de ser puramente genérica. Un usuario no solo buscará "agencia web"; buscará algo que cuadre con su tipo de empresa, presupuesto, expectativas y referencias previas. Eso acerca la búsqueda a una lógica de recomendación.</p>
+      <p>Por eso el trabajo de <a href="/blog/geo-negocios-locales-2026-chatgpt-gemini-ai-overviews">GEO y visibilidad en IA</a> no puede separarse de la base SEO ni de la construcción de marca. De hecho, competidores directos están insistiendo en que no hay GEO sin SEO. Tienen razón.</p>
+
+      <h2>Señales que ayudan a entrar en recomendaciones más personalizadas</h2>
+      <h3>1. Una propuesta de valor fácil de entender</h3>
+      <p>Si tu web habla de "soluciones digitales" pero no aclara qué haces, para quién y en qué contexto, será difícil que un sistema te relacione con una necesidad concreta. La claridad comercial gana peso.</p>
+
+      <h3>2. Casos, reseñas y prueba real</h3>
+      <p>Cuando la búsqueda se vuelve más recomendadora, la prueba importa todavía más. Reseñas, casos, resultados, fotos y contexto real ayudan a transmitir que tu marca no es una promesa vacía. Si aún no trabajas esta capa, revisa nuestro artículo sobre <a href="/blog/como-conseguir-resenas-google-y-responderlas-bien">reseñas en Google</a>.</p>
+
+      <h3>3. Entidad y consistencia</h3>
+      <p>Nombre, servicios, ubicación, especialización y presencia coherente en tus canales siguen siendo decisivos. Aquí enlaza todo lo que ya trabajamos sobre <a href="/blog/llms-txt-schema-entidad-marca-visibilidad-ia-2026">schema y entidad de marca</a>.</p>
+
+      <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80" alt="Recomendaciones personalizadas y marca local en buscadores con IA" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo preparar tu marca local desde hoy</h2>
+      <ul>
+        <li>Crea páginas de servicio y sector con mensajes específicos, no genéricos.</li>
+        <li>Publica casos y pruebas que ayuden a encajar tu marca con problemas reales.</li>
+        <li>Refuerza tu ficha local y la coherencia entre web, perfiles y menciones.</li>
+        <li>Haz visible para quién eres buena opción y para quién no.</li>
+        <li>Trabaja la demanda de marca para que te busquen también por nombre.</li>
+      </ul>
+      <p>El objetivo no es gustarle a todo el mundo, sino volverte más elegible para el tipo de cliente correcto. Cuanto más definida esté tu oferta, más fácil es que encajes en respuestas y recomendaciones futuras.</p>
+
+      <h2>Qué errores frenan esta visibilidad</h2>
+      <ul>
+        <li>Intentar posicionar con mensajes tan amplios que no dicen nada.</li>
+        <li>Tener una web sin casos, reseñas ni evidencia visible.</li>
+        <li>Separar totalmente SEO local, branding y contenidos.</li>
+        <li>Confiar en que una capa de IA compense una base SEO floja.</li>
+        <li>Perseguir visibilidad en IA sin definir antes la especialización de la marca.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>La recomendación personalizada no elimina los fundamentos del SEO; los vuelve más exigentes. Si tu negocio quiere seguir siendo visible cuando la búsqueda filtra mejor por contexto y afinidad, necesita una marca más clara, más demostrable y más coherente.</p>
+      <p><strong>¿Quieres reforzar tu presencia local para que web, ficha y marca trabajen como un solo sistema?</strong> En Icono Studio podemos ayudarte a construir esa base. <a href="/contacto">Cuéntanos tu proyecto</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Personal Intelligence ya afecta a todos los países?',
+        answer: 'No. Google la ha ido desplegando en Estados Unidos durante 2026, pero sirve como señal clara de hacia dónde evoluciona la búsqueda personalizada.'
+      },
+      {
+        question: '¿Esto sustituye al SEO local clásico?',
+        answer: 'No. Lo que hace es aumentar la importancia de una base SEO local sólida, una marca entendible y señales reales de confianza.'
+      },
+      {
+        question: '¿Cómo sé si mi marca es demasiado genérica?',
+        answer: 'Si un usuario tarda varios segundos en entender qué haces, para quién trabajas y por qué elegirte, seguramente tu mensaje todavía necesita más precisión.'
+      }
+    ]
+  },
+  {
     title: 'Google Business Profile (Google My Business): checklist 2026 para salir mejor en Maps',
     subtitle: 'Guía práctica para optimizar tu ficha de Google, evitar errores típicos y convertir más búsquedas locales en llamadas, clics y visitas.',
     slug: 'google-business-profile-google-my-business-checklist-maps',
