@@ -3,6 +3,438 @@ import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: 'Contenido original y experiencia real: la ventaja SEO que AI Overviews y AI Mode premian en 2026',
+    subtitle: 'Google está reforzando las señales que ayudan a encontrar fuentes originales, perspectivas de primera mano y cobertura realmente útil. Eso cambia cómo conviene escribir un blog de negocio.',
+    slug: 'contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026',
+    date: '02 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80',
+    metaTitle: 'Contenido original para AI Overviews y AI Mode | Icono Studio',
+    metaDescription: 'Qué significa crear contenido original y de primera mano en 2026 y cómo convertirlo en una ventaja SEO para AI Overviews, AI Mode y búsquedas orgánicas.',
+    keywords: ['contenido original seo', 'ai overviews seo', 'ai mode seo 2026', 'contenido primera mano google', 'eeat contenido original'],
+    content: `
+      <p>El 27 de mayo de 2026 Google anunció nuevos cambios para ayudar a los usuarios a encontrar <strong>contenido original, de calidad y con perspectivas de primera mano</strong> en Search, AI Overviews y AI Mode. Entre esas mejoras están etiquetas como <strong>Highly Cited</strong> y nuevas formas de destacar fuentes preferidas. Para un negocio de servicios esto no es una anécdota editorial: es una pista muy clara de hacia dónde se está moviendo la visibilidad orgánica.</p>
+      <p>Durante años mucha gente entendió el blog como una máquina de publicar piezas correctas, algo derivativas y orientadas a palabras clave. En 2026 ese enfoque se queda corto. Si tu contenido no aporta experiencia, criterio y contexto real, cada vez resulta más fácil que Google lo resuma, lo sustituya o directamente lo ignore frente a una fuente más útil.</p>
+
+      <h2>Qué está premiando Google ahora</h2>
+      <p>Google sigue insistiendo en lo mismo desde Search Central: crear contenido <strong>helpful, reliable, people-first</strong>. La novedad es que ahora el producto también está enseñando mejor las señales de originalidad. Cuando Search resalta cobertura influyente o perspectivas de primera mano, está dejando claro que el valor no está en repetir una idea, sino en aportar algo que merezca ser citado.</p>
+      <p>Eso afecta de lleno a agencias, estudios, clínicas, despachos y negocios locales que compiten con contenidos escritos deprisa o reempaquetados con IA sin trabajo editorial real.</p>
+
+      <h2>Qué entiende un negocio por contenido original de verdad</h2>
+      <h3>1. Experiencia propia</h3>
+      <p>No basta con explicar un concepto. Conviene explicar <strong>cómo lo aplicas</strong>, qué has visto fallar, qué criterio utilizas y qué matices no suelen contarse. En una web de servicios, eso significa ejemplos reales, decisiones de proyecto, errores comunes y aprendizajes prácticos.</p>
+
+      <h3>2. Prueba visible</h3>
+      <p>Capturas, procesos, mini casos, imágenes propias, fragmentos de auditoría o comparativas comentadas. Todo eso ayuda a demostrar que no estás resumiendo el trabajo de otros, sino partiendo de experiencia directa. Si además el contenido es visual, se refuerza con lo que explicamos en nuestra guía de <a href="/blog/seo-imagenes-2026-busquedas-visuales-clientes-locales">SEO para imágenes y búsquedas visuales</a>.</p>
+
+      <h3>3. Posicionamiento editorial</h3>
+      <p>Original no significa extravagante. Significa que el artículo tiene un criterio propio. Cuando hablas de SEO local, Ads o diseño web, el lector debe notar qué priorizas tú, qué no recomiendas y por qué.</p>
+
+      <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&q=80" alt="Contenido original y experiencia real para SEO en 2026" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo adaptar tu blog para que no parezca contenido genérico</h2>
+      <h3>Usa la actualidad como detonante, no como relleno</h3>
+      <p>Si Google anuncia una función nueva, no publiques solo un resumen de la noticia. Explica qué cambia para un negocio real, qué decisión práctica abre y qué acciones merece la pena tomar primero.</p>
+
+      <h3>Documenta preguntas que llegan en ventas</h3>
+      <p>Muchas buenas piezas nacen de objeciones repetidas en presupuestos y llamadas. Eso ya lo vemos en el cambio de comportamiento que describimos en <a href="/blog/ai-mode-keyword-research-2026-busquedas-largas-convierten">nuestro artículo sobre AI Mode y keyword research</a>: las consultas llegan con más contexto, así que el contenido también debe responder con más contexto.</p>
+
+      <h3>Incluye capas de decisión, no solo definición</h3>
+      <p>Un artículo útil no solo responde "qué es". También resuelve "cuándo conviene", "qué errores evitar", "cómo priorizar" y "qué hacer después". Esa capa decisional es la que más ayuda a un lead que ya está comparando opciones.</p>
+
+      <h2>Señales concretas que puedes añadir en cada artículo</h2>
+      <ul>
+        <li>Ejemplos sacados de proyectos reales o de auditorías internas.</li>
+        <li>Capturas, imágenes propias o elementos de prueba visibles.</li>
+        <li>Enlaces a páginas de servicio, casos y recursos relacionados.</li>
+        <li>Autores identificables y coherencia temática del sitio.</li>
+        <li>Conclusiones que muestren criterio, no solo recopilación.</li>
+      </ul>
+
+      <h2>Qué errores siguen haciendo muchos blogs de empresa</h2>
+      <ul>
+        <li>Publicar sobre cualquier tendencia aunque no encaje con su audiencia real.</li>
+        <li>Resumir varias fuentes sin añadir experiencia propia.</li>
+        <li>Escribir piezas muy limpias en forma, pero vacías en decisión y prueba.</li>
+        <li>No conectar el blog con servicios, casos o propuesta comercial.</li>
+        <li>Delegar todo el trabajo en generación automática sin edición experta.</li>
+      </ul>
+
+      <h2>Cómo convertir esta tendencia en captación</h2>
+      <p>La ventaja del contenido original no es solo "gustarle a Google". También hace que el usuario te recuerde mejor, confíe antes y llegue más preparado al contacto. En un entorno con más resúmenes y menos clics, no gana quien más publica: gana quien deja una impresión más fiable cuando el clic sí sucede.</p>
+      <p>Por eso cada artículo debería acercar al lector a una decisión concreta: pedir presupuesto, comparar enfoques, revisar su web o entender mejor una inversión. Si además quieres reforzar esa lógica en páginas comerciales, te conviene revisar cómo trabajar <a href="/blog/micro-intents-paginas-servicio-estructura-convierte-2026">micro-intents en páginas de servicio</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 el contenido genérico tiene menos margen que nunca. Google está mostrando de forma cada vez más visible que valora la fuente original, la perspectiva clara y la experiencia demostrable. Si tu blog quiere seguir atrayendo negocio, necesita parecer menos un resumen correcto y más una pieza firmada por alguien que realmente sabe de qué habla.</p>
+      <p><strong>¿Quieres que definamos un calendario editorial con contenido que sí aporte autoridad y leads?</strong> En Icono Studio podemos ayudarte a construir un blog útil, enlazado a servicios y alineado con cómo está cambiando Search. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Contenido original significa escribir algo nunca dicho?',
+        answer: 'No. Significa aportar experiencia, criterio o prueba que haga tu pieza más útil que una simple reescritura de lo que ya existe.'
+      },
+      {
+        question: '¿Puedo usar IA para redactar y seguir posicionando?',
+        answer: 'Sí, pero la generación no puede sustituir la edición experta, la verificación y la aportación propia. Si el resultado es genérico, la ventaja competitiva se diluye.'
+      },
+      {
+        question: '¿Esto también ayuda en SEO local?',
+        answer: 'Sí. Los negocios locales que muestran experiencia real, casos, reseñas y contexto suelen generar más confianza y mejores señales de autoridad.'
+      }
+    ]
+  },
+  {
+    title: 'AI Max y landing pages dinámicas: cómo evitar tráfico irrelevante y errores caros en Google Ads',
+    subtitle: 'Google sigue empujando AI Max para campañas de búsqueda, pero usarlo sin controlar URLs, geo e intención puede disparar clics mediocres y páginas equivocadas.',
+    slug: 'ai-max-landing-pages-dinamicas-google-ads-2026',
+    date: '02 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Ads & Captación',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',
+    metaTitle: 'AI Max y landing pages dinámicas en Google Ads | Icono Studio',
+    metaDescription: 'Guía práctica para usar AI Max en Google Ads sin perder control sobre URLs, intención, geografía ni medición en campañas de búsqueda.',
+    keywords: ['ai max google ads', 'landing pages dinamicas google ads', 'final url expansion', 'google ads servicios locales', 'url exclusions ai max'],
+    content: `
+      <p>AI Max ya no es solo una novedad vistosa de Google Ads. La ayuda oficial de Google lo presenta como una <strong>capa de optimización</strong> para campañas de búsqueda que amplía concordancias, ajusta creatividades y puede enviar tráfico a URLs dinámicas mediante <strong>Final URL Expansion</strong>. Sobre el papel suena bien. En la práctica, activarlo sin criterio puede mezclar intenciones, mover tráfico a páginas flojas y estropear la lectura real del rendimiento.</p>
+      <p>Para negocios de servicios, donde cada lead cuesta dinero y cada página cumple una función distinta, este detalle importa mucho más de lo que parece.</p>
+
+      <h2>Qué cambia realmente cuando activas AI Max</h2>
+      <p>Google explica que AI Max combina dos grandes bloques: <strong>search term matching</strong> y <strong>asset optimization</strong>. Eso significa más alcance, más personalización del anuncio y más automatización sobre la URL de destino. Además, añade controles específicos como <strong>locations of interest</strong>, brand settings, URL inclusions y URL exclusions.</p>
+      <p>El problema no es la automatización en sí. El problema es asumir que tu arquitectura web ya está preparada para ella.</p>
+
+      <h2>Por qué las landing pages importan aún más con AI Max</h2>
+      <h3>No todas las URLs convierten igual</h3>
+      <p>En una web de servicios suele haber páginas informativas, posts de blog, landings de campaña, comparativas y páginas locales. Si AI Max puede expandir la URL final, necesita encontrar páginas que realmente encajen con la intención y no rompan el recorrido del lead.</p>
+
+      <h3>Una mala URL puede encarecer todo</h3>
+      <p>Si el sistema lleva tráfico a un artículo demasiado informativo cuando el usuario estaba listo para presupuestar, bajará la tasa de conversión. Si lo lleva a una página local pobre o a una URL con errores de tracking, no solo cae el rendimiento: también se ensucia la lectura de datos.</p>
+
+      <h3>Los tracking templates pueden romper URLs dinámicas</h3>
+      <p>Google avisa específicamente de un riesgo técnico: cuando AI Max usa landing pages dinámicas, ciertos <em>tracking templates</em> mal montados pueden generar errores o páginas 404. Este punto es especialmente serio si trabajas con UTMs personalizadas, automatizaciones externas o etiquetado histórico heredado.</p>
+
+      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80" alt="AI Max y landing pages dinámicas en campañas de Google Ads" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Checklist antes de activar AI Max en una campaña de servicios</h2>
+      <h3>1. Revisa la arquitectura de destino</h3>
+      <p>Confirma qué páginas tienen intención comercial clara, cuáles son comparativas y cuáles no deberían recibir tráfico de pago. Si necesitas reforzar esa base, puede ayudarte nuestra guía sobre <a href="/blog/micro-intents-paginas-servicio-estructura-convierte-2026">micro-intents en páginas de servicio</a>.</p>
+
+      <h3>2. Define exclusiones de URL</h3>
+      <p>No dejes abiertas páginas legales, posts demasiado altos de embudo, thank-you pages o URLs antiguas que no deberían recibir clics pagados. AI Max da más alcance, pero también necesita vallas.</p>
+
+      <h3>3. Alinea páginas con geografía e intención</h3>
+      <p>Uno de los controles más interesantes es <strong>locations of interest</strong>. Si vendes en Valencia, Madrid o por barrios concretos, la campaña debe tener páginas que respondan de verdad a ese contexto y no una home genérica. Esto conecta con la lógica de <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">trabajar SEO local con páginas y señales realmente útiles por zona</a>, no con campañas apuntando a una portada genérica.</p>
+
+      <h3>4. Comprueba el tracking</h3>
+      <p>Antes de lanzar, valida que las URLs expandidas funcionan con tu template. Google recomienda revisar especialmente patrones con <code>{lpurl}</code> y parámetros añadidos después. Si la medición ya era frágil, AI Max no la arregla solo.</p>
+
+      <h3>5. Separa control y experimentación</h3>
+      <p>No conviertas todas tus campañas en laboratorio al mismo tiempo. Empieza por una campaña donde tengas páginas sólidas, conversiones bien medidas y suficiente volumen para aprender algo útil.</p>
+
+      <h2>Qué mirar en los informes de AI Max</h2>
+      <ul>
+        <li>Nuevo tipo de match y fuente del match en el informe de términos.</li>
+        <li>Combinación entre búsqueda, titulares y URL seleccionada.</li>
+        <li>Columna <em>Selected by</em> en landing pages.</li>
+        <li>Consultas incrementales que no entraban antes.</li>
+        <li>Diferencia entre más conversión y mejor conversión.</li>
+      </ul>
+      <p>Este último punto es clave. Más formularios no significa mejores leads. Si todavía no estás conectando calidad posterior, revisa también nuestra guía de <a href="/blog/enhanced-conversions-leads-google-ads-2026">enhanced conversions for leads</a>.</p>
+
+      <h2>Errores frecuentes al usar AI Max</h2>
+      <ul>
+        <li>Activarlo sin auditar antes las páginas del dominio.</li>
+        <li>Confiar en que la home resuelve cualquier intención.</li>
+        <li>Dejar textos fijados y estructuras antiguas que chocan con URLs dinámicas.</li>
+        <li>Medir solo CPL superficial sin revisar lead quality.</li>
+        <li>No aislar campañas locales, genéricas y de marca.</li>
+      </ul>
+
+      <h2>Cuándo sí tiene sentido</h2>
+      <p>AI Max puede ser muy útil cuando ya tienes una base razonable: servicios bien separados, landings decentes, exclusiones claras y medición fiable. En ese contexto, puede descubrir búsquedas nuevas y ganar eficiencia sin destrozar el control. Pero si tu web todavía mezcla mensajes, ciudades y ofertas, la automatización simplemente amplifica ese caos.</p>
+
+      <h2>Conclusión</h2>
+      <p>AI Max no sustituye la estrategia. La acelera, para bien o para mal. Si quieres aprovechar su alcance adicional, prepara primero el terreno: páginas correctas, exclusiones, tracking sano y criterios claros sobre qué lead vale la pena.</p>
+      <p><strong>¿Quieres revisar si tu web y tus campañas están listas para AI Max?</strong> En Icono Studio podemos auditar la estructura de captación y adaptar tus landings para que la automatización trabaje a favor del negocio. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿AI Max sustituye a Performance Max?',
+        answer: 'No. Google lo plantea como una capa de optimización dentro de campañas de búsqueda, no como un reemplazo directo de Performance Max.'
+      },
+      {
+        question: '¿Debo activar Final URL Expansion siempre?',
+        answer: 'No necesariamente. Si tu web no está bien segmentada o tu tracking es delicado, conviene revisar primero qué URLs deberían quedar fuera.'
+      },
+      {
+        question: '¿Sirve para negocios locales?',
+        answer: 'Sí, especialmente por los controles de intención geográfica, pero solo si existen páginas de destino coherentes con cada zona o servicio.'
+      }
+    ]
+  },
+  {
+    title: 'Search Console con regex y vista de 24 horas: cómo detectar intención útil para SEO local en 2026',
+    subtitle: 'Muchos negocios miran Search Console solo para ver clics totales. Eso deja fuera el análisis que realmente ayuda a decidir qué páginas crear, pulir o proteger.',
+    slug: 'search-console-regex-24-horas-intencion-seo-local-2026',
+    date: '02 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Analítica',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
+    metaTitle: 'Search Console con regex y 24 horas para SEO local | Icono Studio',
+    metaDescription: 'Aprende a usar filtros regex y la vista de 24 horas en Search Console para detectar intención comercial, búsquedas locales y oportunidades SEO reales.',
+    keywords: ['search console regex', 'search console 24 horas', 'seo local search console', 'branded non branded search console', 'intencion de busqueda search console'],
+    content: `
+      <p>Google Search Console sigue siendo una de las fuentes más infravaloradas para tomar decisiones SEO. La mayoría de negocios entra, mira clics e impresiones y sale. Pero la herramienta permite bastante más: Google mantiene filtros avanzados con <strong>regex</strong>, segmentación por tipo de búsqueda y una <strong>vista de 24 horas</strong> con datos preliminares que ayuda a detectar movimientos mucho antes.</p>
+      <p>Para una web de servicios, esto significa poder separar mejor marca, intención local, comparativas y búsquedas de decisión sin depender siempre de herramientas externas.</p>
+
+      <h2>Por qué este análisis importa más en 2026</h2>
+      <p>Search se está volviendo más variado: más consultas largas, más voz, más imagen y más reformulaciones. Lo vimos en los datos recientes de AI Mode y también en cómo Google presenta ahora búsquedas y respuestas. Si el comportamiento cambia, tus segmentos analíticos también tienen que cambiar.</p>
+      <p>Seguir leyendo Search Console como una tabla plana de keywords desperdicia una parte importante del valor.</p>
+
+      <h2>Tres usos prácticos que casi cualquier negocio debería montar</h2>
+      <h3>1. Separar marca y no marca</h3>
+      <p>Con regex puedes aislar consultas que incluyan el nombre de tu empresa, variantes, errores comunes o nombres de producto. Esto ayuda a no mezclar demanda existente con descubrimiento real. Si todo parece ir bien pero el crecimiento viene casi solo de marca, la lectura estratégica cambia bastante.</p>
+
+      <h3>2. Detectar intención local</h3>
+      <p>Filtra ciudades, barrios, provincias o expresiones tipo "cerca", "en valencia", "en madrid", "precio", "presupuesto" o "agencia". Así descubrirás si una página necesita una versión local, una ampliación o una URL específica por servicio y zona.</p>
+
+      <h3>3. Encontrar consultas de decisión</h3>
+      <p>Regex también sirve para cazar patrones del tipo "cuanto", "mejor", "o", "vs", "opiniones", "precio", "merece la pena" o "como elegir". Muchas veces esas consultas no piden un post genérico, sino un comparativo o una página mejor estructurada.</p>
+
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80" alt="Análisis de Search Console con regex y vista de 24 horas" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo aprovechar la vista de 24 horas</h2>
+      <p>Google indica que la vista de 24 horas utiliza datos preliminares. Eso no la convierte en inútil; al contrario, es muy buena para detectar cambios rápidos después de una publicación, una actualización interna, una campaña o una incidencia técnica.</p>
+      <ul>
+        <li>Publicas un artículo nuevo y quieres ver si empieza a generar impresiones.</li>
+        <li>Actualizas títulos o bloques de una página local y buscas primeras señales.</li>
+        <li>Notas una caída rara y quieres comprobar si afecta a una familia concreta de consultas.</li>
+        <li>Lanzas una campaña y quieres ver si sube la búsqueda de marca en paralelo.</li>
+      </ul>
+
+      <h2>Segmentos que recomendamos revisar cada semana</h2>
+      <h3>Búsquedas de marca</h3>
+      <p>Sirven para leer demanda ya existente, reputación y efecto de campañas. Esto conecta con otro frente que está creciendo mucho en 2026: la necesidad de reforzar marca y prueba externa, de la que hablamos en <a href="/blog/resenas-casos-menciones-marca-ia-seo-local-2026">nuestro artículo sobre reseñas, casos y menciones</a>.</p>
+
+      <h3>Búsquedas locales por ciudad o barrio</h3>
+      <p>Te ayudan a decidir si merece la pena una página local nueva o si basta con reforzar una existente. Si aún no trabajas esa base, revisa también nuestra <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">guía de SEO local para pequeñas empresas</a>.</p>
+
+      <h3>Búsquedas de decisión</h3>
+      <p>Son ideales para crear comparativas, FAQs visibles y secciones de objeciones. Aquí encajan muy bien los patrones que explicamos en <a href="/blog/ai-mode-keyword-research-2026-busquedas-largas-convierten">AI Mode y keyword research</a>.</p>
+
+      <h3>Búsquedas por tipo de resultado</h3>
+      <p>Search Console también permite separar web, imagen, vídeo o noticias. Si publicas contenido visual o tutoriales, esto ayuda a entender qué formato está abriendo más puerta.</p>
+
+      <h2>Errores comunes al trabajar Search Console</h2>
+      <ul>
+        <li>Tomar cada fluctuación diaria como una conclusión.</li>
+        <li>Analizar clics sin mirar impresiones, posición y tipo de consulta.</li>
+        <li>Mezclar marca, no marca y local en el mismo saco.</li>
+        <li>Crear contenido solo por volumen, ignorando patrones de intención.</li>
+        <li>No cruzar los hallazgos con ventas, formularios y calidad del lead.</li>
+      </ul>
+
+      <h2>Una forma simple de convertir datos en acciones</h2>
+      <ul>
+        <li>Si ves consultas locales repetidas: crea o refuerza una página por zona.</li>
+        <li>Si ves comparativas: publica un contenido de decisión.</li>
+        <li>Si ves mucha marca y poco descubrimiento: amplía contenidos de captación.</li>
+        <li>Si una URL recibe impresiones por términos raros pero útiles: ajusta su copy y FAQs.</li>
+        <li>Si un tema gana tracción en 24 horas: enlázalo rápido desde otras piezas relevantes.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Search Console no es solo una herramienta de observación. Bien segmentada, se convierte en un radar editorial y comercial. Regex y vista de 24 horas no hacen magia, pero ayudan a ver intención real con mucha más precisión que un informe plano de keywords.</p>
+      <p><strong>¿Quieres que revisemos tus datos y te propongamos qué páginas priorizar?</strong> En Icono Studio podemos convertir Search Console en decisiones concretas de contenido, SEO local y captación. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿La vista de 24 horas sirve para tomar decisiones grandes?',
+        answer: 'Sirve para detectar señales tempranas, no para cerrar conclusiones definitivas. Es mejor combinarla con periodos más amplios y contexto de negocio.'
+      },
+      {
+        question: '¿Hace falta saber regex avanzada?',
+        answer: 'No demasiado. Con patrones simples ya puedes separar marca, ciudades, comparativas y consultas de precio o decisión.'
+      },
+      {
+        question: '¿Esto sustituye a otras herramientas SEO?',
+        answer: 'No. Pero Search Console aporta algo que ninguna herramienta externa puede replicar igual: consultas reales e impresiones reales de tu propia web.'
+      }
+    ]
+  },
+  {
+    title: 'Reseñas, casos y menciones: el moat de confianza que tu marca necesita para SEO local e IA',
+    subtitle: 'Cada vez cuesta más destacar solo con texto web. La autoridad también se construye con prueba externa, señales de confianza y cobertura coherente fuera de tu propio dominio.',
+    slug: 'resenas-casos-menciones-marca-ia-seo-local-2026',
+    date: '02 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Reputación',
+    image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&q=80',
+    metaTitle: 'Reseñas, casos y menciones para SEO local e IA | Icono Studio',
+    metaDescription: 'Cómo usar reseñas, casos reales y menciones externas para reforzar autoridad de marca, SEO local y visibilidad en buscadores con IA en 2026.',
+    keywords: ['resenas seo local', 'menciones de marca seo', 'ugc seo local', 'autoridad de marca ia', 'casos reales seo'],
+    content: `
+      <p>La competencia SEO en 2026 se está endureciendo por una razón simple: ya no basta con tener una web razonablemente optimizada. Cada vez más agencias están empujando conceptos como <strong>entity building</strong>, <strong>UGC</strong>, prueba social y autoridad de marca porque la visibilidad depende más de que tu negocio resulte confiable en distintos contextos, no solo dentro de su propio sitio.</p>
+      <p>Eso se nota especialmente en negocios locales y de servicios, donde el cliente compara rápido y busca señales de tranquilidad antes de contactar.</p>
+
+      <h2>Por qué esta capa pesa más ahora</h2>
+      <p>Google lleva tiempo insistiendo en contenido útil y fiable. Además, los nuevos movimientos de Search para destacar fuentes originales y perspectivas reales refuerzan una idea: la confianza no nace solo de repetir bien una keyword, sino de que existan señales coherentes alrededor de la marca.</p>
+      <p>Si tu web dice que eres bueno, pero fuera de ella no hay reseñas, casos, menciones ni referencias visibles, la autoridad percibida queda coja.</p>
+
+      <h2>Las tres piezas del moat de confianza</h2>
+      <h3>1. Reseñas reales y trabajadas</h3>
+      <p>No hablamos solo de conseguir más estrellas. Hablamos de recoger opiniones que describan servicio, contexto, ciudad, problema resuelto y experiencia. Ese nivel de detalle ayuda tanto al usuario como a la comprensión semántica del negocio. Si aún no tienes un sistema estable, revisa nuestra guía sobre <a href="/blog/como-conseguir-resenas-google-y-responderlas-bien">cómo conseguir reseñas en Google y responderlas bien</a>.</p>
+
+      <h3>2. Casos y prueba propia</h3>
+      <p>Los casos reales hacen dos trabajos a la vez: mejoran conversión y demuestran experiencia. Un proyecto explicado con criterio, capturas y contexto vale mucho más que una promesa abstracta en la home.</p>
+
+      <h3>3. Menciones externas coherentes</h3>
+      <p>Directorios útiles, entrevistas, colaboraciones, medios de nicho, portfolios, asociaciones sectoriales o plataformas donde tu negocio aparezca de forma consistente. No se trata de inflar menciones vacías, sino de reforzar una entidad reconocible.</p>
+
+      <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80" alt="Reseñas y menciones de marca para SEO local e IA" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Cómo afecta esto al SEO local</h2>
+      <p>En local, la confianza pesa muchísimo porque muchas decisiones se toman con información parcial: una ficha, unas pocas reseñas, una web rápida y alguna referencia más. Si todas esas piezas cuentan la misma historia, el negocio transmite seguridad. Si cada una dice una cosa distinta o algunas están vacías, la fricción sube.</p>
+      <p>Por eso conviene alinear este trabajo con la base local: ficha, páginas por ciudad, contenidos útiles y prueba visual. Para ese encaje global siguen siendo clave nuestro <a href="/blog/google-business-profile-google-my-business-checklist-maps">checklist de Google Business Profile</a> y la <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">guía de SEO local</a>.</p>
+
+      <h2>Cómo afecta a la visibilidad en IA</h2>
+      <p>Aquí hay que ser prudentes: no existe una fórmula pública única que diga "más reseñas igual a más citas". Pero sí es razonable inferir que una marca mejor documentada, más consistente y con más prueba externa resulta más fácil de interpretar y recomendar. Esto encaja con la transición que explicamos en <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">nuestro artículo sobre contenido original y experiencia real</a>.</p>
+
+      <h2>Qué acciones merece la pena priorizar</h2>
+      <ul>
+        <li>Diseñar un sistema estable de solicitud de reseñas tras entregas o hitos.</li>
+        <li>Responder con detalle útil, no con plantillas vacías.</li>
+        <li>Publicar casos con contexto, proceso y resultados observables.</li>
+        <li>Conseguir menciones donde realmente te buscaría o validaría un cliente.</li>
+        <li>Unificar naming, servicios, ciudades y posicionamiento de marca.</li>
+      </ul>
+
+      <h2>Errores comunes</h2>
+      <ul>
+        <li>Comprar reseñas o forzar patrones artificiales.</li>
+        <li>Crear casos demasiado genéricos, sin aprendizaje ni prueba.</li>
+        <li>Buscar menciones en sitios irrelevantes solo por acumular.</li>
+        <li>Tener una gran propuesta en la web pero cero señales fuera de ella.</li>
+        <li>Separar reputación, SEO local y conversión como si fueran mundos distintos.</li>
+      </ul>
+
+      <h2>La conexión con captación</h2>
+      <p>Todo esto no solo mejora apariencia de autoridad. También reduce objeciones en el momento clave. Un lead que ve reseñas específicas, casos parecidos al suyo y menciones consistentes llega mejor cualificado y compara menos por precio puro.</p>
+      <p>Además, este moat ayuda a que tus contenidos de decisión y tus páginas comerciales conviertan mejor, porque ya no tienen que fabricar confianza desde cero.</p>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 la autoridad no se improvisa con dos párrafos bien escritos. Se construye con pruebas propias, señales externas y consistencia de marca. Reseñas, casos y menciones forman una capa defensiva que protege tu captación y hace más creíble todo lo demás.</p>
+      <p><strong>¿Quieres reforzar la autoridad digital de tu negocio local?</strong> En Icono Studio podemos ayudarte a ordenar tu prueba social, tus casos y tu presencia para que SEO, reputación y conversión empujen en la misma dirección. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Las reseñas siguen siendo importantes si ya tengo buen SEO?',
+        answer: 'Sí. Influyen en la percepción del usuario, en la conversión y en la confianza general de la marca, especialmente en búsquedas locales.'
+      },
+      {
+        question: '¿Qué vale más: una mención o un enlace?',
+        answer: 'Depende del contexto. Un enlace sigue siendo valioso, pero una mención relevante y creíble también puede reforzar marca y validación ante usuarios reales.'
+      },
+      {
+        question: '¿Un caso de estudio ayuda aunque no tenga cifras espectaculares?',
+        answer: 'Sí. Muchas veces el valor está en mostrar proceso, criterio y tipo de problema resuelto, no solo en inflar resultados.'
+      }
+    ]
+  },
+  {
+    title: 'SEO multiplataforma local en 2026: cómo conectar web, Maps, YouTube y Search Live para captar mejor',
+    subtitle: 'La búsqueda ya no ocurre solo en una caja de texto. Google está mezclando voz, imagen, cámara, contexto y descubrimiento local, y eso obliga a trabajar la presencia digital como sistema.',
+    slug: 'seo-multiplataforma-local-maps-youtube-search-live-2026',
+    date: '02 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80',
+    metaTitle: 'SEO multiplataforma local con Maps, YouTube y Search Live | Icono Studio',
+    metaDescription: 'Qué significa hacer SEO multiplataforma local en 2026 y cómo coordinar web, Maps, YouTube y Search Live para ganar visibilidad y confianza.',
+    keywords: ['seo multiplataforma local', 'search live seo', 'youtube seo local', 'maps seo local', 'ai mode local seo 2026'],
+    content: `
+      <p>La idea de que el SEO local se resuelve solo con una ficha de Google Business Profile y una página por ciudad ya se ha quedado corta. Google está ampliando continuamente la forma de buscar: AI Mode acepta voz e imagen, Search Live se expandió globalmente el 26 de marzo de 2026 con conversaciones por voz y cámara, y la propia experiencia de búsqueda mezcla mejor contenido web, visual y local.</p>
+      <p>Eso obliga a pensar la captación local como un sistema multiplataforma, no como una sola URL intentando resolverlo todo.</p>
+
+      <h2>Qué significa SEO multiplataforma en la práctica</h2>
+      <p>Significa que tu negocio debe resultar entendible y convincente en distintos puntos de contacto:</p>
+      <ul>
+        <li><strong>Web:</strong> para profundidad, servicios, prueba y conversión.</li>
+        <li><strong>Maps / Business Profile:</strong> para confianza rápida, llamadas, reseñas y contexto local.</li>
+        <li><strong>YouTube o vídeo:</strong> para explicación, demostración y prueba visual.</li>
+        <li><strong>Búsqueda visual o Search Live:</strong> para descubrimiento asistido por imagen, cámara o conversación.</li>
+      </ul>
+      <p>No todas las empresas deben volcarse igual en todas las capas, pero sí conviene diseñarlas de forma coherente.</p>
+
+      <h2>Por qué esto es más relevante en 2026</h2>
+      <p>Los datos recientes de Google sobre AI Mode apuntan a más búsquedas por voz o imagen y a consultas más largas y orientadas a decisión. Si el usuario puede buscar hablando, enseñando una foto o describiendo un problema con mucho contexto, tu marca necesita más superficies útiles donde ser encontrada y validada.</p>
+
+      <h2>Cómo repartir el trabajo entre canales</h2>
+      <h3>La web debe resolver intención y objeciones</h3>
+      <p>Tu web sigue siendo el sitio donde debes cerrar mejor la propuesta: servicios, proceso, precio orientativo, FAQs, casos y CTA. Si esa base falla, el resto de canales solo maquillan el problema.</p>
+
+      <h3>Maps debe convertir confianza rápida</h3>
+      <p>Horarios, categorías, reseñas, servicios, fotos, publicaciones y coherencia general. Aquí no hace falta repetir todo lo de la web, sino facilitar una decisión rápida. Para la base completa, revisa nuestro <a href="/blog/google-business-profile-google-my-business-checklist-maps">checklist de Google Business Profile</a>.</p>
+
+      <h3>YouTube o vídeo debe mostrar criterio o proceso</h3>
+      <p>No hace falta montar un canal enorme. A veces bastan piezas útiles: explicación de servicio, antes y después, walkthrough de proyecto o respuestas a objeciones frecuentes. El vídeo puede resolver confianza visual mucho más rápido que un bloque largo de texto.</p>
+
+      <h3>La capa visual debe enseñar el trabajo</h3>
+      <p>Si un usuario llega por imagen, cámara o búsqueda visual, necesita encontrarse activos bien preparados: fotos originales, contexto correcto y páginas de destino sólidas. Aquí conecta directamente nuestra guía sobre <a href="/blog/seo-imagenes-2026-busquedas-visuales-clientes-locales">SEO para imágenes en 2026</a>.</p>
+
+      <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&q=80" alt="SEO multiplataforma local con web, Maps y Search Live" class="w-full rounded-[2rem] my-12" />
+
+      <h2>Qué tipos de negocio lo notan más</h2>
+      <ul>
+        <li>Clínicas y servicios con fuerte componente de confianza.</li>
+        <li>Reformas, interiorismo y estética, donde la imagen pesa mucho.</li>
+        <li>Hostelería y ocio local, donde Maps y recomendación importan muchísimo.</li>
+        <li>Agencias y estudios, donde casos, proceso y autoridad de marca son decisivos.</li>
+      </ul>
+
+      <h2>Una estructura simple para coordinarlo</h2>
+      <ul>
+        <li>Define una promesa principal clara por servicio.</li>
+        <li>Crea una página madre sólida y, si hace falta, variantes locales.</li>
+        <li>Usa Maps para reforzar prueba social y actividad.</li>
+        <li>Publica vídeo o material visual que responda a dudas reales.</li>
+        <li>Interconecta contenidos, casos y activos visuales entre sí.</li>
+      </ul>
+      <p>Esto no es diferente de cómo se construye una marca fuerte: varios puntos de contacto, misma historia y menos fricción para entender qué haces.</p>
+
+      <h2>Errores que frenan esta estrategia</h2>
+      <ul>
+        <li>Tener una buena web pero una ficha abandonada.</li>
+        <li>Publicar vídeo o fotos sin páginas de destino útiles.</li>
+        <li>Duplicar mensajes contradictorios entre plataformas.</li>
+        <li>Querer estar en todos lados sin criterio ni mantenimiento.</li>
+        <li>No medir qué canal impulsa marca, descubrimiento o conversión.</li>
+      </ul>
+
+      <h2>Cómo medir si funciona</h2>
+      <p>Mira búsquedas de marca, clics locales, llamadas, formularios, visualizaciones de fichas, rutas, reproducciones útiles y consultas que empiezan a aparecer con más contexto. Search Console, GBP Insights y tus conversiones reales deberían contar una historia parecida, no tres historias separadas.</p>
+      <p>Si quieres ordenar mejor esa lectura, puede ayudarte también nuestro artículo sobre <a href="/blog/search-console-regex-24-horas-intencion-seo-local-2026">Search Console con regex y vista de 24 horas</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>El SEO local sigue necesitando fundamentos, pero en 2026 esos fundamentos viven en más sitios y en más formatos. La marca que conecta mejor web, Maps, vídeo y activos visuales llega con más opciones de ser descubierta, entendida y elegida.</p>
+      <p><strong>¿Quieres plantear una estrategia local más completa que una simple ficha y dos posts?</strong> En Icono Studio podemos ayudarte a coordinar presencia, contenidos y captación para un entorno de búsqueda mucho más mixto. <a href="/contacto">Cuéntanos tu proyecto</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Hace falta estar en YouTube para hacer SEO local?',
+        answer: 'No siempre, pero en negocios donde la explicación visual o la confianza pesan mucho, el vídeo puede reforzar descubrimiento y conversión.'
+      },
+      {
+        question: '¿Search Live cambia el SEO local?',
+        answer: 'No reemplaza los fundamentos, pero refuerza la idea de que la búsqueda local ya no depende solo de texto escrito y resultados clásicos.'
+      },
+      {
+        question: '¿Qué debería priorizar primero un negocio pequeño?',
+        answer: 'Normalmente web clara, ficha bien trabajada, reseñas reales y una capa visual útil. Después ya tiene sentido ampliar a vídeo u otras piezas.'
+      }
+    ]
+  },
+  {
     title: 'AI Mode y keyword research en 2026: cómo encontrar búsquedas largas que sí convierten',
     subtitle: 'La búsqueda conversacional ya no se parece a la de hace dos años. Aprende a detectar consultas más largas, de planificación y con intención comercial real.',
     slug: 'ai-mode-keyword-research-2026-busquedas-largas-convierten',
