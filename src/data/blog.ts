@@ -3,6 +3,381 @@ import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: 'WhatsApp en Google Business Profile en 2026: cómo captar más contactos sin depender solo del formulario',
+    subtitle: 'Google permite añadir WhatsApp o SMS en la ficha en algunas regiones. Bien planteado, ese botón reduce fricción y acelera leads para negocios de servicios.',
+    slug: 'whatsapp-google-business-profile-2026-captar-contactos',
+    date: '03 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: '/blog/whatsapp-google-business-profile-2026.webp',
+    metaTitle: 'WhatsApp en Google Business Profile en 2026 | Icono Studio',
+    metaDescription: 'Cómo usar WhatsApp en Google Business Profile para captar más contactos, reducir fricción y medir mejor leads locales desde tu ficha y tu web.',
+    keywords: ['whatsapp google business profile', 'chat google business profile', 'google business profile whatsapp 2026', 'captar leads google maps', 'seo local whatsapp'],
+    content: `
+      <p>Google Business Profile ya no es solo un escaparate con horario, reseñas y teléfono. La documentación oficial de Google indica que los negocios verificados pueden añadir una opción de <strong>chat por WhatsApp o SMS</strong> en determinadas regiones. Para un negocio de servicios, ese detalle puede cambiar bastante la captación: reduce el tiempo entre intención y conversación y evita perder contactos que no quieren rellenar un formulario largo.</p>
+      <p>En una audiencia que busca soluciones rápidas desde móvil, el botón de WhatsApp funciona como una capa intermedia entre la llamada y el formulario. No sustituye a la web, pero sí puede acelerar el primer contacto y mejorar la tasa de respuesta cuando la duda es simple: precio orientativo, disponibilidad, zona de servicio o siguiente paso.</p>
+
+      <h2>Por qué esta tendencia importa ahora</h2>
+      <p>Durante 2026 Google está reforzando experiencias más inmediatas en Search y Maps. Lo vemos en Search Live, en AI Mode y en el peso creciente de la resolución rápida dentro del propio ecosistema de Google. Si un usuario descubre tu negocio en Maps y puede escribirte en un toque, la fricción baja mucho.</p>
+      <p>Para negocios de reformas, clínicas, despachos, estudios o servicios locales, eso puede significar más contactos en momentos de intención alta, especialmente fuera del contexto clásico de escritorio.</p>
+
+      <h2>Qué tipo de negocio suele aprovecharlo mejor</h2>
+      <h3>Servicios con dudas previas a la llamada</h3>
+      <p>Hay sectores donde el usuario quiere validar algo pequeño antes de comprometerse: si atiendes una zona concreta, si trabajas un tipo de proyecto, si hay cita disponible esta semana o si tiene sentido pedir presupuesto. En esos casos, el chat puede funcionar mejor que un teléfono frío.</p>
+
+      <h3>Negocios con respuesta ágil</h3>
+      <p>El botón solo compensa si alguien responde. Si dejas mensajes sin contestar, conviertes una promesa de inmediatez en una mala experiencia. Por eso conviene activarlo cuando tengas una persona o un sistema que gestione el canal de verdad.</p>
+
+      <h3>Empresas que quieren cualificar antes</h3>
+      <p>WhatsApp también permite filtrar mejor. Puedes preparar respuestas rápidas para saber zona, tipo de servicio, plazo y presupuesto aproximado antes de mover al lead a una llamada o a una propuesta formal.</p>
+
+      <h2>Cómo configurarlo sin crear más desorden</h2>
+      <p>Google explica que la opción está disponible para perfiles verificados en regiones seleccionadas y que se añade desde la sección de contacto del Business Profile. Antes de activarla, conviene revisar cuatro puntos:</p>
+      <ul>
+        <li>Usar un número o enlace de WhatsApp que realmente atienda el negocio.</li>
+        <li>Definir horario de respuesta y expectativas claras.</li>
+        <li>Preparar mensajes de bienvenida y preguntas de cualificación.</li>
+        <li>Decidir quién pasa el lead del chat a llamada, CRM o presupuesto.</li>
+      </ul>
+
+      <h2>La ficha no sustituye a la web: la complementa</h2>
+      <p>Un error común es pensar que si el usuario escribe por WhatsApp ya no necesita página web. En realidad ocurre lo contrario: el chat funciona mejor cuando la ficha apunta a una web que transmite confianza, explica procesos y resuelve objeciones. Si tu web aún no cumple esa base, revisa nuestra guía sobre <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a>.</p>
+      <p>La ficha genera el impulso inicial; la web convierte ese interés en decisión. Casos, preguntas frecuentes, precios orientativos, zonas de servicio y llamadas a la acción claras ayudan a que la conversación avance más rápido.</p>
+
+      <h2>Cómo medir si realmente aporta leads útiles</h2>
+      <ul>
+        <li>Cuenta cuántas conversaciones empiezan al mes desde la ficha.</li>
+        <li>Mide cuántas pasan a llamada, visita o presupuesto.</li>
+        <li>Separa dudas básicas de oportunidades reales de venta.</li>
+        <li>Observa si suben también las búsquedas de marca y las llamadas directas.</li>
+      </ul>
+      <p>Si trabajas SEO local, conviene revisar estos datos junto con Search Console, formularios y llamadas. Esa visión combinada suele ser más útil que mirar la ficha de Google como un canal aislado.</p>
+
+      <h2>Errores que conviene evitar</h2>
+      <ul>
+        <li>Activar WhatsApp y tardar un día en contestar.</li>
+        <li>Usar un número personal sin proceso ni seguimiento.</li>
+        <li>No conectar el chat con la información de la web.</li>
+        <li>Aceptar cualquier conversación sin filtrar zona o servicio.</li>
+        <li>Depender solo de la ficha y descuidar el sitio propio.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>En 2026, Google Business Profile se parece cada vez más a un punto de contacto activo, no solo a una ficha informativa. Añadir WhatsApp puede ser una mejora muy rentable para negocios de servicios si el canal está bien atendido y se apoya en una web clara, una oferta concreta y un proceso comercial sencillo.</p>
+      <p><strong>¿Quieres que revisemos tu ficha y tu web para captar mejor desde Maps y búsqueda local?</strong> En Icono Studio podemos ayudarte a unir SEO local, estructura web y conversión. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿WhatsApp en Google Business Profile está disponible para todos los negocios?',
+        answer: 'No siempre. Google indica que las opciones de chat están disponibles en regiones seleccionadas y solo para perfiles reclamados y verificados.'
+      },
+      {
+        question: '¿Es mejor WhatsApp que un formulario?',
+        answer: 'No necesariamente. Sirve mejor para dudas rápidas o primer contacto, mientras que el formulario sigue siendo útil para presupuestos más estructurados.'
+      },
+      {
+        question: '¿Puedo medir si esos mensajes terminan en clientes?',
+        answer: 'Sí, si defines un proceso de seguimiento y registras qué conversaciones pasan a llamada, presupuesto o venta real.'
+      }
+    ]
+  },
+  {
+    title: 'Cambios automáticos en Google Business Profile: cómo controlar llamadas, textos y posts de Google en 2026',
+    subtitle: 'Google puede llamar, escribir e incluso publicar en tu ficha a partir de lo que confirme tu negocio. Conviene entenderlo antes de dejar la reputación en piloto automático.',
+    slug: 'cambios-automaticos-google-business-profile-2026',
+    date: '03 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: '/blog/google-business-profile-cambios-automaticos-2026.webp',
+    metaTitle: 'Cambios automáticos en Google Business Profile | Icono Studio',
+    metaDescription: 'Qué significan las llamadas, textos y publicaciones automáticas de Google en tu Business Profile y cómo controlarlas sin perder claridad comercial.',
+    keywords: ['cambios automaticos google business profile', 'llamadas google business profile', 'posts automaticos google business profile', 'google whatsapp business profile', 'control ficha google'],
+    content: `
+      <p>Muchos negocios siguen tratando su ficha de Google como algo estático: se verifica una vez, se suben algunas fotos y se vuelve a tocar solo cuando hay una reseña o cambia el horario. Ese enfoque ya se queda corto. La ayuda oficial de Google explica que la compañía puede hacer <strong>llamadas o enviar textos automáticos</strong> para confirmar información de la empresa y, además, puede <strong>publicar actualizaciones en tu perfil en tu nombre</strong> basándose en esas respuestas.</p>
+      <p>Eso tiene dos lecturas. La positiva: Google quiere que la información que muestra sea más útil y reciente. La delicada: si tu control operativo es flojo, puedes terminar con cambios, mensajes o publicaciones poco alineadas con tu tono comercial.</p>
+
+      <h2>Qué tipo de cambios automáticos puede haber</h2>
+      <p>Según la documentación, Google puede contactar para confirmar horarios, disponibilidad u otra información relevante del negocio. También indica que algunas actualizaciones en la ficha pueden generarse a partir de lo que se responda por llamada, texto o incluso WhatsApp, y quedar pendientes de revisión.</p>
+      <p>Para un negocio pequeño esto puede sonar cómodo. El problema es que la comodidad sin criterio suele degradar el mensaje: horarios imprecisos, textos genéricos o publicaciones poco útiles.</p>
+
+      <h2>Por qué un dueño de negocio debería prestarle atención</h2>
+      <h3>La ficha ya forma parte del embudo de ventas</h3>
+      <p>Tu Business Profile no es una capa secundaria. Muchas veces es el primer punto de contacto real antes de entrar en la web. Si ahí hay información dudosa, lenguaje extraño o datos sin actualizar, el usuario pierde confianza antes de conocerte.</p>
+
+      <h3>La reputación local depende de coherencia</h3>
+      <p>Lo que aparezca en Maps debe coincidir con la web, las reseñas, el teléfono, el área de servicio y la propuesta. Si una cosa dice una franja horaria y otra dice otra, la fricción aumenta. Esa coherencia también importa para el SEO local, como explicamos en nuestra guía de <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">SEO local para pequeñas empresas</a>.</p>
+
+      <h2>Cómo gobernar bien estos cambios</h2>
+      <ul>
+        <li>Define quién responde a llamadas o mensajes que puedan afectar la ficha.</li>
+        <li>Revisa con frecuencia el perfil para detectar cambios pendientes o publicaciones nuevas.</li>
+        <li>Mantén un documento simple con horario, zonas, servicios y mensajes clave autorizados.</li>
+        <li>Actualiza primero la realidad del negocio y después la ficha, no al revés.</li>
+        <li>Si un canal genera demasiado ruido, evalúa desactivarlo.</li>
+      </ul>
+
+      <h2>Cuándo tiene sentido dejar activadas estas funciones</h2>
+      <p>Si tu operación es estable, tus horarios cambian poco y alguien supervisa la ficha, estas automatizaciones pueden ayudarte a mantener información más fresca. También pueden ahorrar tiempo cuando el negocio sí responde rápido y entiende qué está confirmando.</p>
+      <p>En cambio, si tienes varios servicios, disponibilidad cambiante, campañas activas o un equipo que no sabe diferenciar entre una llamada operativa y una decisión de marketing, conviene ser más conservador.</p>
+
+      <h2>Qué revisar además de la ficha</h2>
+      <p>No basta con vigilar Google Business Profile. También necesitas una web que sostenga lo que la ficha promete. Si Google muestra un horario, una categoría o un servicio y luego la página de destino es confusa, el lead se enfría. Por eso recomendamos enlazar siempre la gestión local con páginas de servicio bien resueltas, FAQs y pruebas visibles.</p>
+      <p>La lógica es la misma que desarrollamos en nuestro artículo sobre <a href="/blog/resenas-casos-menciones-marca-ia-seo-local-2026">reseñas, casos y menciones como moat de confianza</a>: en 2026 gana la marca que se ve coherente en varios puntos, no la que solo tiene una ficha bonita.</p>
+
+      <h2>Señales de que estás dejando demasiado al piloto automático</h2>
+      <ul>
+        <li>No sabes quién responde a los contactos asociados a la ficha.</li>
+        <li>Hay cambios en horario o servicios que tardan días en corregirse.</li>
+        <li>Las publicaciones parecen genéricas o no encajan con tus prioridades.</li>
+        <li>La web y la ficha dicen cosas distintas.</li>
+        <li>Te enteras tarde de lo que Google ha actualizado.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Google quiere que la ficha empresarial sea más viva, más conversacional y más útil. Eso puede beneficiar a muchos negocios, pero solo si alguien se responsabiliza del mensaje. Automatizar no es abandonar. Significa revisar mejor, decidir qué controlas y qué no, y mantener consistencia entre ficha, web y operación real.</p>
+      <p><strong>¿Necesitas ordenar tu presencia local para que Google no hable por ti con un mensaje débil?</strong> En Icono Studio podemos ayudarte a revisar ficha, contenidos y páginas clave para que todo empuje en la misma dirección. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Google puede publicar en mi ficha sin que yo escriba el post manualmente?',
+        answer: 'Sí. La ayuda oficial explica que Google puede publicar actualizaciones en nombre del negocio usando información confirmada por llamada, texto o WhatsApp.'
+      },
+      {
+        question: '¿Puedo desactivar estas funciones?',
+        answer: 'Sí, Google permite gestionar estas opciones desde la configuración avanzada del perfil cuando están disponibles para tu negocio.'
+      },
+      {
+        question: '¿Esto afecta al SEO local?',
+        answer: 'Indirectamente sí, porque una ficha coherente y actualizada ayuda a reducir fricción y a mejorar la confianza del usuario en búsqueda local y Maps.'
+      }
+    ]
+  },
+  {
+    title: 'Migración de Dynamic Search Ads a AI Max: checklist para negocios de servicios antes de septiembre de 2026',
+    subtitle: 'Google convertirá campañas heredadas como DSA, ACA y broad match de campaña a AI Max. Si no auditas tus URLs y tu medición, el cambio puede salir caro.',
+    slug: 'migracion-dynamic-search-ads-ai-max-2026',
+    date: '03 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Ads & Captación',
+    image: '/blog/migracion-dynamic-search-ads-ai-max-2026.webp',
+    metaTitle: 'Migración de DSA a AI Max en 2026 | Icono Studio',
+    metaDescription: 'Checklist práctico para migrar Dynamic Search Ads a AI Max antes de septiembre de 2026 sin perder control sobre URLs, tracking ni calidad del lead.',
+    keywords: ['dynamic search ads ai max', 'migracion dsa ai max', 'ai max septiembre 2026', 'google ads servicios locales', 'final url expansion checklist'],
+    content: `
+      <p>El 15 de abril de 2026 Google anunció que las campañas con <strong>Dynamic Search Ads</strong>, <strong>automatically created assets</strong> y la configuración de <strong>broad match a nivel campaña</strong> empezarán a actualizarse automáticamente a <strong>AI Max</strong> a partir de septiembre de 2026. Para muchos anunciantes esto puede parecer un simple cambio de nombre. No lo es.</p>
+      <p>En negocios de servicios, este paso tiene implicaciones reales sobre las URLs de destino, la expansión de consultas, el mensaje del anuncio y la calidad de lead. Si tu cuenta tiene una estructura floja o páginas poco segmentadas, la migración puede abrir la puerta a tráfico mediocre bastante rápido.</p>
+
+      <h2>Por qué este cambio exige trabajo previo</h2>
+      <p>AI Max está pensado para capturar más consultas y adaptar mejor creatividades y páginas a nuevas intenciones. Ese potencial puede ser bueno, pero solo cuando la base es sólida: páginas claras, exclusiones lógicas, medición fiable y objetivos alineados con negocio.</p>
+      <p>Si no existe esa base, la automatización tiende a encontrar oportunidades donde a Google le parecen válidas, no donde a ti te dejan margen, encajan con tu servicio o producen un lead útil.</p>
+
+      <h2>Checklist antes de septiembre</h2>
+      <h3>1. Audita qué URLs podrían recibir tráfico</h3>
+      <p>Revisa páginas antiguas, posts sin intención comercial, URLs débiles, zonas que ya no trabajas y landings genéricas. Todo lo que no quieras como página de destino potencial debería revisarse o excluirse. Esto conecta directamente con lo que ya explicamos en <a href="/blog/ai-max-landing-pages-dinamicas-google-ads-2026">nuestra guía sobre AI Max y landing pages dinámicas</a>.</p>
+
+      <h3>2. Ordena la arquitectura por servicio, zona e intención</h3>
+      <p>AI Max funciona mejor cuando las páginas expresan bien qué vendes, para quién y dónde. Si una misma URL intenta servir demasiadas intenciones, la expansión puede mezclar consultas poco compatibles entre sí.</p>
+
+      <h3>3. Revisa medición y calidad de lead</h3>
+      <p>Antes de dar más libertad a la campaña, conviene mejorar la lectura de resultados. Si todavía optimizas solo por envío de formulario, te faltará contexto. En ese punto ayuda bastante trabajar <a href="/blog/enhanced-conversions-leads-google-ads-2026">enhanced conversions for leads</a> y conectar mejor ventas con Ads.</p>
+
+      <h3>4. Define exclusiones y controles</h3>
+      <p>AI Max incorpora más señales y automatización, pero también controles que deben usarse con intención: exclusiones de URL, marcas, geografía e intereses de ubicación cuando aplique. No es una configuración que convenga dejar “a ver qué pasa”.</p>
+
+      <h3>5. Limpia el mensaje de tus anuncios</h3>
+      <p>Cuando Google toma más protagonismo en la personalización del mensaje, el material de partida importa más. Titulares, descripciones y páginas deben expresar bien la promesa comercial. Si el copy base es difuso, la automatización escalará esa difusidad.</p>
+
+      <h2>Qué cuentas suelen sufrir más con la migración</h2>
+      <ul>
+        <li>Negocios con una sola landing para muchos servicios distintos.</li>
+        <li>Cuentas con tracking incompleto o sin validación de lead real.</li>
+        <li>Campañas antiguas con URLs heredadas y poca higiene.</li>
+        <li>Empresas locales que no han separado bien servicios y zonas.</li>
+        <li>Equipos que dependen demasiado del piloto automático.</li>
+      </ul>
+
+      <h2>Qué puede salir bien si haces la preparación correcta</h2>
+      <p>La parte interesante de AI Max es que puede descubrir demanda nueva y adaptarse mejor a búsquedas menos previsibles, algo coherente con cómo está cambiando Search. En mercados donde las consultas se vuelven más largas, más conversacionales y más abiertas, quedarse solo en estructuras antiguas puede limitar crecimiento.</p>
+      <p>Pero crecimiento no significa abrir todas las puertas. Significa dejar abiertas las que puedes atender con una buena página, un mensaje preciso y una medición que no premie basura.</p>
+
+      <h2>Una forma razonable de abordarlo</h2>
+      <ul>
+        <li>Haz una auditoría rápida de URLs antes de tocar nada.</li>
+        <li>Prioriza páginas de servicio con intención comercial clara.</li>
+        <li>Define qué consultas o ubicaciones no quieres ampliar.</li>
+        <li>Valida tracking, CRM y criterios de lead cualificado.</li>
+        <li>Activa cambios con seguimiento semanal, no con abandono mensual.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>La migración de DSA a AI Max no es un asunto solo para gestores de Ads. Afecta directamente a la calidad de las visitas que recibe tu web y, por tanto, al coste real de captación. Cuanto mejor esté preparada la estructura del sitio y la medición, más probabilidades tendrás de aprovechar el cambio en lugar de sufrirlo.</p>
+      <p><strong>¿Quieres que revisemos tus campañas y tus páginas antes del cambio de septiembre de 2026?</strong> En Icono Studio podemos ayudarte a ordenar URLs, tracking y landings para que AI Max trabaje a favor del negocio. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿La migración a AI Max será automática?',
+        answer: 'Sí. Google comunicó el 15 de abril de 2026 que desde septiembre empezará a actualizar automáticamente campañas con DSA, ACA y broad match de campaña.'
+      },
+      {
+        question: '¿AI Max es malo para negocios de servicios?',
+        answer: 'No. Puede funcionar bien, pero necesita páginas claras, exclusiones correctas y medición de calidad para no atraer tráfico irrelevante.'
+      },
+      {
+        question: '¿Qué debería revisar primero?',
+        answer: 'Las URLs de destino, la segmentación por servicio y zona, y la forma en que estás midiendo si un lead merece realmente la inversión.'
+      }
+    ]
+  },
+  {
+    title: 'Demand Gen sustituye Display Ads: cuándo conviene a un negocio de servicios en 2026',
+    subtitle: 'Google está empujando la migración de Display Ads a Demand Gen. No es un cambio cosmético: afecta creatividades, audiencias, remarketing y expectativas de lead.',
+    slug: 'demand-gen-sustituye-display-ads-servicios-2026',
+    date: '03 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Ads & Captación',
+    image: '/blog/demand-gen-display-ads-servicios-2026.webp',
+    metaTitle: 'Demand Gen vs Display Ads para servicios | Icono Studio',
+    metaDescription: 'Qué cambia con la migración de Display Ads a Demand Gen y cuándo merece la pena para negocios de servicios que quieren generar demanda sin malgastar presupuesto.',
+    keywords: ['demand gen display ads', 'google demand gen 2026', 'display ads migracion demand gen', 'remarketing servicios', 'publicidad google servicios locales'],
+    content: `
+      <p>El 26 de mayo de 2026 Google anunció que <strong>Display Ads está migrando hacia Demand Gen</strong>. Aunque Google seguirá permitiendo servir anuncios en la red de display, la dirección del producto está clara: más control por canal, más enfoque creativo y una lógica más próxima a descubrimiento y demanda que al display clásico de siempre.</p>
+      <p>Para negocios de servicios esto es importante porque muchos siguen usando display con una mezcla confusa de remarketing, notoriedad y captación fría. El cambio obliga a decidir mejor qué objetivo persigue cada campaña y qué activos creativos sostienen ese objetivo.</p>
+
+      <h2>Qué cambia de verdad</h2>
+      <p>Demand Gen está pensado para superficies más visuales y para recorridos donde el usuario todavía no está buscando con intención tan directa como en Search. Eso significa que la creatividad pesa más, la segmentación de audiencia gana importancia y la expectativa de conversión inmediata debe ser más realista.</p>
+      <p>Si en Search capturas demanda existente, en Demand Gen intentas empujar recuerdo, consideración o reactivación. Mezclar ambos modelos con la misma página y el mismo mensaje suele dar malos resultados.</p>
+
+      <h2>Cuándo sí puede tener sentido para un negocio de servicios</h2>
+      <h3>Remarketing con una oferta clara</h3>
+      <p>Si alguien ya visitó tu web, vio precios, casos o una landing de servicio, Demand Gen puede ayudarte a volver a poner la marca delante con piezas más visuales y mensajes concretos.</p>
+
+      <h3>Servicios con componente visual o demostrable</h3>
+      <p>Diseño web, interiorismo, clínicas estéticas, reformas, formación o cualquier propuesta que se beneficie de antes y después, ejemplos o procesos visibles suele encajar mejor que un servicio abstracto explicado solo con texto.</p>
+
+      <h3>Marcas que ya tienen base de tráfico</h3>
+      <p>Demand Gen suele trabajar mejor cuando no parte de cero absoluto. Si ya recibes visitas por SEO, Maps, campañas de Search o redes, es más fácil reactivar y acompañar esa demanda.</p>
+
+      <h2>Cuándo no conviene esperar milagros</h2>
+      <ul>
+        <li>Cuando la web todavía no transmite confianza ni tiene casos o pruebas.</li>
+        <li>Cuando no existe segmentación mínima por servicio o audiencia.</li>
+        <li>Cuando se espera un lead inmediato al mismo coste que Search.</li>
+        <li>Cuando las creatividades son pobres o improvisadas.</li>
+        <li>Cuando ni siquiera está claro qué objetivo de negocio cumple la campaña.</li>
+      </ul>
+
+      <h2>Qué necesita tu web para acompañar bien este canal</h2>
+      <p>Si vas a empujar demanda, la página de destino debe responder con claridad a la curiosidad que genera el anuncio. Aquí funcionan bien los casos, comparativas, ejemplos de proceso, FAQs, vídeo corto, prueba visual y una llamada a la acción sencilla.</p>
+      <p>Esto enlaza con dos ideas que ya estamos viendo funcionar en el blog: por un lado, la necesidad de <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">contenido original y experiencia real</a>; por otro, la importancia de usar <a href="/blog/resenas-casos-menciones-marca-ia-seo-local-2026">casos y menciones como señales de confianza</a>. En Demand Gen, esa prueba visual y social vale mucho.</p>
+
+      <h2>Métricas más útiles que el simple clic</h2>
+      <ul>
+        <li>Incremento de tráfico cualificado a páginas estratégicas.</li>
+        <li>Subida de búsquedas de marca.</li>
+        <li>Visitas repetidas de usuarios que luego convierten en Search o directo.</li>
+        <li>Coste por lead asistido, no solo por lead de último clic.</li>
+        <li>Calidad del tráfico según tiempo, scroll y acciones clave.</li>
+      </ul>
+
+      <h2>Un planteamiento razonable para pequeños negocios</h2>
+      <p>No hace falta empezar con campañas enormes. A menudo basta con una audiencia bien definida, una secuencia corta de activos, una promesa muy clara y una landing preparada para seguir la conversación. Demand Gen tiene más sentido como capa que alimenta y reaviva interés que como sustituto total de Search.</p>
+      <p>Si además inviertes en Google Ads de búsqueda, la combinación puede ser potente: Search captura intención fuerte y Demand Gen mejora recuerdo y retorno de usuarios indecisos.</p>
+
+      <h2>Conclusión</h2>
+      <p>La migración desde Display Ads hacia Demand Gen obliga a profesionalizar el enfoque. Ya no basta con “poner banners”. Necesitas audiencias mejores, piezas más cuidadas y una web que demuestre por qué alguien debería recordarte o volver. Para muchos negocios de servicios puede ser una gran oportunidad, pero solo si se usa con una lógica distinta a la del display genérico.</p>
+      <p><strong>¿Quieres decidir si Demand Gen encaja con tu negocio y con tu web actual?</strong> En Icono Studio podemos ayudarte a valorar objetivos, activos y páginas de destino antes de invertir presupuesto. <a href="/contacto">Lo revisamos contigo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Demand Gen sustituye por completo a Search Ads?',
+        answer: 'No. Cumple una función distinta: generar y reactivar interés en fases menos directas, mientras Search sigue capturando intención fuerte.'
+      },
+      {
+        question: '¿Puedo usar Demand Gen solo para remarketing?',
+        answer: 'Sí, y para muchos negocios de servicios es una de las formas más sensatas de empezar si ya tienen tráfico previo.'
+      },
+      {
+        question: '¿Necesito creatividades específicas?',
+        answer: 'Sí. Este tipo de campaña depende mucho más del activo visual, del ángulo del mensaje y de una landing capaz de sostener ese interés.'
+      }
+    ]
+  },
+  {
+    title: 'AI Overviews con enlaces inline y previews: cómo diseñar contenido que sí consiga el clic en 2026',
+    subtitle: 'Desde mayo Google está mostrando más enlaces dentro de las respuestas generativas y una vista previa de las páginas. Eso cambia qué tipos de artículos merecen el clic.',
+    slug: 'inline-links-previas-ai-overviews-2026-clic',
+    date: '03 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: '/blog/inline-links-previas-ai-overviews-2026.webp',
+    metaTitle: 'AI Overviews con enlaces inline y previews | Icono Studio',
+    metaDescription: 'Cómo adaptar comparativas, páginas de precio, casos y artículos para ganar clics desde AI Overviews y AI Mode ahora que Google muestra más enlaces y previews.',
+    keywords: ['ai overviews enlaces inline', 'ai mode previews web', 'clics ai overviews', 'contenido para ai mode', 'seo ia 2026'],
+    content: `
+      <p>El 6 de mayo de 2026 Google presentó nuevas formas de explorar la web desde sus experiencias generativas en Search. Entre ellas destacan dos cambios muy prácticos para cualquier editor o negocio: <strong>más enlaces inline dentro de las respuestas</strong> y una <strong>vista previa de la página al pasar el cursor en escritorio</strong>. Traducido a estrategia de contenidos, esto significa que ya no basta con “aparecer” como fuente; ahora también importa mucho qué promesa visual y editorial transmite tu página antes del clic.</p>
+      <p>En otras palabras: AI Overviews y AI Mode están decidiendo más cosas por el usuario, pero también están filtrando mejor qué páginas merecen abrirse. Si quieres seguir ganando tráfico cualificado, tus contenidos deben justificar el clic con más claridad.</p>
+
+      <h2>Qué cambia en la práctica</h2>
+      <p>Cuando Google inserta enlaces concretos al lado de un punto de la respuesta, está diciendo algo muy importante: no todos los contenidos aportan el mismo valor después del resumen. El clic irá hacia la pieza que prometa detalle, criterio, experiencia o prueba adicional.</p>
+      <p>La preview añade otra capa. Aunque el usuario no lea el artículo completo, puede intuir si la página parece seria, clara y útil o si huele a relleno genérico.</p>
+
+      <h2>Qué tipos de contenido tienen más opciones de ganar ese clic</h2>
+      <h3>Comparativas con criterio real</h3>
+      <p>Las piezas que ayudan a decidir entre dos opciones suelen seguir generando interés porque el resumen no agota del todo la necesidad. Si comparas herramientas, enfoques, precios o formatos de proyecto, necesitas una estructura muy clara y argumentos propios.</p>
+
+      <h3>Páginas de precio y alcance</h3>
+      <p>Muchos usuarios quieren saber qué cuesta, qué incluye y qué cambia según el caso. Un resumen puede orientar, pero el clic llega cuando la página resuelve matices. Por eso siguen siendo tan valiosas piezas como nuestra guía de <a href="/blog/cuanto-cuesta-pagina-web-profesional-espana-2026">precios de una página web profesional</a>.</p>
+
+      <h3>Casos, pruebas y experiencia aplicada</h3>
+      <p>Google está reforzando la visibilidad del contenido original y las fuentes de confianza. Si un artículo contiene ejemplos, capturas, decisiones reales o aprendizajes de proyecto, tiene más motivos para recibir el clic que una reescritura correcta pero plana. Esta idea conecta con lo que ya explicamos en <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">nuestro artículo sobre contenido original y experiencia real</a>.</p>
+
+      <h2>Cómo diseñar una página que soporte mejor la preview</h2>
+      <ul>
+        <li>Título visible y concreto, no ambiguo ni grandilocuente.</li>
+        <li>Introducción que responda rápido qué se va a resolver.</li>
+        <li>Bloques bien jerarquizados con subtítulos descriptivos.</li>
+        <li>Prueba visible: casos, capturas, listas accionables o FAQs.</li>
+        <li>Diseño limpio y rápido, especialmente en móvil.</li>
+      </ul>
+      <p>La preview no premia solo el SEO. También castiga páginas visualmente descuidadas, lentas o llenas de ruido antes del primer valor real.</p>
+
+      <h2>Qué enfoque editorial conviene priorizar</h2>
+      <p>En 2026 funciona mejor el contenido que ayuda a tomar decisiones, no solo a definir conceptos. Eso incluye comparativas, checklists, errores frecuentes, escenarios de elección, guías por presupuesto, casos de uso y respuestas a objeciones comerciales.</p>
+      <p>Ese patrón encaja con otra tendencia que ya venimos trabajando: los <a href="/blog/micro-intents-paginas-servicio-estructura-convierte-2026">micro-intents en páginas de servicio</a>. Cuantas más dudas relevantes resuelvas en una misma pieza, más probabilidades habrá de que el clic merezca la pena.</p>
+
+      <h2>Errores que reducen el valor del clic</h2>
+      <ul>
+        <li>Introducciones largas que retrasan la respuesta.</li>
+        <li>Títulos prometedores con contenido demasiado genérico.</li>
+        <li>Falta de ejemplos, experiencia o posicionamiento propio.</li>
+        <li>Páginas visualmente pobres o desordenadas.</li>
+        <li>No conectar el artículo con servicios, casos o siguiente paso.</li>
+      </ul>
+
+      <h2>Cómo pensar el objetivo real del post</h2>
+      <p>Si el usuario llega desde una experiencia generativa, seguramente ya trae una parte del trabajo hecha. Ha leído un resumen, ha comparado opciones o ha recibido una síntesis inicial. Tu contenido no debe reiniciar la conversación, sino continuarla. Eso obliga a escribir con más densidad de valor desde arriba y menos relleno alrededor.</p>
+      <p>El mejor clic en 2026 no es el más fácil de conseguir, sino el que aterriza en una página que acelera la decisión y refuerza la confianza.</p>
+
+      <h2>Conclusión</h2>
+      <p>Los enlaces inline y las previews en AI Overviews y AI Mode cambian el juego del clic. Ahora gana la página que demuestra rápidamente por qué merece abrirse: más criterio, más prueba, más estructura y más utilidad concreta. Si tu blog sigue escribiendo como si todo el mundo empezara desde cero, perderá fuerza justo en el momento en que más importa demostrar valor diferencial.</p>
+      <p><strong>¿Quieres reorganizar tu contenido para que rinda mejor en la búsqueda con IA y convierta más cuando el usuario sí entra?</strong> En Icono Studio podemos ayudarte a replantear arquitectura, piezas editoriales y páginas clave. <a href="/contacto">Lo vemos contigo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Los AI Overviews eliminan todos los clics?',
+        answer: 'No. Reducen algunos clics informacionales, pero también abren oportunidades para páginas que aportan contexto, prueba y decisión más allá del resumen.'
+      },
+      {
+        question: '¿Qué páginas suelen resistir mejor este cambio?',
+        answer: 'Comparativas, precios, casos, FAQs útiles y contenidos con experiencia aplicada suelen tener más opciones de seguir ganando tráfico cualificado.'
+      },
+      {
+        question: '¿Influye el diseño además del texto?',
+        answer: 'Sí. Si Google muestra una vista previa o el usuario aterriza rápido en la página, la claridad visual y la velocidad afectan mucho a la percepción de calidad.'
+      }
+    ]
+  },
+  {
     title: 'Contenido original y experiencia real: la ventaja SEO que AI Overviews y AI Mode premian en 2026',
     subtitle: 'Google está reforzando las señales que ayudan a encontrar fuentes originales, perspectivas de primera mano y cobertura realmente útil. Eso cambia cómo conviene escribir un blog de negocio.',
     slug: 'contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026',
