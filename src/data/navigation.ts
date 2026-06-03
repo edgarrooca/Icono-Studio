@@ -15,7 +15,7 @@ export const mainNavLinks: NavLink[] = [
   { name: 'Inicio', href: '/#inicio' },
   { name: 'Proyectos', href: '/proyectos' },
   {
-    name: 'Servicios',
+    name: 'SERVICIOS',
     children: [
       ...seoLocations.map(loc => ({
         name: `Diseño Web ${loc.name}`,
