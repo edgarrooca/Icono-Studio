@@ -18,19 +18,22 @@ export default function Footer({ hideCTA = false }: FooterProps) {
   });
 
   return (
-    <footer className={`bg-brand-dark text-white ${hideCTA ? 'pt-8' : 'pt-16 sm:pt-20'} pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full`}>
+    <footer className={`bg-[#253344] text-white ${hideCTA ? 'pt-8' : 'pt-16 sm:pt-20'} pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full`}>
       {/* TRULY Edge-to-edge separator line - Forces width beyond parent containers */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-px bg-white/30 z-50 pointer-events-none"></div>
 
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/16 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {!hideCTA && (
           <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-            <h2 className="font-display text-[14vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
-              ¿Hablamos?
+            <h2 className="font-display text-[clamp(3.6rem,10vw,8rem)] leading-[0.9] tracking-[-0.05em] mb-6 sm:mb-8 text-brand-lime">
+              Cuéntanos tu idea
             </h2>
+            <p className="max-w-2xl text-[1.15rem] text-white/72 mb-8">
+              Si no sabes por dónde empezar, te ayudamos a ordenar la idea y a convertirla en una web clara, bonita y útil para tu negocio.
+            </p>
             <motion.a 
               href="/contacto"
               id="cta_footer_contact"
@@ -42,7 +45,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
               })}
               whileHover="hover"
               initial="initial"
-              className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase overflow-hidden transition-all duration-300 w-full sm:w-auto"
+              className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-medium overflow-hidden transition-all duration-300 w-full sm:w-auto"
             >
               {/* HIGH-VISIBILITY CRYSTAL SHINE - ENTER ONLY */}
               <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-full font-normal">
@@ -59,7 +62,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
                   }}
                 />
               </div>
-              <span className="relative z-20">Pedir Presupuesto</span> 
+              <span className="relative z-20">Quiero hablar del proyecto</span> 
               <ArrowUpRight size={24} className="sm:w-7 sm:h-7 relative z-20 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </motion.a>
           </div>
@@ -74,14 +77,14 @@ export default function Footer({ hideCTA = false }: FooterProps) {
                 className="h-10 sm:h-12 w-auto object-contain filter brightness-0 invert mx-auto md:mx-0" 
               />
             </div>
-            <p className="text-white/60 max-w-sm text-base sm:text-lg mx-auto md:mx-0">
-              Agencia de diseño y desarrollo web en Valencia. Creamos webs rápidas, cuidadas y pensadas para convertir visitas en contactos.
+            <p className="text-white/68 max-w-sm text-[1.05rem] mx-auto md:mx-0">
+              Estudio de diseño y desarrollo web en Valencia. Creamos webs cuidadas y fáciles de entender para que tu negocio transmita confianza desde el primer vistazo.
             </p>
           </div>
           
           <div className="text-center md:text-left">
-            <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
-            <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
+            <h4 className="font-display text-2xl mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
+            <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-[1rem] sm:text-[1.05rem]">
               {footerNavLinks.map((link) => (
                 <li key={link.href}>
                   <Link 
@@ -101,8 +104,8 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           </div>
 
           <div className="text-center md:text-left">
-            <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Contacto</h4>
-            <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
+            <h4 className="font-display text-2xl mb-4 sm:mb-6 text-brand-lime">Contacto</h4>
+            <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-[1rem] sm:text-[1.05rem]">
               {footerContactLinks.map((link) => (
                 <li key={link.name}>
                   <a href={link.href} className="hover:text-white transition-colors">
@@ -114,7 +117,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 border-t border-white/20 pt-8 mt-10 sm:mt-12 text-xs sm:text-sm text-white/50 font-mono text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 border-t border-white/20 pt-8 mt-10 sm:mt-12 text-sm text-white/50 text-center md:text-left">
           <p>© 2026 {siteConfig.name}. Todos los derechos reservados.</p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             <Link to="/aviso-legal" className="hover:text-white transition-colors">Aviso Legal</Link>

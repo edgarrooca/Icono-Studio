@@ -10,7 +10,7 @@ interface NavbarProps {
   ctaLabel?: string;
 }
 
-export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel = 'Presupuesto' }: NavbarProps) {
+export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel = 'Cuéntanos tu idea' }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -66,27 +66,33 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
   };
 
   const desktopLinkClass = (active: boolean) => {
-    if (active) return `transition-colors uppercase font-bold ${isTransparentLight ? 'text-brand-blue' : 'text-brand-lime'}`;
-    return `transition-colors uppercase font-bold ${isTransparentLight ? 'text-brand-dark hover:text-brand-blue' : 'hover:text-brand-lime text-white/80'}`;
+    if (active) return `transition-colors font-medium ${isTransparentLight ? 'text-brand-blue' : 'text-brand-dark'}`;
+    return `transition-colors font-medium ${isTransparentLight ? 'text-brand-dark/78 hover:text-brand-blue' : 'text-brand-dark/70 hover:text-brand-dark'}`;
   };
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isSolid ? 'py-4' : 'py-6'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isSolid ? 'py-4' : 'py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center rounded-full px-6 py-3 transition-all duration-300 ${isSolid ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg text-white border border-white/5' : isTransparentLight ? 'bg-transparent text-brand-dark' : 'bg-transparent text-white'}`}>
+          <div className={`flex justify-between items-center rounded-full px-4 sm:px-5 py-3 transition-all duration-300 ${
+            isSolid
+              ? 'border border-[#dcd3c6] bg-[#fbf7f0]/92 shadow-[0_18px_45px_rgba(37,51,68,0.12)] backdrop-blur-xl text-brand-dark'
+              : isTransparentLight
+                ? 'border border-[#e8e0d3] bg-white/80 shadow-[0_14px_38px_rgba(37,51,68,0.08)] backdrop-blur-xl text-brand-dark'
+                : 'border border-white/35 bg-white/82 shadow-[0_14px_38px_rgba(37,51,68,0.08)] backdrop-blur-xl text-brand-dark'
+          }`}>
             
             {/* Logo */}
-            <RouterLink to="/" className="flex items-center gap-2 z-50 transition-transform hover:scale-105">
+            <RouterLink to="/" className="flex items-center gap-2 z-50 transition-transform hover:scale-[1.02]">
               <img 
                 src="/icono-studio-logo.png" 
                 alt="Icono Studio" 
-                className={`h-8 sm:h-10 w-auto object-contain ${isTransparentLight ? 'brightness-0 opacity-90' : 'brightness-0 invert'}`} 
+                className="h-8 sm:h-10 w-auto object-contain brightness-0 opacity-90" 
               />
             </RouterLink>
             
             {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-8 text-[11px] xl:text-xs font-black uppercase tracking-[0.2em]">
+            <div className="hidden lg:flex items-center gap-7 text-[1rem]">
               {mainNavLinks.map((link) => (
                 link.children?.length ? (
                   <div
@@ -111,7 +117,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute left-1/2 top-full mt-4 w-72 -translate-x-1/2 rounded-[1.75rem] border border-gray-100 bg-white p-3 text-brand-dark shadow-[0_24px_60px_rgba(15,23,42,0.16)]"
+                          className="absolute left-1/2 top-full mt-4 w-72 -translate-x-1/2 rounded-[1.65rem] border border-[#e8e0d3] bg-[#fffaf4] p-3 text-brand-dark shadow-[0_24px_60px_rgba(37,51,68,0.15)]"
                         >
                           <div className="space-y-1">
                             {link.children.map((child) => (
@@ -126,10 +132,10 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                                   });
                                   setServicesOpen(false);
                                 }}
-                                className={`flex items-center justify-between rounded-[1.25rem] px-4 py-3 text-[11px] font-black uppercase tracking-[0.18em] transition-colors ${
+                                className={`flex items-center justify-between rounded-[1.2rem] px-4 py-3 text-[0.98rem] font-medium transition-colors ${
                                   isHrefActive(child.href)
-                                    ? 'bg-brand-dark text-brand-lime'
-                                    : 'text-brand-dark hover:bg-zinc-50'
+                                    ? 'bg-brand-dark text-white'
+                                    : 'text-brand-dark hover:bg-[#f1eadf]'
                                 }`}
                               >
                                 <span>{child.name}</span>
@@ -175,7 +181,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                       });
                       document.querySelector(ctaHref)?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
+                    className={`hidden md:flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.98rem] font-medium transition-all hover:-translate-y-0.5 ${isSolid ? 'bg-brand-dark text-white shadow-[0_14px_28px_rgba(37,51,68,0.16)]' : 'bg-brand-blue text-white shadow-[0_14px_28px_rgba(72,102,200,0.24)]'}`}
                   >
                     {ctaLabel} <ArrowRight size={14} />
                   </a>
@@ -189,7 +195,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                       'cta_text': `${ctaLabel} (Nav)`,
                       'page_path': window.location.pathname
                     })}
-                    className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
+                    className={`hidden md:flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.98rem] font-medium transition-all hover:-translate-y-0.5 ${isSolid ? 'bg-brand-dark text-white shadow-[0_14px_28px_rgba(37,51,68,0.16)]' : 'bg-brand-blue text-white shadow-[0_14px_28px_rgba(72,102,200,0.24)]'}`}
                   >
                     {ctaLabel} <ArrowRight size={14} />
                   </RouterLink>
@@ -201,17 +207,17 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                   onClick={() => (window as any).dataLayer?.push({
                     'event': 'cta_click',
                     'cta_id': 'nav_budget',
-                    'cta_text': 'Presupuesto (Nav)',
+                    'cta_text': `${ctaLabel} (Nav)`,
                     'page_path': window.location.pathname
                   })}
-                  className={`hidden md:flex px-6 py-2.5 rounded-full font-black text-[11px] uppercase tracking-widest items-center gap-2 transition-all hover:scale-105 ${isSolid ? 'bg-brand-lime text-brand-dark' : 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20'}`}
+                  className={`hidden md:flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.98rem] font-medium transition-all hover:-translate-y-0.5 ${isSolid ? 'bg-brand-dark text-white shadow-[0_14px_28px_rgba(37,51,68,0.16)]' : 'bg-brand-blue text-white shadow-[0_14px_28px_rgba(72,102,200,0.24)]'}`}
                 >
                   {ctaLabel} <ArrowRight size={14} />
                 </RouterLink>
               )}
               
               <button 
-                className={`lg:hidden p-2 ${isTransparentLight ? 'text-brand-dark' : 'text-white'}`}
+                className="lg:hidden p-2 text-brand-dark"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Menu"
               >
@@ -232,7 +238,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-brand-dark/70 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-brand-dark/24 backdrop-blur-sm lg:hidden"
               aria-label="Cerrar menú"
             />
 
@@ -243,19 +249,19 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
               transition={{ duration: 0.2 }}
               className="fixed left-4 right-4 top-24 sm:top-28 z-40 lg:hidden"
             >
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-dark px-5 py-5 text-white shadow-[0_24px_60px_rgba(15,23,42,0.4)]">
+              <div className="relative overflow-hidden rounded-[2rem] border border-[#e3dacd] bg-[#fffaf4] px-5 py-5 text-brand-dark shadow-[0_24px_60px_rgba(37,51,68,0.2)]">
                 <div className="absolute top-0 right-0 h-48 w-48 translate-x-1/4 -translate-y-1/3 rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
 
                 <div className="relative max-h-[calc(100vh-8.5rem)] overflow-y-auto pr-1">
                   <div className="space-y-2">
                     {mainNavLinks.map((link) => (
                       link.children?.length ? (
-                        <div key={link.name} className="rounded-[1.5rem] border border-white/10 bg-white/5">
+                        <div key={link.name} className="rounded-[1.5rem] border border-[#ece3d7] bg-white">
                           <button
                             type="button"
                             onClick={() => setMobileServicesOpen((current) => !current)}
-                            className={`flex w-full items-center justify-between px-4 py-4 text-left text-lg font-display uppercase tracking-tight transition-colors ${
-                              isLinkActive(link) ? 'text-brand-lime' : 'text-white'
+                            className={`flex w-full items-center justify-between px-4 py-4 text-left text-[1.2rem] font-medium transition-colors ${
+                              isLinkActive(link) ? 'text-brand-blue' : 'text-brand-dark'
                             }`}
                           >
                             <span>{link.name}</span>
@@ -284,10 +290,10 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                                         });
                                         setMobileMenuOpen(false);
                                       }}
-                                      className={`block rounded-[1.1rem] px-4 py-3 text-[11px] font-black uppercase tracking-[0.18em] transition-colors ${
+                                      className={`block rounded-[1.1rem] px-4 py-3 text-[0.98rem] font-medium transition-colors ${
                                         isHrefActive(child.href)
-                                          ? 'bg-brand-lime text-brand-dark'
-                                          : 'bg-white/5 text-white/80 hover:bg-white/10 hover:text-white'
+                                          ? 'bg-brand-dark text-white'
+                                          : 'bg-[#f6f0e5] text-brand-dark/78 hover:bg-[#efe7da] hover:text-brand-dark'
                                       }`}
                                     >
                                       {child.name}
@@ -310,10 +316,10 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                             });
                             setMobileMenuOpen(false);
                           }}
-                          className={`block rounded-[1.5rem] border px-4 py-4 font-display text-xl uppercase tracking-tight transition-colors ${
+                          className={`block rounded-[1.5rem] border px-4 py-4 text-[1.2rem] font-medium transition-colors ${
                             isLinkActive(link)
-                              ? 'border-brand-lime/40 bg-brand-lime/10 text-brand-lime'
-                              : 'border-white/10 bg-white/5 text-white hover:bg-white/10'
+                              ? 'border-brand-blue/20 bg-brand-blue/8 text-brand-blue'
+                              : 'border-[#ece3d7] bg-white text-brand-dark hover:bg-[#f7f1e7]'
                           }`}
                         >
                           {link.name}
@@ -322,7 +328,7 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                     ))}
                   </div>
 
-                  <div className="mt-5 border-t border-white/10 pt-5">
+                  <div className="mt-5 border-t border-[#ece3d7] pt-5">
                     {ctaHref ? (
                       <a
                         href={ctaHref}
@@ -332,15 +338,15 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                           (window as any).dataLayer?.push({
                             'event': 'cta_click',
                             'cta_id': 'mobile_nav_budget',
-                            'cta_text': 'Pedir Presupuesto (Mobile Nav)',
+                            'cta_text': `${ctaLabel} (Mobile Nav)`,
                             'page_path': window.location.pathname
                           });
                           setMobileMenuOpen(false);
                           setTimeout(() => document.querySelector(ctaHref)?.scrollIntoView({ behavior: 'smooth' }), 300);
                         }}
-                        className="block w-full rounded-2xl bg-brand-lime py-4 text-center text-[11px] font-black uppercase tracking-[0.24em] text-brand-dark"
+                        className="block w-full rounded-2xl bg-brand-dark py-4 text-center text-[1rem] font-medium text-white"
                       >
-                        Pedir presupuesto
+                        {ctaLabel}
                       </a>
                     ) : (
                       <RouterLink
@@ -350,14 +356,14 @@ export default function Navbar({ initialTheme = 'transparent', ctaHref, ctaLabel
                           (window as any).dataLayer?.push({
                             'event': 'cta_click',
                             'cta_id': 'mobile_nav_budget',
-                            'cta_text': 'Pedir Presupuesto (Mobile Nav)',
+                            'cta_text': `${ctaLabel} (Mobile Nav)`,
                             'page_path': window.location.pathname
                           });
                           setMobileMenuOpen(false);
                         }}
-                        className="block w-full rounded-2xl bg-brand-lime py-4 text-center text-[11px] font-black uppercase tracking-[0.24em] text-brand-dark"
+                        className="block w-full rounded-2xl bg-brand-dark py-4 text-center text-[1rem] font-medium text-white"
                       >
-                        Pedir presupuesto
+                        {ctaLabel}
                       </RouterLink>
                     )}
                   </div>

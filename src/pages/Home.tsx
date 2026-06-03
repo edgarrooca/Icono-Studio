@@ -44,102 +44,106 @@ const faqs = [
   { q: "¿Hacéis mantenimiento web?", a: "Sí, ofrecemos planes de mantenimiento mensual para asegurar que tu web esté siempre actualizada, segura y funcionando al 100% de su capacidad." }
 ];
 
+const heroAssurances = [
+  "Te explicamos todo con palabras normales",
+  "Presupuesto claro antes de empezar",
+  "Tu web pensada para transmitir confianza",
+];
+
+const friendlyHighlights = [
+  {
+    title: "Te guiamos desde cero",
+    description: "Si no tienes claro qué tipo de web necesita tu negocio, te ayudamos a decidirlo sin tecnicismos ni prisas.",
+    icon: Heart,
+    iconClassName: "bg-[#fff0e6] text-[#b46b39]",
+  },
+  {
+    title: "Todo se entiende",
+    description: "Te proponemos una estructura simple, textos claros y un diseño que tus clientes puedan recorrer sin perderse.",
+    icon: Check,
+    iconClassName: "bg-[#eef3ff] text-brand-blue",
+  },
+  {
+    title: "Acompañamiento real",
+    description: "No te dejamos solo al publicar. Resolvemos dudas, hacemos ajustes y te enseñamos lo importante para que la web sea útil de verdad.",
+    icon: ShieldCheck,
+    iconClassName: "bg-[#eef7ef] text-[#497353]",
+  },
+];
+
 const workProcess = [
   { 
     step: "01", 
-    title: "Presupuesto", 
-    subtitle: "Solicitud y Análisis",
-    desc: "Todo comienza con tu solicitud. Analizamos tu proyecto a fondo y te preparamos una propuesta a medida si podemos ayudarte.",
-    features: ["Estudio de viabilidad", "Propuesta personalizada", "Transparencia total"],
+    title: "Primera toma de contacto", 
+    subtitle: "Qué necesitas y cómo podemos ayudarte",
+    desc: "Nos cuentas tu situación, lo que te preocupa y el tipo de cliente al que quieres llegar. A partir de ahí te orientamos con honestidad.",
+    features: ["Escuchamos tu idea", "Aterrizamos prioridades", "Te decimos por dónde empezar"],
     icon: FileText,
-    iconColor: "text-blue-500",
-    iconBg: "bg-blue-50",
-    hoverBorder: "group-hover:border-blue-200",
-    gradient: "from-blue-500/5"
+    iconColor: "text-brand-blue",
+    iconBg: "bg-[#eef3ff]",
+    hoverBorder: "group-hover:border-[#cfdaf6]",
+    gradient: "from-brand-blue/8"
   },
   { 
     step: "02", 
-    title: "Reunión", 
-    subtitle: "Videollamada o Presencial",
-    desc: "Nos cuentas tu proyecto en detalle. Nos conocemos y empezamos a dar forma a tu idea, ya sea desde cero o mejorando tu web actual.",
-    features: ["Toma de requisitos", "Definición de objetivos", "Alineación de ideas"],
+    title: "Reunión de enfoque", 
+    subtitle: "Sin palabras raras y con objetivos claros",
+    desc: "Ordenamos la información importante para que la web explique bien lo que haces y haga más fácil que te contacten.",
+    features: ["Objetivos realistas", "Mensaje principal claro", "Decisiones compartidas"],
     icon: Video,
-    iconColor: "text-purple-500",
-    iconBg: "bg-purple-50",
-    hoverBorder: "group-hover:border-purple-200",
-    gradient: "from-purple-500/5"
+    iconColor: "text-[#7a5eb2]",
+    iconBg: "bg-[#f3eefb]",
+    hoverBorder: "group-hover:border-[#ddd0f0]",
+    gradient: "from-[#7a5eb2]/7"
   },
   { 
     step: "03", 
-    title: "Diseño", 
-    subtitle: "Estructura y UX/UI",
-    desc: "Te proponemos diseños orientados a conversión y estructuramos la web a nivel interno para que Google te posicione mejor.",
-    features: ["Prototipos visuales", "Arquitectura web", "Diseño SEO-Friendly"],
+    title: "Diseño de la experiencia", 
+    subtitle: "Orden, claridad y buena presencia",
+    desc: "Diseñamos una web agradable, fácil de recorrer y alineada con la personalidad de tu negocio para que cause una buena impresión.",
+    features: ["Jerarquía visual clara", "Diseño a medida", "Estructura pensada para vender mejor"],
     icon: Layout,
-    iconColor: "text-pink-500",
-    iconBg: "bg-pink-50",
-    hoverBorder: "group-hover:border-pink-200",
-    gradient: "from-pink-500/5"
+    iconColor: "text-[#bf6f8d]",
+    iconBg: "bg-[#fff0f5]",
+    hoverBorder: "group-hover:border-[#efd0dc]",
+    gradient: "from-[#bf6f8d]/7"
   },
   { 
     step: "04", 
-    title: "Desarrollo", 
-    subtitle: "Tiempos y Programación",
-    desc: "Con el diseño validado, organizamos un calendario de entregas por semanas para programar tu web y cumplir plazos sin sorpresas.",
-    features: ["Código optimizado", "Calendario cerrado", "Entregas puntuales"],
+    title: "Construcción de la web", 
+    subtitle: "Con orden y sin sorpresas",
+    desc: "Montamos la web respetando el diseño, cuidando la velocidad y manteniéndote al tanto de lo importante en cada fase.",
+    features: ["Calendario claro", "Web rápida y cuidada", "Seguimiento cercano"],
     icon: Calendar,
-    iconColor: "text-emerald-500",
-    iconBg: "bg-emerald-50",
-    hoverBorder: "group-hover:border-emerald-200",
-    gradient: "from-emerald-500/5"
+    iconColor: "text-[#47745b]",
+    iconBg: "bg-[#edf7ef]",
+    hoverBorder: "group-hover:border-[#cfe6d4]",
+    gradient: "from-[#47745b]/7"
   },
   { 
     step: "05", 
-    title: "SEO On-Page", 
-    subtitle: "Buscadores y Analítica",
-    desc: "Le decimos a Google que existes. Enviamos tu web a Search Console, instalamos Analytics y optimizamos tus páginas internas.",
-    features: ["Google Search Console", "Google Analytics", "Optimización de metas"],
+    title: "Visibilidad inicial", 
+    subtitle: "Para que tu web empiece bien",
+    desc: "Dejamos la base preparada para que Google entienda tu web y para que tú puedas medir si está generando contactos.",
+    features: ["SEO básico bien planteado", "Analítica configurada", "Páginas preparadas para captar"],
     icon: LineChart,
-    iconColor: "text-orange-500",
-    iconBg: "bg-orange-50",
-    hoverBorder: "group-hover:border-orange-200",
-    gradient: "from-orange-500/5"
+    iconColor: "text-[#b67533]",
+    iconBg: "bg-[#fff3e8]",
+    hoverBorder: "group-hover:border-[#f0d9bf]",
+    gradient: "from-[#b67533]/7"
   },
   { 
     step: "06", 
-    title: "Entrega", 
-    subtitle: "Lanzamiento y Soporte",
-    desc: "Instalamos las páginas legales y publicamos. Te damos formación para que la controles tú mismo y ofrecemos mantenimiento opcional.",
-    features: ["Textos legales", "Formación de uso", "Mantenimiento mensual"],
+    title: "Entrega y acompañamiento", 
+    subtitle: "Publicamos y te enseñamos a usarla",
+    desc: "Lanzamos la web, dejamos lo importante configurado y te explicamos cómo manejarla para que no dependas de nadie para lo básico.",
+    features: ["Publicación cuidada", "Pequeña formación", "Soporte opcional después"],
     icon: ShieldCheck,
-    iconColor: "text-indigo-500",
-    iconBg: "bg-indigo-50",
-    hoverBorder: "group-hover:border-indigo-200",
-    gradient: "from-indigo-500/5"
+    iconColor: "text-[#5d6db2]",
+    iconBg: "bg-[#eef0fb]",
+    hoverBorder: "group-hover:border-[#d6dcf6]",
+    gradient: "from-[#5d6db2]/7"
   }
-];
-
-const techStack = [
-  { name: "React", slug: "react" },
-  { name: "Next.js", slug: "nextdotjs" },
-  { name: "TypeScript", slug: "typescript" },
-  { name: "Tailwind CSS", slug: "tailwindcss" },
-  { name: "WordPress", slug: "wordpress" },
-  { name: "Astro", slug: "astro" },
-  { name: "Figma", slug: "figma" },
-  { name: "Node.js", slug: "nodedotjs" },
-  { name: "Vercel", slug: "vercel" },
-  { name: "Webflow", slug: "webflow" }
-];
-const platformLogos = [
-  { name: "Google", slug: "google" },
-  { name: "Meta", slug: "meta" },
-  { name: "Stripe", slug: "stripe" },
-  { name: "Shopify", slug: "shopify" },
-  { name: "WhatsApp", slug: "whatsapp" },
-  { name: "Mailchimp", slug: "mailchimp" },
-  { name: "AWS", isCustom: true },
-  { name: "Zapier", slug: "zapier" }
 ];
 
 const reviews = [
@@ -315,7 +319,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+    <div className="min-h-screen bg-brand-cream font-sans text-brand-dark overflow-x-hidden">
       <SeoHead
         title="Diseño Web Valencia y SEO | Icono Studio"
         description="Diseñamos páginas web en Valencia rápidas, cuidadas y orientadas a captar clientes. Desarrollo web, SEO y soporte continuo para negocios que quieren crecer."
@@ -323,7 +327,7 @@ export default function Home() {
         schema={homeSchema}
       />
 
-      <Navbar initialTheme="light" />
+      <Navbar initialTheme="light" ctaHref="#contacto" ctaLabel="Cuéntanos tu idea" />
       {isCalculatorOpen && (
         <Suspense fallback={null}>
           <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
@@ -333,184 +337,177 @@ export default function Home() {
       <main>
 
       {/* 1. HERO SECTION */}
-      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
-        
-        {/* Beautiful Gradient Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-blue-100/50 via-white to-zinc-100/50">
-          <GradientBlob color="bg-brand-blue/15" className="w-[700px] h-[700px] -top-40 -right-40" delay={0} />
-          <GradientBlob color="bg-brand-lime/15" className="w-[500px] h-[500px] top-1/3 -left-32" delay={2} />
-        </div>
-        
-        <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
-          <motion.h1 
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[5.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
-          >
-            Hacemos webs <br/>
-            <span className="text-brand-blue">que venden</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="text-base sm:text-lg max-w-xl text-gray-500 font-medium mb-8 leading-relaxed mx-auto"
-          >
-            Diseño web optimizado para SEO, sin complicaciones técnicas. Tú te enfocas en tus clientes, nosotros en que tu web venda.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-          >
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                setIsCalculatorOpen(true);
-                (window as any).dataLayer?.push({
-                  'event': 'cta_click',
-                  'cta_id': 'hero_calculator',
-                  'cta_text': 'Calcular precio web',
-                  'page_path': window.location.pathname
-                });
-              }}
-              className="bg-brand-blue text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg shadow-brand-blue/20"
-            >
-              Calcular precio web <ArrowRight size={20} />
-            </button>
-            <RouterLink 
-              to="/proyectos" 
-              id="cta_hero_projects"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'cta_click',
-                'cta_id': 'hero_projects',
-                'cta_text': 'Ver proyectos',
-                'page_path': window.location.pathname
-              })}
-              className="bg-white border border-gray-200 text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:border-brand-blue hover:text-brand-blue transition-colors flex items-center justify-center gap-2 w-full sm:w-auto shadow-sm"
-            >
-              Ver proyectos
-            </RouterLink>
-          </motion.div>
+      <section id="inicio" className="relative overflow-hidden bg-white px-4 pb-12 pt-28 sm:px-6 sm:pb-14 sm:pt-32 lg:px-8 lg:pt-36">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(72,102,200,0.12),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(220,233,185,0.28),transparent_28%),linear-gradient(180deg,#fffdfa_0%,#fff8f1_100%)]" />
+        <GradientBlob color="bg-brand-blue/10" className="w-[540px] h-[540px] -top-32 right-[-8rem]" delay={0} />
+        <GradientBlob color="bg-brand-lime/20" className="w-[420px] h-[420px] top-[40%] left-[-7rem]" delay={1.7} />
 
-          {/* Social Proof ATF */}
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-            className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4 text-xs text-gray-500 font-medium"
-          >
-            <div className="flex items-center gap-2">
-              <div className="flex text-yellow-500">
-                {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="max-w-3xl">
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="ui-eyebrow mb-5"
+            >
+              Diseño web en Valencia para negocios que quieren verse bien y explicarse mejor
+            </motion.p>
+
+            <motion.h1
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
+              className="font-display text-[clamp(3.15rem,7.1vw,6rem)] leading-[0.92] tracking-[-0.06em] text-brand-dark"
+            >
+              <span className="block">Tu web puede</span>
+              <span className="block text-brand-blue">sentirse cercana</span>
+              <span className="block">y seguir vendiendo.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.25 }}
+              className="mt-6 max-w-2xl text-[1.2rem] text-[#5e6b7d]"
+            >
+              Diseñamos webs fáciles de entender para personas que no viven dentro del mundo digital. Tú nos cuentas tu negocio y nosotros te ayudamos a presentarlo con claridad, buena imagen y foco en conseguir contactos.
+            </motion.p>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
+              className="mt-8 flex flex-col gap-4 sm:flex-row"
+            >
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCalculatorOpen(true);
+                  (window as any).dataLayer?.push({
+                    event: 'cta_click',
+                    cta_id: 'hero_calculator',
+                    cta_text: 'Quiero orientación y precio',
+                    page_path: window.location.pathname,
+                  });
+                }}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-7 py-3.5 text-[1.05rem] font-medium text-white shadow-[0_18px_30px_rgba(37,51,68,0.16)] transition-all hover:-translate-y-0.5 hover:bg-brand-blue"
+              >
+                Quiero orientación y precio <ArrowRight size={18} />
+              </button>
+              <RouterLink
+                to="/proyectos"
+                id="cta_hero_projects"
+                onClick={() => (window as any).dataLayer?.push({
+                  event: 'cta_click',
+                  cta_id: 'hero_projects',
+                  cta_text: 'Ver trabajos',
+                  page_path: window.location.pathname,
+                })}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-[#ddd4c7] bg-white px-7 py-3.5 text-[1.05rem] font-medium text-brand-dark transition-all hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue"
+              >
+                Ver trabajos
+              </RouterLink>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.55 }}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#e7dece] bg-white/80 px-4 py-2 text-[0.95rem] text-[#617084]">
+                <div className="flex text-[#d8a327]">
+                  {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} className="fill-current" />)}
+                </div>
+                <span>5.0 en reseñas de clientes</span>
               </div>
-              <span>5.0 de 5 en reseñas de clientes</span>
-            </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#e7dece] bg-white/80 px-4 py-2 text-[0.95rem] text-[#617084]">
+                <span className="h-2 w-2 rounded-full bg-[#6f945d]" />
+                Sin tecnicismos ni presupuestos confusos
+              </div>
+            </motion.div>
+          </div>
 
-            <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-300"></div>
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.85, ease: 'easeOut', delay: 0.2 }}
+            className="relative"
+          >
+            <div className="rounded-[2.25rem] border border-[#e6ddcf] bg-[#fffaf4]/96 p-6 shadow-[0_26px_60px_rgba(37,51,68,0.12)] backdrop-blur sm:p-8">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue/12 text-brand-blue">
+                  <Heart className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-[0.95rem] text-[#7a8698]">Pensado para negocios reales</p>
+                  <h2 className="font-display text-[2rem] leading-[0.95] tracking-[-0.04em] text-brand-dark">
+                    Te lo ponemos fácil
+                  </h2>
+                </div>
+              </div>
 
-            <div className="flex items-center gap-2 text-brand-dark font-semibold bg-white/50 px-3 py-1.5 rounded-full border border-gray-200">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
-              </span>
-              14 personas están solicitando presupuesto
+              <div className="space-y-3">
+                {heroAssurances.map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-[1.35rem] border border-[#eee6da] bg-white px-4 py-4">
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#eef3ff] text-brand-blue">
+                      <Check className="h-4 w-4" />
+                    </span>
+                    <p className="text-[1.02rem] leading-relaxed text-[#4d5b6f]">{item}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-[1.75rem] bg-[#f6efe5] px-5 py-5">
+                <p className="text-[0.9rem] text-[#7a8698]">Lo que más valoran nuestros clientes</p>
+                <p className="mt-2 text-[1.12rem] leading-relaxed text-brand-dark">
+                  “Nos fueron guiando con calma, nos explicaron cada decisión y el resultado quedó mucho más claro para nuestros clientes.”
+                </p>
+                <p className="mt-3 text-[0.95rem] font-medium text-[#5c6a7c]">Cliente de Valencia</p>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 1.5 INTEGRATIONS / OPTIMIZED FOR */}
-      <section className="pt-16 pb-10 bg-zinc-50 overflow-hidden z-10 relative -mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
-          <p className="text-sm sm:text-base text-gray-400 font-medium">
-            Herramientas con las que trabajamos
-          </p>
-        </div>
-        
-        <div className="relative flex flex-col gap-6 overflow-hidden">
-          <style>{`
-            @keyframes scroll-left {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            @keyframes scroll-right {
-              0% { transform: translateX(-50%); }
-              100% { transform: translateX(0); }
-            }
-            .animate-scroll-left { animation: scroll-left 80s linear infinite; }
-            .animate-scroll-right { animation: scroll-right 80s linear infinite; }
-            .pause-on-hover:hover { animation-play-state: paused; }
-          `}</style>
-          
-          {/* Row 1: Platforms (Scroll Left) */}
-          <div className="flex w-max animate-scroll-left">
-            {[1, 2].map((group) => (
-              <div key={`platforms-${group}`} className="flex gap-12 sm:gap-20 px-6 sm:px-10 items-center">
-                {platformLogos.map((logo, i) => (
-                  <div key={`logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-default">
-                    {logo.isCustom ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333334 199332" className="h-8 sm:h-10 w-auto fill-[#52525b]">
-                        <path d="M93937 72393c0 4102 443 7428 1219 9867 887 2439 1996 5100 3548 7982 554 887 776 1774 776 2550 0 1109-665 2217-2106 3326l-6985 4656c-998 665-1995 998-2882 998-1109 0-2217-554-3326-1552-1552-1663-2882-3437-3991-5211-1109-1885-2217-3991-3437-6541-8648 10200-19512 15299-32594 15299-9312 0-16740-2661-22172-7982-5432-5322-8204-12417-8204-21286 0-9424 3326-17073 10089-22838s15743-8647 27161-8647c3769 0 7650 332 11752 887 4102 554 8315 1441 12749 2439v-8093c0-8426-1774-14301-5211-17738-3548-3437-9534-5100-18071-5100-3880 0-7871 443-11973 1441s-8093 2217-11973 3769c-1774 776-3104 1219-3880 1441s-1330 332-1774 332c-1552 0-2328-1109-2328-3437v-5432c0-1774 222-3104 776-3880s1552-1552 3104-2328c3880-1996 8537-3659 13969-4989C43606 885 49370 220 55468 220c13193 0 22838 2993 29046 8980 6098 5987 9202 15077 9202 27272v35920h222zM48926 89244c3659 0 7428-665 11419-1995s7539-3769 10532-7095c1774-2106 3104-4435 3770-7095 665-2661 1108-5876 1108-9645v-4656c-3215-776-6652-1441-10199-1885-3548-443-6984-665-10421-665-7428 0-12860 1441-16519 4435-3659 2993-5432 7206-5432 12749 0 5211 1330 9091 4102 11751 2661 2772 6541 4102 11641 4102zm89023 11973c-1996 0-3326-332-4213-1109-887-665-1663-2217-2328-4324l-26053-85697c-665-2217-998-3658-998-4434 0-1774 887-2772 2661-2772h10865c2106 0 3548 333 4324 1109 887 665 1552 2217 2217 4324l18625 73391 17295-73391c554-2217 1219-3659 2106-4324s2439-1109 4435-1109h8869c2106 0 3548 333 4435 1109 887 665 1663 2217 2106 4324l17516 74278 19180-74278c665-2217 1441-3659 2217-4324 887-665 2328-1109 4324-1109h10310c1774 0 2772 887 2772 2772 0 554-111 1109-222 1774s-333 1552-776 2772l-26718 85697c-665 2217-1441 3658-2328 4324-887 665-2328 1109-4213 1109h-9534c-2107 0-3548-333-4435-1109s-1663-2217-2106-4435l-17184-71507-17073 71396c-554 2217-1220 3658-2107 4434s-2439 1109-4434 1109h-9534zm142459 2993c-5765 0-11530-665-17073-1995s-9867-2772-12749-4435c-1774-998-2993-2106-3437-3104-443-998-665-2106-665-3104v-5654c0-2328 887-3437 2550-3437 665 0 1330 111 1995 333s1663 665 2772 1109c3769 1663 7871 2993 12195 3880 4435 887 8758 1330 13193 1330 6984 0 12417-1220 16186-3659s5765-5987 5765-10532c0-3104-998-5654-2993-7760-1996-2107-5765-3991-11197-5765l-16075-4989c-8093-2550-14080-6319-17738-11308-3658-4878-5543-10310-5543-16075 0-4656 998-8758 2993-12306s4656-6652 7982-9091c3326-2550 7095-4434 11530-5765S279190-2 284068-2c2439 0 4989 111 7428 443 2550 333 4878 776 7206 1219 2217 554 4324 1109 6319 1774s3548 1330 4656 1996c1552 887 2661 1774 3326 2771 665 887 998 2107 998 3659v5211c0 2328-887 3548-2550 3548-887 0-2328-444-4213-1331-6319-2882-13415-4324-21286-4324-6319 0-11308 998-14745 3104s-5211 5321-5211 9867c0 3104 1109 5765 3326 7871s6319 4213 12195 6097l15743 4989c7982 2550 13747 6098 17184 10643s5100 9756 5100 15521c0 4767-998 9091-2882 12860-1996 3770-4656 7095-8093 9756-3437 2771-7539 4767-12306 6208-4989 1552-10199 2328-15854 2328z" />
-                        <path d="M301362 158091c-36474 26940-89467 41241-135031 41241-63858 0-121395-23614-164854-62859-3437-3104-332-7317 3770-4878 47006 27272 104988 43791 164964 43791 40465 0 84921-8426 125830-25721 6097-2772 11308 3991 5321 8426z" />
-                        <path d="M316550 140796c-4656-5987-30820-2883-42682-1441-3548 443-4102-2661-887-4989 20842-14634 55099-10421 59090-5543 3991 4989-1109 39246-20620 55653-2993 2550-5876 1220-4545-2106 4435-10976 14301-35698 9645-41574z" />
-                      </svg>
-                    ) : (
-                      <>
-                        <img
-                          src={`https://cdn.simpleicons.org/${logo.slug}/52525b`}
-                          alt={`${logo.name} icon`}
-                          className="h-7 sm:h-8 w-auto object-contain"
-                          referrerPolicy="no-referrer"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <span className="text-xl sm:text-2xl font-bold text-zinc-600 tracking-tight">{logo.name}</span>
-                      </>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
+      {/* 1.5 FRIENDLY REASSURANCE */}
+      <section className="bg-brand-cream px-4 pb-10 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 max-w-2xl">
+            <p className="ui-eyebrow mb-3">Una web bien hecha también puede sentirse cercana</p>
+            <h2 className="ui-section-title text-brand-dark">Pensado para personas que quieren resultados, no palabras técnicas.</h2>
           </div>
 
-          {/* Row 2: Tech Stack (Scroll Right) */}
-          <div className="flex w-max animate-scroll-right">
-            {[1, 2].map((group) => (
-              <div key={`tech-${group}`} className="flex gap-12 sm:gap-20 px-6 sm:px-10 items-center">
-                {techStack.map((tech, i) => (
-                  <div key={`tech-logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default">
-                    <img
-                      src={`https://cdn.simpleicons.org/${tech.slug}/a1a1aa`}
-                      alt={`${tech.name} icon`}
-                      className="h-7 sm:h-8 w-auto object-contain"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span className="text-xl sm:text-2xl font-bold text-zinc-400 tracking-tight">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
+          <div className="grid gap-5 md:grid-cols-3">
+            {friendlyHighlights.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.title} className="rounded-[2rem] border border-[#e6ddcf] bg-white px-5 py-6 shadow-[0_12px_30px_rgba(37,51,68,0.05)]">
+                  <span className={`mb-5 flex h-12 w-12 items-center justify-center rounded-2xl ${item.iconClassName}`}>
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="ui-card-title mb-3 text-brand-dark">{item.title}</h3>
+                  <p className="text-[1rem] leading-relaxed text-[#5e6b7d]">{item.description}</p>
+                </div>
+              );
+            })}
           </div>
-
-          {/* Gradients */}
-          <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-zinc-50 to-transparent pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-zinc-50 to-transparent pointer-events-none"></div>
         </div>
       </section>
 
       {/* 2. SERVICIOS PRINCIPALES (SEO) */}
-      <section id="servicios" className="pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12 bg-white">
+      <section id="servicios" className="bg-white pb-12 pt-10 sm:pb-14 sm:pt-12 md:pb-16 md:pt-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 max-w-3xl">
+          <p className="ui-eyebrow mb-3">Servicios principales</p>
+          <h2 className="ui-section-title text-brand-dark mb-4">Elegimos contigo la solución que mejor explica tu negocio.</h2>
+          <p className="ui-section-copy max-w-2xl">
+            No intentamos meterte en una plantilla. Miramos qué necesitas hoy, qué te va a resultar cómodo mantener y qué tipo de experiencia esperan tus clientes.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Card 1 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+          <div className="group flex h-full flex-col rounded-[2rem] border border-[#e6ddcf] bg-[#fffaf4] p-6 shadow-[0_10px_24px_rgba(37,51,68,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/20 hover:shadow-[0_20px_40px_rgba(37,51,68,0.09)]">
             <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
                 Diseño Web
@@ -523,8 +520,8 @@ export default function Home() {
                 decoding="async"
               />
             </div>
-            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
-              Diseñamos tu página web paso a paso, a medida y centrada en crear una experiencia de usuario (UX/UI) única que represente tu marca.
+            <p className="mb-6 flex-grow text-[1rem] leading-relaxed text-[#5e6b7d]">
+              Creamos una web cuidada y fácil de recorrer para que la gente entienda rápido quién eres, qué haces y cómo puede contactarte.
             </p>
             <RouterLink 
               to="/diseno-web-valencia" 
@@ -534,14 +531,14 @@ export default function Home() {
                 'service_name': 'Diseño Web',
                 'page_path': window.location.pathname
               })} 
-              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
+              className="mt-auto inline-flex items-center gap-2 text-[0.98rem] font-medium text-brand-blue transition-colors hover:text-brand-dark"
             >
-              Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+              Ver servicio <ArrowRight size={18} className="transform transition-transform group-hover:translate-x-1" />
             </RouterLink>
           </div>
 
           {/* Card 2 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-lime/50 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
+          <div className="group flex h-full flex-col rounded-[2rem] border border-[#e6ddcf] bg-[#fffaf4] p-6 shadow-[0_10px_24px_rgba(37,51,68,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/20 hover:shadow-[0_20px_40px_rgba(37,51,68,0.09)]">
             <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
                 Tienda Online
@@ -554,8 +551,8 @@ export default function Home() {
                 decoding="async"
               />
             </div>
-            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
-              Desarrollamos e-commerce escalables. Gestiona tu tienda online fácilmente: catálogo, envíos y pagos.
+            <p className="mb-6 flex-grow text-[1rem] leading-relaxed text-[#5e6b7d]">
+              Montamos una tienda online clara y cómoda de gestionar, para que vender por internet no se convierta en otro quebradero de cabeza.
             </p>
             <RouterLink 
               to="/#servicios" 
@@ -565,28 +562,28 @@ export default function Home() {
                 'service_name': 'Tienda Online',
                 'page_path': window.location.pathname
               })} 
-              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
+              className="mt-auto inline-flex items-center gap-2 text-[0.98rem] font-medium text-brand-blue transition-colors hover:text-brand-dark"
             >
-              Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+              Ver servicio <ArrowRight size={18} className="transform transition-transform group-hover:translate-x-1" />
             </RouterLink>
           </div>
 
           {/* Card 3 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-300 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 md:col-span-2 md:max-w-[30rem] md:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0">
+          <div className="group flex h-full flex-col rounded-[2rem] border border-[#e6ddcf] bg-[#fffaf4] p-6 shadow-[0_10px_24px_rgba(37,51,68,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/20 hover:shadow-[0_20px_40px_rgba(37,51,68,0.09)] md:col-span-2 md:mx-auto md:max-w-[30rem] lg:col-span-1 lg:max-w-none lg:mx-0">
             <div className="flex items-center justify-between gap-4 mb-4">
               <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
-                Posicionamiento SEO
+                SEO local
               </h3>
               <img 
                 src="/seo.svg" 
-                alt="Posicionamiento SEO" 
+                alt="SEO local" 
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
-              Utilizamos las técnicas SEO más avanzadas para mejorar la visibilidad de tu web en Google y superar a tu competencia.
+            <p className="mb-6 flex-grow text-[1rem] leading-relaxed text-[#5e6b7d]">
+              Dejamos la web preparada para que Google entienda bien tu actividad y para que más gente de tu zona pueda encontrarte.
             </p>
             <RouterLink 
               to="/#servicios" 
@@ -596,9 +593,9 @@ export default function Home() {
                 'service_name': 'Posicionamiento SEO',
                 'page_path': window.location.pathname
               })} 
-              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
+              className="mt-auto inline-flex items-center gap-2 text-[0.98rem] font-medium text-brand-blue transition-colors hover:text-brand-dark"
             >
-              Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
+              Ver servicio <ArrowRight size={18} className="transform transition-transform group-hover:translate-x-1" />
             </RouterLink>
           </div>
         </div>
@@ -606,12 +603,15 @@ export default function Home() {
       </section>
 
       {/* 3. PROYECTOS */}
-      <section id="proyectos" className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-[#FAFAFA] border-y border-gray-100">
+      <section id="proyectos" className="border-y border-[#ece3d7] bg-[#fcf7ef] pb-14 pt-10 sm:pb-16 sm:pt-12 md:pb-16 md:pt-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-12 md:mb-16 gap-8 sm:gap-10 text-center lg:text-left">
             <div className="max-w-2xl shrink-0 flex flex-col items-center lg:items-start">
-
-              <h2 className="ui-section-title text-brand-dark mb-4">Proyectos recientes</h2>
+              <p className="ui-eyebrow mb-3">Trabajos recientes</p>
+              <h2 className="ui-section-title text-brand-dark mb-4">Webs distintas, pero con algo en común: se entienden rápido.</h2>
+              <p className="ui-section-copy max-w-2xl">
+                Cada proyecto responde a una necesidad real. Aquí puedes ver cómo adaptamos el diseño según el tipo de negocio y la sensación que necesita transmitir.
+              </p>
             </div>
             <RouterLink
               to="/proyectos"
@@ -620,9 +620,9 @@ export default function Home() {
                 'nav_item': 'Ver todos los proyectos Home',
                 'page_path': window.location.pathname
               })}
-              className="hidden lg:block text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200 mb-2"
+              className="hidden lg:block border-b border-[#cabfae] pb-2 text-[0.98rem] font-medium text-[#6c7889] transition-colors hover:text-brand-dark"
             >
-              Ver todos los proyectos
+              Ver todos los trabajos
             </RouterLink>
           </div>
 
@@ -658,10 +658,10 @@ export default function Home() {
 
                   <div className="flex justify-between items-start gap-2">
                     <div>
-                      <h3 className="text-base sm:text-lg font-bold text-brand-dark mb-1 group-hover:text-brand-dark transition-colors duration-300">
+                      <h3 className="mb-1 text-base font-bold text-brand-dark transition-colors duration-300 group-hover:text-brand-dark sm:text-lg">
                         {project.title}
                       </h3>
-                      <p className="text-[9px] font-black text-brand-blue uppercase tracking-widest mb-1.5">
+                      <p className="mb-1.5 text-[0.82rem] font-medium text-brand-blue">
                         {project.category}
                       </p>
                     </div>
@@ -682,9 +682,9 @@ export default function Home() {
                 'nav_item': 'Ver todos los proyectos Home Mobile',
                 'page_path': window.location.pathname
               })}
-              className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200"
+              className="border-b border-[#cabfae] pb-2 text-[0.98rem] font-medium text-[#6c7889] transition-colors hover:text-brand-dark"
             >
-              Ver todos los proyectos
+              Ver todos los trabajos
             </RouterLink>
           </div>
         </div>
@@ -694,13 +694,12 @@ export default function Home() {
       <section className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
-
+            <p className="ui-eyebrow mb-3">Nuestro proceso</p>
             <h2 className="ui-section-title text-brand-dark mb-5">
-                Cómo trabajamos <br className="hidden md:block" />
-                <span className="italic font-normal">tu proyecto</span>
+                Así te acompañamos para que todo sea más claro desde el principio.
               </h2>
               <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
-                Un proceso claro, sin improvisaciones, para que tu web salga bien planteada desde el principio.
+                Te vamos guiando paso a paso, con tiempos definidos y decisiones fáciles de entender. Sin improvisaciones y sin que tengas que perseguirnos para saber cómo va todo.
               </p>
           </div>
 
@@ -714,13 +713,13 @@ export default function Home() {
               return (
                 <div 
                   key={i} 
-                  className={`min-w-[85vw] md:min-w-0 bg-white rounded-[2rem] p-7 sm:p-8 lg:p-10 shadow-sm border border-gray-200 ${item.hoverBorder} hover:shadow-xl transition-all duration-300 group relative overflow-hidden snap-center`}
+                  className={`min-w-[85vw] md:min-w-0 bg-[#fffaf4] rounded-[2rem] p-7 sm:p-8 lg:p-10 shadow-[0_12px_30px_rgba(37,51,68,0.05)] border border-[#e6ddcf] ${item.hoverBorder} hover:shadow-[0_24px_45px_rgba(37,51,68,0.09)] transition-all duration-300 group relative overflow-hidden snap-center`}
                 >
                   {/* Subtle unified gradient on hover */}
                   <div className={`absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-bl ${item.gradient} to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-16 sm:-mr-20 -mt-16 sm:-mt-20`}></div>
                   
                   {/* Watermark Number */}
-                  <span className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 text-7xl sm:text-9xl font-display font-bold text-zinc-50 opacity-50 transition-colors duration-500 select-none pointer-events-none">
+                    <span className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 text-7xl sm:text-9xl font-display font-bold text-[#f1e9dc] opacity-70 transition-colors duration-500 select-none pointer-events-none">
                     {item.step}
                   </span>
 
@@ -731,20 +730,20 @@ export default function Home() {
                           <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[11px] sm:text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Fase {item.step}</p>
-                          <h3 className="font-display text-xl sm:text-[1.75rem] uppercase text-brand-dark leading-[0.95] text-balance break-words">{item.title}</h3>
+                          <p className="mb-1 text-[0.88rem] font-medium text-[#7b8798]">Paso {item.step}</p>
+                          <h3 className="font-display text-xl sm:text-[1.75rem] text-brand-dark leading-[0.95] text-balance break-words">{item.title}</h3>
                         </div>
                       </div>
                     </div>
                     
                     <div className="mb-6 sm:mb-6">
-                      <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">{item.subtitle}</h4>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
+                      <h4 className="mb-2 text-[1rem] font-medium text-brand-dark">{item.subtitle}</h4>
+                      <p className="text-[1rem] text-[#5e6b7d] leading-relaxed">{item.desc}</p>
                     </div>
 
                     <div className="flex flex-wrap gap-2.5">
                       {item.features.map((feature, idx) => (
-                        <div key={idx} className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-[#F8FAFB] px-3 py-2 text-xs font-medium text-gray-700">
+                        <div key={idx} className="inline-flex items-center gap-2 rounded-full border border-[#e8e0d4] bg-white px-3 py-2 text-[0.88rem] font-medium text-[#617084]">
                           <div className={`w-4 h-4 rounded-full ${item.iconBg} border border-white flex items-center justify-center flex-shrink-0`}>
                             <Check className={`w-2.5 h-2.5 ${item.iconColor}`} />
                           </div>
@@ -773,18 +772,17 @@ export default function Home() {
       </section>
 
       {/* 6. OPINIONES */}
-      <section id="opiniones" className="py-14 sm:py-16 md:py-20 bg-[#FAFAFA] overflow-hidden border-y border-gray-100">
+      <section id="opiniones" className="overflow-hidden border-y border-[#ece3d7] bg-[#fcf7ef] py-14 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 md:gap-12 text-center lg:text-left">
             <div className="md:w-2/3 flex flex-col items-center lg:items-start">
-
+              <p className="ui-eyebrow mb-3">Opiniones reales</p>
               <h2 className="ui-section-title text-brand-dark">
-                Lo que dicen <br className="hidden sm:block" />
-                <span className="italic font-normal">nuestros clientes</span>
+                Lo que más nos repiten es que trabajar con nosotros resulta fácil.
               </h2>
             </div>
             <div className="md:w-1/3 flex justify-center lg:justify-end pb-2">
-              <div className="flex items-center gap-5 bg-white px-6 py-4 rounded-2xl border border-gray-200 shadow-sm">
+              <div className="flex items-center gap-5 rounded-2xl border border-[#e6ddcf] bg-white px-6 py-4 shadow-sm">
                 <div className="flex flex-col items-center">
                   <span className="text-4xl font-display text-brand-dark leading-none">5.0</span>
                 </div>
@@ -793,7 +791,7 @@ export default function Home() {
                   <div className="flex text-yellow-400">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
-                  <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">Valoración media</span>
+                  <span className="text-[0.9rem] text-gray-500 font-medium">Valoración media</span>
                 </div>
               </div>
             </div>
@@ -806,7 +804,7 @@ export default function Home() {
             {[1, 2].map((group) => (
               <div key={group} className="flex gap-4 sm:gap-6 px-2 sm:px-3">
                 {reviews.map((review, idx) => (
-                  <div key={idx} className="w-[280px] sm:w-[320px] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm shrink-0 flex flex-col">
+                  <div key={idx} className="flex w-[280px] shrink-0 flex-col rounded-2xl border border-[#e6ddcf] bg-white p-5 shadow-sm sm:w-[320px]">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue font-bold text-sm shrink-0">
@@ -827,9 +825,9 @@ export default function Home() {
                     <div className="flex text-yellow-400 mb-2">
                       {[...Array(review.rating)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
                     </div>
-                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                      "{review.text}"
-                    </p>
+                      <p className="text-gray-600 text-[0.92rem] leading-relaxed line-clamp-3">
+                        "{review.text}"
+                      </p>
                   </div>
                 ))}
               </div>
@@ -838,30 +836,28 @@ export default function Home() {
 
           
           {/* Gradientes laterales para suavizar la entrada/salida */}
-          <div className="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-zinc-50 to-transparent pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-zinc-50 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-[#fcf7ef] to-transparent pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-[#fcf7ef] to-transparent pointer-events-none"></div>
         </div>
       </section>
 
 
 
       {/* 8. SUPPORT TEASER */}
-      <section id="soporte-web" className="pt-14 sm:pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-20 bg-white px-4 sm:px-6 lg:px-8">
+      <section id="soporte-web" className="bg-white px-4 pb-14 pt-14 sm:px-6 sm:pb-16 sm:pt-16 md:pb-20 md:pt-20 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.25rem] md:rounded-[2.75rem] border border-[#D8E2E7] bg-[#F2F6F7] p-5 sm:p-8 lg:p-9 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_26%)]"></div>
+          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.25rem] md:rounded-[2.75rem] border border-[#e2d8c8] bg-[#f8f2e8] p-5 sm:p-8 lg:p-9 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.98),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(72,102,200,0.06),transparent_26%)]"></div>
             <div className="absolute -top-20 right-0 w-72 h-72 bg-white/80 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-5 sm:gap-6 lg:gap-8 items-center">
               <div className="max-w-xl mx-auto lg:mx-0 flex flex-col items-center text-center lg:items-start lg:text-left">
-
-
                 <h2 className="ui-section-title text-brand-dark mb-4">
                   Tu web, siempre en buenas manos
                 </h2>
 
                 <p className="ui-section-copy max-w-xl mb-5 sm:mb-6">
-                  Después de publicar, también podemos seguir a tu lado para que la web esté atendida, actualizada y funcionando para que no tengas que preocuparte por nada.
+                  Si quieres, seguimos contigo después de publicar para que la web esté atendida, actualizada y dando buena imagen sin que tengas que pensar en la parte técnica.
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 justify-center lg:justify-start">
@@ -873,7 +869,7 @@ export default function Home() {
                       'cta_id': 'support_plans_hero',
                       'page_path': window.location.pathname
                     })}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-6 py-3 font-bold text-white hover:bg-brand-blue transition-colors"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-6 py-3 text-[1rem] font-medium text-white hover:bg-brand-blue transition-colors"
                   >
                     Ver planes <ArrowRight size={18} />
                   </RouterLink>
@@ -922,29 +918,29 @@ export default function Home() {
       </section>
 
       {/* 9. FAQ */}
-      <section className="py-14 sm:py-16 md:py-20 bg-white border-y border-gray-100">
+      <section className="border-y border-[#ece3d7] bg-white py-14 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
-
+            <p className="ui-eyebrow mb-3">Dudas habituales</p>
             <h2 className="ui-section-title text-brand-dark mb-6">
-              Preguntas <span className="italic font-normal">frecuentes</span>
+              Resolvemos lo importante antes de empezar.
             </h2>
-            <p className="ui-section-copy">Resolvemos tus dudas antes de empezar.</p>
+            <p className="ui-section-copy">Para que sepas qué esperar, cuánto suele tardar y cómo te acompañamos después.</p>
           </div>
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <div 
                 key={i} 
-                className={`bg-white border rounded-2xl overflow-hidden transition-all duration-300 ${activeFaq === i ? 'border-brand-blue shadow-md' : 'border-gray-200'}`}
+                className={`overflow-hidden rounded-2xl border bg-[#fffaf4] transition-all duration-300 ${activeFaq === i ? 'border-brand-blue shadow-md' : 'border-[#e6ddcf]'}`}
               >
                 <button 
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                   className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
                 >
-                  <span className="font-bold text-lg text-brand-dark pr-4">{faq.q}</span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${activeFaq === i ? 'bg-brand-blue text-white' : 'bg-gray-100 text-gray-500'}`}>
+                  <span className="pr-4 text-lg font-medium text-brand-dark">{faq.q}</span>
+                  <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${activeFaq === i ? 'bg-brand-blue text-white' : 'bg-[#efe7da] text-gray-500'}`}>
                     {activeFaq === i ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                   </div>
                 </button>
@@ -956,7 +952,7 @@ export default function Home() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                      <div className="border-t border-[#efe7da] px-6 pb-6 pt-4 leading-relaxed text-[#5e6b7d]">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -970,17 +966,17 @@ export default function Home() {
       </section>
 
       {/* 11. BLOG */}
-      <section id="blog" className="py-14 sm:py-16 md:py-20 bg-zinc-50">
+      <section id="blog" className="bg-[#fcf7ef] py-14 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-6 mb-12 md:mb-16 text-center lg:text-left">
             <div className="max-w-3xl flex flex-col items-center lg:items-start">
-
+              <p className="ui-eyebrow mb-3">Guías que sí ayudan</p>
               <h2 className="ui-section-title text-brand-dark mb-4">Blog</h2>
               <p className="ui-section-copy max-w-2xl">
-                Hemos priorizado tres guías base que responden a las dudas que más influyen en la decisión de contratar una web.
+                Hemos seleccionado tres guías para resolver dudas muy comunes antes de encargar una web: precio, visibilidad y qué debe transmitir.
               </p>
             </div>
-          <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 font-bold text-base sm:text-lg uppercase tracking-wide hover:text-brand-blue transition-colors">
+          <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 text-base font-medium hover:text-brand-blue transition-colors sm:text-lg">
             Ver todos <ArrowRight size={20} className="sm:w-6 sm:h-6" />
           </RouterLink>
         </div>
@@ -997,18 +993,18 @@ export default function Home() {
               })}
               className="group cursor-pointer"
               >
-                <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
+                <div className="relative mb-4 overflow-hidden rounded-[2rem] sm:mb-6">
                 <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-                <div className="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full uppercase tracking-wider">
+                <div className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-[0.88rem] font-medium text-brand-dark sm:px-4 sm:py-2">
                   {post.tag}
                 </div>
               </div>
               <div className="flex items-center gap-4 mb-2 sm:mb-3">
-                <time dateTime={parseStructuredDate(post.modifiedDate || post.date)} className="text-xs sm:text-sm text-gray-500 font-mono">
+                <time dateTime={parseStructuredDate(post.modifiedDate || post.date)} className="text-sm text-gray-500">
                   {post.date}
                 </time>
               </div>
-              <h3 className="font-display text-xl sm:text-2xl uppercase leading-tight group-hover:text-brand-blue transition-colors">{post.title}</h3>
+              <h3 className="font-display text-xl leading-tight transition-colors group-hover:text-brand-blue sm:text-2xl">{post.title}</h3>
             </RouterLink>
           ))}
         </div>
@@ -1016,9 +1012,8 @@ export default function Home() {
       </section>
 
       {/* 12. INTEGRATED FOOTER (FORM + LINKS) */}
-      <div className="bg-brand-dark relative overflow-hidden border-t border-white/20">
-        <div className="absolute inset-0 opacity-[0.05] bg-blueprint"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-brand-blue/10 to-transparent"></div>
+      <div className="relative overflow-hidden border-t border-[#d8cfbf] bg-[#253344]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(220,233,185,0.12),transparent_30%)]"></div>
 
         <section id="contacto" className="py-16 sm:py-20 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1026,11 +1021,12 @@ export default function Home() {
               <div className="lg:sticky lg:top-32 flex flex-col items-center text-center lg:items-start lg:text-left">
 
                 <h2 className="ui-section-title text-white mb-8">
-                  TU NUEVA WEB <br />
-                  <span className="text-brand-lime italic font-normal">EMPIEZA AQUÍ</span>
+                  Tu nueva web
+                  <br />
+                  <span className="text-brand-lime">puede empezar hoy</span>
                 </h2>
-                <p className="text-[15px] text-white/70 font-medium leading-relaxed mb-8 max-w-sm mx-auto lg:mx-0">
-                  Cuéntanos qué necesitas y te responderemos con una orientación clara para crear una web profesional, cuidada y preparada para captar clientes.
+                <p className="mb-8 max-w-sm text-[1.1rem] leading-relaxed text-white/72 mx-auto lg:mx-0">
+                  Cuéntanos qué necesitas y te responderemos con una orientación clara. Si aún no lo tienes del todo definido, también te ayudamos a ordenarlo.
                 </p>
 
                 <div className="grid grid-cols-1 gap-4 mb-8 pt-6 border-t border-white/10 w-full max-w-sm">
@@ -1039,8 +1035,8 @@ export default function Home() {
                     { t: "Precio definido antes de empezar", i: FileText },
                     { t: "Atención personalizada", i: Heart },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-center lg:justify-start gap-3 text-xs font-bold text-white/90">
-                      <div className="w-6 h-6 rounded-lg bg-brand-lime/10 flex items-center justify-center text-brand-lime">
+                    <div key={i} className="flex items-center justify-center gap-3 text-[0.95rem] font-medium text-white/90 lg:justify-start">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-lime/12 text-brand-lime">
                         <item.i size={14} />
                       </div>
                       {item.t}
@@ -1049,13 +1045,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-white/5 border border-white/10 p-5 md:p-7 rounded-[2.5rem] backdrop-blur-md shadow-2xl relative">
+              <div className="relative rounded-[2.5rem] border border-white/12 bg-white/8 p-5 shadow-2xl backdrop-blur-md md:p-7">
                 {isSubmitted ? (
                   <div className="text-center py-10">
                     <div className="w-16 h-16 bg-brand-lime rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(204,255,0,0.2)]">
                       <Check size={32} className="text-brand-dark" />
                     </div>
-                    <h3 className="font-display text-2xl uppercase mb-3 text-white italic">Solicitud enviada</h3>
+                    <h3 className="mb-3 font-display text-2xl text-white">Solicitud enviada</h3>
                     <p className="text-white/60 text-base mb-6 leading-relaxed">
                       Gracias por contarnos tu proyecto. Te responderemos lo antes posible.
                     </p>
@@ -1063,7 +1059,7 @@ export default function Home() {
                       href="https://wa.me/34623783129"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-all items-center gap-3 shadow-xl"
+                      className="inline-flex items-center gap-3 rounded-full bg-brand-lime px-8 py-4 text-[1rem] font-medium text-brand-dark shadow-xl transition-all hover:scale-105"
                     >
                       Hablar por WhatsApp <Send size={14} />
                     </a>
@@ -1071,8 +1067,8 @@ export default function Home() {
                 ) : (
                   <>
                     <div className="mb-6">
-                      <h3 className="font-display text-xl sm:text-2xl uppercase text-white italic tracking-tight leading-none mb-2">Pide tu presupuesto web</h3>
-                      <p className="text-sm text-white/70 font-medium">Te responderemos con una propuesta clara y sin compromiso.</p>
+                      <h3 className="mb-2 font-display text-2xl leading-none text-white sm:text-[2rem]">Cuéntanos tu proyecto</h3>
+                      <p className="text-[1rem] text-white/72">Te responderemos con una propuesta clara y sin compromiso.</p>
                     </div>
 
                     <form
@@ -1095,7 +1091,7 @@ export default function Home() {
                             value={formData.nombre}
                             onChange={handleInputChange}
                             placeholder="Tu nombre"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                            className="h-11 w-full rounded-xl border border-white/12 bg-white/6 px-4 text-[1rem] text-white placeholder:text-white/40 transition-all focus:border-brand-lime focus:outline-none"
                           />
                         </div>
                         <div className="space-y-1">
@@ -1108,7 +1104,7 @@ export default function Home() {
                             value={formData.negocio}
                             onChange={handleInputChange}
                             placeholder="Nombre de tu empresa"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                            className="h-11 w-full rounded-xl border border-white/12 bg-white/6 px-4 text-[1rem] text-white placeholder:text-white/40 transition-all focus:border-brand-lime focus:outline-none"
                           />
                         </div>
                       </div>
@@ -1124,7 +1120,7 @@ export default function Home() {
                             value={formData.whatsapp}
                             onChange={handleInputChange}
                             placeholder="600 000 000"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                            className="h-11 w-full rounded-xl border border-white/12 bg-white/6 px-4 text-[1rem] text-white placeholder:text-white/40 transition-all focus:border-brand-lime focus:outline-none"
                           />
                         </div>
                         <div className="space-y-1">
@@ -1137,7 +1133,7 @@ export default function Home() {
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder="hola@tuweb.com"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
+                            className="h-11 w-full rounded-xl border border-white/12 bg-white/6 px-4 text-[1rem] text-white placeholder:text-white/40 transition-all focus:border-brand-lime focus:outline-none"
                           />
                         </div>
                       </div>
@@ -1151,7 +1147,7 @@ export default function Home() {
                             required
                             value={formData.necesidad}
                             onChange={handleInputChange}
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
+                            className="h-11 w-full appearance-none cursor-pointer rounded-xl border border-white/12 bg-white/6 px-4 text-[1rem] text-white transition-all focus:border-brand-lime focus:outline-none"
                           >
                             <option value="" className="bg-brand-dark">Selecciona una opción</option>
                             <option value="corporativa" className="bg-brand-dark">Web corporativa</option>
@@ -1170,7 +1166,7 @@ export default function Home() {
                             required
                             value={formData.presupuesto}
                             onChange={handleInputChange}
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
+                            className="h-11 w-full appearance-none cursor-pointer rounded-xl border border-white/12 bg-white/6 px-4 text-[1rem] text-white transition-all focus:border-brand-lime focus:outline-none"
                           >
                             <option value="" className="bg-brand-dark">Selecciona un rango</option>
                             <option value="350-500" className="bg-brand-dark">350 € – 500 €</option>
@@ -1192,7 +1188,7 @@ export default function Home() {
                           value={formData.mensaje}
                           onChange={handleInputChange}
                           placeholder="Ej: necesito una web para mi clínica, con imagen profesional, contacto por WhatsApp y preparada para captar clientes."
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all resize-none"
+                          className="w-full resize-none rounded-xl border border-white/12 bg-white/6 px-4 py-2.5 text-[1rem] text-white placeholder:text-white/40 transition-all focus:border-brand-lime focus:outline-none"
                         ></textarea>
                       </div>
 
@@ -1206,7 +1202,7 @@ export default function Home() {
                           onChange={handleInputChange}
                           className="mt-1 accent-brand-lime"
                         />
-                        <label htmlFor="privacidad" className="text-[11px] text-white/55 leading-relaxed">
+                        <label htmlFor="privacidad" className="text-[0.9rem] text-white/60 leading-relaxed">
                           Acepto la{' '}
                           <RouterLink to="/politica-de-privacidad" className="text-brand-lime hover:text-white underline underline-offset-4">
                             política de privacidad
@@ -1218,12 +1214,12 @@ export default function Home() {
                       <button
                         type="submit"
                         onClick={() => debugLeadFormButtonClick('contact_home_integrated')}
-                        className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
+                        className="mt-2 flex h-12 w-full items-center justify-center gap-3 rounded-xl bg-brand-lime text-[1rem] font-medium text-brand-dark shadow-xl shadow-brand-lime/20 transition-all hover:scale-[1.02]"
                       >
-                        Pedir presupuesto gratis <Send size={14} />
+                        Quiero una propuesta clara <Send size={14} />
                       </button>
 
-                      <p className="text-[9px] text-center text-white/40 font-bold uppercase tracking-widest pt-1">
+                      <p className="pt-1 text-center text-[0.85rem] text-white/45">
                         O <a href="https://wa.me/34623783129" className="text-brand-lime hover:underline">escríbenos por WhatsApp</a> si prefieres hablarlo más rápido.
                       </p>
                     </form>
