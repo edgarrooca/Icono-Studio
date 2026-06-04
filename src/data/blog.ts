@@ -1,7 +1,386 @@
 import { sortBlogEntries } from '../lib/blogUtils';
 import { BlogPost } from '../types/blog';
 
+const latestBlogPosts: BlogPost[] = [
+  {
+    title: '¿Conviene mostrar precios orientativos en tu web en 2026? Cuándo ayuda a vender y cuándo no',
+    subtitle: 'En un entorno donde la gente compara más rápido y pregunta menos antes del clic, enseñar rangos, mínimos o ejemplos de precio puede cualificar mejor. Pero solo si está bien planteado.',
+    slug: 'precios-orientativos-web-2026-cuando-ayudan-vender',
+    date: '04 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Conversión',
+    image: '/blog/coste-web-negocio-local-2026.webp',
+    metaTitle: 'Precios orientativos en tu web en 2026: cuándo conviene mostrarlos | Icono Studio',
+    metaDescription: 'Cuándo mostrar precios orientativos en la web, qué formato funciona mejor y cómo usar esa información para cualificar leads sin espantar oportunidades válidas.',
+    keywords: ['precios orientativos web', 'mostrar precios en la web', 'precio orientativo servicios web', 'tarifas en pagina web', 'cualificar leads con precios'],
+    content: `
+      <p>Muchos negocios siguen dudando con una pregunta muy concreta: <strong>¿debería enseñar precios en la web o me quitará oportunidades?</strong> En 2026 la duda pesa más porque la gente compara más rápido, recibe respuestas parciales en Google, ve fichas, snippets, comparativas y llega a la web con menos paciencia para pedir información básica.</p>
+      <p>Eso no significa que todas las empresas deban publicar una tarifa cerrada. Sí significa que esconder cualquier referencia económica suele aumentar fricción. Para muchos servicios, mostrar <strong>precios orientativos, rangos, mínimos o ejemplos</strong> ayuda a filtrar mejor, transmitir transparencia y reducir conversaciones poco cualificadas.</p>
+
+      <h2>Por qué este tema importa ahora</h2>
+      <p>Las publicaciones recientes sobre AI search y comportamiento de usuario coinciden en una idea: el clic vale más cuando llega más informado. Si la persona aterriza en tu web después de una comparativa previa, va a buscar contexto, proceso, prueba y una referencia económica mínima. Si no la encuentra, puede volver atrás sin escribirte.</p>
+      <p>Por eso muchas páginas de servicio funcionan mejor cuando responden pequeñas objeciones antes del formulario. Si aún no tienes esa base, revisa también nuestra guía sobre <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a>.</p>
+
+      <h2>Cuándo sí conviene mostrar precios orientativos</h2>
+      <h3>Cuando el servicio tiene rangos relativamente repetibles</h3>
+      <p>Si la mayoría de trabajos cae en tramos reconocibles, puedes enseñar desde cuánto empieza, qué incluye un servicio base o qué factores hacen subir el presupuesto. No hace falta clavar cada caso para ser útil.</p>
+
+      <h3>Cuando recibes muchos leads mal cualificados</h3>
+      <p>Si te escriben personas con expectativas económicas muy alejadas de tu realidad, una referencia orientativa puede ahorrar bastante tiempo a ambos lados. No espanta al lead correcto; normalmente filtra al que no encajaba de todos modos.</p>
+
+      <h3>Cuando compites por confianza</h3>
+      <p>En sectores donde el miedo a “me van a vender humo” es alto, la transparencia ayuda. Un rango, un proyecto tipo o una explicación clara de qué cambia el precio suele generar más credibilidad que un clásico “consúltanos sin compromiso” sin más contexto.</p>
+
+      <h2>Formas inteligentes de mostrar precio sin encerrarte</h2>
+      <ul>
+        <li><strong>Desde X euros:</strong> útil cuando existe un servicio base claro.</li>
+        <li><strong>Rangos orientativos:</strong> útil cuando hay varias casuísticas frecuentes.</li>
+        <li><strong>Ejemplos de proyectos:</strong> útil para servicios personalizados con bastante variación.</li>
+        <li><strong>Qué hace subir o bajar el presupuesto:</strong> muy útil para educar sin fijar una tarifa rígida.</li>
+      </ul>
+      <p>En muchos casos, esta vía funciona mejor que intentar cerrar todo con una única cifra. También ayuda mucho acompañarla de proceso, plazos, alcance y preguntas frecuentes.</p>
+
+      <h2>Cuándo no conviene publicar una cifra demasiado cerrada</h2>
+      <ul>
+        <li>Cuando cada proyecto cambia mucho en complejidad.</li>
+        <li>Cuando dependes de variables que el usuario aún no entiende.</li>
+        <li>Cuando una cifra aislada puede compararte injustamente con soluciones muy distintas.</li>
+      </ul>
+      <p>Incluso en estos casos, suele seguir siendo mejor ofrecer contexto que silencio total. Una explicación honesta de cómo se construye el presupuesto ya reduce bastante fricción.</p>
+
+      <h2>Qué errores son muy comunes</h2>
+      <ul>
+        <li>Publicar precios sin explicar alcance y provocar malos entendidos.</li>
+        <li>Poner una cifra demasiado baja solo para captar formularios.</li>
+        <li>Esconder todo por miedo y obligar al usuario a preguntar lo más básico.</li>
+        <li>No revisar después si la calidad del lead mejora o empeora.</li>
+      </ul>
+
+      <h2>Cómo integrarlo en una página que también convierta</h2>
+      <p>La referencia económica no debería vivir sola. Funciona mejor cuando va junto a:</p>
+      <ul>
+        <li>Una explicación clara del servicio.</li>
+        <li>Casos o ejemplos.</li>
+        <li>Preguntas frecuentes.</li>
+        <li>Un CTA coherente: llamada, formulario breve o WhatsApp.</li>
+      </ul>
+      <p>Si además trabajas respuestas rápidas, puede combinar muy bien con la lógica que contamos en <a href="/blog/whatsapp-google-business-profile-2026-captar-contactos">nuestro artículo sobre WhatsApp y Google Business Profile</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 mostrar precios orientativos suele ayudar más de lo que perjudica, siempre que lo hagas con contexto y sin prometer una cifra falsa. La transparencia bien explicada no solo cualifica mejor: también hace que tu web parezca más útil y más confiable.</p>
+      <p><strong>¿Quieres revisar si tu web debería enseñar rangos, ejemplos o una página de precios mejor trabajada?</strong> En Icono Studio podemos ayudarte a decidir el formato que más sentido tenga para tu servicio y tu tipo de lead. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Mostrar precios en la web espanta a clientes potenciales?',
+        answer: 'A veces puede filtrar a quien no encaja, pero bien planteado suele ahorrar tiempo y generar más confianza en los leads adecuados.'
+      },
+      {
+        question: '¿Hace falta publicar una tarifa exacta?',
+        answer: 'No. En muchos negocios basta con rangos orientativos, ejemplos o una explicación clara de qué factores modifican el presupuesto.'
+      },
+      {
+        question: '¿Qué formato suele funcionar mejor para servicios personalizados?',
+        answer: 'Normalmente funcionan mejor los rangos, los mínimos de entrada o ejemplos de proyectos que una cifra cerrada sin contexto.'
+      }
+    ]
+  },
+  {
+    title: 'Search Console y AI Mode en 2026: cómo medir si tu marca gana visibilidad aunque no suban los clics',
+    subtitle: 'Google ya mezcla AI Mode en los totales de Search Console y eso obliga a interpretar mejor impresiones, consultas de marca y páginas de entrada si no quieres sacar conclusiones pobres.',
+    slug: 'search-console-ai-mode-2026-medicion-visibilidad',
+    date: '04 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Analítica',
+    image: '/blog/search-console-ai-mode-2026.webp',
+    metaTitle: 'Search Console y AI Mode en 2026: cómo medir visibilidad | Icono Studio',
+    metaDescription: 'Cómo interpretar Search Console ahora que AI Mode cuenta en los totales y qué mirar para medir visibilidad de marca sin depender solo de clics.',
+    keywords: ['search console ai mode', 'medir ai overviews', 'ai mode search console', 'visibilidad ia google', 'search console marca 2026'],
+    content: `
+      <p>Medir SEO ya no consiste solo en revisar clics y posiciones. Google documentó en junio de 2025 que <strong>AI Mode cuenta dentro de los totales de Search Console</strong>, y durante 2026 esa realidad ya forma parte del día a día: impresiones, clics y consultas pueden estar influidos por superficies donde el usuario recibe mucha más respuesta antes de visitar una web.</p>
+      <p>Al mismo tiempo, publicaciones recientes de Semrush insisten en otra idea importante: en entornos de búsqueda con IA, <strong>el tráfico deja de ser un KPI suficiente por sí solo</strong> porque muchas respuestas resuelven la duda sin clic. Para un negocio local o de servicios, eso no significa que el SEO haya dejado de importar. Significa que hay que leer mejor las señales.</p>
+
+      <h2>Qué ha cambiado de verdad</h2>
+      <p>Antes podías usar Search Console como una lectura bastante directa de demanda y clic. Ahora sigue siendo útil, pero mezcla más comportamiento. Puedes ganar visibilidad de marca, aparecer en más contextos y aun así no ver un salto proporcional en sesiones. No es necesariamente malo. A veces significa que tu negocio está entrando en más comparativas o respuestas asistidas.</p>
+      <p>Si quieres profundizar en lectura táctica de consultas, revisa también nuestra guía sobre <a href="/blog/search-console-regex-24-horas-intencion-seo-local-2026">Search Console con regex y vista de 24 horas</a>.</p>
+
+      <h2>Qué deberías mirar además de los clics</h2>
+      <h3>Consultas de marca</h3>
+      <p>Si tu nombre de marca y variantes suben, puede ser una señal de que más gente te descubre en respuestas con IA, en Maps o en comparativas previas al clic final. No demuestra por sí sola que vendas más, pero sí que estás entrando en consideración.</p>
+
+      <h3>Impresiones en páginas clave</h3>
+      <p>No todas las impresiones valen lo mismo. Vigila sobre todo páginas de servicio, comparativas, precios, casos y páginas que resuelven dudas previas al contacto. Si esas URLs ganan impresiones mientras la home no cambia demasiado, puede haber una mejora real de presencia temática.</p>
+
+      <h3>Directo, branded y conversiones asistidas</h3>
+      <p>Cuando la búsqueda responde más dentro del propio resultado, el usuario muchas veces vuelve después por marca, entra en directo o te busca en Maps. Por eso conviene leer Search Console junto a GA4, llamadas, formularios y contactos por WhatsApp.</p>
+
+      <h2>Un cuadro de mando simple para negocios pequeños</h2>
+      <ul>
+        <li>Consultas de marca frente a consultas no de marca.</li>
+        <li>Impresiones y clics de las páginas de servicio más importantes.</li>
+        <li>CTR en contenidos donde sabes que compites con respuestas generativas.</li>
+        <li>Contactos reales por formulario, llamada o WhatsApp.</li>
+        <li>Subidas o bajadas semanales tras cambios de contenido o de ficha local.</li>
+      </ul>
+      <p>Ese panel es mucho más útil que mirar una sola gráfica de tráfico y asumir que todo va bien o mal.</p>
+
+      <h2>Qué errores se están cometiendo mucho</h2>
+      <ul>
+        <li>Celebrar impresiones altas sin revisar si afectan a páginas que de verdad apoyan el negocio.</li>
+        <li>Obsesionarse con que bajen algunos clics informativos aunque suba la visibilidad de marca.</li>
+        <li>No separar contenido de descubrimiento y páginas con intención comercial.</li>
+        <li>No revisar si el aumento de marca coincide con más llamadas, formularios o búsquedas en Maps.</li>
+      </ul>
+
+      <h2>Cómo conectar esta lectura con contenido nuevo</h2>
+      <p>Cuando veas consultas nuevas, comparativas o preguntas más largas, no corras a abrir diez posts mediocres. Agrupa primero por intención y decide si necesitas:</p>
+      <ul>
+        <li>Mejorar una página existente.</li>
+        <li>Crear una guía o FAQ nueva.</li>
+        <li>Añadir prueba, precios o casos.</li>
+        <li>Refinar títulos y fragmentos para competir mejor por el clic.</li>
+      </ul>
+      <p>Esto conecta con lo que ya trabajamos en <a href="/blog/inline-links-previas-ai-overviews-2026-clic">AI Overviews con enlaces inline y previews</a>: la batalla no es solo aparecer, sino merecer el clic cuando Google ya ha dado parte de la respuesta.</p>
+
+      <h2>Conclusión</h2>
+      <p>Search Console sigue siendo una herramienta central, pero en 2026 conviene leerla con más contexto. Si AI Mode ya está dentro de los totales, la interpretación cambia: menos obsesión con el clic aislado y más atención a marca, páginas citables, intención y conversiones posteriores.</p>
+      <p><strong>¿Quieres una lectura más útil de Search Console y de tus páginas clave?</strong> En Icono Studio podemos ayudarte a separar ruido, detectar contenido que sí empuja negocio y priorizar mejor el siguiente paso. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿AI Mode ya cuenta dentro de Search Console?',
+        answer: 'Sí. Google documentó que los datos de AI Mode cuentan dentro de los totales del informe de rendimiento de Search Console.'
+      },
+      {
+        question: '¿Entonces Search Console ya no sirve para medir SEO?',
+        answer: 'Sí sirve, pero hay que interpretarlo con más cuidado y combinarlo con consultas de marca, páginas clave y conversiones reales.'
+      },
+      {
+        question: '¿Qué debería mirar primero un negocio local?',
+        answer: 'Consultas de marca, páginas de servicio, contactos por llamada o formulario y cualquier cambio claro en páginas con intención comercial.'
+      }
+    ]
+  },
+  {
+    title: 'Páginas por barrio, código postal o zona: cuándo ayudan al SEO local y cuándo parecen spam en 2026',
+    subtitle: 'Crear páginas locales sigue funcionando, pero solo cuando responden a una diferencia real de servicio. Si duplicas texto y cambias el barrio, lo más normal es que no ayude.',
+    slug: 'paginas-barrio-codigo-postal-zona-seo-local-2026',
+    date: '04 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: '/blog/paginas-barrio-zona-seo-local-2026.webp',
+    metaTitle: 'Páginas por barrio o zona para SEO local en 2026 | Icono Studio',
+    metaDescription: 'Cuándo crear páginas por barrio, código postal o zona para SEO local y cómo evitar que parezcan spam o páginas doorway.',
+    keywords: ['paginas locales seo', 'pagina por barrio seo local', 'codigo postal seo local', 'paginas por zona negocio local', 'seo local barrios'],
+    content: `
+      <p>Las búsquedas locales se están volviendo más específicas. Semrush destaca en su guía reciente de local keyword research que los negocios de área de servicio suelen encontrar <strong>menos competencia y más intención inmediata</strong> en términos por barrio, distrito o código postal. Esa parte es interesante. Pero no debería llevar a una conclusión perezosa: abrir veinte páginas casi idénticas y cambiar solo el nombre de la zona.</p>
+      <p>Una página local funciona cuando resuelve una intención real. Si tu negocio trabaja mejor ciertas áreas, tiene casos cercanos, tiempos de respuesta distintos, restricciones geográficas o mensajes concretos por zona, entonces sí hay materia para crearla. Si no, puede terminar pareciendo una doorway page más que una ayuda para el usuario.</p>
+
+      <h2>Cuándo sí tiene sentido crear páginas por zona</h2>
+      <h3>Atiendes realmente esa zona</h3>
+      <p>Parece obvio, pero conviene decirlo: no abras páginas donde no das servicio. En un negocio local, prometer cobertura donde no la hay solo aumenta rebote, llamadas improductivas y mala percepción.</p>
+
+      <h3>La zona cambia el contexto comercial</h3>
+      <p>No es lo mismo vender a barrios residenciales que a zonas con despachos, clínicas o retail. Si cambian horarios, tipo de cliente, urgencia, servicio medio o casuísticas frecuentes, hay base para una página nueva.</p>
+
+      <h3>Tienes prueba local que mostrar</h3>
+      <p>Casos, reseñas, fotos, tiempos de desplazamiento, preguntas frecuentes y referencias concretas hacen que una página local deje de ser genérica. Sin esa capa, suele quedarse en una repetición floja de la página principal.</p>
+
+      <h2>Qué debería incluir una buena página local</h2>
+      <ul>
+        <li>Una introducción específica sobre cómo trabajas en esa zona.</li>
+        <li>Servicios concretos con matices reales, no un copiar y pegar.</li>
+        <li>Señales de confianza: casos, testimonios o trabajos cercanos.</li>
+        <li>Preguntas frecuentes ligadas a desplazamiento, cobertura, plazos o normativa local.</li>
+        <li>Una llamada a la acción clara y coherente con el servicio.</li>
+      </ul>
+      <p>Si además estás trabajando ficha local y contenidos de apoyo, la página encaja mejor dentro de un sistema. En ese punto ayuda bastante nuestra guía de <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">SEO local para pequeñas empresas</a>.</p>
+
+      <h2>Qué suele hacer que parezcan spam</h2>
+      <ul>
+        <li>Cambiar solo el barrio o código postal en un texto idéntico.</li>
+        <li>No aportar ninguna diferencia operativa, comercial o de prueba.</li>
+        <li>Crear docenas de páginas antes de validar si dos o tres funcionan.</li>
+        <li>Enlazarlas mal y dejar claro que nacieron solo para capturar keywords.</li>
+      </ul>
+      <p>Si quieres trabajar bien esta capa, empieza por la intención y no por el volumen. Nuestro artículo sobre <a href="/blog/keyword-research-negocios-locales-palabras-clave-clientes">keyword research para negocios locales</a> puede ayudarte a elegir mejor antes de abrir páginas sin criterio.</p>
+
+      <h2>Una forma razonable de escalarlo</h2>
+      <p>La mayoría de negocios no necesita veinte páginas locales de salida. Lo más sensato suele ser:</p>
+      <ul>
+        <li>Crear una buena página general de servicio o de ciudad.</li>
+        <li>Identificar dos o tres zonas con intención fuerte y cobertura real.</li>
+        <li>Construir páginas con prueba y copy específicos.</li>
+        <li>Medir formularios, llamadas y búsquedas de marca relacionadas.</li>
+      </ul>
+
+      <h2>Cuándo es mejor no hacerlo</h2>
+      <p>Si tu negocio trabaja en un radio muy pequeño, si apenas tienes prueba diferenciadora o si aún no has resuelto bien la página principal del servicio, probablemente no sea el momento. En muchos casos rinde más mejorar estructura, copy y confianza de la página madre que abrir micrositios internos flojos.</p>
+
+      <h2>Conclusión</h2>
+      <p>Las páginas por barrio o zona siguen teniendo sentido en 2026, pero no como plantilla masiva. Funcionan cuando representan una diferencia real y ayudan al usuario a decidir si ese negocio le encaja. Si no puedes defender por qué una página existe, probablemente no deberías publicarla todavía.</p>
+      <p><strong>¿Quieres decidir qué páginas locales tienen sentido para tu negocio y cuáles sobran?</strong> En Icono Studio podemos ayudarte a ordenar arquitectura, intención y prueba para que el SEO local no se convierta en ruido. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Crear páginas por barrio sigue funcionando en SEO local?',
+        answer: 'Sí, pero sobre todo cuando existe una diferencia real de cobertura, mensaje o prueba para esa zona.'
+      },
+      {
+        question: '¿Puedo duplicar una plantilla y cambiar solo el nombre del barrio?',
+        answer: 'No es recomendable. Ese enfoque suele generar páginas débiles, poco útiles y con apariencia de spam.'
+      },
+      {
+        question: '¿Cuántas páginas locales debería crear al principio?',
+        answer: 'Normalmente pocas. Es mejor empezar por dos o tres zonas prioritarias y medir resultados antes de escalar.'
+      }
+    ]
+  },
+  {
+    title: '5 herramientas que merece la pena conectar a tu web en 2026 para no perder leads',
+    subtitle: 'Muchos negocios siguen viendo su web como una tarjeta digital. En la práctica, sin medición, seguimiento y respuesta rápida, gran parte del interés se enfría antes de que puedas vender.',
+    slug: 'herramientas-conectar-web-no-perder-leads-2026',
+    date: '04 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Herramientas',
+    image: '/blog/herramientas-web-no-perder-leads-2026.webp',
+    metaTitle: '5 herramientas para conectar a tu web en 2026 | Icono Studio',
+    metaDescription: 'Cinco herramientas o capas básicas que conviene conectar a una web de negocio en 2026 para medir, responder mejor y no perder leads.',
+    keywords: ['herramientas para una web de negocio', 'stack web pyme', 'herramientas captar leads web', 'conectar whatsapp web empresa', 'medir leads pagina web'],
+    content: `
+      <p>Una tendencia muy repetida en 2026 es que las pequeñas empresas ya no están “probando” tecnología por curiosidad, sino buscando herramientas que resuelvan fricción real. Wix lo resume bien cuando habla de <strong>adopción de IA y herramientas con resultados medibles</strong>. Ese mismo criterio sirve para una web de negocio: menos apps por moda y más piezas que te ayuden a responder mejor, medir mejor y dejar menos oportunidades por el camino.</p>
+      <p>Si tu web recibe visitas pero no sabes de dónde vienen los contactos, cuánto tardas en responder o qué formularios generan oportunidades decentes, no te falta tráfico: te falta sistema.</p>
+
+      <h2>1. Search Console para saber qué te trae visibilidad</h2>
+      <p>Es la base para entender consultas, páginas con impresiones y cambios de demanda. No sirve solo para “SEO técnico”; también te ayuda a descubrir si la gente busca tu servicio, tu marca o problemas que todavía no estás resolviendo bien con contenido.</p>
+      <p>Con los cambios en IA y búsqueda, conviene leerla con más criterio, como explicamos en <a href="/blog/search-console-ai-mode-2026-medicion-visibilidad">nuestra guía sobre Search Console y AI Mode</a>.</p>
+
+      <h2>2. Analítica para no decidir a ciegas</h2>
+      <p>Necesitas ver qué páginas sostienen visitas, qué formularios convierten, desde qué dispositivo llegan y dónde se cae la gente. No hace falta montar un laboratorio. Hace falta registrar bien contactos, clics en teléfono, envíos y páginas de entrada.</p>
+      <p>Sin esa lectura, es fácil tocar diseño o copy por intuición y mantener intacto el problema real.</p>
+
+      <h2>3. Un canal de respuesta rápida</h2>
+      <p>En muchos negocios de servicios, WhatsApp, llamada directa o un formulario muy corto mejoran bastante el primer contacto. La clave no es tener todos los canales posibles, sino tener <strong>uno o dos bien atendidos</strong>. Si el usuario quiere resolver una duda simple y la web solo ofrece un formulario largo, muchas oportunidades se enfrían.</p>
+      <p>Esto conecta con la lógica que explicamos en <a href="/blog/whatsapp-google-business-profile-2026-captar-contactos">WhatsApp en Google Business Profile</a>: reducir fricción solo funciona si alguien responde de verdad.</p>
+
+      <h2>4. Un sistema sencillo para seguir los leads</h2>
+      <p>No hace falta un CRM complejo desde el primer día, pero sí un lugar donde anotar origen, estado y resultado del contacto. Si no sabes qué pasó con cada lead, luego tampoco sabrás qué páginas, anuncios o contenidos merecen más inversión.</p>
+      <ul>
+        <li>Puede ser un CRM ligero.</li>
+        <li>Puede ser un pipeline muy simple.</li>
+        <li>Incluso puede empezar en una hoja bien montada si alguien la mantiene.</li>
+      </ul>
+      <p>Lo importante es cerrar el bucle entre visita, lead y venta.</p>
+
+      <h2>5. Una capa de agenda o siguiente paso claro</h2>
+      <p>Muchos negocios pierden clientes potenciales porque el contacto no avanza. Si después del formulario todo depende de “ya te llamaremos”, la web genera interés pero no progreso. En algunos sectores ayuda bastante ofrecer una cita, una llamada breve o un siguiente paso definido.</p>
+      <p>No todas las empresas necesitan reserva automática, pero casi todas se benefician de una transición más clara entre interés y conversación.</p>
+
+      <h2>Qué no hace falta instalar de entrada</h2>
+      <ul>
+        <li>Chatbots genéricos que nadie supervisa.</li>
+        <li>Cuatro formularios distintos con la misma función.</li>
+        <li>Herramientas de automatización sin proceso comercial detrás.</li>
+        <li>Dashboards complejos que nadie consulta.</li>
+      </ul>
+      <p>La mejor stack para una pyme no suele ser la más grande. Suele ser la que evita olvidos, mide lo esencial y acorta el tiempo de respuesta.</p>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 una web útil no vive aislada. Necesita medición, un canal rápido, seguimiento y un siguiente paso comercial claro. Si conectas bien esas cinco capas, tu web deja de ser un escaparate y empieza a funcionar como herramienta de negocio.</p>
+      <p><strong>¿Quieres revisar qué le falta a tu web para dejar de perder leads silenciosamente?</strong> En Icono Studio podemos ayudarte a ordenar la parte visible y la parte operativa para que el sitio trabaje a favor del negocio. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuál es la herramienta mínima que debería tener cualquier web de negocio?',
+        answer: 'Como mínimo, Search Console, una capa de analítica básica y un sistema claro de contacto o seguimiento.'
+      },
+      {
+        question: '¿Hace falta un CRM desde el primer día?',
+        answer: 'No siempre, pero sí hace falta registrar el origen y el estado de los leads de alguna forma consistente.'
+      },
+      {
+        question: '¿WhatsApp siempre mejora la captación?',
+        answer: 'No siempre. Ayuda cuando reduce fricción y alguien responde rápido; si se abandona, puede empeorar la experiencia.'
+      }
+    ]
+  },
+  {
+    title: '¿Tu negocio sigue necesitando una web propia en 2026? Sí, aunque te encuentren en Maps, redes y ChatGPT',
+    subtitle: 'La búsqueda se ha fragmentado, pero eso no convierte una ficha o una red social en sustituto real de tu web. Lo que cambia es el papel que juega el sitio dentro del proceso de decisión.',
+    slug: 'negocio-necesita-web-propia-2026-maps-redes-chatgpt',
+    date: '04 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Estrategia Digital',
+    image: '/blog/web-propia-maps-redes-chatgpt-2026.webp',
+    metaTitle: '¿Tu negocio necesita una web propia en 2026? | Icono Studio',
+    metaDescription: 'Por qué una web propia sigue siendo clave en 2026 aunque tu negocio aparezca en Maps, redes sociales y respuestas con IA.',
+    keywords: ['mi negocio necesita una web', 'web propia vs redes sociales', 'web propia 2026', 'negocio local chatgpt maps', 'importancia pagina web empresa'],
+    content: `
+      <p>Es una duda cada vez más común: si ya aparezco en Google Maps, tengo Instagram activo y mucha gente hace preguntas en ChatGPT o Gemini, ¿de verdad necesito una web propia? La respuesta corta es sí. Pero no por nostalgia digital, sino porque la web sigue siendo el <strong>activo que controlas</strong> cuando el resto de plataformas cambian reglas, formato o visibilidad.</p>
+      <p>WordStream lo resume muy bien en su informe reciente para pymes: una página de resultados puede mezclar vídeos, respuestas con IA, Reddit, redes y directorios. Esa fragmentación no elimina la necesidad de web; al contrario, hace más importante tener un sitio que cierre la comparación cuando alguien quiere comprobar si tu negocio es fiable, cuánto cuesta, cómo trabajas y qué paso debe dar después.</p>
+
+      <h2>Lo que sí hacen bien Maps, redes y la IA</h2>
+      <p>Descubren, inspiran, reactivan y responden dudas rápidas. Todo eso es útil. Tu ficha de Google puede generar llamadas, tus redes pueden crear recuerdo y una respuesta con IA puede meterte en una comparativa. Pero ninguna de esas superficies te deja explicar con calma servicios complejos, ordenar prueba, segmentar por intención y medir bien la conversión.</p>
+
+      <h2>Lo que solo una web propia te da de forma sólida</h2>
+      <h3>Control del mensaje</h3>
+      <p>En tu web decides qué servicios priorizas, cómo presentas el precio, qué casos destacas y cuál es el siguiente paso. En plataformas ajenas siempre dependes de formatos limitados o de cómo otro sistema interpreta tu negocio.</p>
+
+      <h3>Capacidad de convertir distinto según la intención</h3>
+      <p>Una ficha o un perfil social no suelen servir igual para alguien que compara opciones, alguien que ya conoce tu marca y alguien que quiere pedir presupuesto hoy. En una web sí puedes adaptar páginas, FAQs, casos, formularios y llamadas a la acción a cada momento del proceso.</p>
+
+      <h3>Medición y mejora</h3>
+      <p>La web permite conectar analítica, formularios, llamadas, eventos y contenidos. Sin esa base, es muy difícil saber qué está empujando negocio y qué solo genera ruido.</p>
+
+      <h2>Además, Google no te pide nada raro</h2>
+      <p>La propia guía de Google para rendir bien en sus experiencias de IA insiste en una idea muy estable: sigue importando crear contenido útil, original y satisfactorio para las personas. Es decir, no hace falta escribir “para la IA” en abstracto; hace falta tener páginas claras, confiables y fáciles de entender. Tu web es donde mejor puedes construir eso.</p>
+
+      <h2>Cuándo una web sencilla sigue siendo suficiente</h2>
+      <p>No todos los negocios necesitan un portal enorme. A veces basta con una web compacta, rápida y bien enfocada que resuelva cinco cosas:</p>
+      <ul>
+        <li>Qué haces exactamente.</li>
+        <li>Para quién lo haces.</li>
+        <li>Qué prueba o confianza puedes enseñar.</li>
+        <li>Qué zonas cubres o cómo trabajas.</li>
+        <li>Qué paso debe dar el usuario ahora.</li>
+      </ul>
+      <p>Eso ya marca mucha diferencia frente a depender solo de terceros.</p>
+
+      <h2>Cuándo es especialmente peligrosa la dependencia de terceros</h2>
+      <ul>
+        <li>Si tu captación depende casi toda de una red social.</li>
+        <li>Si no puedes explicar bien precios, proceso o diferencias.</li>
+        <li>Si no tienes un sitio donde agrupar reseñas, casos y FAQs.</li>
+        <li>Si un cambio de algoritmo te deja sin canal principal.</li>
+      </ul>
+
+      <h2>La idea correcta para 2026</h2>
+      <p>No se trata de elegir entre web, Maps o redes. Se trata de entender la web como <strong>el centro que da coherencia</strong> a todo lo demás. Maps atrae, las redes alimentan recuerdo, la IA puede mencionarte y la web convierte, explica y mide. Cuando falta esa pieza, el sistema se vuelve frágil.</p>
+      <p>Si quieres reforzar precisamente la parte de captación, enlaza esta reflexión con nuestra guía sobre <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 tu negocio puede ser descubierto en más sitios que nunca, pero eso no vuelve prescindible a la web propia. La vuelve más estratégica. Es el espacio donde explicas mejor, mides mejor y conviertes con menos dependencia de plataformas ajenas.</p>
+      <p><strong>¿Tu negocio depende demasiado de perfiles externos y quieres recuperar control?</strong> En Icono Studio podemos ayudarte a construir una web que complemente Maps, redes y búsqueda con IA en lugar de pelearse con ellas. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Puedo vivir solo de Instagram o Google Maps sin web?',
+        answer: 'Depende del negocio, pero es arriesgado. Esos canales ayudan a descubrirte, pero una web propia te da control, explicación y medición.'
+      },
+      {
+        question: '¿La IA hará menos necesaria una web?',
+        answer: 'No. Puede cambiar cómo te descubren, pero la web sigue siendo clave para demostrar confianza, resolver objeciones y convertir.'
+      },
+      {
+        question: '¿Necesito una web grande para que tenga sentido?',
+        answer: 'No necesariamente. Muchas veces una web pequeña, clara y bien enfocada funciona mejor que un sitio grande pero confuso.'
+      }
+    ]
+  }
+];
+
 export const blogPosts: BlogPost[] = [
+  ...latestBlogPosts,
   {
     title: 'WhatsApp en Google Business Profile en 2026: cómo captar más contactos sin depender solo del formulario',
     subtitle: 'Google permite añadir WhatsApp o SMS en la ficha en algunas regiones. Bien planteado, ese botón reduce fricción y acelera leads para negocios de servicios.',
