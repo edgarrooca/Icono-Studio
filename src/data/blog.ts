@@ -382,6 +382,447 @@ const latestBlogPosts: BlogPost[] = [
 export const blogPosts: BlogPost[] = [
   ...latestBlogPosts,
   {
+    title: 'Profile Strength en Google Business Profile: cómo subirlo sin tocar por tocar en 2026',
+    subtitle: 'Google ya muestra un indicador de fortaleza del perfil. Bien usado, te ayuda a detectar huecos reales en tu ficha antes de perder clics, llamadas o reservas.',
+    slug: 'profile-strength-google-business-profile-2026',
+    date: '06 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: '/blog/profile-strength-google-business-profile-2026.webp',
+    metaTitle: 'Profile Strength en Google Business Profile | Icono Studio',
+    metaDescription: 'Qué es Profile Strength en Google Business Profile, qué conviene completar primero y cómo usarlo para mejorar tu ficha sin caer en tareas vacías.',
+    keywords: ['profile strength google business profile', 'fortaleza del perfil google', 'google business profile 2026', 'social links google business profile', 'booking links google business profile'],
+    content: `
+      <p>Google Business Profile sigue ganando peso como punto de contacto real entre búsqueda, Maps y decisión comercial. Y ahora Google empuja más esa gestión con una señal visible dentro del panel: <strong>Profile Strength</strong>. La ayuda oficial explica que este indicador sirve para <strong>detectar información incompleta</strong>, revisar la consistencia del perfil en productos de Google y añadir contenido como fotos, vídeos o posts. Para un negocio de servicios, la lectura útil no es “quiero llegar al 100%”. La lectura útil es otra: <strong>qué me falta para perder menos oportunidades</strong>.</p>
+      <p>Muchos negocios rellenan la ficha una vez, la verifican y no vuelven a mirarla hasta que aparece una reseña o un cambio de horario. Ese hábito ya se queda corto. Si Google ya te está enseñando dónde ve huecos en tu perfil, ignorarlo equivale a dejar fricción sin resolver en uno de los canales donde más intención hay.</p>
+
+      <h2>Qué revisa realmente Profile Strength</h2>
+      <p>Según la documentación de Google, el indicador ayuda a identificar información que falta en la ficha, como <strong>descripción, horario y datos de contacto</strong>. También busca que el perfil sea coherente entre Google Search, Google Maps y Google Shopping, y te anima a añadir contenido nuevo.</p>
+      <p>Eso significa que no habla solo de “rellenar casillas”. Habla de tener una ficha utilizable: con datos claros, acciones visibles y señales de actividad. Para un negocio local eso afecta tanto a la confianza como a la conversión.</p>
+
+      <h2>Qué conviene completar primero</h2>
+      <h3>1. Horario, teléfono y web correctos</h3>
+      <p>Es la base. Si el horario no coincide con la realidad, el usuario duda. Si el teléfono no se atiende o la URL lleva a una página débil, la ficha promete más de lo que cumple. Antes de tocar elementos secundarios, revisa la capa mínima: nombre comercial correcto, categoría adecuada, horario actualizado, teléfono operativo y enlace web que resuelva la intención.</p>
+
+      <h3>2. Enlaces de contacto y acción</h3>
+      <p>Google indica que el perfil puede dirigir a la <strong>web, redes sociales, enlaces de reserva y más</strong>. Además, la ayuda oficial de enlaces locales explica que se pueden añadir enlaces para reservar citas, pedidos u otras acciones según categoría, y que algunos proveedores terceros pueden mostrarse automáticamente. Si tu negocio trabaja con consulta, cita o llamada previa, reducir ese paso suele tener bastante impacto.</p>
+      <p>Si todavía dependes solo del formulario genérico, enlaza este trabajo con lo que ya vimos en <a href="/blog/whatsapp-google-business-profile-2026-captar-contactos">nuestra guía sobre WhatsApp en la ficha</a>. La idea no es abrir más canales porque sí, sino dejar visibles los que realmente atiendes.</p>
+
+      <h3>3. Redes sociales y prueba de actividad</h3>
+      <p>Google también permite añadir enlaces sociales en regiones seleccionadas. Esto no convierte tu ficha en una red social, pero sí ayuda a reforzar confianza cuando el usuario quiere comprobar si el negocio está vivo, si muestra trabajos recientes o si responde de forma normal a clientes reales.</p>
+      <p>Para muchos negocios pequeños, tener Facebook, Instagram, LinkedIn o YouTube bien conectados es una forma sencilla de dar contexto sin complicar la web principal.</p>
+
+      <h3>4. Fotos, vídeos y publicaciones</h3>
+      <p>Profile Strength también empuja a añadir contenido. Aquí conviene ser pragmático: mejor pocas piezas útiles que una acumulación sin criterio. Fotos del equipo, trabajos reales, espacios, proceso y publicaciones concretas suelen aportar más que imágenes de stock o textos vacíos. Si quieres profundizar en esa parte, revisa <a href="/blog/google-posts-2026-como-usarlos-google-business-profile">cómo usar bien Google Posts en 2026</a>.</p>
+
+      <h2>Lo importante: fuerza del perfil no equivale a ranking automático</h2>
+      <p>Conviene decirlo claro: <strong>tener un Profile Strength alto no garantiza aparecer arriba</strong>. Google no presenta esta métrica como un factor mágico de posicionamiento. Lo razonable es verla como un asistente operativo: te señala qué partes de la ficha están cojas para que dejes menos dudas sin resolver.</p>
+      <p>En la práctica, una ficha más completa y coherente suele ayudar a captar mejor porque reduce fricción: más claridad, menos pasos y más confianza. Pero sigue necesitando lo demás: reseñas, categorías correctas, páginas de servicio útiles, coherencia NAP y una propuesta que merezca el clic.</p>
+
+      <h2>Cómo usar esta métrica sin caer en trabajo vacío</h2>
+      <ul>
+        <li>Abre la ficha una vez por semana y anota qué te está pidiendo completar.</li>
+        <li>Prioriza lo que afecta a conversión: contacto, horarios, enlaces y servicios.</li>
+        <li>Revisa si la ficha y la web dicen exactamente lo mismo.</li>
+        <li>Publica contenido solo cuando aporta contexto real al cliente.</li>
+        <li>Comprueba si hay enlaces o proveedores automáticos que no te interesan.</li>
+      </ul>
+      <p>La clave es que cada mejora responda a una pregunta del usuario. Si no mejora claridad, acceso o confianza, probablemente no merece ser prioridad.</p>
+
+      <h2>Errores frecuentes al intentar “subir” el perfil</h2>
+      <ul>
+        <li>Perseguir el 100% como si fuera un objetivo de vanidad.</li>
+        <li>Añadir redes o enlaces que nadie gestiona.</li>
+        <li>Subir fotos irrelevantes solo por llenar.</li>
+        <li>Dejar una ficha muy cuidada apuntando a una web floja.</li>
+        <li>No revisar cambios después de modificar horarios, zonas o servicios.</li>
+      </ul>
+
+      <h2>Qué haría primero un negocio pequeño con poco tiempo</h2>
+      <p>Si solo tuvieras una hora esta semana, el orden razonable sería este: revisar horario y contacto, validar la URL principal, completar descripción y servicios, añadir enlaces de acción si los atiendes de verdad y subir dos o tres fotos útiles. Con esa base, ya merece la pena mirar posts, redes y piezas más finas.</p>
+      <p>Luego conecta la ficha con una web que convierta mejor. Si esa parte aún no está resuelta, te interesa revisar también <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a> y <a href="/blog/google-business-profile-google-my-business-checklist-maps">nuestra checklist de Google Business Profile</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>Profile Strength no es una novedad para entretenerte dentro del panel. Es una forma bastante directa de ver si tu ficha está incompleta justo en el momento en que Google Search y Maps están actuando como escaparate, filtro y punto de contacto. Usado con criterio, te ayuda a detectar fricción real y a resolverla por impacto, no por ansiedad.</p>
+      <p><strong>¿Quieres que revisemos tu ficha y la web a la que apunta para que trabajen juntas?</strong> En Icono Studio podemos ayudarte a ordenar presencia local, contenido y conversión. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Tener el Profile Strength al máximo mejora por sí solo el posicionamiento?',
+        answer: 'No de forma automática. Es una señal operativa para completar mejor la ficha, no un atajo garantizado para subir posiciones.'
+      },
+      {
+        question: '¿Profile Strength está disponible para cualquier ficha?',
+        answer: 'Google indica que el indicador aparece en perfiles verificados. Si tu perfil no está verificado, es posible que no veas esta función.'
+      },
+      {
+        question: '¿Conviene añadir redes sociales y enlaces de reserva?',
+        answer: 'Sí, si esos canales se gestionan de verdad y reducen pasos al usuario. Si no los atiendes bien, solo añades fricción nueva.'
+      }
+    ]
+  },
+  {
+    title: 'Herramientas de IA para pymes en 2026: stack simple para ahorrar tiempo sin montar un caos',
+    subtitle: 'La tendencia no es usar veinte apps. Es elegir pocas herramientas que quiten trabajo repetitivo y ayuden a vender mejor desde la web, el email y la atención comercial.',
+    slug: 'herramientas-ia-pymes-2026-stack-simple',
+    date: '06 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Herramientas & IA',
+    image: '/blog/herramientas-ia-pymes-2026.webp',
+    metaTitle: 'Herramientas de IA para pymes en 2026 | Icono Studio',
+    metaDescription: 'Stack práctico de herramientas de IA para pymes en 2026: qué capas conviene tener, qué automatizar primero y cómo evitar una pila caótica.',
+    keywords: ['herramientas ia pymes 2026', 'ia para pequenos negocios', 'stack ia negocio local', 'automatizaciones para pymes', 'apps ia para empresas pequeñas'],
+    content: `
+      <p>La conversación sobre IA para pymes ya no va de “probar cosas” por curiosidad. Va de <strong>elegir un stack pequeño que quite trabajo repetitivo y ayude a vender mejor</strong>. Los datos de la encuesta 2026 del SBE Council apuntan justo ahí: <strong>el 82% de los pequeños negocios ya usa al menos una herramienta de IA</strong>, la empresa típica usa cinco y dos tercios dicen que la IA se relaciona con crecimiento de ingresos. Además, el negocio medio ahorra horas semanales reales en trabajo del dueño y del equipo.</p>
+      <p>El error habitual es responder a esa tendencia con una pila desordenada: una app para textos, otra para imágenes, otra para responder mensajes, otra para automatizar, otra para analítica... y al final nadie sabe qué está conectado con qué. Para una pyme que quiere resultados sin volverse técnica, conviene pensar en <strong>capas funcionales</strong>, no en coleccionar herramientas.</p>
+
+      <h2>Qué están indicando los datos ahora mismo</h2>
+      <p>La misma encuesta del SBE Council señala que la web del propio negocio sigue siendo la <strong>principal fuente de ingresos</strong>, mientras que email marketing, redes, anuncios y contenido acompañan el sistema. En paralelo, Constant Contact destaca que en 2026 la IA ya se usa sobre todo para <strong>analizar tendencias, crear contenido y producir activos visuales</strong>. Traducido a decisiones prácticas: la IA rinde más cuando se conecta con captación, seguimiento y eficiencia operativa, no cuando se queda aislada generando texto bonito.</p>
+
+      <h2>Un stack simple suele tener cuatro capas</h2>
+      <h3>1. Un asistente generalista para pensar y escribir mejor</h3>
+      <p>Aquí entran herramientas como ChatGPT, Gemini o Claude. No necesitas tres a la vez. Para una pyme normal, basta una herramienta capaz de ayudarte con borradores de emails, ideas de posts, propuestas, preguntas frecuentes, comparativas y scripts de atención inicial.</p>
+      <p>La clave no es pedirle “escríbeme un artículo”. La clave es usarla con contexto: quién es tu cliente, qué objeciones repite, qué servicios vendes y qué tono manejas. Si no le das eso, te devolverá texto genérico y parecerá que la IA “no sirve”.</p>
+
+      <h3>2. Una capa visual para piezas rápidas</h3>
+      <p>Muchos negocios necesitan imágenes sencillas para posts, presentaciones, mini banners, portadas o anuncios. Ahí suele bastar con una herramienta visual accesible y, cuando haga falta retocar algo rápido, un editor como <a href="/blog/photopea-photoshop-online-guia">Photopea</a>. El objetivo no es convertir cada pieza en una campaña de branding. Es sacar material correcto, consistente y ligero para web, email y ficha de Google.</p>
+
+      <h3>3. Una capa de automatización para no repetir tareas</h3>
+      <p>Si un formulario entra en tu web y luego alguien copia datos a mano a un correo, una hoja o un CRM, ahí ya hay una oportunidad clara. Herramientas como Make, Zapier o n8n suelen entrar aquí. No hace falta empezar con flujos complejos; basta con automatizar lo obvio:</p>
+      <ul>
+        <li>Formulario web a hoja, CRM o email interno.</li>
+        <li>Solicitud de presupuesto a respuesta automática inicial.</li>
+        <li>Nuevo cliente a recordatorio de reseña o seguimiento.</li>
+        <li>Lead sin respuesta a aviso interno al equipo.</li>
+      </ul>
+
+      <h3>4. Una capa de retención y seguimiento</h3>
+      <p>Aquí entra el sistema que mantiene viva la relación: email marketing, CRM sencillo, recordatorios comerciales o secuencias básicas. Es la capa que evita que la web solo capte visitas para luego dejarlas enfriar. Y es especialmente importante si tu ciclo comercial no se cierra en la primera llamada.</p>
+
+      <h2>Qué stack encaja mejor para un negocio de 40 o 50 años que quiere orden, no juguetes</h2>
+      <p>Si eres dueño de negocio y no quieres convertirte en “experto en IA”, piensa así:</p>
+      <ul>
+        <li>Una herramienta generalista para ideas, propuestas, copy y apoyo comercial.</li>
+        <li>Una herramienta visual para creatividades ligeras y materiales rápidos.</li>
+        <li>Una automatización muy concreta entre la web y el seguimiento.</li>
+        <li>Un sistema de email o CRM que no deje dormir los contactos.</li>
+      </ul>
+      <p>Con eso ya puedes cubrir bastante sin entrar en una maraña cara. La prueba de que funciona es sencilla: menos tareas repetitivas, respuestas más rápidas y mejor seguimiento del lead.</p>
+
+      <h2>Qué automatizar primero</h2>
+      <p>No empieces por el experimento más llamativo. Empieza por lo que hoy ya te roba tiempo o te hace perder ventas:</p>
+      <ul>
+        <li>Responder antes a quien pide información desde la web.</li>
+        <li>Preparar borradores de propuesta o email comercial.</li>
+        <li>Generar resúmenes de reuniones o llamadas.</li>
+        <li>Crear piezas básicas para redes, posts o newsletters.</li>
+        <li>Recuperar oportunidades olvidadas con seguimiento automático.</li>
+      </ul>
+      <p>Si tu web todavía no tiene una estructura decente para captar bien, arregla primero eso. La IA multiplica sistemas buenos; no corrige una base floja. Puedes revisar aquí <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a>.</p>
+
+      <h2>Errores típicos al montar un stack de IA</h2>
+      <ul>
+        <li>Comprar varias suscripciones antes de definir el problema que resuelven.</li>
+        <li>Usar IA solo para publicar más, sin mejorar propuesta ni seguimiento.</li>
+        <li>No documentar prompts, procesos ni responsables.</li>
+        <li>Automatizar una experiencia mediocre en vez de mejorarla primero.</li>
+        <li>Olvidar analítica, CRM o trazabilidad del lead.</li>
+      </ul>
+
+      <h2>Una forma sensata de implantarlo en 30 días</h2>
+      <p>Semana 1: detecta tres tareas repetitivas. Semana 2: elige una sola herramienta generalista y una sola automatización sencilla. Semana 3: conecta web, email y seguimiento. Semana 4: mide si tardas menos en responder y si dejas menos oportunidades perdidas.</p>
+      <p>Eso encaja mucho mejor con la realidad de una pyme que una transformación total llena de siglas. Si después funciona, ya ampliarás. Si no, al menos habrás aprendido con riesgo bajo.</p>
+
+      <h2>Conclusión</h2>
+      <p>Las herramientas de IA sí están interesando a las pymes, pero no porque estén de moda. Interesan porque ahorran tiempo, mejoran seguimiento y ayudan a competir con más orden. El stack útil no suele ser el más grande. Suele ser el más claro: pocas piezas, conectadas con la web y el proceso comercial.</p>
+      <p><strong>¿Quieres montar una web y un sistema de captación que sí aproveche la IA sin añadir caos?</strong> En Icono Studio podemos ayudarte a diseñar la base y elegir automatizaciones razonables. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuántas herramientas de IA debería usar una pyme pequeña?',
+        answer: 'Lo razonable suele ser empezar con dos o cuatro capas bien elegidas, no con diez suscripciones. Menos herramientas, mejor conectadas, suele funcionar mejor.'
+      },
+      {
+        question: '¿La IA sustituye una web bien hecha?',
+        answer: 'No. La IA ayuda a crear, responder y automatizar, pero la web sigue siendo la base para captar, explicar el servicio y convertir visitas en contactos.'
+      },
+      {
+        question: '¿Qué debería automatizar primero?',
+        answer: 'Lo que hoy te hace perder tiempo o leads: respuestas iniciales, seguimiento de presupuestos, resúmenes de reuniones y tareas repetitivas entre formulario, email y CRM.'
+      }
+    ]
+  },
+  {
+    title: 'Email marketing para negocios locales en 2026: 5 automatizaciones que venden sin ser pesadas',
+    subtitle: 'Si tu web capta leads y luego todo depende de contestar manualmente, estás perdiendo margen. Estas automatizaciones ordenan seguimiento, reseñas y repetición de compra.',
+    slug: 'email-marketing-negocios-locales-automatizaciones-2026',
+    date: '06 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Email & Retención',
+    image: '/blog/email-marketing-automatizaciones-negocios-locales-2026.webp',
+    metaTitle: 'Email marketing para negocios locales en 2026 | Icono Studio',
+    metaDescription: 'Cinco automatizaciones de email marketing para negocios locales que ayudan a responder antes, recuperar oportunidades y vender más sin parecer spam.',
+    keywords: ['email marketing negocios locales', 'automatizaciones email 2026', 'email para pymes', 'seguimiento de leads email', 'retencion negocio local'],
+    content: `
+      <p>Muchos negocios locales siguen viendo el email como un boletín ocasional o como algo “demasiado de tienda online”. Ese enfoque hace que se desaproveche una de las piezas más rentables del sistema comercial. Constant Contact señalaba al arrancar 2026 que, aunque solo un 41% de pequeños negocios espera que el email sea su canal más impactante, sus datos siguen apuntando a que el correo ofrece un <strong>engagement más estable</strong> que otros canales cuando se usa con personalización y automatización.</p>
+      <p>Para un negocio de servicios esto importa mucho. No siempre te compran en la primera visita. A veces piden precio, comparan, esperan, preguntan internamente o simplemente se despistan. Si todo tu seguimiento depende de que alguien recuerde escribir manualmente, se te caen oportunidades que ya estaban tibias.</p>
+
+      <h2>Por qué el email sigue importando aunque tengas WhatsApp y redes</h2>
+      <p>WhatsApp resuelve inmediatez. Las redes ayudan a estar presente. Pero el email sigue siendo muy útil para <strong>ordenar seguimiento, enviar información más completa y mantener una relación sin invadir</strong>. Además, cuando el lead llega desde tu propia web, el correo encaja de forma natural dentro del proceso.</p>
+      <p>Esto conecta con otra idea que aparece en los datos de Constant Contact: la retención y la repetición de compra van a pesar cada vez más en 2026. Si cuesta más captar atención, tiene sentido aprovechar mejor cada contacto que ya ha mostrado interés.</p>
+
+      <h2>Las 5 automatizaciones que más sentido tienen</h2>
+      <h3>1. Respuesta inmediata tras el formulario</h3>
+      <p>La mayoría de negocios todavía envía un “hemos recibido tu mensaje” demasiado pobre o, directamente, no envía nada. Lo mínimo razonable es un correo inmediato que confirme recepción, explique el siguiente paso y, si aplica, pida uno o dos datos clave más. Eso ya mejora percepción y baja ansiedad.</p>
+
+      <h3>2. Recordatorio si no hubo respuesta</h3>
+      <p>Si alguien pidió información y no contestó a tu primer correo o no agendó llamada, conviene enviar un recordatorio breve entre 24 y 72 horas después. No para perseguir, sino para facilitar: reenviar enlace, resumir propuesta o preguntar si quiere que lo dejéis para más adelante.</p>
+
+      <h3>3. Seguimiento de presupuesto enviado</h3>
+      <p>Muchos presupuestos se pierden por silencio, no por rechazo explícito. Una automatización simple puede lanzar un seguimiento a los pocos días con resumen de alcance, plazo y siguiente paso. Esto funciona mejor que un “¿lo has visto?” seco y evita que el lead se enfríe del todo.</p>
+
+      <h3>4. Solicitud de reseña después del servicio</h3>
+      <p>Una vez cerrado el trabajo, el correo es ideal para pedir reseña con calma y con enlace directo. Si además trabajas tu ficha local, enlaza esta automatización con lo que contamos en <a href="/blog/como-conseguir-resenas-google-y-responderlas-bien">nuestra guía para conseguir reseñas en Google</a>. No hace falta complicarlo: agradecimiento, resultado y petición clara.</p>
+
+      <h3>5. Reactivación de clientes dormidos</h3>
+      <p>Hay servicios que se repiten o que abren una segunda necesidad meses después: mantenimiento web, campañas, rediseños, contenidos, revisiones de fichas locales o nuevas automatizaciones. Un flujo de reactivación cada 60, 90 o 180 días puede recuperar negocio ya ganado sin empezar desde cero.</p>
+
+      <h2>Qué debería llevar cada correo</h2>
+      <ul>
+        <li>Asunto claro y humano.</li>
+        <li>Contexto breve: por qué recibe ese correo.</li>
+        <li>Siguiente paso visible.</li>
+        <li>Enlace o acción única, no cinco opciones.</li>
+        <li>Tono normal, sin parecer plantilla de robot.</li>
+      </ul>
+      <p>La automatización no tiene que sonar automática. Tiene que sonar ordenada.</p>
+
+      <h2>Qué hace falta para montarlo sin liarte</h2>
+      <p>La versión mínima es sencilla: formulario web, herramienta de email o CRM básico, etiquetas por tipo de lead y uno o dos disparadores. No hace falta una gran infraestructura. Lo importante es que el recorrido esté pensado: qué recibe un lead de presupuesto, qué recibe un cliente que acaba de terminar un servicio y qué pasa si alguien no responde.</p>
+      <p>Si hoy tu web todavía no capta bien, conviene empezar por ahí. Una automatización elegante no compensará una página que no explica bien el servicio o no guía al contacto. Revisa si hace falta <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">esta base de conversión</a>.</p>
+
+      <h2>Métricas que sí conviene mirar</h2>
+      <ul>
+        <li>Tiempo medio de respuesta al lead.</li>
+        <li>Porcentaje de apertura en correos de alta intención.</li>
+        <li>Clic en la acción principal.</li>
+        <li>Presupuestos reactivados gracias al seguimiento.</li>
+        <li>Clientes que dejan reseña o repiten compra.</li>
+      </ul>
+      <p>Si miras solo aperturas totales, te quedarás corto. Lo útil es relacionar emails con negocio real.</p>
+
+      <h2>Errores que hacen que el email parezca spam</h2>
+      <ul>
+        <li>Mandar demasiados mensajes iguales a todos.</li>
+        <li>Usar asuntos grandilocuentes sin valor real.</li>
+        <li>No segmentar entre lead nuevo, presupuesto y cliente.</li>
+        <li>Enviar promociones sin contexto ni permiso.</li>
+        <li>Olvidar la parte humana del seguimiento.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>En 2026, depender solo de responder manualmente o de publicar en redes deja demasiado dinero sobre la mesa. El email sigue siendo una herramienta muy sólida para negocios locales cuando se usa como sistema de seguimiento, no como altavoz genérico. Unas pocas automatizaciones bien hechas pueden ayudarte a responder antes, recuperar oportunidades y pedir reseñas sin añadir fricción.</p>
+      <p><strong>¿Quieres que tu web no solo capte contactos, sino que también los siga mejor?</strong> En Icono Studio podemos ayudarte a unir estructura web, formularios y automatizaciones básicas de seguimiento. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿El email marketing sigue funcionando para negocios locales?',
+        answer: 'Sí, sobre todo en seguimiento, reactivación y retención. No sirve solo para newsletters; también sirve para ordenar pasos comerciales.'
+      },
+      {
+        question: '¿Necesito una herramienta compleja para empezar?',
+        answer: 'No. Con un formulario, una herramienta de email o CRM básica y dos o tres secuencias ya puedes cubrir bastante.'
+      },
+      {
+        question: '¿Qué automatización da resultados más rápidos?',
+        answer: 'Normalmente la respuesta inmediata al formulario y el seguimiento de presupuestos enviados, porque actúan sobre intención comercial alta.'
+      }
+    ]
+  },
+  {
+    title: 'Constructores web con IA en 2026: cuándo te convienen y cuándo te frenan',
+    subtitle: 'Wix, Hostinger, Squarespace o Shopify prometen lanzar rápido. A veces encajan; otras veces te encierran en una web que luego cuesta más arreglar que hacer bien.',
+    slug: 'constructores-web-ia-2026-cuando-convienen',
+    date: '06 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Diseño & Estrategia',
+    image: '/blog/constructores-web-ia-vs-web-medida-2026.webp',
+    metaTitle: 'Constructores web con IA en 2026 | Icono Studio',
+    metaDescription: 'Cuándo merece la pena usar un constructor web con IA y cuándo conviene una web a medida para no limitar SEO, conversión ni integraciones.',
+    keywords: ['constructores web con ia 2026', 'website builders pymes 2026', 'wix hostinger shopify squarespace', 'web con ia negocio', 'web a medida o builder'],
+    content: `
+      <p>Los constructores web con IA están captando mucha atención porque prometen algo muy atractivo para cualquier pyme: <strong>salir rápido, gastar poco y tener una web “suficiente” en pocos días</strong>. Y en muchos casos es verdad. Las comparativas publicadas en 2026 por medios como TechRadar muestran justo ese enfoque: <strong>Wix</strong> como opción generalista, <strong>Hostinger</strong> como propuesta de valor ajustado, <strong>Shopify</strong> para ecommerce y <strong>Squarespace</strong> cuando el peso visual importa más.</p>
+      <p>El problema es que “poder lanzar rápido” no significa automáticamente “tener una web que trabaje bien”. Para un negocio pequeño, la decisión correcta no es la plataforma más popular. Es la que encaja con lo que tu web necesita hacer en los próximos 12 a 24 meses.</p>
+
+      <h2>Cuándo sí tiene sentido usar un builder con IA</h2>
+      <h3>Tu oferta es simple y estable</h3>
+      <p>Si vendes uno o dos servicios claros, necesitas pocas páginas y el objetivo principal es estar bien presentado, un builder puede bastar. Esto aplica mucho a profesionales que empiezan, negocios con presencia local sencilla o proyectos que necesitan validar propuesta antes de invertir más.</p>
+
+      <h3>No necesitas lógica a medida</h3>
+      <p>Si con un formulario, una galería, una página de precios básica y un bloque de testimonios te basta, el builder puede resolver. También si tus integraciones son estándar y no te hace falta hilar SEO, CRM, analítica y captación con mucha profundidad.</p>
+
+      <h3>Tu prioridad real es velocidad de salida</h3>
+      <p>A veces no compensa esperar meses. Si necesitas lanzar una presencia decente para empezar a mostrar marca, captar primeras oportunidades o probar una línea comercial, un builder puede ser un escalón válido.</p>
+
+      <h2>Cuándo el builder empieza a frenarte</h2>
+      <h3>Cuando el SEO y la estructura importan de verdad</h3>
+      <p>Si vas a competir por varias ciudades, servicios o intenciones de búsqueda, necesitas más control sobre arquitectura, enlazado interno, velocidad, plantillas, datos estructurados y páginas específicas. Ahí muchas webs hechas deprisa con IA se quedan genéricas.</p>
+
+      <h3>Cuando la conversión exige algo más fino</h3>
+      <p>Una pyme que depende de presupuestos, reservas, seguimiento comercial o campañas de Ads necesita que la web guíe bien al usuario. Eso a menudo pide formularios mejor pensados, CTAs distintos por servicio, medición clara y páginas adaptadas a cada intención. No siempre es cómodo hacerlo dentro de un constructor cerrado.</p>
+
+      <h3>Cuando el negocio ya sabe lo que quiere vender</h3>
+      <p>Un builder encaja mejor cuando todavía estás simplificando o probando. Si ya tienes una oferta clara, referencias, objetivos de captación y necesidad de posicionarte, suele compensar más diseñar la web como herramienta comercial, no como plantilla agradable.</p>
+
+      <h2>El coste oculto del “sale barato”</h2>
+      <p>El precio mensual suele parecer amable, pero hay varios costes que no siempre se ven al principio:</p>
+      <ul>
+        <li>Funciones importantes que requieren plan superior o apps de pago.</li>
+        <li>Limitaciones para migrar cuando el proyecto crece.</li>
+        <li>Tiempo perdido peleando con plantillas pensadas para todo el mundo.</li>
+        <li>Rediseños posteriores más caros por haber salido sin estrategia.</li>
+        <li>Peor rendimiento comercial aunque el coste técnico sea bajo.</li>
+      </ul>
+      <p>Por eso la pregunta correcta no es “qué plataforma es más barata”. La pregunta correcta es “qué opción me deja captar mejor sin bloquear el siguiente paso del negocio”.</p>
+
+      <h2>Una regla práctica para decidir</h2>
+      <p>Un builder suele encajar si cumples la mayoría de estas condiciones:</p>
+      <ul>
+        <li>Una oferta simple.</li>
+        <li>Pocas páginas.</li>
+        <li>Poca personalización.</li>
+        <li>Presupuesto muy ajustado.</li>
+        <li>Horizonte corto o fase de validación.</li>
+      </ul>
+      <p>Una web más estratégica o a medida suele encajar si necesitas varias landings, SEO local serio, campañas activas, automatizaciones, mejor medición o un diseño que diferencie más. Si tienes dudas, compáralo también con <a href="/blog/landing-page-o-pagina-web-completa-diferencias">la diferencia entre landing y web completa</a> y con <a href="/blog/cuanto-cuesta-pagina-web-profesional-espana-2026">lo que realmente cuesta una web profesional</a>.</p>
+
+      <h2>Qué haría un negocio pequeño si quiere minimizar riesgo</h2>
+      <p>Si necesitas salir ya, puedes usar un builder como fase 1, pero con una condición: <strong>tener claro que es una fase</strong>. Eso implica no llenar la web de páginas inútiles, no duplicar servicios sin estrategia y dejar lista una futura migración si el negocio gana tracción. Si haces lo contrario, conviertes una solución temporal en una limitación estructural.</p>
+
+      <h2>Señales de que tu builder ya se te ha quedado pequeño</h2>
+      <ul>
+        <li>No puedes crear páginas orientadas a varias intenciones sin que todo se vea igual.</li>
+        <li>La web carga o se edita peor de lo que debería.</li>
+        <li>Las integraciones con CRM, reservas o analítica son un parche.</li>
+        <li>Las campañas aterrizan en páginas demasiado genéricas.</li>
+        <li>El diseño ya no refleja el nivel del negocio.</li>
+      </ul>
+      <p>En ese punto conviene planificar bien la siguiente etapa para no repetir errores. Si ya estás ahí, puede ayudarte esta <a href="/blog/redisenar-migrar-web-sin-perder-seo-checklist">checklist para rediseñar o migrar sin perder SEO</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>Los constructores web con IA no son una mala idea por defecto. Son una herramienta. Funcionan bien cuando el caso es simple, el horizonte es corto y la prioridad es lanzar. Pero si necesitas que la web venda, se posicione y soporte mejor tu proceso comercial, el ahorro inicial puede salir caro.</p>
+      <p><strong>¿Quieres decidir si te conviene un builder o una web más estratégica según tu negocio real?</strong> En Icono Studio podemos ayudarte a evaluar el escenario antes de que inviertas tiempo y dinero en la dirección equivocada. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Un constructor con IA sirve para cualquier negocio?',
+        answer: 'No. Encaja mejor cuando la oferta es simple, hay pocas páginas y no necesitas mucha personalización ni integraciones complejas.'
+      },
+      {
+        question: '¿Qué opciones se están moviendo más en 2026?',
+        answer: 'Las comparativas actuales suelen destacar Wix, Hostinger, Shopify y Squarespace según el tipo de proyecto, presupuesto y necesidad de diseño o ecommerce.'
+      },
+      {
+        question: '¿Cuándo conviene pasar a una web a medida?',
+        answer: 'Cuando la web ya forma parte clara de tu captación: SEO local, campañas, automatizaciones, varias landings o necesidad de diferenciar más la propuesta.'
+      }
+    ]
+  },
+  {
+    title: 'Páginas de planificación para AI Mode: cómo captar búsquedas de presupuestos y comparativas en 2026',
+    subtitle: 'Google dice que las consultas de planificación crecen más rápido en AI Mode. Eso abre una oportunidad muy clara para páginas que ayuden a decidir antes del contacto.',
+    slug: 'paginas-planificacion-ai-mode-presupuestos-comparativas-2026',
+    date: '06 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: '/blog/paginas-planificacion-ai-mode-2026.webp',
+    metaTitle: 'Páginas de planificación para AI Mode | Icono Studio',
+    metaDescription: 'Cómo diseñar páginas de planificación para captar búsquedas de presupuestos, comparativas y decisiones previas al contacto en AI Mode y SEO orgánico.',
+    keywords: ['ai mode paginas planificacion', 'busquedas de presupuestos seo', 'comparativas servicios web', 'ai mode negocio local', 'contenido de decision 2026'],
+    content: `
+      <p>Google publicó el 19 de mayo de 2026 un dato que debería importar bastante a cualquier negocio que vende servicios: en AI Mode, las consultas relacionadas con <strong>planificación</strong> han crecido <strong>un 80% más rápido</strong> que la media en los últimos seis meses. Además, la búsqueda media en AI Mode ya es <strong>tres veces más larga</strong> que una búsqueda tradicional, y más de una de cada seis búsquedas en Estados Unidos usa <strong>voz o imagen</strong>.</p>
+      <p>La consecuencia es clara: cada vez más usuarios llegan a Search no solo para encontrar un proveedor, sino para <strong>decidir qué hacer, cuánto invertir, qué opción les conviene y qué pasos seguir</strong>. Si tu web no tiene páginas pensadas para ese momento, acabas compitiendo solo con páginas de servicio genéricas o con posts demasiado vagos.</p>
+
+      <h2>Qué son las páginas de planificación</h2>
+      <p>Son páginas pensadas para resolver la fase previa al contacto. No responden solo “qué ofreces”, sino preguntas como estas:</p>
+      <ul>
+        <li>Qué tipo de web necesito para mi negocio.</li>
+        <li>Cuánto suele costar una solución razonable.</li>
+        <li>Qué diferencias hay entre una opción y otra.</li>
+        <li>Qué errores conviene evitar antes de contratar.</li>
+        <li>Qué proceso viene después de pedir información.</li>
+      </ul>
+      <p>En otras palabras: ayudan a un usuario a organizar la decisión. Y eso encaja muy bien con el comportamiento que Google está describiendo en AI Mode.</p>
+
+      <h2>Por qué estas páginas pueden captar mejor que un post genérico</h2>
+      <p>Porque responden a una intención más madura. Un usuario que busca “qué necesito para una web de reservas”, “cuánto cuesta rediseñar una página” o “qué conviene: landing o web completa” ya está bastante más cerca del contacto que quien solo busca una definición amplia.</p>
+      <p>Además, este tipo de contenido tiene más opciones de ganar clic cuando Search resume mucho. Si Google ya da una respuesta general, el usuario solo abrirá tu página si ve que le ayudas a <strong>tomar una decisión concreta</strong>, no si repites lo obvio. Esto enlaza muy bien con lo que ya contamos en <a href="/blog/ai-mode-keyword-research-2026-busquedas-largas-convierten">nuestra guía de keyword research para AI Mode</a>.</p>
+
+      <h2>Qué debería incluir una buena página de planificación</h2>
+      <h3>Contexto del problema</h3>
+      <p>Explica en qué situación está la persona que llega. No escribas como si todos partieran del mismo punto. Un dueño de negocio puede estar validando una primera web, comparando presupuesto o intentando arreglar una web vieja que ya no convierte.</p>
+
+      <h3>Rangos y variables, no humo</h3>
+      <p>Si el tema toca precio, tiempos o alcance, conviene dar rangos y explicar qué los mueve. No hace falta publicar una tarifa cerrada para todo, pero sí ayudar al usuario a entender por qué algo cuesta más o menos. Ahí funciona muy bien un contenido como <a href="/blog/cuanto-cuesta-pagina-web-profesional-espana-2026">esta guía de precios web</a>.</p>
+
+      <h3>Comparativas y tradeoffs</h3>
+      <p>Las búsquedas de planificación suelen pedir contraste: una landing frente a una web corporativa, un constructor frente a una web a medida, una solución barata frente a una preparada para crecer. Si escondes los tradeoffs, la página se queda corta.</p>
+
+      <h3>Proceso y siguiente paso</h3>
+      <p>Quien planifica quiere saber también qué ocurre después. Cómo es el proceso, cuánto tarda, qué necesita preparar y qué pasa al pedir presupuesto. Esa claridad reduce fricción y mejora la calidad del lead.</p>
+
+      <h3>FAQs reales</h3>
+      <p>Las preguntas frecuentes siguen funcionando muy bien aquí porque condensan objeciones concretas: mantenimiento, plazos, quién aporta textos, si hay permanencia, si se puede migrar luego o qué pasa con el SEO.</p>
+
+      <h2>Ejemplos de páginas que suelen merecer la pena</h2>
+      <ul>
+        <li>Guías de precios o rangos de inversión.</li>
+        <li>Comparativas entre opciones de servicio.</li>
+        <li>Checklists antes de contratar.</li>
+        <li>Páginas de proceso paso a paso.</li>
+        <li>Recursos para elegir proveedor o alcance.</li>
+      </ul>
+      <p>En una web de servicios, estas piezas suelen actuar como puente entre búsqueda y contacto. No sustituyen a las páginas comerciales; las preparan.</p>
+
+      <h2>Cómo detectar temas de planificación</h2>
+      <p>Puedes partir de varias fuentes sencillas:</p>
+      <ul>
+        <li>Preguntas repetidas en presupuestos y llamadas.</li>
+        <li>Consultas largas de Search Console.</li>
+        <li>Búsquedas que mezclan “cuánto”, “qué conviene”, “qué necesito”, “cómo elegir” o “qué incluye”.</li>
+        <li>Dudas que llegan desde formularios pero no están resueltas en la web.</li>
+      </ul>
+      <p>Si quieres afinar más la detección, te servirá cruzarlo con <a href="/blog/search-console-regex-24-horas-intencion-seo-local-2026">Search Console y sus filtros</a>. La idea es encontrar temas con intención real, no solo volumen decorativo.</p>
+
+      <h2>Errores que hacen fracasar este tipo de páginas</h2>
+      <ul>
+        <li>Escribir un artículo demasiado general para una decisión concreta.</li>
+        <li>Ocultar toda referencia a precio, tiempos o alcance.</li>
+        <li>No comparar opciones por miedo a perder la venta.</li>
+        <li>Hablar solo de la empresa y no del proceso mental del cliente.</li>
+        <li>Mandar al usuario a un contacto frío sin haber resuelto lo básico.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Si AI Mode está empujando búsquedas más largas, más conversacionales y más orientadas a decidir, las webs de servicios necesitan algo más que páginas de servicio y posts informativos. Necesitan <strong>páginas de planificación</strong>: piezas que ayuden a comparar, entender rangos, ordenar pasos y llegar al contacto con menos dudas.</p>
+      <p><strong>¿Quieres que detectemos qué páginas de decisión faltan en tu web para captar búsquedas con intención más madura?</strong> En Icono Studio podemos ayudarte a convertir esas consultas en contenidos útiles y comerciales a la vez. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué diferencia hay entre una página de planificación y una página de servicio?',
+        answer: 'La página de servicio vende una solución concreta; la de planificación ayuda a decidir antes de contratar, comparando opciones, rangos, pasos y criterios.'
+      },
+      {
+        question: '¿Hace falta mostrar precios exactos?',
+        answer: 'No siempre, pero sí conviene dar rangos, variables y contexto suficiente para que el usuario entienda la magnitud de la inversión.'
+      },
+      {
+        question: '¿Estas páginas pueden ayudar también al SEO clásico?',
+        answer: 'Sí. No son solo para AI Mode: también captan búsquedas orgánicas largas y mejoran la conversión de usuarios que llegan en fase de comparación.'
+      }
+    ]
+  },
+  {
     title: 'WhatsApp en Google Business Profile en 2026: cómo captar más contactos sin depender solo del formulario',
     subtitle: 'Google permite añadir WhatsApp o SMS en la ficha en algunas regiones. Bien planteado, ese botón reduce fricción y acelera leads para negocios de servicios.',
     slug: 'whatsapp-google-business-profile-2026-captar-contactos',
