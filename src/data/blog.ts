@@ -823,6 +823,437 @@ export const blogPosts: BlogPost[] = [
     ]
   },
   {
+    title: 'Search Console ya muestra informes de IA: cómo interpretarlos sin tomar malas decisiones en 2026',
+    subtitle: 'Google empieza a ofrecer visibilidad específica de AI Overviews y AI Mode. El dato es útil, pero si miras solo impresiones puedes sacar conclusiones equivocadas.',
+    slug: 'search-console-informes-ia-2026-negocio',
+    date: '08 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Analítica',
+    image: '/blog/search-console-informes-ia-2026.webp',
+    metaTitle: 'Search Console e informes de IA en 2026 | Icono Studio',
+    metaDescription: 'Qué muestran los nuevos informes de IA en Search Console, qué no muestran y cómo usarlos para tomar mejores decisiones SEO y de negocio.',
+    keywords: ['search console informes ia', 'ai overviews search console', 'ai mode search console', 'impresiones ia google', 'medicion seo ia'],
+    content: `
+      <p>Durante mucho tiempo, la conversación sobre AI Overviews y AI Mode ha tenido un problema práctico: todo el mundo opinaba, pero casi nadie tenía una forma clara de medir qué estaba pasando con sus páginas dentro de esas experiencias. En junio de 2026 Google ha empezado a desplegar nuevos informes de IA en Search Console para parte de los propietarios de sitios. Para un negocio pequeño o mediano, eso cambia bastante el tablero.</p>
+      <p>Por fin empieza a existir una capa de visibilidad específica sobre cómo aparecen tus URLs dentro de las superficies generativas de Google. El problema es que muchos negocios van a leer esos datos con una mentalidad demasiado simple: “si hay impresiones, vamos bien” o “si no hay clics visibles, no sirve para nada”. Ninguna de las dos lecturas es suficiente.</p>
+
+      <h2>Qué ha cambiado exactamente</h2>
+      <p>Search Console empieza a mostrar una vista dedicada para rendimiento en experiencias de IA. Eso permite aislar mejor la presencia de tus páginas en AI Overviews, AI Mode y otras superficies relacionadas. Para equipos SEO grandes esto abre una línea nueva de análisis. Para una pyme, sobre todo, evita seguir trabajando completamente a ciegas.</p>
+      <p>La novedad no significa que haya que rehacer la estrategia desde cero. Significa que ya puedes comprobar con más precisión si tus páginas de servicio, guías y comparativas tienen presencia donde antes solo intuías visibilidad.</p>
+
+      <h2>Qué sí muestran estos informes</h2>
+      <ul>
+        <li>Qué páginas están ganando impresiones dentro de experiencias de IA.</li>
+        <li>Qué países y dispositivos están aportando esa visibilidad.</li>
+        <li>Qué evolución temporal tiene esa presencia.</li>
+        <li>Qué tipo de URLs de tu sitio parecen más aptas para aparecer como apoyo o referencia.</li>
+      </ul>
+      <p>Eso ya es valioso porque te ayuda a dejar de pensar en “el dominio” y empezar a ver qué <strong>formatos de página</strong> encajan mejor. A veces no será el post que más visitas tiene, sino la guía concreta, la página de precio o el servicio con mejor respuesta a una duda específica.</p>
+
+      <h2>Qué no muestran, y por qué importa tanto entenderlo</h2>
+      <p>El error más peligroso sería tratar estos informes como si fueran equivalentes a una campaña de Ads o a un dashboard de conversiones completo. No lo son. La primera limitación es que el dato más visible es la impresión, y una impresión aislada no te dice si el usuario entendió tu propuesta, confió en ti o acabó contactando.</p>
+      <p>Tampoco conviene usar este informe como argumento para publicar más contenido genérico. Si una URL aparece en IA pero atrae visitas frías o irrelevantes, el negocio no gana casi nada. La métrica importante sigue siendo la combinación de visibilidad, clic cualificado, tiempo útil en página y acción posterior.</p>
+      <p>Por eso sigue siendo clave unir estos datos con GA4, formularios, llamadas y CRM. Si aún no tienes la capa de medición bien ordenada, te conviene revisar antes nuestra guía sobre <a href="/blog/google-tag-vs-tag-manager-configuracion-medicion-2026">Google Tag vs Google Tag Manager en 2026</a>.</p>
+
+      <h2>Cómo leerlos sin autoengañarte</h2>
+      <h3>1. Mira páginas, no solo totales</h3>
+      <p>Si el total de impresiones sube pero se concentra en páginas irrelevantes, el dato puede sonar bien y no tener impacto real. Observa qué URLs ganan visibilidad: ¿servicios?, ¿artículos de intención informativa?, ¿contenidos viejos?, ¿páginas demasiado generales?</p>
+
+      <h3>2. Cruza IA con intención comercial</h3>
+      <p>Cuando una página de precio, de servicio o de comparativa empieza a ganar visibilidad en IA, el hallazgo suele ser más útil que cuando la gana un contenido decorativo. En un negocio de servicios, importa mucho más captar búsquedas de decisión que coleccionar impresiones bonitas.</p>
+
+      <h3>3. Revisa dispositivo y país</h3>
+      <p>Muchos negocios locales van a descubrir que parte de esa visibilidad es más fuerte en móvil. Eso obliga a revisar muy bien velocidad, estructura y llamadas a la acción. Si ya intuías ese patrón, te ayudará completar el análisis con nuestra guía sobre <a href="/blog/search-console-regex-24-horas-intencion-seo-local-2026">Search Console con regex y vista de 24 horas</a>.</p>
+
+      <h3>4. No confundas presencia con autoridad consolidada</h3>
+      <p>Aparecer una vez no significa haber construido una posición estable. Lo útil es detectar repetición: qué tipos de consultas y páginas vuelven a aparecer una y otra vez.</p>
+
+      <h2>Qué páginas conviene reforzar a partir de este informe</h2>
+      <p>La experiencia reciente en IA apunta a que suelen funcionar mejor las páginas que ayudan a decidir, comparar o aclarar una duda concreta. Por eso conviene reforzar:</p>
+      <ul>
+        <li>Páginas de servicio con estructura clara y objeciones resueltas.</li>
+        <li>Comparativas y guías con criterio práctico.</li>
+        <li>Páginas de precio o alcance del servicio.</li>
+        <li>Casos, ejemplos y pruebas de experiencia real.</li>
+      </ul>
+      <p>Esto encaja con lo que ya venimos observando en dos artículos que merece la pena conectar: <a href="/blog/inline-links-previas-ai-overviews-2026-clic">cómo cambian los clics cuando Google muestra enlaces inline y previews</a> y <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">por qué el contenido original y de primera mano gana peso</a>.</p>
+
+      <h2>Una rutina semanal razonable para una pyme</h2>
+      <ul>
+        <li>Revisar qué 5 a 10 URLs aparecen con más frecuencia en IA.</li>
+        <li>Confirmar si esas páginas responden bien a una intención comercial o precomercial.</li>
+        <li>Actualizar títulos, FAQs, claridad de oferta y enlazado interno cuando haga falta.</li>
+        <li>Observar si crecen búsquedas de marca, formularios o llamadas en paralelo.</li>
+      </ul>
+      <p>No hace falta convertir este informe en otro panel que nadie mira. Basta con usarlo para tomar mejores decisiones sobre qué páginas merecen mejoras reales.</p>
+
+      <h2>Conclusión</h2>
+      <p>Los nuevos informes de IA en Search Console no son un juguete ni una solución mágica. Son una pieza más para entender cómo cambia la visibilidad orgánica en 2026. Bien leídos, te ayudan a detectar páginas útiles, reforzar formatos que sí encajan en AI Overviews y evitar decisiones impulsivas basadas en métricas incompletas.</p>
+      <p><strong>¿Quieres que revisemos qué páginas de tu web tienen más potencial en AI Overviews, AI Mode y búsqueda tradicional?</strong> En Icono Studio podemos ayudarte a unir visibilidad, claridad y conversión. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Los nuevos informes de IA en Search Console muestran clics?',
+        answer: 'Por ahora lo más útil es la lectura de impresiones y dimensiones asociadas. No conviene tratarlos como una fuente completa de negocio sin cruzarlos con analítica y conversiones.'
+      },
+      {
+        question: '¿Si una página aparece en AI Mode ya está funcionando bien?',
+        answer: 'No necesariamente. La presencia puede ser útil, pero debes comprobar si esa visibilidad termina en visitas cualificadas, interacción y contactos reales.'
+      },
+      {
+        question: '¿Qué páginas suelen merecer más atención con estos informes?',
+        answer: 'Normalmente las páginas de servicio, precio, comparativas y guías con experiencia real, porque ayudan más en búsquedas de decisión o evaluación.'
+      }
+    ]
+  },
+  {
+    title: 'Google ya puede llamar a negocios por tus clientes: qué debe cambiar en tu web y tu ficha en 2026',
+    subtitle: 'Si Google pregunta por precio, disponibilidad o servicio en tu nombre, un negocio local necesita respuestas, horarios y páginas mucho más claras.',
+    slug: 'google-llama-negocios-precios-disponibilidad-2026',
+    date: '08 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: '/blog/google-llama-negocios-2026.webp',
+    metaTitle: 'Google llama a negocios por clientes en 2026 | Icono Studio',
+    metaDescription: 'Cómo preparar tu ficha, tus precios y tu web para las llamadas automáticas de Google sobre disponibilidad y servicios.',
+    keywords: ['google llama negocios', 'google precios disponibilidad negocios', 'google business profile llamadas automaticas', 'google call local businesses', 'seo local 2026'],
+    content: `
+      <p>Google ya no solo muestra tu negocio, tu teléfono o tu ficha en Maps. En determinados casos también puede <strong>llamar a negocios en nombre del usuario</strong> para confirmar precio, disponibilidad o detalles del servicio. Para muchos empresarios esto parece una curiosidad. En realidad es una señal fuerte del tipo de búsqueda que está llegando: más directa, más orientada a resolver tareas y menos dispuesta a tolerar ambigüedad.</p>
+      <p>Si tu empresa vende servicios locales, esto cambia bastante la preparación que necesita tu presencia digital. Cuando Google hace de intermediario, cualquier incoherencia entre lo que dices por teléfono, lo que aparece en tu ficha y lo que explica tu web puede frenar la conversión o atraerte leads poco cualificados.</p>
+
+      <h2>Por qué esta función importa más de lo que parece</h2>
+      <p>Hasta hace poco, el usuario tenía que llamar él mismo para comprobar horarios, disponibilidad, precio orientativo o si atendías una necesidad concreta. Ahora Google intenta reducir esa fricción. Esto encaja con el avance de búsquedas más largas, más accionables y más orientadas a “resolver algo ya”.</p>
+      <p>En sectores como reparación del hogar, belleza, mascotas, bienestar o servicios con agenda, la consecuencia es clara: si tu operativa no está preparada, Google puede llevar tráfico y conversaciones hacia un punto débil del negocio.</p>
+
+      <h2>Qué se rompe cuando el negocio no está ordenado</h2>
+      <ul>
+        <li>Respuestas distintas según quién coja el teléfono.</li>
+        <li>Precios orientativos que no coinciden con la web o con la ficha.</li>
+        <li>Servicios o zonas que nadie ha actualizado correctamente.</li>
+        <li>Horarios ambiguos o disponibilidad mal explicada.</li>
+        <li>Leads que llegan sin entender bien el alcance real del servicio.</li>
+      </ul>
+      <p>Todo eso ya era un problema antes. La diferencia es que ahora Google puede amplificarlo con más facilidad porque participa antes en la fase de validación.</p>
+
+      <h2>Qué debes revisar en tu ficha de Google Business Profile</h2>
+      <p>La ficha tiene que dejar de ser un apéndice olvidado. Debe funcionar como una versión breve, clara y coherente de tu oferta. Empieza por lo básico:</p>
+      <ul>
+        <li>Categoría principal y secundarias bien elegidas.</li>
+        <li>Horario exacto y revisado con frecuencia.</li>
+        <li>Zonas de servicio actualizadas.</li>
+        <li>Servicios descritos con nombres que el cliente entienda.</li>
+        <li>Canales de contacto activos y atendidos.</li>
+      </ul>
+      <p>Si tu ficha todavía está en fase básica, primero revisa nuestra <a href="/blog/google-business-profile-google-my-business-checklist-maps">checklist 2026 para Google Business Profile</a>. Y si ya usas mensajería, también conviene leer la guía sobre <a href="/blog/whatsapp-google-business-profile-2026-captar-contactos">WhatsApp en Google Business Profile</a>.</p>
+
+      <h2>Qué debe cambiar en tu web para no perder calidad de lead</h2>
+      <h3>1. Páginas de servicio más concretas</h3>
+      <p>Si alguien pregunta a Google por un servicio concreto, la landing de destino no puede ser una página genérica que mezcla demasiadas cosas. Debe responder rápido qué haces, para quién, en qué zonas y con qué siguiente paso.</p>
+
+      <h3>2. Precios orientativos o rangos cuando tenga sentido</h3>
+      <p>Muchos leads malos nacen porque el usuario no tiene ninguna referencia económica. No siempre hace falta publicar una tarifa cerrada, pero sí suele ayudar explicar mínimos, variables o rangos. Si estás trabajando esta parte, quizá te interese también nuestra guía sobre <a href="/blog/cuanto-cuesta-pagina-web-profesional-espana-2026">cuánto cuesta una página web profesional en España en 2026</a>.</p>
+
+      <h3>3. FAQs útiles de disponibilidad, tiempos y proceso</h3>
+      <p>Cuando Google o el usuario intentan resolver dudas operativas, las preguntas frecuentes bien planteadas reducen mucho ruido: cuándo atiendes, cómo se solicita el servicio, si trabajas urgencias, cuánto tardas en responder o qué información necesitas para presupuestar.</p>
+
+      <h3>4. Coherencia total entre ficha y sitio</h3>
+      <p>Si la ficha promete algo que la web no sostiene, la conversación se rompe. Esa coherencia es clave en SEO local, como explicamos en nuestra <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">guía de SEO local para pequeñas empresas</a>.</p>
+
+      <h2>Tu equipo también necesita un guion mínimo</h2>
+      <p>La parte menos visible del problema no está en la web sino en la respuesta humana. Si Google llama para comprobar un servicio y cada persona responde de una manera distinta, tu presencia digital pierde consistencia aunque la ficha esté perfecta.</p>
+      <p>Conviene documentar tres cosas muy simples:</p>
+      <ul>
+        <li>Qué servicios sí ofreces y cuáles no.</li>
+        <li>Qué rangos de precio o condiciones puedes comunicar.</li>
+        <li>Qué siguiente paso debe proponerse al lead.</li>
+      </ul>
+
+      <h2>Cómo convertir esta tendencia en una ventaja</h2>
+      <p>Si ordenas bien oferta, mensajes y páginas, las llamadas automáticas de Google pueden jugar a tu favor. El usuario llega más filtrado, la conversación empieza con menos fricción y tu marca transmite más profesionalidad que otros negocios que siguen respondiendo “depende” a todo.</p>
+      <p>Además, puedes apoyar ese sistema con publicaciones regulares en la ficha. Si no lo estás haciendo, mira también cómo usar <a href="/blog/google-posts-2026-como-usarlos-google-business-profile">Google Posts en 2026</a> sin convertir la ficha en un tablón vacío.</p>
+
+      <h2>Conclusión</h2>
+      <p>Que Google llame a negocios por cuenta del cliente es una señal clara de hacia dónde va la búsqueda local: menos exploración difusa, más resolución asistida. Para aprovecharlo no necesitas perseguir cada novedad, sino ordenar mejor tu operación comercial digital. Ficha, web, precios, FAQs y respuesta telefónica deben decir la misma verdad.</p>
+      <p><strong>¿Quieres que revisemos si tu web y tu ficha están preparadas para este nuevo tipo de búsqueda local?</strong> En Icono Studio podemos ayudarte a mejorar claridad, confianza y conversión. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Google puede llamar a mi negocio sin que el cliente marque mi número?',
+        answer: 'Sí. En algunos flujos de búsqueda, Google puede contactar a negocios en nombre del usuario para confirmar información como disponibilidad, precio o detalles del servicio.'
+      },
+      {
+        question: '¿Esto sustituye a mi página web?',
+        answer: 'No. Hace todavía más importante que la web sea clara, porque la llamada o la ficha suelen validar interés, pero la decisión sigue dependiendo de confianza, detalles y siguiente paso.'
+      },
+      {
+        question: '¿Qué debería revisar primero?',
+        answer: 'Empieza por horario, zonas, servicios y coherencia entre Google Business Profile, teléfono y páginas de servicio de tu web.'
+      }
+    ]
+  },
+  {
+    title: 'ChatGPT para Excel y Google Sheets en 2026: 9 tareas que ahorran horas a una pyme',
+    subtitle: 'La integración ya es una herramienta real para negocios pequeños. Bien usada, reduce trabajo manual en presupuestos, seguimiento comercial y reporting.',
+    slug: 'chatgpt-excel-google-sheets-pymes-2026',
+    date: '08 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Productividad',
+    image: '/blog/chatgpt-excel-google-sheets-pymes-2026.webp',
+    metaTitle: 'ChatGPT para Excel y Google Sheets en 2026 | Icono Studio',
+    metaDescription: '9 usos prácticos de ChatGPT para Excel y Google Sheets que ahorran tiempo a una pyme en presupuestos, ventas y reporting.',
+    keywords: ['chatgpt excel', 'chatgpt google sheets', 'ia para hojas de calculo', 'chatgpt pymes', 'automatizar excel con ia'],
+    content: `
+      <p>Muchos dueños de negocio siguen viendo Excel y Google Sheets como una obligación más que como una herramienta de control. Y tiene sentido: presupuestos, seguimiento comercial, listados de contactos, costes, calendario de tareas y reporting acaban desperdigados en hojas que nadie quiere tocar demasiado. En 2026, ChatGPT para Excel y Google Sheets empieza a convertir esa fricción en una oportunidad real.</p>
+      <p>La integración ya no es solo una curiosidad para perfiles técnicos. Bien utilizada, permite limpiar datos, escribir fórmulas, resumir información, detectar patrones y preparar reportes sin pasar una tarde entera peleándote con columnas. Para una pyme de servicios, eso significa menos tiempo administrativo y más claridad para decidir.</p>
+
+      <h2>Por qué esta herramienta interesa ahora a una pyme</h2>
+      <p>La mayoría de pequeños negocios no necesita dashboards complejísimos. Necesita resolver bien tareas repetitivas: ordenar leads, revisar márgenes, resumir ventas, detectar retrasos de cobro o preparar un informe que se pueda leer en cinco minutos. Ahí es donde ChatGPT para hojas de cálculo empieza a ser práctico.</p>
+      <p>La clave está en usarlo como copiloto operativo, no como sustituto de criterio. Si los datos están desordenados o las preguntas son vagas, la respuesta será mediocre. Pero con una hoja razonablemente bien estructurada, el ahorro de tiempo puede ser muy visible.</p>
+
+      <h2>9 tareas que sí merecen la pena</h2>
+      <h3>1. Limpiar listados de contactos</h3>
+      <p>Detectar formatos distintos en teléfonos, nombres mal escritos, campos vacíos o duplicados es un trabajo tedioso. ChatGPT puede ayudarte a normalizarlo más rápido.</p>
+
+      <h3>2. Resumir leads por calidad o urgencia</h3>
+      <p>Si registras origen, servicio, presupuesto y estado, puedes pedir resúmenes por segmentos: qué leads están más avanzados, cuáles se enfrían o qué fuente trae peores oportunidades.</p>
+
+      <h3>3. Escribir o corregir fórmulas</h3>
+      <p>Una de las barreras clásicas de Sheets es la sintaxis. En vez de perder tiempo buscando fórmulas, puedes describir lo que necesitas y después validar la propuesta.</p>
+
+      <h3>4. Generar comentarios ejecutivos para un reporte</h3>
+      <p>Muchos negocios tienen números pero no narrativa. ChatGPT puede ayudarte a convertir una tabla en un resumen corto: qué subió, qué bajó y dónde merece la pena mirar.</p>
+
+      <h3>5. Detectar desajustes en presupuestos</h3>
+      <p>Si trabajas con plantillas de precio, es útil para localizar inconsistencias entre partidas, textos repetidos o conceptos que faltan. Esto encaja muy bien con negocios que venden proyectos web o servicios a medida.</p>
+
+      <h3>6. Clasificar comentarios abiertos</h3>
+      <p>Cuando recoges observaciones de clientes, incidencias o motivos de pérdida, la IA puede agruparlos por temas y sacar patrones más deprisa.</p>
+
+      <h3>7. Preparar previsiones simples</h3>
+      <p>No sustituye una planificación financiera seria, pero sí puede ayudar a proyectar escenarios básicos de facturación, carga de trabajo o volumen comercial.</p>
+
+      <h3>8. Traducir tablas en tareas accionables</h3>
+      <p>Una hoja con métricas puede convertirse en una lista de acciones: qué clientes requieren seguimiento, qué presupuestos están parados o qué páginas merecen revisión.</p>
+
+      <h3>9. Crear plantillas más claras para el equipo</h3>
+      <p>También sirve para mejorar la propia hoja: renombrar columnas, sugerir estructura, ordenar campos y dejar instrucciones más comprensibles para quien no la creó.</p>
+
+      <h2>Dónde aporta más a un negocio de servicios</h2>
+      <p>Para una empresa que vende diseño web, reformas, consultoría, clínica, despacho o mantenimiento, el valor suele aparecer en tres puntos:</p>
+      <ul>
+        <li>Seguimiento comercial y estado de presupuestos.</li>
+        <li>Control sencillo de ingresos, costes y carga de trabajo.</li>
+        <li>Reporting interno sin depender siempre de alguien más técnico.</li>
+      </ul>
+      <p>Si además tu web ya capta formularios, puedes conectar mejor esta operativa con lo que ocurre en captación. Eso ayuda a que la web sea una herramienta de negocio real, no solo una tarjeta digital. Si esa base todavía falla, conviene revisar primero <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a>.</p>
+
+      <h2>Cómo usarlo sin crear problemas nuevos</h2>
+      <ul>
+        <li>No subas datos sensibles sin revisar políticas y permisos.</li>
+        <li>Verifica siempre fórmulas y conclusiones antes de tomarlas por buenas.</li>
+        <li>Haz preguntas concretas y con contexto suficiente.</li>
+        <li>Empieza por hojas simples y procesos repetitivos.</li>
+      </ul>
+      <p>La peor implementación posible es usar la IA como si entendiera tu negocio mejor que tú. La mejor es convertirla en una ayuda para tareas estructuradas y repetidas.</p>
+
+      <h2>Una forma simple de empezar esta semana</h2>
+      <ol>
+        <li>Elige una hoja que uses cada semana.</li>
+        <li>Ordena columnas y elimina ruido innecesario.</li>
+        <li>Define dos o tres preguntas repetidas que siempre acabas resolviendo a mano.</li>
+        <li>Usa ChatGPT para responder esas preguntas o construir la fórmula que lo facilite.</li>
+      </ol>
+      <p>Con eso ya puedes detectar si la herramienta te ahorra tiempo de verdad o si todavía te falta base de datos mínima.</p>
+
+      <h2>Conclusión</h2>
+      <p>ChatGPT para Excel y Google Sheets no va a arreglar una gestión caótica por sí solo, pero sí puede ahorrar muchas horas cuando el negocio ya tiene una mínima disciplina de datos. Para una pyme, la oportunidad no está en hacer algo futurista, sino en quitar fricción a tareas que se repiten cada semana y dificultan decidir.</p>
+      <p><strong>¿Quieres convertir tus datos comerciales y de captación en un sistema simple que te ayude a vender mejor?</strong> En Icono Studio podemos ayudarte a ordenar la web, los formularios y la información que usas para tomar decisiones. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿ChatGPT para Excel y Google Sheets sirve para una pyme pequeña?',
+        answer: 'Sí, especialmente si tienes tareas repetitivas de limpieza de datos, seguimiento comercial, fórmulas o reportes simples que hoy resuelves manualmente.'
+      },
+      {
+        question: '¿Puede equivocarse en fórmulas o análisis?',
+        answer: 'Sí. Hay que validar siempre la salida, igual que revisarías el trabajo de un colaborador que aún no conoce bien tu negocio.'
+      },
+      {
+        question: '¿Por dónde conviene empezar?',
+        answer: 'Empieza por una hoja frecuente y por preguntas concretas: clasificar leads, corregir una fórmula, resumir un periodo o detectar desajustes.'
+      }
+    ]
+  },
+  {
+    title: 'Automatizaciones con IA para pymes de servicios: 5 flujos sencillos que sí compensan en 2026',
+    subtitle: 'La mayoría usa IA solo para escribir textos. El salto rentable está en conectar formularios, presupuesto, seguimiento y atención sin complicar la operativa.',
+    slug: 'automatizaciones-ia-pymes-servicios-2026',
+    date: '08 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Conversión & IA',
+    image: '/blog/automatizaciones-ia-pymes-servicios-2026.webp',
+    metaTitle: 'Automatizaciones con IA para pymes de servicios | Icono Studio',
+    metaDescription: 'Cinco automatizaciones con IA que una pyme de servicios puede implantar en 2026 para ahorrar tiempo y convertir mejor.',
+    keywords: ['automatizaciones ia pymes', 'automatizacion negocios servicios', 'flujos ia pymes', 'ia para pymes servicios', 'automatizacion leads'],
+    content: `
+      <p>En 2026 ya casi todo el mundo ha probado la IA para escribir un email, resumir un texto o sacar ideas para redes. El problema es que eso no cambia demasiado el funcionamiento real del negocio. Donde empieza a aparecer valor de verdad es en la automatización de procesos pequeños pero repetidos: entrada de leads, cualificación, seguimiento, recordatorios, revisión de reseñas o reporting.</p>
+      <p>Para una pyme de servicios no hace falta montar un sistema gigantesco. De hecho, suele ser mejor empezar con pocos flujos bien elegidos. El objetivo no es presumir de IA, sino reducir trabajo manual, responder antes y dejar menos oportunidades tiradas por el camino.</p>
+
+      <h2>La regla más importante: automatiza cuellos de botella, no caprichos</h2>
+      <p>Muchas empresas fallan aquí. Automatizan tareas vistosas pero secundarias y dejan intacto lo que realmente frena ventas: presupuestos sin seguimiento, formularios mal filtrados, recordatorios que nadie envía o información que se pierde entre canales.</p>
+      <p>Antes de automatizar, conviene responder dos preguntas:</p>
+      <ul>
+        <li>¿Qué tarea repetimos cada semana y nos roba tiempo?</li>
+        <li>¿Qué fallo frecuente nos hace perder oportunidades o calidad de servicio?</li>
+      </ul>
+
+      <h2>1. Formulario web que clasifica y prioriza leads</h2>
+      <p>Cuando entra un contacto desde la web, no todos merecen la misma urgencia. Un flujo sencillo puede leer el contenido del formulario, etiquetar tipo de servicio, zona, plazo y nivel de encaje, y enviar al equipo una alerta más útil.</p>
+      <p>Esto funciona mejor cuando la página ya pide la información correcta. Si tu formulario todavía es demasiado vago, revisa primero <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a>.</p>
+
+      <h2>2. Seguimiento automático de presupuestos sin respuesta</h2>
+      <p>Una de las fugas más comunes en pymes de servicios es el presupuesto enviado que nadie vuelve a mover. Un recordatorio bien programado, con mensaje revisado por humano y momento correcto, puede recuperar oportunidades que hoy se enfrían sin necesidad.</p>
+      <p>La IA puede ayudar a adaptar el tono según tipo de servicio, tiempo transcurrido o estado del lead. No se trata de automatizar presión comercial, sino constancia razonable.</p>
+
+      <h2>3. Solicitud de reseñas después de un hito real</h2>
+      <p>Pedir reseñas de forma caótica suele generar olvidos o mensajes incómodos. En cambio, cuando el sistema detecta que un proyecto ha terminado o que una intervención se ha cerrado bien, puede lanzar una petición simple y humana en el momento correcto.</p>
+      <p>Si trabajas SEO local, este flujo tiene bastante sentido. Puedes complementarlo con nuestra guía sobre <a href="/blog/como-conseguir-resenas-google-y-responderlas-bien">cómo conseguir reseñas en Google y responderlas bien</a>.</p>
+
+      <h2>4. Respuestas base para WhatsApp o email con contexto</h2>
+      <p>No conviene automatizar toda la conversación comercial, pero sí preparar borradores con contexto: servicio consultado, zona, horario, preguntas frecuentes o siguiente paso recomendado. Esto ahorra tiempo sin eliminar supervisión humana.</p>
+      <p>Encaja especialmente bien si ya tienes bien ordenado el canal de chat en tu ficha, como explicamos en <a href="/blog/whatsapp-google-business-profile-2026-captar-contactos">nuestra guía sobre WhatsApp en Google Business Profile</a>.</p>
+
+      <h2>5. Resumen semanal de captación y bloqueos</h2>
+      <p>Muchos negocios tienen datos repartidos entre email, formularios, Sheets y agenda. Un flujo muy útil es generar cada semana un resumen corto con:</p>
+      <ul>
+        <li>Leads recibidos y su origen.</li>
+        <li>Cuántos están pendientes de respuesta.</li>
+        <li>Presupuestos abiertos.</li>
+        <li>Motivos repetidos de pérdida o bloqueo.</li>
+      </ul>
+      <p>Este punto conecta muy bien con el uso de <a href="/blog/chatgpt-excel-google-sheets-pymes-2026">ChatGPT para Excel y Google Sheets</a> cuando necesitas ordenar la información operativa.</p>
+
+      <h2>Qué herramientas mínimas suelen bastar</h2>
+      <p>No hace falta una arquitectura intimidante. En muchos casos basta con combinar:</p>
+      <ul>
+        <li>Tu formulario web o CRM.</li>
+        <li>Una hoja de cálculo bien diseñada.</li>
+        <li>Email o WhatsApp.</li>
+        <li>Un sistema de automatización sencillo.</li>
+        <li>Reglas claras sobre cuándo interviene una persona.</li>
+      </ul>
+      <p>Lo difícil no es la herramienta, sino decidir bien el proceso.</p>
+
+      <h2>Qué no conviene automatizar al principio</h2>
+      <ul>
+        <li>Presupuestos complejos que requieren criterio alto.</li>
+        <li>Reclamaciones delicadas.</li>
+        <li>Promesas comerciales que afectan precio o alcance.</li>
+        <li>Mensajes donde un error de tono pueda dañar la confianza.</li>
+      </ul>
+      <p>La automatización buena no elimina responsabilidad. La organiza.</p>
+
+      <h2>Conclusión</h2>
+      <p>La oportunidad real de la IA en una pyme de servicios no está en parecer moderna, sino en hacer mejor lo repetitivo. Si eliges bien los cinco o seis puntos de fricción que más tiempo o ventas te cuestan, puedes ganar velocidad sin convertir tu negocio en un laberinto tecnológico.</p>
+      <p><strong>¿Quieres detectar qué automatizaciones tienen más sentido para tu web, tus formularios y tu proceso comercial?</strong> En Icono Studio podemos ayudarte a diseñar un sistema sencillo y útil, sin humo ni complejidad innecesaria. <a href="/contacto">Cuéntanoslo</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Hace falta un CRM grande para automatizar con IA?',
+        answer: 'No siempre. Muchas pymes pueden empezar con formularios, una hoja de cálculo bien organizada y automatizaciones simples entre canales.'
+      },
+      {
+        question: '¿Qué flujo suele dar más retorno al empezar?',
+        answer: 'Normalmente la clasificación de leads y el seguimiento de presupuestos, porque atacan directamente pérdidas de tiempo y oportunidades olvidadas.'
+      },
+      {
+        question: '¿Automatizar implica quitar trato humano?',
+        answer: 'No debería. Lo razonable es automatizar preparación, avisos y tareas repetitivas, dejando la decisión comercial importante en manos del equipo.'
+      }
+    ]
+  },
+  {
+    title: 'La guía oficial de Google para AI Overviews y AI Mode: qué debe hacer de verdad la web de un negocio en 2026',
+    subtitle: 'Google insiste en que no hay un truco especial para aparecer en AI Mode. La ventaja sigue estando en la base: rastreo, claridad, experiencia y contenido realmente útil.',
+    slug: 'guia-google-ai-mode-ai-overviews-web-negocio-2026',
+    date: '08 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO & IA',
+    image: '/blog/guia-google-ai-mode-ai-overviews-web-negocio-2026.webp',
+    metaTitle: 'Guía oficial de Google para AI Mode y AI Overviews | Icono Studio',
+    metaDescription: 'Qué dice de verdad Google sobre AI Mode y AI Overviews y qué debe priorizar una web de negocio para ganar visibilidad útil.',
+    keywords: ['guia oficial google ai overviews', 'ai mode seo negocio', 'google ai features website', 'seo ai overviews 2026', 'google ai mode web negocio'],
+    content: `
+      <p>Con el ruido actual sobre AI Overviews, AI Mode, GEO, entidades y citaciones, es fácil perder horas persiguiendo tácticas que suenan avanzadas pero no cambian demasiado el rendimiento real de una web. La guía oficial de Google para propietarios de sitios es bastante más sobria: <strong>no existe un requisito especial</strong> para aparecer en las funciones de IA de Search. La base sigue siendo la base.</p>
+      <p>Esto no significa que nada haya cambiado. Significa algo más incómodo y más útil: en 2026 gana todavía más importancia tener una web técnicamente accesible, páginas fáciles de entender, experiencia real y respuestas mejores que las de un contenido genérico. Para un negocio de servicios, esa es una buena noticia, porque la ventaja ya no depende tanto de “hackear” una novedad sino de ordenar bien lo importante.</p>
+
+      <h2>Qué dice Google de forma bastante clara</h2>
+      <p>La documentación de Search Central insiste en que las mejores prácticas SEO siguen siendo válidas para AI Overviews y AI Mode. Si una página es indexable, cumple requisitos técnicos básicos y aporta contenido útil para personas, ya puede ser elegible. No hay una lista de etiquetas secretas ni un marcado milagroso que garantice visibilidad.</p>
+      <p>Eso desmonta bastante ruido alrededor de ciertos atajos. Herramientas como schema o una buena estructura semántica ayudan, sí, pero ayudan porque mejoran comprensión y claridad, no porque abran una puerta exclusiva a AI Mode.</p>
+
+      <h2>Los mitos que más tiempo hacen perder</h2>
+      <h3>“Necesito una técnica especial para salir en AI Overviews”</h3>
+      <p>No exactamente. Lo que necesitas es una página que merezca ser usada como apoyo o referencia. Eso suele venir de mejor contenido, mejor estructura y mejor experiencia, no de un truco aislado.</p>
+
+      <h3>“Si publico mucho, alguna página entrará”</h3>
+      <p>Publicar más no siempre crea más valor. Google está reforzando la visibilidad de fuentes originales y perspectivas de primera mano, algo que ya explicamos en <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">nuestro artículo sobre contenido original y experiencia real</a>.</p>
+
+      <h3>“Con llms.txt ya está”</h3>
+      <p>Elementos como `llms.txt`, schema o señales de entidad pueden tener un papel de apoyo, pero no sustituyen una web débil. Si quieres contexto sobre eso, aquí tienes nuestra guía sobre <a href="/blog/llms-txt-schema-entidad-marca-visibilidad-ia-2026">llms.txt, schema y entidad de marca</a>.</p>
+
+      <h2>Lo que una web de negocio sí debe priorizar</h2>
+      <h3>1. Rastreabilidad y acceso limpios</h3>
+      <p>Si Google no puede rastrear bien la web, el resto sobra. Robots, canonicals, indexación, enlaces internos y tiempos de carga siguen importando mucho.</p>
+
+      <h3>2. Páginas de servicio que resuelvan microdudas</h3>
+      <p>En búsquedas con IA, muchas veces no gana la página más larga sino la que resuelve mejor varias pequeñas fricciones a la vez. Por eso siguen siendo tan útiles los <a href="/blog/micro-intents-paginas-servicio-estructura-convierte-2026">micro-intents en páginas de servicio</a>.</p>
+
+      <h3>3. Experiencia y pruebas visibles</h3>
+      <p>Casos, reseñas, ejemplos, procesos y límites del servicio ayudan a que tu marca parezca más creíble. En un entorno donde Google resume más, la prueba gana peso frente al texto aspiracional.</p>
+
+      <h3>4. Enlazado interno con intención</h3>
+      <p>Una web bien enlazada facilita descubrimiento y comprensión temática. Además, hace más probable que Google conecte contexto entre servicios, comparativas, FAQs y artículos de apoyo.</p>
+
+      <h2>Qué tipos de páginas suelen tener más sentido en 2026</h2>
+      <ul>
+        <li>Páginas de servicio muy claras.</li>
+        <li>Comparativas útiles para elegir.</li>
+        <li>Guías que resuelven una duda concreta con experiencia real.</li>
+        <li>Páginas de precio, proceso o alcance.</li>
+        <li>Contenidos locales con contexto y prueba.</li>
+      </ul>
+      <p>Esto encaja también con lo que vemos en búsquedas locales y motores de respuesta, como desarrollamos en <a href="/blog/geo-negocios-locales-2026-chatgpt-gemini-ai-overviews">nuestra guía GEO para negocios locales</a>.</p>
+
+      <h2>Un plan razonable para los próximos 30 días</h2>
+      <ol>
+        <li>Audita las páginas de servicio más importantes.</li>
+        <li>Corrige indexación, enlazado y claridad de oferta.</li>
+        <li>Añade preguntas frecuentes y objeciones reales.</li>
+        <li>Refuerza prueba social, casos y ejemplos.</li>
+        <li>Revisa si el contenido responde de verdad a lo que un cliente necesita decidir.</li>
+      </ol>
+      <p>Si haces esto bien, tu web no solo estará mejor preparada para AI Mode. También convertirá mejor en búsqueda tradicional, Maps y tráfico directo.</p>
+
+      <h2>Conclusión</h2>
+      <p>La guía oficial de Google para AI Overviews y AI Mode es útil precisamente porque baja el volumen del hype. No te pide una acrobacia nueva; te pide una web más sólida. En 2026 eso significa contenido útil, arquitectura limpia, experiencia visible y páginas que ayudan a decidir. Todo lo demás solo suma si esa base ya existe.</p>
+      <p><strong>¿Quieres revisar si tu web está preparada para destacar en búsqueda clásica y búsqueda con IA sin perseguir modas vacías?</strong> En Icono Studio podemos ayudarte a ordenar la base y reforzar las páginas que más negocio pueden mover. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Google pide optimizaciones especiales para aparecer en AI Overviews o AI Mode?',
+        answer: 'No. La documentación oficial insiste en que las buenas prácticas SEO existentes siguen siendo la base y que no hay requisitos técnicos exclusivos para estas funciones.'
+      },
+      {
+        question: '¿Schema o llms.txt son inútiles entonces?',
+        answer: 'No son inútiles, pero tampoco sustituyen una web clara, rastreable y útil. Funcionan como apoyo, no como atajo mágico.'
+      },
+      {
+        question: '¿Qué debería mejorar primero un negocio local?',
+        answer: 'Sus páginas de servicio, la coherencia de su información, la indexación, el enlazado interno y la prueba de experiencia real.'
+      }
+    ]
+  },
+  {
     title: 'WhatsApp en Google Business Profile en 2026: cómo captar más contactos sin depender solo del formulario',
     subtitle: 'Google permite añadir WhatsApp o SMS en la ficha en algunas regiones. Bien planteado, ese botón reduce fricción y acelera leads para negocios de servicios.',
     slug: 'whatsapp-google-business-profile-2026-captar-contactos',
