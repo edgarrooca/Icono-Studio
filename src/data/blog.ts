@@ -1254,6 +1254,354 @@ export const blogPosts: BlogPost[] = [
     ]
   },
   {
+    title: 'Wix Harmony en 2026: cuándo te basta una web con IA y cuándo tu negocio necesita algo mejor',
+    subtitle: 'Wix está empujando Harmony como vía rápida para pequeñas empresas. Puede servir para validar una oferta, pero no resuelve por sí solo diferenciación, SEO ni conversión seria.',
+    slug: 'wix-harmony-2026-web-ia-vs-web-profesional',
+    date: '09 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Diseño & IA',
+    image: '/blog/wix-harmony-2026-web-ia-vs-web-profesional.webp',
+    metaTitle: 'Wix Harmony en 2026: ¿sirve para tu negocio? | Icono Studio',
+    metaDescription: 'Qué puede hacer Wix Harmony en 2026, dónde encaja para una pyme y cuándo merece más la pena invertir en una web profesional pensada para captar clientes.',
+    keywords: ['wix harmony', 'web con ia', 'wix para negocios', 'web profesional para pymes', 'ai website builder 2026'],
+    content: `
+      <p>Durante 2026 Wix ha reforzado <strong>Harmony</strong> como una forma más rápida de crear presencia digital para pequeños negocios: estructura inicial, asistencia para copy, diseño sugerido y herramientas conectadas para publicar antes. La propuesta es tentadora porque responde a una preocupación real de muchos dueños de negocio: “necesito una web ya, sin meterme en un proyecto eterno”. El problema es que velocidad no siempre equivale a resultado.</p>
+      <p>Para una empresa de servicios, una web no solo tiene que existir. Tiene que explicar bien la oferta, transmitir confianza, resolver objeciones, ordenar el contacto y sostener campañas, SEO local o recomendaciones. Ahí es donde conviene separar dos preguntas que muchas veces se mezclan: <strong>si puedes publicar rápido</strong> y <strong>si esa web va a ayudarte de verdad a vender</strong>.</p>
+
+      <h2>Qué resuelve bien una web creada con IA</h2>
+      <p>Un constructor con IA como Harmony puede ser útil cuando estás en una fase muy temprana. Si todavía estás validando un servicio, necesitas una landing básica o quieres salir del “no tengo nada online”, puede darte un punto de partida razonable con menos fricción que una construcción desde cero.</p>
+      <p>También tiene sentido cuando tu negocio necesita sobre todo una tarjeta de presentación decente: datos de contacto, una explicación breve, algunas fotos, formulario, quizás una reserva básica. Para un primer paso, eso puede ser suficiente.</p>
+
+      <h2>Dónde suelen empezar los límites</h2>
+      <h3>Diferenciación real</h3>
+      <p>Cuando varias empresas usan el mismo tipo de estructura guiada por IA, el resultado se parece demasiado. Eso puede no importar en una prueba inicial, pero sí importa cuando compites en sectores donde el usuario compara rápido y decide por percepción de confianza.</p>
+
+      <h3>Conversión y microdecisiones</h3>
+      <p>Una web que capta contactos no depende solo de tener un botón visible. Depende de cómo se presenta la propuesta, qué pruebas aparecen, qué preguntas se responden y qué recorrido sigue la visita. En ese punto ayuda revisar <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una página web para atraer clientes</a> y por qué la estructura pesa tanto como el diseño.</p>
+
+      <h3>SEO local y crecimiento</h3>
+      <p>Los constructores con IA pueden generar una base correcta, pero rara vez sustituyen una arquitectura pensada por servicio, intención y zona. Si quieres crecer con búsquedas locales, contenidos, campañas o páginas específicas, necesitas más control sobre enlazado, mensajes, páginas de destino y evolución del sitio.</p>
+
+      <h2>Cuándo sí puede compensarte usar Harmony</h2>
+      <ul>
+        <li>Acabas de lanzar un servicio y necesitas validar la oferta sin esperar semanas.</li>
+        <li>Tu prioridad inmediata es tener una presencia básica y presentable.</li>
+        <li>No vas a depender todavía de SEO ni de campañas con múltiples landing pages.</li>
+        <li>Tienes claro que será un paso intermedio, no la solución definitiva.</li>
+      </ul>
+
+      <h2>Cuándo conviene pasar a una web profesional</h2>
+      <p>Si tu negocio ya factura, compite de verdad o depende de captar leads de calidad, normalmente compensa trabajar una web con más intención. No necesariamente una mega web compleja, pero sí una estructura diseñada para tu oferta. Esto se nota especialmente cuando necesitas explicar varios servicios, separar públicos, integrar medición o cuidar más la velocidad, algo que tratamos en <a href="/blog/velocidad-web-importancia">nuestra guía sobre velocidad web</a>.</p>
+      <p>También conviene ir a una solución más cuidada cuando la web tiene que coordinarse con Google Ads, SEO local, automatizaciones o un proceso comercial más serio. Ahí una plantilla “resuelta” suele quedarse corta más rápido de lo que parece.</p>
+
+      <h2>Una forma sensata de decidir</h2>
+      <ul>
+        <li>Si hoy no tienes web, usa la IA para salir del bloqueo, pero con fecha de revisión.</li>
+        <li>Si ya tienes demanda, invierte en una estructura que convierta mejor.</li>
+        <li>Si dudas entre landing o web completa, compáralo con intención, no por moda.</li>
+      </ul>
+      <p>En muchos casos, la decisión correcta no es “IA sí” o “IA no”, sino <strong>qué parte del proceso debe acelerar la IA y qué parte necesita criterio humano</strong>. La herramienta puede ayudarte a arrancar. La estrategia sigue siendo el factor que determina si eso termina en contactos o en una web más del montón.</p>
+
+      <h2>Conclusión</h2>
+      <p>Wix Harmony puede ser una solución útil para arrancar, validar o publicar rápido. Lo que no conviene es pedirle que resuelva por sí solo posicionamiento, diferenciación y ventas. Si tu negocio quiere que la web sea un activo comercial, necesitas algo más que una salida rápida: necesitas una estructura que sostenga crecimiento.</p>
+      <p><strong>¿Quieres valorar si para tu caso basta una web guiada por IA o ya te conviene una web profesional?</strong> En Icono Studio podemos ayudarte a decidirlo con criterio y sin sobredimensionar el proyecto. <a href="/contacto">Cuéntanos qué necesitas</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Wix Harmony sirve para cualquier negocio?',
+        answer: 'No. Puede encajar bien como solución rápida para negocios sencillos o en fase de validación, pero suele quedarse corto cuando la web debe diferenciar, posicionar y convertir mejor.'
+      },
+      {
+        question: '¿Una web con IA posiciona peor en Google por defecto?',
+        answer: 'No por el hecho de usar IA, pero sí puede quedarse corta si no cuida arquitectura, contenidos, enlazado interno, velocidad y enfoque comercial.'
+      },
+      {
+        question: '¿Puedo empezar con Harmony y luego pasar a una web mejor?',
+        answer: 'Sí. De hecho, ese puede ser un uso razonable: publicar rápido para validar y después invertir en una estructura más sólida cuando el negocio lo justifique.'
+      }
+    ]
+  },
+  {
+    title: 'Canva Sheets en 2026: cómo usar tus datos para crear contenido sin pelearte con hojas imposibles',
+    subtitle: 'Canva ha convertido la hoja de cálculo en una pieza creativa. Para una pyme, eso puede acelerar campañas, reportes y materiales de venta si se usa con una lógica simple.',
+    slug: 'canva-sheets-2026-datos-contenido-negocio',
+    date: '09 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Productividad',
+    image: '/blog/canva-sheets-2026-datos-contenido-negocio.webp',
+    metaTitle: 'Canva Sheets en 2026 para pymes | Icono Studio',
+    metaDescription: 'Qué es Canva Sheets, cómo puede ayudarte a crear emails, posts y reportes desde tus datos y qué límites conviene tener claros antes de adoptarlo.',
+    keywords: ['canva sheets', 'magic charts canva', 'magic insights canva', 'crear contenido desde datos', 'herramientas para pymes 2026'],
+    content: `
+      <p>En 2026 Canva ha empujado <strong>Canva Sheets</strong> como algo más que una hoja de cálculo bonita. La idea es clara: unir datos, diseño y generación de contenido en el mismo flujo. Para una pyme, eso suena interesante porque muchos equipos viven atrapados entre varias herramientas: una hoja para clientes, otra para contenidos, otra para reportes y luego horas copiando y pegando información para convertirla en algo presentable.</p>
+      <p>La novedad no es solo visual. Lo útil es que ciertas tareas de marketing y comunicación empiezan a hacerse más rápidas: tablas que se convierten en piezas gráficas, reportes más legibles y materiales que ya no dependen tanto de una persona “que sepa maquetar”.</p>
+
+      <h2>Por qué puede interesarle a un negocio pequeño</h2>
+      <p>Muchos negocios no necesitan analítica avanzada ni dashboards complejos. Necesitan algo mucho más práctico: ver qué ha pasado este mes, preparar una propuesta clara, ordenar un calendario de contenidos o transformar una lista de productos y precios en materiales comprensibles.</p>
+      <p>En ese tipo de tareas, Canva Sheets puede encajar mejor que una hoja tradicional porque la salida final importa. No basta con tener los datos. Hay que comunicarlos bien a clientes, socios o al propio equipo.</p>
+
+      <h2>Usos razonables para una pyme</h2>
+      <h3>Convertir listas en materiales comerciales</h3>
+      <p>Si tienes servicios, precios orientativos, promociones o packs, puedes ordenar esa base y convertirla en piezas que luego se integren en email, redes o presentaciones. Esto no sustituye una <a href="/blog/cuanto-cuesta-pagina-web-profesional-espana-2026">página de precios bien pensada</a>, pero sí acelera la comunicación alrededor de la oferta.</p>
+
+      <h3>Hacer reportes entendibles</h3>
+      <p>Muchas veces el problema no es que falten datos, sino que nadie los lee. Cuando una hoja conecta mejor con gráficos, resúmenes o formatos visuales, es más fácil detectar qué acción conviene tomar.</p>
+
+      <h3>Preparar contenido repetitivo</h3>
+      <p>Un calendario de contenidos, una lista de testimonios, ideas de asuntos para email o versiones de un mismo mensaje por sector pueden gestionarse con menos fricción si la base de datos y la capa visual no viven separadas.</p>
+
+      <h2>Dónde encaja con tu web y tu captación</h2>
+      <p>Una web que vende no vive aislada. Necesita piezas de apoyo: comparativas, listados, casos, seguimiento de acciones comerciales, campañas o recursos descargables. Si tu equipo tarda demasiado en transformar información en materiales útiles, todo el sistema comercial se frena.</p>
+      <p>Por eso herramientas así interesan cuando el objetivo no es “hacer diseño por hacer diseño”, sino sostener mejor la captación. Si además estás ordenando tu SEO o tus campañas, conviene apoyarlo con una base de trabajo más limpia, igual que explicamos en <a href="/blog/keyword-research-negocios-locales-palabras-clave-clientes">nuestro método de keyword research para negocios locales</a>.</p>
+
+      <h2>Qué límites conviene asumir desde el principio</h2>
+      <ul>
+        <li>No sustituye una hoja avanzada si dependes de fórmulas complejas o procesos financieros delicados.</li>
+        <li>No arregla datos caóticos. Si la base está mal, el diseño solo disfraza el problema.</li>
+        <li>No reemplaza una estrategia de contenido. Acelera la ejecución, pero no decide prioridades por ti.</li>
+      </ul>
+
+      <h2>Cómo probarlo sin complicarte</h2>
+      <ul>
+        <li>Empieza con una hoja simple: servicios, precios, FAQs o calendario mensual.</li>
+        <li>Convierte esa base en un único activo útil: un email, un visual comparativo o un reporte.</li>
+        <li>Mide si ahorras tiempo real y si la salida final se entiende mejor.</li>
+      </ul>
+      <p>Si la herramienta te reduce trabajo repetitivo y mejora claridad, entonces merece un sitio en tu stack. Si solo añade otra capa de “cosas bonitas”, no.</p>
+
+      <h2>Conclusión</h2>
+      <p>Canva Sheets puede ser muy útil para negocios que necesitan convertir datos sencillos en materiales comerciales, operativos o de contenido con menos fricción. No reemplaza estrategia ni control de datos, pero sí puede ayudar a que el equipo produzca más rápido y comunique mejor.</p>
+      <p><strong>¿Quieres que tu web, tus contenidos y tus materiales comerciales trabajen como un sistema en lugar de ir cada uno por su lado?</strong> En Icono Studio podemos ayudarte a ordenar esa base. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Canva Sheets sustituye a Excel o Google Sheets?',
+        answer: 'No siempre. Puede complementar muy bien tareas visuales, de marketing o de comunicación, pero no necesariamente reemplaza flujos complejos de análisis o finanzas.'
+      },
+      {
+        question: '¿Sirve aunque no tenga diseñador en el equipo?',
+        answer: 'Sí. De hecho, parte de su interés está en acercar resultados más presentables a equipos pequeños sin un perfil dedicado al diseño.'
+      },
+      {
+        question: '¿Qué debería probar primero?',
+        answer: 'Una base simple y útil para tu negocio, como una tabla de servicios, promociones o un calendario de contenidos que después puedas convertir en una pieza real.'
+      }
+    ]
+  },
+  {
+    title: 'Gemini en Google Workspace en 2026: 7 tareas que una pyme puede acelerar sin añadir más caos',
+    subtitle: 'Gmail, Docs y Sheets están ganando funciones con Gemini que sí pueden ahorrar tiempo a un negocio pequeño, siempre que se usen para procesos concretos y no como juguete.',
+    slug: 'gemini-google-workspace-2026-tareas-pyme',
+    date: '09 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Productividad & IA',
+    image: '/blog/gemini-google-workspace-2026-tareas-pyme.webp',
+    metaTitle: 'Gemini en Google Workspace para pymes | Icono Studio',
+    metaDescription: 'Qué puede automatizar Gemini en Gmail, Docs y Sheets en 2026 y cómo aplicarlo a tareas reales de una pyme sin generar más desorden.',
+    keywords: ['gemini google workspace', 'gemini en sheets', 'ai inbox gmail', 'gemini spark', 'ia para pymes'],
+    content: `
+      <p>Google está metiendo más capacidad de <strong>Gemini</strong> dentro de Workspace y el mensaje para pequeñas empresas es bastante claro: menos cambio de herramienta, más trabajo resuelto dentro de Gmail, Docs y Sheets. En 2026 han llegado mejoras relevantes para correo, resúmenes, creación de documentos y análisis en hojas. La oportunidad es real, pero también el riesgo de añadir otra capa de ruido si se implanta sin criterio.</p>
+      <p>Una pyme no necesita automatizarlo todo. Necesita detectar qué tareas repite cada semana, cuáles consumen tiempo de una persona cara y cuáles pueden acelerarse sin perder control comercial.</p>
+
+      <h2>Las 7 tareas donde más sentido suele tener</h2>
+      <h3>1. Ordenar correos y priorizar respuestas</h3>
+      <p>Cuando un negocio gestiona presupuestos, incidencias y seguimientos desde Gmail, el cuello de botella suele estar en la bandeja de entrada. Resumir hilos, detectar urgencias y preparar borradores ahorra tiempo si luego una persona revisa el tono final.</p>
+
+      <h3>2. Convertir notas sueltas en documentos útiles</h3>
+      <p>Reuniones, audios, ideas de procesos o listas de cambios pueden pasar a documento con menos fricción. Eso es especialmente útil cuando nadie encuentra luego la versión correcta de nada.</p>
+
+      <h3>3. Analizar hojas sin dominar fórmulas complejas</h3>
+      <p>La mejora de Gemini en Sheets interesa mucho a negocios pequeños porque acerca el análisis a perfiles no técnicos. Comparar meses, detectar patrones o resumir tablas sencillas puede ser bastante más fácil.</p>
+
+      <h3>4. Preparar seguimientos comerciales</h3>
+      <p>Después de una llamada o una solicitud web, el siguiente correo suele repetirse mucho. Tener borradores adaptables acelera la respuesta y reduce el tiempo muerto entre lead e interacción real.</p>
+
+      <h3>5. Redactar primeros borradores de propuestas</h3>
+      <p>No para enviar sin revisar, sino para dejar avanzada la base: alcance, fases, entregables, preguntas abiertas o siguientes pasos.</p>
+
+      <h3>6. Crear resúmenes para el equipo</h3>
+      <p>Muchos negocios pequeños pierden tiempo porque la información se transmite mal. Los resúmenes breves de estado, tareas o incidencias pueden ayudar bastante si luego alguien valida la parte importante.</p>
+
+      <h3>7. Reaprovechar contenido entre formatos</h3>
+      <p>Un texto de propuesta puede derivar en un FAQ, una respuesta comercial o un esquema para una landing. Eso conecta bien con lo que explicamos en <a href="/blog/micro-intents-paginas-servicio-estructura-convierte-2026">nuestra guía sobre micro-intents en páginas de servicio</a>: la información útil no debería rehacerse desde cero cada vez.</p>
+
+      <h2>Qué procesos conviene tocar primero</h2>
+      <p>Empieza por tareas repetitivas, no por decisiones críticas. Si un proceso se repite varias veces por semana, tiene entradas relativamente claras y el error no destruye una venta, es buen candidato. Por ejemplo: emails de seguimiento, resúmenes, clasificación de leads o análisis básicos de una hoja.</p>
+      <p>No conviene empezar por asuntos legales, presupuestos finales delicados o mensajes donde el matiz comercial sea demasiado importante para delegarlo a un primer borrador automático.</p>
+
+      <h2>Qué límites deberías respetar</h2>
+      <ul>
+        <li>No uses la IA como sustituto de criterio en ofertas, precios o promesas comerciales.</li>
+        <li>No metas datos sensibles sin revisar bien permisos y políticas internas.</li>
+        <li>No automatices un proceso mal diseñado; primero ordénalo.</li>
+      </ul>
+
+      <h2>La clave no es la herramienta, sino el sistema</h2>
+      <p>Workspace con Gemini puede ahorrar bastante tiempo, pero solo cuando la empresa ya sabe qué quiere acelerar. Si no existe un proceso mínimo, la IA no trae orden: trae velocidad al desorden. Lo mismo ocurre con una web mal planteada o una medición floja, como ya tratamos en <a href="/blog/google-tag-vs-tag-manager-configuracion-medicion-2026">nuestra comparativa entre Google Tag y Tag Manager</a>.</p>
+
+      <h2>Conclusión</h2>
+      <p>Gemini en Google Workspace puede ser una ayuda útil para una pyme si se aplica a tareas concretas: correo, resúmenes, hojas, documentos y seguimientos. Lo importante no es usarlo en todo, sino usarlo donde reduce tiempo sin comprometer claridad ni control.</p>
+      <p><strong>¿Quieres ordenar los procesos comerciales y digitales de tu negocio para que la IA te ahorre trabajo de verdad?</strong> En Icono Studio podemos ayudarte a conectar web, captación y automatización con más criterio. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Gemini en Workspace puede sustituir a un CRM o a un gestor de proyectos?',
+        answer: 'No. Puede acelerar tareas alrededor de correo, documentos y hojas, pero no reemplaza por sí solo sistemas pensados para seguimiento comercial u operativo.'
+      },
+      {
+        question: '¿Qué debería automatizar primero una pyme?',
+        answer: 'Tareas repetitivas y revisables, como resúmenes, seguimientos básicos por email o análisis sencillos de hojas, antes que decisiones críticas.'
+      },
+      {
+        question: '¿La IA puede escribir correos listos para enviar?',
+        answer: 'Puede dejar buenos borradores, pero conviene revisar tono, contexto y exactitud antes de enviarlos, especialmente en mensajes comerciales.'
+      }
+    ]
+  },
+  {
+    title: 'Notion Custom Agents en 2026: automatizaciones útiles para una pyme sin montar un monstruo',
+    subtitle: 'Los agentes personalizados de Notion pueden ahorrar tiempo en tareas internas, documentación y seguimiento, pero solo si atacan procesos reales y no una moda.',
+    slug: 'notion-custom-agents-2026-automatizaciones-pyme',
+    date: '09 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Operaciones & IA',
+    image: '/blog/notion-custom-agents-2026-automatizaciones-pyme.webp',
+    metaTitle: 'Notion Custom Agents para pymes | Icono Studio',
+    metaDescription: 'Cómo usar Notion Custom Agents en 2026 para automatizar tareas reales en una pyme y cuándo no merece la pena complicarse con ellos.',
+    keywords: ['notion custom agents', 'agentes personalizados notion', 'automatizacion pyme', 'notion ai 2026', 'flujos internos con ia'],
+    content: `
+      <p>Notion ha entrado de lleno en la carrera de los <strong>agentes personalizados</strong>. Sobre el papel, la promesa es atractiva: asistentes que trabajan sobre tu documentación, entienden ciertos flujos y ayudan a reducir trabajo repetitivo. Para una pyme, la pregunta importante no es si suena moderno, sino si realmente quita carga a tareas que hoy consumen tiempo.</p>
+      <p>Muchas pequeñas empresas tienen el mismo problema: información repartida, procedimientos que viven “en la cabeza” de alguien, seguimientos que dependen demasiado de memoria y una pila de tareas administrativas que nadie disfruta. Ahí es donde un agente bien enfocado puede ayudar.</p>
+
+      <h2>Qué es útil entender antes de empezar</h2>
+      <p>Un agente personalizado no es simplemente un chat bonito. Funciona mejor cuando tiene acceso a contexto claro, instrucciones concretas y un alcance limitado. Si lo alimentas con documentos desordenados o le pides hacer de todo, la experiencia se degrada rápido.</p>
+      <p>Por eso suele compensar más pensar en <strong>uno o dos trabajos repetitivos</strong> que en “poner IA en la empresa”. La segunda idea vende más. La primera suele funcionar mejor.</p>
+
+      <h2>Casos donde sí puede aportar valor</h2>
+      <h3>Responder preguntas internas repetidas</h3>
+      <p>Políticas, pasos de un proceso, checklist de entrega, materiales de onboarding o documentación comercial pueden centralizarse mejor cuando alguien puede consultar y obtener una respuesta razonable sin perseguir a otra persona.</p>
+
+      <h3>Preparar resúmenes semanales</h3>
+      <p>Si la empresa acumula notas de reuniones, tareas y cambios de estado, un agente puede ayudar a condensar esa información en un resumen útil para dirección o equipo.</p>
+
+      <h3>Ordenar solicitudes de clientes o leads</h3>
+      <p>Cuando llegan formularios, mensajes o briefings, clasificar información y detectar qué falta puede ahorrar bastante tiempo. Esto conecta con lo que ya contamos en <a href="/blog/agentes-ia-web-cuando-aumentan-leads">nuestra guía sobre agentes de IA en tu web</a>: la automatización suma cuando reduce fricción real, no cuando añade una capa espectacular pero inútil.</p>
+
+      <h2>Cuándo no compensa</h2>
+      <ul>
+        <li>Si tu información está demasiado dispersa o mal escrita.</li>
+        <li>Si buscas que el agente tome decisiones comerciales importantes sin supervisión.</li>
+        <li>Si la empresa aún no tiene claro su proceso base.</li>
+        <li>Si el coste y mantenimiento van a superar el ahorro real.</li>
+      </ul>
+
+      <h2>Cómo empezar sin sobreactuar</h2>
+      <ul>
+        <li>Elige un único flujo repetitivo y medible.</li>
+        <li>Reúne la documentación mínima necesaria y límpiala primero.</li>
+        <li>Define qué debe responder, qué no y cuándo debe escalar a una persona.</li>
+        <li>Revisa calidad una vez por semana al principio.</li>
+      </ul>
+      <p>Ese enfoque suele dar mejores resultados que intentar automatizar marketing, soporte, operación y ventas en una sola jugada.</p>
+
+      <h2>La clave: menos show, más utilidad</h2>
+      <p>Una pyme no gana nada por decir que usa agentes si luego nadie confía en ellos. Gana cuando una tarea tarda menos, se responde mejor o depende menos de una persona saturada. Si además el negocio está trabajando su presencia digital, conviene que esa mejora interna se refleje también hacia fuera en una propuesta más clara y tiempos de respuesta más ágiles.</p>
+      <p>Eso es parte del mismo sistema que una buena web, un proceso comercial simple y un contenido bien orientado. No son piezas separadas.</p>
+
+      <h2>Conclusión</h2>
+      <p>Notion Custom Agents puede ser una herramienta útil para pymes si se aplica sobre procesos concretos, documentación ordenada y tareas repetitivas con supervisión. No merece la pena montarlo como un espectáculo tecnológico. Merece la pena cuando reduce carga operativa real.</p>
+      <p><strong>¿Quieres que tu negocio responda más rápido y funcione con menos fricción, tanto por dentro como en la web?</strong> En Icono Studio podemos ayudarte a ordenar ese sistema. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Notion Custom Agents sirve para cualquier pyme?',
+        answer: 'No necesariamente. Funciona mejor en empresas que ya tienen cierta documentación, procesos repetitivos y una necesidad clara de reducir trabajo interno.'
+      },
+      {
+        question: '¿Puede atender clientes sin supervisión?',
+        answer: 'Conviene usarlo con cautela. Puede ayudar a clasificar, resumir o responder preguntas simples, pero no debería asumir decisiones delicadas sin revisión humana.'
+      },
+      {
+        question: '¿Qué caso de uso es mejor para empezar?',
+        answer: 'Uno pequeño y repetitivo: por ejemplo, resumir reuniones, responder FAQs internas o clasificar solicitudes que llegan por formularios.'
+      }
+    ]
+  },
+  {
+    title: 'Analítica web con IA en 2026: cómo saber qué páginas te acercan a ventas y cuáles solo hacen ruido',
+    subtitle: 'La analítica con IA promete insights automáticos, pero lo valioso para una pyme sigue siendo detectar qué contenidos atraen negocio y cuáles solo llenan informes.',
+    slug: 'analitica-web-ia-2026-paginas-que-venden',
+    date: '09 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Analítica',
+    image: '/blog/analitica-web-ia-2026-paginas-que-venden.webp',
+    metaTitle: 'Analítica web con IA en 2026 | Icono Studio',
+    metaDescription: 'Cómo usar analítica web con IA y GA4 para detectar qué páginas acercan a ventas, qué medir de verdad y qué errores evitar en una pyme.',
+    keywords: ['analitica web con ia', 'ga4 predictive metrics', 'ai web analytics', 'paginas que convierten', 'medicion web pyme'],
+    content: `
+      <p>La idea de <strong>analítica web con IA</strong> suena muy bien: menos dashboards, más respuestas. Herramientas del ecosistema de Google y muchos productos del mercado están empujando justo eso, mientras blogs de referencia en marketing digital insisten en el mismo mensaje: usar IA para entender mejor qué contenido genera negocio y cuál no. Para una pyme, la pregunta útil no es si el panel tiene un asistente. Es si por fin te ayuda a decidir mejor.</p>
+      <p>Muchos negocios llevan años mirando métricas que apenas cambian decisiones: sesiones totales, usuarios nuevos, tiempo medio o gráficos demasiado bonitos para accionar algo. En 2026 el punto no debería ser tener más datos, sino identificar <strong>qué páginas apoyan ventas</strong>, cuáles atraen tráfico flojo y dónde se rompe el recorrido antes del contacto.</p>
+
+      <h2>Qué puede aportar la IA si la base está bien montada</h2>
+      <p>La IA puede ayudar a resumir tendencias, detectar anomalías, comparar periodos y sugerir preguntas. También puede hacer más accesible la analítica a perfiles no técnicos. Ese es su valor real: reducir fricción de lectura.</p>
+      <p>Pero no hace magia. Si tu medición está mal configurada, los formularios no se registran bien o mezclas tráfico irrelevante con oportunidades reales, la IA te resumirá confusión con mucha seguridad.</p>
+
+      <h2>Las preguntas que un dueño de negocio debería hacerse cada semana</h2>
+      <ul>
+        <li>¿Qué páginas trajeron contactos o pasos de alta intención esta semana?</li>
+        <li>¿Qué contenidos reciben tráfico pero no ayudan a avanzar hacia una consulta?</li>
+        <li>¿Qué canales generan visitas con más calidad, no solo más volumen?</li>
+        <li>¿Dónde se caen los usuarios antes del formulario o la llamada?</li>
+      </ul>
+      <p>Si no puedes responder eso con cierta claridad, el problema no es la falta de IA. El problema es que tu sistema de medición todavía no está conectado con el negocio.</p>
+
+      <h2>Qué señales suelen importar más que el tráfico bruto</h2>
+      <h3>Páginas de servicio con intención comercial</h3>
+      <p>Estas páginas deberían estar cerca de formularios, clics en teléfono, WhatsApp o cualquier conversión relevante. Si reciben visitas y no generan nada, probablemente hay un problema de mensaje, estructura o confianza.</p>
+
+      <h3>Entradas del blog que apoyan decisiones</h3>
+      <p>No todo post debe vender de forma directa, pero sí conviene identificar cuáles abren una puerta real. Para eso ayuda bastante combinar Search Console con filtros más finos, como explicamos en <a href="/blog/search-console-regex-24-horas-intencion-seo-local-2026">nuestra guía sobre regex y vista de 24 horas</a>.</p>
+
+      <h3>Eventos que se parezcan a negocio real</h3>
+      <p>Enviar un formulario es una pista. Un lead cualificado o una reunión agendada vale más. Cuanto mejor conectes esos hitos, mejor funcionará cualquier lectura con IA. Aquí encaja muy bien <a href="/blog/enhanced-conversions-leads-google-ads-2026">mejorar la medición de leads</a> si también haces campañas.</p>
+
+      <h2>La pila mínima que suele ser suficiente</h2>
+      <ul>
+        <li>GA4 bien etiquetado.</li>
+        <li>Search Console para intención y consultas.</li>
+        <li>Etiquetas o eventos claros para formularios, clics y acciones de contacto.</li>
+        <li>Algún criterio, aunque sea simple, para diferenciar un lead útil de uno mediocre.</li>
+      </ul>
+      <p>No hace falta empezar con un sistema gigantesco. Hace falta que lo básico esté limpio. Igual que ocurre con la web: antes de crecer, conviene que los cimientos aguanten.</p>
+
+      <h2>Errores comunes cuando entra la IA en la analítica</h2>
+      <ul>
+        <li>Confiar en resúmenes automáticos sin revisar si la medición está bien.</li>
+        <li>Seguir mirando métricas de vanidad con palabras más sofisticadas.</li>
+        <li>No vincular contenido, páginas de servicio y conversiones reales.</li>
+        <li>Olvidar velocidad, UX o claridad de oferta mientras se miran informes.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>La analítica web con IA puede ser una ventaja cuando simplifica lectura y te ayuda a priorizar. Pero su valor depende de una base de medición limpia y de preguntas orientadas a negocio. Si tu web debe generar oportunidades reales, no necesitas más gráficos: necesitas saber qué páginas empujan ventas y cuáles no.</p>
+      <p><strong>¿Quieres revisar si tu web está midiendo lo correcto y si tu contenido realmente empuja contactos?</strong> En Icono Studio podemos ayudarte a unir web, SEO, analítica y conversión con más claridad. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿La IA puede decirme sola qué páginas generan ventas?',
+        answer: 'Puede ayudarte a detectar patrones, pero necesita una medición bien configurada y objetivos claros para que sus conclusiones sean útiles.'
+      },
+      {
+        question: '¿Qué debería medir primero una pyme?',
+        answer: 'Páginas de servicio, formularios, clics de contacto y señales que se parezcan a oportunidades reales de negocio, antes que métricas generales de tráfico.'
+      },
+      {
+        question: '¿Necesito una herramienta muy compleja para empezar?',
+        answer: 'No. Una base limpia con GA4, Search Console y eventos de contacto bien definidos suele ser suficiente para empezar a tomar mejores decisiones.'
+      }
+    ]
+  },
+  {
     title: 'WhatsApp en Google Business Profile en 2026: cómo captar más contactos sin depender solo del formulario',
     subtitle: 'Google permite añadir WhatsApp o SMS en la ficha en algunas regiones. Bien planteado, ese botón reduce fricción y acelera leads para negocios de servicios.',
     slug: 'whatsapp-google-business-profile-2026-captar-contactos',
