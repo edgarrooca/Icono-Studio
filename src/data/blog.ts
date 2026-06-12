@@ -1199,7 +1199,7 @@ export const blogPosts: BlogPost[] = [
       <p>Publicar más no siempre crea más valor. Google está reforzando la visibilidad de fuentes originales y perspectivas de primera mano, algo que ya explicamos en <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">nuestro artículo sobre contenido original y experiencia real</a>.</p>
 
       <h3>“Con llms.txt ya está”</h3>
-      <p>Elementos como `llms.txt`, schema o señales de entidad pueden tener un papel de apoyo, pero no sustituyen una web débil. Si quieres contexto sobre eso, aquí tienes nuestra guía sobre <a href="/blog/llms-txt-schema-entidad-marca-visibilidad-ia-2026">llms.txt, schema y entidad de marca</a>.</p>
+      <p>Elementos como <code>llms.txt</code>, schema o señales de entidad pueden tener un papel de apoyo, pero no sustituyen una web débil. Si quieres contexto sobre eso, aquí tienes nuestra guía sobre <a href="/blog/llms-txt-schema-entidad-marca-visibilidad-ia-2026">llms.txt, schema y entidad de marca</a>.</p>
 
       <h2>Lo que una web de negocio sí debe priorizar</h2>
       <h3>1. Rastreabilidad y acceso limpios</h3>
