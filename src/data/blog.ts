@@ -3,6 +3,433 @@ import { BlogPost } from '../types/blog';
 
 const latestBlogPosts: BlogPost[] = [
   {
+    title: 'Gemini con Google Business Profile en 2026: cómo ahorrar tiempo con reseñas, preguntas y tareas del negocio',
+    subtitle: 'Google anunció el 10 de junio de 2026 una conexión directa entre Gemini y Google Business Profile. Para muchos negocios locales, eso convierte la ficha en una fuente operativa, no solo de visibilidad.',
+    slug: 'gemini-google-business-profile-2026-resenas-tareas-negocio',
+    date: '19 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'IA',
+    image: '/blog/gemini-gbp.webp',
+    metaTitle: 'Gemini con Google Business Profile en 2026: usos reales para un negocio | Icono Studio',
+    metaDescription: 'Cómo aprovechar Gemini conectado a Google Business Profile para responder mejor, detectar objeciones y convertir la ficha local en una herramienta de trabajo.',
+    keywords: ['gemini google business profile', 'gemini para negocios locales', 'responder reseñas con ia', 'google business profile ia', 'gemini pyme 2026'],
+    content: `
+      <p>El <strong>10 de junio de 2026</strong>, Google presentó nuevas funciones de Gemini para pequeños negocios con una idea bastante práctica: que la IA deje de trabajar “a ciegas” y pueda apoyarse en el contexto real de tu empresa. Entre esas novedades destaca una <strong>conexión directa con Google Business Profile</strong> y la llegada de los llamados <strong>Business notebooks</strong>, pensados para organizar tareas, detectar oportunidades y proponer acciones con conocimiento de tu negocio.</p>
+      <p>Para una pyme o un negocio local, esto importa porque la ficha de Google ya no es solo un escaparate. Empieza a ser también una fuente de señales sobre <strong>qué preguntan los clientes, qué dudas repiten, qué reseñas dejan y qué fricciones aparecen antes del contacto</strong>. Si usas bien esa información, puedes mejorar tanto la ficha como la web.</p>
+
+      <h2>Qué cambia de verdad cuando Gemini entiende tu ficha</h2>
+      <p>Hasta ahora, muchas tareas con IA requerían copiar y pegar reseñas, preguntas, servicios o textos en varias herramientas. Con la conexión anunciada por Google, Gemini puede trabajar con una base más cercana a la realidad de tu negocio. Eso no significa que deba contestar todo por ti. Sí significa que puede ayudarte a <strong>leer patrones y preparar respuestas más rápido</strong>.</p>
+      <p>Esto encaja muy bien con lo que ya contamos en <a href="/blog/whatsapp-google-business-profile-2026-captar-contactos">nuestra guía sobre WhatsApp y Google Business Profile</a>: el objetivo no es sumar canales por moda, sino reducir tiempo de respuesta y hacer más fácil el siguiente paso para la persona interesada.</p>
+
+      <h2>Usos que sí tienen sentido para un negocio pequeño</h2>
+      <h3>1. Detectar objeciones repetidas en reseñas y preguntas</h3>
+      <p>Si varias reseñas mencionan tiempos, precios, aparcamiento, atención o dificultad para reservar, ahí tienes una mina. Gemini puede ayudarte a resumir esos patrones y convertirlos en mejoras concretas para tu web, tu ficha o tus mensajes de respuesta.</p>
+
+      <h3>2. Preparar respuestas más útiles, no más automáticas</h3>
+      <p>Responder reseñas deprisa está bien. Responderlas con criterio, mejor. La IA puede darte un borrador, pero conviene revisarlo y añadir un tono humano. Lo importante es que te quite el trabajo repetitivo sin convertir tu marca en una plantilla fría.</p>
+
+      <h3>3. Proponer tareas semanales accionables</h3>
+      <p>Google planteó Business notebooks como un espacio que sugiere acciones. Para un negocio de servicios, eso puede traducirse en algo tan simple como:</p>
+      <ul>
+        <li>Responder las preguntas nuevas de la ficha.</li>
+        <li>Actualizar una foto o un servicio.</li>
+        <li>Revisar qué reseñas piden aclaraciones.</li>
+        <li>Crear una FAQ nueva en la web con una objeción repetida.</li>
+      </ul>
+
+      <h3>4. Convertir dudas locales en contenido que vende</h3>
+      <p>Si tu ficha recibe preguntas sobre horarios, zonas de cobertura, precios orientativos o tiempos de respuesta, tu web debería resolverlas mejor. Muchas veces el problema no es que falten visitas, sino que <strong>faltan respuestas visibles antes del formulario</strong>.</p>
+
+      <h2>Qué no deberías delegar a Gemini sin mirar</h2>
+      <ul>
+        <li>Promesas de precio o disponibilidad que luego no puedas cumplir.</li>
+        <li>Respuestas a reseñas delicadas sin revisión humana.</li>
+        <li>Textos genéricos que suenan correctos pero no diferencian tu servicio.</li>
+        <li>Publicaciones locales que podrían decir lo mismo de cualquier negocio.</li>
+      </ul>
+      <p>La IA acelera. La estrategia sigue siendo tuya. Si la conectas a una fuente real pero luego publicas cualquier cosa, solo producirás ruido más rápido.</p>
+
+      <h2>Cómo llevar lo aprendido en la ficha a tu web</h2>
+      <p>Esta es la parte más importante. Si Gemini detecta que tus clientes repiten ciertas preguntas, la respuesta útil no es dejarlo en un resumen interno. La respuesta útil es <strong>hacer que tu web resuelva mejor esas dudas</strong>. Normalmente eso pasa por tocar:</p>
+      <ul>
+        <li>La sección de preguntas frecuentes.</li>
+        <li>Los textos de servicios.</li>
+        <li>Las páginas locales o por zona.</li>
+        <li>La explicación del proceso y los tiempos.</li>
+        <li>Los rangos de precio, si tiene sentido mostrarlos.</li>
+      </ul>
+      <p>Si tu negocio todavía responde poco en la web antes del contacto, te conviene revisar también <a href="/blog/precios-orientativos-web-2026-cuando-ayudan-vender">cuándo mostrar precios orientativos</a> y <a href="/blog/paginas-barrio-codigo-postal-zona-seo-local-2026">cuándo crear páginas por zona para SEO local</a>.</p>
+
+      <h2>Una rutina simple de 20 minutos a la semana</h2>
+      <p>Para una pyme no hace falta montar un sistema enorme. Basta con una rutina sostenida:</p>
+      <ul>
+        <li>Revisa reseñas y preguntas recientes.</li>
+        <li>Pide a Gemini un resumen de objeciones, elogios y dudas repetidas.</li>
+        <li>Elige una sola mejora semanal para ficha o web.</li>
+        <li>Convierte una duda frecuente en una respuesta visible.</li>
+        <li>Mide si baja la fricción: más clics, más llamadas o menos conversaciones improductivas.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>La novedad no está solo en “usar Gemini”. La novedad útil es que <strong>Gemini empiece a trabajar con señales reales de tu negocio local</strong>. Si lo aprovechas bien, Google Business Profile deja de ser una ficha que miras de vez en cuando y pasa a convertirse en un radar de objeciones, preguntas y oportunidades comerciales.</p>
+      <p><strong>¿Quieres conectar mejor ficha, web y mensajes para que tu presencia local convierta más?</strong> En Icono Studio podemos ayudarte a ordenar esa capa sin complicarte el día a día. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué puede hacer Gemini si se conecta a Google Business Profile?',
+        answer: 'Puede ayudarte a resumir preguntas, reseñas y señales de rendimiento para proponer respuestas, tareas y mejoras con más contexto del negocio.'
+      },
+      {
+        question: '¿Es buena idea responder reseñas solo con IA?',
+        answer: 'No del todo. La IA puede ahorrar tiempo preparando borradores, pero conviene revisar siempre el tono, la precisión y cualquier caso sensible.'
+      },
+      {
+        question: '¿Cómo se relaciona esto con mi página web?',
+        answer: 'Las dudas y objeciones que detectas en la ficha deberían traducirse en FAQs, textos de servicio, páginas locales y llamadas a la acción mejor trabajadas.'
+      }
+    ]
+  },
+  {
+    title: 'Gemini en Sheets ya funciona mejor en español: 7 usos reales para presupuestos y seguimiento en 2026',
+    subtitle: 'Google amplió el 18 de junio de 2026 el soporte de Gemini en Sheets a 28 idiomas adicionales, incluido el español. Para muchas pymes eso abre una vía simple para ordenar datos sin depender todavía de un sistema complejo.',
+    slug: 'gemini-sheets-espanol-2026-presupuestos-seguimiento',
+    date: '19 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Herramientas',
+    image: '/blog/gemini-sheets-es.webp',
+    metaTitle: 'Gemini en Sheets en español: usos reales para una pyme en 2026 | Icono Studio',
+    metaDescription: 'Siete formas prácticas de usar Gemini en Google Sheets en español para presupuestos, seguimiento comercial y pequeñas operaciones en una pyme.',
+    keywords: ['gemini sheets español', 'gemini en google sheets', 'presupuestos con ia', 'seguimiento comercial google sheets', 'herramientas ia pyme 2026'],
+    content: `
+      <p>El <strong>18 de junio de 2026</strong>, Google anunció la ampliación del soporte de Gemini en Sheets a <strong>28 idiomas adicionales</strong>, entre ellos español y catalán. Dicho de forma menos corporativa: muchas pequeñas empresas ya pueden pedir en su idioma que una hoja se construya, se edite o se reorganice sin pelearse tanto con fórmulas, columnas y estructura.</p>
+      <p>Esto no convierte Google Sheets en un ERP ni en un CRM serio. Pero sí puede convertirlo en una <strong>herramienta bastante más útil para tareas operativas que suelen vivir desordenadas</strong>: presupuestos, seguimientos, listas de clientes, planificación, pequeños cuadros de mando o registros internos.</p>
+
+      <h2>Por qué esta novedad sí puede interesar a una pyme</h2>
+      <p>El valor no está en “hablar con una hoja” por puro espectáculo. El valor está en que personas que no dominan hojas complejas pueden pedir cosas como: “ordena estos leads por estado”, “crea una tabla para seguir presupuestos abiertos” o “resume qué servicios se repiten más”. Para un negocio pequeño, eso reduce bastante fricción operativa.</p>
+      <p>Si vienes siguiendo esta parte, verás que conecta con artículos que ya publicamos sobre <a href="/blog/chatgpt-excel-google-sheets-pymes-2026">ChatGPT para Excel y Google Sheets</a> y <a href="/blog/canva-sheets-2026-datos-contenido-negocio">Canva Sheets</a>. La diferencia aquí es que hablamos de una mejora reciente y concreta dentro del ecosistema de Google, con soporte más natural para equipos que trabajan en español.</p>
+
+      <h2>7 usos que sí tienen sentido</h2>
+      <h3>1. Seguimiento simple de presupuestos enviados</h3>
+      <p>Puedes pedir una hoja con columnas de cliente, servicio, importe estimado, fecha de envío, estado, siguiente acción y probabilidad. No es sofisticado, pero para muchos negocios ya es mejor que una libreta o un hilo de WhatsApp.</p>
+
+      <h3>2. Registro de leads y respuestas pendientes</h3>
+      <p>Si aún no trabajas con CRM, una hoja bien montada puede ayudarte a no perder contactos. Lo importante es que tenga responsables, fechas y estados claros. Si no, solo cambias desorden por desorden bonito.</p>
+
+      <h3>3. Control de tareas comerciales semanales</h3>
+      <p>Gemini puede ayudarte a estructurar una vista donde se vea qué presupuestos hay que perseguir, qué clientes esperan respuesta y qué acciones vencen esta semana.</p>
+
+      <h3>4. Comparativa de servicios o paquetes</h3>
+      <p>Si ofreces varios niveles de servicio, una hoja puede servir para ordenar diferencias, extras, tiempos y márgenes. Eso además te ayuda a explicar mejor tus opciones en la web.</p>
+
+      <h3>5. Resumen rápido de datos repetitivos</h3>
+      <p>Una pyme suele tener pequeños listados dispersos: consultas, tareas, pedidos, incidencias, servicios más vendidos. Poder resumir o agrupar eso sin fórmulas complejas ahorra tiempo.</p>
+
+      <h3>6. Calendario de contenido o campañas</h3>
+      <p>No hace falta usarlo solo para números. También puede servir para organizar publicaciones, promociones o secuencias de email de forma bastante más cómoda para equipos pequeños.</p>
+
+      <h3>7. Mini cuadro de mando para revisar la semana</h3>
+      <p>Con una estructura simple, puedes revisar cuántos leads entraron, cuántos presupuestos siguen abiertos, qué fuente trajo mejores contactos o qué servicio se está moviendo más.</p>
+
+      <h2>Cómo pedir mejor las hojas en español</h2>
+      <p>La novedad de idioma ayuda, pero sigue siendo importante dar contexto. Suele funcionar mejor pedir:</p>
+      <ul>
+        <li>Qué tipo de negocio eres.</li>
+        <li>Qué decisiones quieres tomar con esa hoja.</li>
+        <li>Qué columnas necesitas.</li>
+        <li>Qué estados o categorías usas de verdad.</li>
+        <li>Qué quieres ver al abrirla: resumen, alertas o próximas acciones.</li>
+      </ul>
+      <p>Cuanto más operativo sea el prompt, mejor será el resultado. “Hazme una hoja para vender más” es una petición floja. “Crea una hoja para seguir presupuestos de diseño web con estado, fecha y próxima acción” ya sirve bastante mejor.</p>
+
+      <h2>Cuándo Sheets es suficiente y cuándo ya no</h2>
+      <p>Sheets puede cubrir bien una etapa inicial o un proceso sencillo. Pero deja de ser suficiente cuando:</p>
+      <ul>
+        <li>Hay varias personas tocando el mismo proceso comercial.</li>
+        <li>Necesitas trazabilidad real de llamadas, emails y seguimiento.</li>
+        <li>Quieres automatizar recordatorios o asignaciones.</li>
+        <li>Empiezas a perder contexto entre web, WhatsApp y equipo.</li>
+      </ul>
+      <p>Si estás en ese punto, quizá ya no necesitas “otra hoja mejor”, sino algo más parecido a lo que contamos en <a href="/blog/crm-pymes-servicios-2026-no-perder-leads-web">nuestra guía sobre CRM para pymes de servicios</a>.</p>
+
+      <h2>Un buen uso práctico: mejorar también la web</h2>
+      <p>Hay otro beneficio menos obvio. Cuando ordenas bien presupuestos, objeciones y servicios en una hoja, empiezas a ver patrones: qué dudas frenan más, qué páginas convierten peor, qué servicio cuesta más explicar o qué rango de precio se repite. Esa información debería volver a tu web.</p>
+      <p>Una hoja bien usada no solo ordena operaciones. También te da material para mejorar mensajes, comparativas y secciones comerciales.</p>
+
+      <h2>Conclusión</h2>
+      <p>La ampliación de Gemini en Sheets al español no es una revolución porque sí. Es útil porque <strong>baja la barrera para ordenar operaciones pequeñas sin esperar a montar una infraestructura compleja</strong>. Para muchas pymes, eso ya compensa.</p>
+      <p><strong>¿Quieres decidir si te basta con una hoja bien diseñada o ya necesitas una capa más sólida entre tu web y tus leads?</strong> En Icono Studio podemos ayudarte a montar el sistema adecuado para tu tamaño real. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Gemini en Sheets sustituye a un CRM?',
+        answer: 'No. Puede ayudar mucho a ordenar procesos simples, pero no reemplaza bien un CRM cuando ya necesitas seguimiento, automatización y trazabilidad comercial.'
+      },
+      {
+        question: '¿Qué ventaja tiene que funcione mejor en español?',
+        answer: 'Reduce fricción para equipos que no quieren depender de fórmulas complejas o prompts en inglés y facilita pedir estructuras útiles con lenguaje más natural.'
+      },
+      {
+        question: '¿Qué hoja debería montar primero una pyme pequeña?',
+        answer: 'Normalmente conviene empezar por una hoja de presupuestos y seguimiento comercial, porque es la que antes evita olvidos y oportunidades perdidas.'
+      }
+    ]
+  },
+  {
+    title: 'Cómo medir si tu negocio sale citado en ChatGPT, Gemini y Google AI en 2026 sin montar un laboratorio',
+    subtitle: 'La competencia ya habla de AI citation tracking y AI search analytics. Para un negocio pequeño, la clave no es comprar una suite enorme sino entender qué medir, dónde y con qué frecuencia.',
+    slug: 'medir-citas-chatgpt-gemini-google-ai-2026-negocio',
+    date: '19 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Analítica',
+    image: '/blog/medir-citas-ia-negocio-2026.webp',
+    metaTitle: 'Cómo medir citas en ChatGPT, Gemini y Google AI en 2026 | Icono Studio',
+    metaDescription: 'Una forma simple de medir si tu negocio aparece citado o mencionado en ChatGPT, Gemini y Google AI sin depender de herramientas complejas o caras.',
+    keywords: ['ai citation tracking', 'medir citas chatgpt', 'visibilidad gemini negocio', 'google ai overviews medicion', 'ai search analytics pyme'],
+    content: `
+      <p>Durante las últimas semanas, varios blogs grandes de marketing han empujado un tema que hasta hace poco sonaba demasiado técnico para una pyme: <strong>medir si tu marca aparece en respuestas de IA</strong>. HubSpot, por ejemplo, está publicando contenidos específicos sobre <em>AI citation tracking</em> y <em>AI search analytics</em>, una señal bastante clara de hacia dónde se está moviendo la conversación competitiva.</p>
+      <p>La idea de fondo es simple. Ya no basta con mirar posiciones y clics azules. Muchas personas comparan servicios, herramientas o proveedores en <strong>ChatGPT, Gemini, Perplexity o Google AI Overviews</strong> antes de hacer el clic final. Si tu negocio aparece ahí, aunque no siempre genere un clic directo, puede entrar en consideración. Si no aparece, quizás estés perdiendo visibilidad sin notarlo.</p>
+
+      <h2>Menciones y citas no son exactamente lo mismo</h2>
+      <p>Una distinción útil que están haciendo estas herramientas es separar <strong>menciones</strong> de <strong>citas</strong>. La mención es cuando una IA nombra tu marca o negocio. La cita es cuando además apoya esa respuesta en una fuente concreta, una URL o un contenido reconocible. Ambas cosas importan, pero no sirven para lo mismo.</p>
+      <ul>
+        <li><strong>Mención:</strong> ayuda a saber si entras en la conversación.</li>
+        <li><strong>Cita:</strong> ayuda a saber si tu contenido influye en esa respuesta.</li>
+      </ul>
+      <p>Para una pyme, la pregunta práctica es esta: <strong>¿hay señales de que mis páginas están ayudando a que me recomienden o me utilicen como referencia?</strong></p>
+
+      <h2>Qué puedes medir sin herramientas caras</h2>
+      <h3>1. Un set fijo de preguntas reales</h3>
+      <p>Haz una lista corta de prompts que un cliente potencial sí podría usar. Ejemplos:</p>
+      <ul>
+        <li>“mejor agencia de diseño web en valencia para negocio local”</li>
+        <li>“qué debe tener una web para captar clientes”</li>
+        <li>“wix o web a medida para empresa de servicios”</li>
+      </ul>
+      <p>Lo importante es repetir siempre las mismas preguntas durante unas semanas para ver patrones.</p>
+
+      <h3>2. Registro manual de apariciones</h3>
+      <p>Crea una hoja simple donde apuntes fecha, motor, prompt, si sales mencionado, si sales citado y qué página aparece. No hace falta sofisticarlo desde el día uno. La disciplina pesa más que la herramienta.</p>
+
+      <h3>3. Consultas de marca y páginas clave</h3>
+      <p>Si crece tu visibilidad en IA, a menudo también suben consultas de marca, búsquedas más específicas o entradas a páginas que resuelven comparativas y objeciones. Ahí sigue siendo muy útil revisar Search Console, como explicamos en <a href="/blog/search-console-ai-mode-2026-medicion-visibilidad">nuestra guía sobre Search Console y AI Mode</a>.</p>
+
+      <h3>4. Fragmentos de texto y tráfico sospechosamente cualificado</h3>
+      <p>En algunos clics desde resultados con IA pueden aparecer fragmentos de texto en la URL o patrones de entrada más concretos. No es una ciencia exacta, pero sirve para detectar que ciertas respuestas están enviando visitas a párrafos muy específicos.</p>
+
+      <h3>5. Qué páginas se repiten cuando sí apareces</h3>
+      <p>Si siempre te citan la misma guía, la misma comparativa o la misma página de servicio, ahí hay una pista. Esa URL probablemente tiene una estructura o una claridad que merece replicarse en otras piezas.</p>
+
+      <h2>Qué suelen tener las páginas que sí consiguen ser citables</h2>
+      <ul>
+        <li>Responden una pregunta concreta con claridad.</li>
+        <li>No esconden la información útil entre relleno.</li>
+        <li>Tienen ejemplos, proceso, límites y contexto.</li>
+        <li>Están bien conectadas con el resto del sitio.</li>
+        <li>Transmiten experiencia real, no solo texto genérico.</li>
+      </ul>
+      <p>Esto conecta directamente con <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">nuestra guía sobre contenido original y experiencia real</a>. En IA, la claridad y la credibilidad pesan mucho más de lo que parece.</p>
+
+      <h2>Errores comunes al intentar medir esto</h2>
+      <ul>
+        <li>Obsesionarse con salir en todos los prompts posibles.</li>
+        <li>Mirar solo una sesión y sacar conclusiones fuertes.</li>
+        <li>Confundir notoriedad con negocio real.</li>
+        <li>No revisar qué contenido propio mereció la cita.</li>
+        <li>Comprar herramientas antes de definir qué preguntas importan.</li>
+      </ul>
+
+      <h2>Una rutina razonable para una pyme</h2>
+      <p>Si tu equipo es pequeño, puedes plantearlo así:</p>
+      <ul>
+        <li>Elige 10 preguntas relevantes.</li>
+        <li>Revísalas cada dos semanas en 2 o 3 motores.</li>
+        <li>Registra menciones y citas.</li>
+        <li>Identifica qué páginas tuyas aparecen o deberían aparecer.</li>
+        <li>Mejora una sola URL por ciclo en lugar de dispersarte.</li>
+      </ul>
+      <p>Ese sistema sencillo suele dar más información útil que mirar dashboards bonitos sin saber qué decisión tomar después.</p>
+
+      <h2>Conclusión</h2>
+      <p>Medir presencia en ChatGPT, Gemini y Google AI no es solo una moda nueva de marketing. Es una manera de detectar si tu negocio <strong>está entrando en la fase de consideración antes del clic</strong>. Para una pyme, no hace falta montar un laboratorio: hace falta criterio, repetición y unas pocas páginas realmente útiles.</p>
+      <p><strong>¿Quieres detectar qué contenidos de tu web pueden convertirse en páginas citables y cuáles ahora mismo no están diciendo nada valioso?</strong> En Icono Studio podemos ayudarte a priorizarlo. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué diferencia hay entre una mención y una cita en IA?',
+        answer: 'La mención nombra tu marca o negocio; la cita además apoya esa respuesta en una fuente o contenido concreto, normalmente una URL o una referencia más clara.'
+      },
+      {
+        question: '¿Hace falta pagar herramientas para empezar a medir?',
+        answer: 'No. Puedes empezar con un set fijo de prompts, revisiones periódicas y una hoja donde apuntes si tu marca aparece mencionada o citada.'
+      },
+      {
+        question: '¿Esto sustituye a Search Console o GA4?',
+        answer: 'No. Complementa su lectura porque muchas veces la consideración empieza en respuestas de IA y luego termina en una búsqueda de marca o en una visita posterior.'
+      }
+    ]
+  },
+  {
+    title: 'Meta Business Agent en 2026: cómo preparar tu web para recibir leads mejores y no solo más formularios',
+    subtitle: 'Meta está empujando Business Agent y nuevas capas de automatización para lead generation. Si tu web no filtra, responde ni registra bien, más volumen puede convertirse en más ruido.',
+    slug: 'meta-business-agent-2026-calidad-leads-web',
+    date: '19 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Conversión',
+    image: '/blog/meta-business-agent-leads-2026.webp',
+    metaTitle: 'Meta Business Agent en 2026: prepara tu web para mejores leads | Icono Studio',
+    metaDescription: 'Qué debe tener tu web para aprovechar Meta Business Agent y nuevas campañas de leads sin llenar el CRM de contactos fríos o mal cualificados.',
+    keywords: ['meta business agent', 'calidad leads web', 'lead generation meta 2026', 'formularios web pyme', 'crm leads meta'],
+    content: `
+      <p>Meta está reforzando durante 2026 su apuesta por la automatización en captación de leads. Entre las novedades más comentadas está <strong>Meta Business Agent</strong>, presentado en Conversations 2026, y el impulso a sistemas que prometen encontrar contactos más cualificados apoyándose en IA y en señales del CRM.</p>
+      <p>La promesa suena bien: más eficiencia, más volumen y mejor calidad. El problema es que muchas pymes siguen enviando ese tráfico a <strong>webs que no filtran bien, no explican lo suficiente y no registran el seguimiento con claridad</strong>. En ese contexto, el resultado no suele ser “más ventas”, sino más formularios confusos y más tiempo perdido.</p>
+
+      <h2>La calidad del lead no se arregla solo desde la plataforma</h2>
+      <p>Las plataformas de anuncios pueden mejorar la entrega, el targeting o la optimización. Pero si después aterrizas a la persona en una página genérica, sin expectativas claras y con un formulario pobre, el sistema aprende poco y tú también.</p>
+      <p>Por eso conviene entender algo básico: <strong>la calidad del lead también depende de lo que tu web le hace entender antes de contactar</strong>. Si explicas mal el servicio, atraes curiosidad. Si explicas bien alcance, precios orientativos, proceso y siguiente paso, atraes conversaciones bastante mejores.</p>
+
+      <h2>Qué debería tener la landing o la página de destino</h2>
+      <h3>1. Un filtro suave, no un muro</h3>
+      <p>No se trata de poner diez campos para espantar a todo el mundo. Se trata de pedir la información justa para entender intención. Tipo de proyecto, rango orientativo, plazo o necesidad concreta suelen ser mejores filtros que un simple “nombre y mensaje”.</p>
+
+      <h3>2. Señales de confianza antes del formulario</h3>
+      <p>Casos, ejemplos, reseñas, proceso y tiempos de respuesta. Si la persona llega desde un anuncio y aún no conoce tu marca, necesita una mínima prueba de que no está rellenando un formulario al vacío.</p>
+
+      <h3>3. Una promesa concreta sobre qué pasa después</h3>
+      <p>Muchos formularios convierten peor porque no dicen qué ocurrirá a continuación. ¿Respondes en el día? ¿Envías una llamada? ¿Pides una reunión? ¿Mandas una propuesta orientativa? Cuando eso está claro, baja bastante la fricción.</p>
+
+      <h3>4. Conexión con CRM o, como mínimo, con un sistema de seguimiento</h3>
+      <p>Si Meta y otras plataformas están premiando más la señal de resultado, te interesa devolver datos de calidad. No basta con saber cuántos formularios entraron. Conviene distinguir qué pasó después: si hubo llamada, si el lead estaba cualificado, si pidió presupuesto real o si desapareció.</p>
+
+      <h2>Qué datos ayudan de verdad a mejorar la calidad</h2>
+      <ul>
+        <li>Origen del lead.</li>
+        <li>Servicio o interés principal.</li>
+        <li>Tiempo de respuesta.</li>
+        <li>Estado posterior: válido, dudoso, fuera de presupuesto, cerrado.</li>
+        <li>Valor potencial aproximado.</li>
+      </ul>
+      <p>Con esa base, las decisiones mejoran mucho. Si no registras nada de esto, seguirás discutiendo campañas por sensaciones.</p>
+
+      <h2>Cuándo conviene enviar a una landing y cuándo a una página de servicio</h2>
+      <p>Si la oferta es concreta, la landing puede funcionar muy bien. Si el servicio requiere más contexto, una buena página de servicio suele convertir mejor que una landing agresiva y vacía. En negocios de servicios, esconder demasiada información para “forzar el lead” suele traer contactos peores.</p>
+      <p>Esto enlaza con lo que ya trabajamos en <a href="/blog/automatizar-leads-web-pyme-2026">automatizar leads desde la web</a> y <a href="/blog/crm-pymes-servicios-2026-no-perder-leads-web">CRM para pymes de servicios</a>: velocidad de respuesta y trazabilidad pesan tanto como el anuncio.</p>
+
+      <h2>Errores muy frecuentes cuando se escala captación con IA</h2>
+      <ul>
+        <li>Mandar todo a la home.</li>
+        <li>No explicar precio, alcance ni encaje mínimo.</li>
+        <li>Usar formularios que solo recogen un mensaje libre.</li>
+        <li>No medir si el lead era bueno o malo después.</li>
+        <li>Responder tarde y culpar a la plataforma.</li>
+      </ul>
+
+      <h2>Una mejora simple que muchas pymes no hacen</h2>
+      <p>Después del envío, muchas webs muestran una pantalla vacía de “gracias”. Ahí podrías dar el siguiente paso útil: reservar llamada, enviar documentación, aclarar plazos, invitar a WhatsApp o incluso mostrar una mini FAQ para evitar dudas repetidas. Es una parte pequeña, pero mejora bastante la continuidad del lead.</p>
+
+      <h2>Conclusión</h2>
+      <p>Meta Business Agent y las nuevas capas de automatización pueden ayudarte a captar mejor. Pero el salto real aparece cuando tu web <strong>filtra mejor, explica mejor y devuelve mejores señales de calidad</strong>. Sin eso, la IA amplifica el ruido.</p>
+      <p><strong>¿Quieres revisar si tu landing o tu página de servicio están preparadas para campañas que priorizan calidad y no solo volumen?</strong> En Icono Studio podemos ayudarte a afinarlas. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Meta Business Agent garantiza leads de más calidad?',
+        answer: 'No por sí solo. Puede mejorar la automatización y la entrega, pero la calidad final sigue dependiendo mucho de la página, el filtro y el seguimiento posterior.'
+      },
+      {
+        question: '¿Debo enviar campañas a la home de mi web?',
+        answer: 'Normalmente no. Suele funcionar mejor una página de servicio o una landing que explique con claridad el encaje, el proceso y el siguiente paso.'
+      },
+      {
+        question: '¿Qué debería registrar en mi CRM para medir mejor?',
+        answer: 'Origen, servicio de interés, tiempo de respuesta, estado del lead y si terminó siendo una oportunidad válida o no.'
+      }
+    ]
+  },
+  {
+    title: 'Tu web frente a agentes que comparan por el cliente: qué deben entender sobre precios, FAQs y disponibilidad en 2026',
+    subtitle: 'Google presentó el 19 de mayo de 2026 nuevas funciones de Search con agentes. Eso obliga a pensar la web no solo para la persona que lee, sino también para sistemas que resumen, comparan y recomiendan.',
+    slug: 'web-agentes-comparan-cliente-2026-precios-faqs-disponibilidad',
+    date: '19 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO',
+    image: '/blog/web-agentes-comparan-negocio-2026.webp',
+    metaTitle: 'Cómo preparar tu web para agentes que comparan por el cliente en 2026 | Icono Studio',
+    metaDescription: 'Qué información necesita tu web para que agentes y respuestas con IA entiendan bien tu negocio: precios orientativos, FAQs, cobertura, proceso y prueba.',
+    keywords: ['agentes de ia web negocio', 'web preparada para ai search', 'precios faq disponibilidad web', 'google search agents 2026', 'seo para agentes'],
+    content: `
+      <p>El <strong>19 de mayo de 2026</strong>, Google presentó en Search una nueva capa de funciones con <strong>agentes</strong> y una caja de búsqueda más claramente orientada a IA. Más allá del titular, hay una consecuencia práctica para negocios y pymes: una parte creciente de la comparación previa al clic puede hacerse <strong>sin que la persona lea diez páginas una por una</strong>.</p>
+      <p>Eso no significa que tu web deje de importar. Significa justo lo contrario. Tu web sigue siendo la base de lo que esos sistemas pueden entender sobre ti. Si tu información está escondida, es ambigua o parece puro marketing, un agente tendrá más difícil compararte bien. Si está clara, estructurada y aterrizada, tendrás más opciones de entrar en la conversación.</p>
+
+      <h2>Qué necesitan entender esos sistemas sobre tu negocio</h2>
+      <h3>1. Qué vendes exactamente</h3>
+      <p>Suena elemental, pero muchas webs fallan aquí. Hablan de soluciones, transformación y crecimiento, pero no dejan claro qué servicio ofrecen, para quién y en qué contexto. Si tu propuesta no se entiende en pocos segundos, tampoco se entenderá bien en una lectura asistida.</p>
+
+      <h3>2. Qué rango de precio o encaje económico tiene</h3>
+      <p>No siempre hace falta poner una tarifa cerrada, pero sí ayuda ofrecer rangos, mínimos o ejemplos cuando el servicio lo permite. Los sistemas que comparan intentan responder también a la pregunta económica. Si tu web calla por completo, pierdes una parte importante del contexto.</p>
+      <p>Si aún tienes dudas sobre esto, revisa <a href="/blog/precios-orientativos-web-2026-cuando-ayudan-vender">cuándo conviene mostrar precios orientativos en tu web</a>.</p>
+
+      <h3>3. Dónde trabajas y con qué disponibilidad</h3>
+      <p>Cobertura geográfica, horarios, plazos, tiempos de respuesta, si trabajas online o presencial, si aceptas nuevos proyectos ahora o si usas reservas. Son detalles operativos, pero para una comparación real importan muchísimo.</p>
+
+      <h3>4. Qué preguntas se repiten y cómo las respondes</h3>
+      <p>Las FAQ siguen siendo útiles, siempre que no sean cosméticas. Una buena sección de preguntas frecuentes resuelve objeciones, aclara límites y traduce tu servicio a lenguaje comprensible.</p>
+
+      <h3>5. Qué pruebas hay de que sabes hacerlo</h3>
+      <p>Casos, reseñas, ejemplos, antes y después, metodología, resultados. Un agente no “confía” como una persona, pero sí depende de señales de claridad y evidencia. Sin prueba, todo se parece demasiado.</p>
+
+      <h2>Qué páginas deberías priorizar primero</h2>
+      <ul>
+        <li>Páginas de servicio.</li>
+        <li>Páginas de ciudad o zona si hay intención local real.</li>
+        <li>Páginas de precios o rangos orientativos.</li>
+        <li>Comparativas útiles.</li>
+        <li>Casos o proyectos.</li>
+        <li>FAQs con preguntas de negocio de verdad.</li>
+      </ul>
+      <p>No necesitas rehacer todo el sitio a la vez. Necesitas identificar qué URLs sostienen decisiones y hacerlas mucho más claras.</p>
+
+      <h2>Cómo escribir para que se entienda mejor</h2>
+      <ul>
+        <li>Usa títulos que nombren la duda real.</li>
+        <li>Responde primero y desarrolla después.</li>
+        <li>Evita esconder datos prácticos detrás de frases grandilocuentes.</li>
+        <li>Separa bien servicios, precios, proceso y cobertura.</li>
+        <li>Añade listas cuando resumen mejor que un bloque largo.</li>
+      </ul>
+      <p>Esta lógica enlaza con piezas que ya venimos trabajando como <a href="/blog/paginas-planificacion-ai-mode-presupuestos-comparativas-2026">páginas de planificación para AI Mode</a> o <a href="/blog/inline-links-previas-ai-overviews-2026-clic">contenido diseñado para conseguir el clic desde AI Overviews</a>. La idea es la misma: ayudar antes y ayudar mejor.</p>
+
+      <h2>Errores que frenan bastante</h2>
+      <ul>
+        <li>Prometer mucho y concretar poco.</li>
+        <li>No decir para quién es el servicio y para quién no.</li>
+        <li>Esconder precios, plazos y condiciones básicas.</li>
+        <li>Usar FAQs genéricas que no responden objeciones reales.</li>
+        <li>No actualizar páginas que hoy mismo ya están desfasadas.</li>
+      </ul>
+
+      <h2>Un criterio útil: si un cliente no puede compararte, un agente tampoco</h2>
+      <p>Este punto resume bastante bien el problema. Si una persona llega a tu web y no puede entender con facilidad si encajas, cuánto puedes costar, cómo trabajas o qué prueba aportas, un sistema que resume y compara tampoco lo tendrá fácil. La solución no es “escribir para robots”. La solución es <strong>hacer tu web más útil y más explícita</strong>.</p>
+
+      <h2>Conclusión</h2>
+      <p>En 2026 la web de un negocio ya no compite solo por el clic directo. También compite por ser <strong>entendible, comparable y citables</strong> en entornos con IA y agentes. Eso exige menos humo y más información práctica: precios orientativos, FAQs buenas, cobertura, disponibilidad, proceso y prueba.</p>
+      <p><strong>¿Quieres revisar qué páginas de tu web deberían rehacerse primero para encajar mejor en esta nueva forma de búsqueda?</strong> En Icono Studio podemos ayudarte a priorizarlo con criterio. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué significa que un agente compare por el cliente?',
+        answer: 'Significa que una parte de la búsqueda y la comparación puede ocurrir dentro de sistemas con IA que resumen opciones antes del clic final hacia una web.'
+      },
+      {
+        question: '¿Hace falta publicar precios exactos para esto?',
+        answer: 'No siempre. Muchas veces basta con rangos, mínimos, ejemplos o una explicación honesta de qué factores cambian el presupuesto.'
+      },
+      {
+        question: '¿Qué páginas debería mejorar primero una pyme?',
+        answer: 'Normalmente las páginas de servicio, precios, FAQs, cobertura local y cualquier URL que ayude a decidir si el negocio encaja o no.'
+      }
+    ]
+  },
+  {
     title: '¿Conviene mostrar precios orientativos en tu web en 2026? Cuándo ayuda a vender y cuándo no',
     subtitle: 'En un entorno donde la gente compara más rápido y pregunta menos antes del clic, enseñar rangos, mínimos o ejemplos de precio puede cualificar mejor. Pero solo si está bien planteado.',
     slug: 'precios-orientativos-web-2026-cuando-ayudan-vender',
