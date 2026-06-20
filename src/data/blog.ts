@@ -3,6 +3,426 @@ import { BlogPost } from '../types/blog';
 
 const latestBlogPosts: BlogPost[] = [
   {
+    title: 'Preferred Sources en Google AI en 2026: cómo conseguir más clics aunque la respuesta ya salga resumida',
+    subtitle: 'Google anunció el 27 de mayo de 2026 que Preferred Sources llega a AI Overviews y AI Mode. Además, la compañía afirma que las personas tienen el doble de probabilidades de hacer clic en una fuente marcada como preferida.',
+    slug: 'preferred-sources-google-ai-2026-mas-clics-web',
+    date: '20 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO',
+    image: '/blog/preferred-sources-google-ai-2026.webp',
+    metaTitle: 'Preferred Sources en Google AI: cómo ganar clics en 2026 | Icono Studio',
+    metaDescription: 'Qué son Preferred Sources en Google AI, por qué pueden ayudarte a conseguir más clics y cómo preparar tu web para que te elijan como fuente preferida.',
+    keywords: ['preferred sources google ai', 'preferred sources ai mode', 'preferred sources ai overviews', 'highly cited google', 'clics desde google ai 2026'],
+    content: `
+      <p>El <strong>27 de mayo de 2026</strong>, Google anunció dos cambios que conviene tomarse muy en serio si tienes una web de negocio: <strong>Preferred Sources</strong> llega a <strong>AI Overviews</strong> y <strong>AI Mode</strong>, y además aparece una nueva señal visual llamada <strong>Highly Cited</strong> para destacar contenido original y útil. La parte realmente interesante no es el nombre de la función, sino lo que implica para una pyme: <strong>ya no basta con “aparecer” en la respuesta; también importa que Google te reconozca como una fuente que la gente quiere volver a visitar</strong>.</p>
+      <p>Según Google, las personas tienen <strong>el doble de probabilidades de hacer clic</strong> en una fuente marcada como preferida, y ya se habían seleccionado más de <strong>345.000 fuentes únicas</strong>. Esto cambia bastante la conversación. Durante meses, mucha gente ha asumido que la IA resumiría demasiado y que el clic sería cada vez más raro. Lo que Google está diciendo ahora es otra cosa: <strong>si tu web se convierte en fuente elegida, todavía puedes atraer visitas muy cualificadas</strong>.</p>
+
+      <h2>Qué son exactamente Preferred Sources</h2>
+      <p>Preferred Sources permite que una persona marque medios, webs o creadores que quiere ver más destacados dentro de la experiencia de búsqueda. Esa preferencia ya no se queda en Top Stories o en la capa clásica de Google: también se traslada a respuestas generadas por IA.</p>
+      <p>Para una web pequeña, esto es importante porque introduce una lógica distinta al puro posicionamiento. No se trata solo de “salir arriba”. Se trata de que <strong>tu contenido sea tan útil, claro o especializado que alguien quiera verte también la próxima vez</strong>.</p>
+
+      <h2>Por qué esto sí importa a un negocio pequeño</h2>
+      <p>Una pyme rara vez gana por volumen. Normalmente gana por cercanía, claridad, especialización o confianza. Preferred Sources encaja justo ahí. Si una persona ya te ha leído, te ha encontrado útil y te marca como fuente preferida, tienes más opciones de seguir entrando en su proceso de decisión, incluso cuando la búsqueda se vuelve más conversacional.</p>
+      <p>Esto conecta con algo que ya venimos viendo en el blog: la batalla no es solo salir en IA, sino <strong>merecer el clic cuando Google ya ha adelantado parte de la respuesta</strong>. Si todavía no has trabajado bien esa capa, conviene revisar también <a href="/blog/inline-links-previas-ai-overviews-2026-clic">cómo conseguir el clic desde AI Overviews</a> y <a href="/blog/contenido-original-experiencia-real-seo-ai-overviews-ai-mode-2026">por qué el contenido original y con experiencia real pesa más</a>.</p>
+
+      <h2>Qué tipo de web tiene más opciones de convertirse en fuente preferida</h2>
+      <h3>1. La que responde siempre al mismo tipo de problema</h3>
+      <p>Si hoy escribes sobre diseño web para negocios locales, mañana sobre marketing genérico y pasado sobre noticias tecnológicas sin relación, es difícil que Google o el lector entiendan tu papel. En cambio, cuando una web repite una línea útil y coherente, gana identidad editorial. Para una pyme eso suele significar trabajar <strong>los problemas reales de su cliente</strong>: precios orientativos, tiempos, errores habituales, comparativas, mantenimiento, reservas o captación local.</p>
+
+      <h3>2. La que aporta prueba y contexto propios</h3>
+      <p>Google también ha reforzado la visibilidad de señales como <strong>Highly Cited</strong>, pensadas para ayudar a detectar contenido original y perspectivas de primera mano. Si tu artículo se parece al de todos, es difícil que genere preferencia. Si incluye ejemplos, límites, mini casos, objeciones repetidas o decisiones reales, la pieza tiene más posibilidades de convertirse en referencia.</p>
+
+      <h3>3. La que se actualiza con cierta frescura</h3>
+      <p>Google explica que cualquier web que publique contenido fresco puede optar a esta capa. No hace falta publicar a diario, pero sí conviene evitar un blog parado o con piezas caducadas. En temas de negocio, herramientas y captación, la frescura pesa porque el lector quiere saber qué sirve <strong>ahora</strong>, no hace dos años.</p>
+
+      <h2>Cómo trabajar Preferred Sources sin convertirlo en una obsesión rara</h2>
+      <h3>1. Elige tres o cuatro temas que sí te interese dominar</h3>
+      <p>Tu blog no necesita hablar de todo. Necesita volverse reconocible en unos pocos frentes útiles. En este proyecto, por ejemplo, tienen bastante sentido temas como <strong>web para captar clientes</strong>, <strong>SEO local</strong>, <strong>herramientas prácticas para pymes</strong> y <strong>cambios en búsqueda con IA</strong>. Eso da continuidad.</p>
+
+      <h3>2. Publica piezas que ayuden a decidir, no solo a informarse</h3>
+      <p>La preferencia no suele nacer de una definición correcta, sino de una pieza que te ayuda a tomar una decisión. Las comparativas, los “cuándo sí y cuándo no”, los checklists y las guías accionables suelen funcionar mejor que los posts planos. De hecho, esta lógica encaja muy bien con lo que ya explicamos en <a href="/blog/ai-mode-keyword-research-2026-busquedas-largas-convierten">nuestra guía sobre búsquedas largas que convierten</a>.</p>
+
+      <h3>3. Pide repetición, no solo clic</h3>
+      <p>Si alguien llega, lee y se va sin recordar tu web, es difícil que termine marcándote como fuente preferida. Conviene dar motivos para volver: una newsletter simple, artículos enlazados entre sí, una guía útil por email o incluso una frase clara invitando a guardar el recurso. No hace falta exagerar. Hace falta estar presente con naturalidad.</p>
+
+      <h3>4. Une blog, marca y páginas de servicio</h3>
+      <p>Una fuente preferida no debería ser una isla separada del negocio. Si tu contenido ayuda a alguien a entender mejor un problema, esa misma persona debería encontrar después páginas de servicio claras, comparativas bien hechas y un siguiente paso sin fricción. Si esa base todavía flojea, te interesa revisar <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">qué debe tener una web para atraer clientes</a>.</p>
+
+      <h2>Qué revisar este mes en tu web</h2>
+      <ul>
+        <li>Si tus mejores artículos realmente responden dudas de decisión.</li>
+        <li>Si publicas con una línea temática reconocible.</li>
+        <li>Si tus posts incluyen ejemplos, matices y experiencia real.</li>
+        <li>Si enlazas bien cada pieza con otras relacionadas.</li>
+        <li>Si el paso desde el contenido hacia el contacto está bien resuelto.</li>
+      </ul>
+      <p>No necesitas rehacer todo tu blog para beneficiarte de este cambio. Pero sí conviene aceptar que Google está empezando a premiar no solo la relevancia puntual, sino también la <strong>preferencia sostenida</strong>.</p>
+
+      <h2>Conclusión</h2>
+      <p>Preferred Sources no significa que el SEO clásico haya muerto ni que debas perseguir otra métrica de moda. Significa algo más interesante: <strong>Google quiere distinguir mejor entre una web que solo contesta y una web a la que la gente quiere volver</strong>. Para un negocio pequeño, eso es una oportunidad muy seria.</p>
+      <p><strong>¿Quieres que tu blog no solo posicione, sino que construya preferencia y confianza real?</strong> En Icono Studio podemos ayudarte a convertir tu contenido en una parte útil de tu sistema de captación. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué son Preferred Sources en Google AI?',
+        answer: 'Son fuentes que el usuario marca como preferidas para verlas más destacadas dentro de AI Overviews y AI Mode cuando Google genera respuestas.'
+      },
+      {
+        question: '¿Una web pequeña puede beneficiarse de esto?',
+        answer: 'Sí. No hace falta ser un gran medio; hace falta publicar contenido útil, fresco y reconocible para que el lector quiera volver a tu web.'
+      },
+      {
+        question: '¿Qué debería hacer primero una pyme?',
+        answer: 'Elegir pocos temas clave, mejorar sus mejores artículos y enlazarlos bien con páginas de servicio y siguientes pasos claros.'
+      }
+    ]
+  },
+  {
+    title: 'AI Mode en 2026 ya busca con voz, imágenes y preguntas largas: qué debe cambiar en la web de una pyme',
+    subtitle: 'El 19 de mayo de 2026 Google compartió un dato importante: más de una de cada seis búsquedas en AI Mode ya usan voz o imágenes, y las consultas de planificación crecen más rápido que el promedio.',
+    slug: 'ai-mode-2026-voz-imagen-preguntas-largas-web-pyme',
+    date: '20 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO',
+    image: '/blog/ai-mode-voz-imagen-2026.webp',
+    metaTitle: 'AI Mode en 2026: voz, imágenes y preguntas largas | Icono Studio',
+    metaDescription: 'Qué significan las búsquedas con voz, imágenes y preguntas largas en AI Mode y cómo debe adaptarse la web de una pyme para captar mejor esa demanda.',
+    keywords: ['ai mode 2026', 'busquedas con voz ai mode', 'busquedas con imagen google ai', 'preguntas largas seo 2026', 'web pyme ai mode'],
+    content: `
+      <p>El <strong>19 de mayo de 2026</strong>, Google publicó uno de los datos más útiles que hemos visto en meses sobre comportamiento de búsqueda. Según la compañía, <strong>más de una de cada seis búsquedas en AI Mode en Estados Unidos ya usan voz o imágenes</strong>, las consultas son de media <strong>tres veces más largas</strong> que en la búsqueda tradicional y las búsquedas relacionadas con <strong>planificación</strong> han crecido un <strong>80%</strong> más rápido que AI Mode en general durante los seis meses previos.</p>
+      <p>Traducido a lenguaje de pyme: la gente está buscando de forma <strong>más conversacional, más visual y más orientada a resolver una tarea</strong>. No solo quiere “diseño web Valencia”. Puede preguntar “qué tipo de web necesito para un negocio de reformas con presupuesto ajustado”, enseñar una foto de una web que le gusta o pedir una comparativa entre reservar citas y pedir presupuesto. Si tu web no sabe responder a ese nivel, se queda corta.</p>
+
+      <h2>Qué cambia de verdad con búsquedas más largas y multimodales</h2>
+      <p>Hasta hace poco, mucha estrategia SEO para pequeño negocio se apoyaba en keywords relativamente cortas y páginas muy básicas. Eso ya era limitado antes. Ahora lo es más. Si AI Mode recibe preguntas más largas, con más matices y a veces acompañadas por voz o imagen, Google necesita páginas que expliquen mejor <strong>encaje, diferencias, límites, proceso y contexto</strong>.</p>
+      <p>Esto conecta con varias piezas que ya habíamos publicado, pero ahora con datos más sólidos detrás. Por ejemplo, <a href="/blog/paginas-planificacion-ai-mode-presupuestos-comparativas-2026">las páginas de planificación</a> y <a href="/blog/micro-intents-paginas-servicio-estructura-convierte-2026">la estructura por micro-intents</a> dejan de ser una idea bonita y pasan a encajar mejor con cómo la gente realmente está preguntando.</p>
+
+      <h2>Cinco cambios que sí conviene hacer en la web de una pyme</h2>
+      <h3>1. Escribe páginas de servicio que aguanten preguntas largas</h3>
+      <p>Una página útil hoy no debería limitarse a “qué hacemos” y “pide presupuesto”. Debería soportar preguntas como:</p>
+      <ul>
+        <li>“¿Qué opción me conviene si todavía no sé cuánto contenido necesito?”</li>
+        <li>“¿Web completa o landing si vendo un servicio local?”</li>
+        <li>“¿Cuánto tarda de verdad y qué incluye?”</li>
+      </ul>
+      <p>Cuantas más objeciones reales resuelvas dentro de la misma pieza, más sentido tendrá para AI Mode enlazarte o resumirte con contexto.</p>
+
+      <h3>2. Trata las imágenes como parte de la respuesta, no como decoración</h3>
+      <p>Si más búsquedas entran por imagen, una pyme no puede seguir publicando fotos sin contexto, gigantes o genéricas. Conviene trabajar mejor la parte visual: imágenes propias, nombres de archivo limpios, <strong>WebP</strong>, peso razonable, buen encuadre y páginas de destino que expliquen qué se está viendo. Si esta capa todavía está floja, revisa <a href="/blog/seo-imagenes-2026-busquedas-visuales-clientes-locales">nuestra guía sobre SEO para imágenes</a>.</p>
+
+      <h3>3. Crea contenidos de planificación y comparación</h3>
+      <p>Google ha dicho que las búsquedas de planificación crecen más deprisa. Eso es una pista clarísima. Mucha gente ya no busca solo “precio web”, sino cosas como “qué necesito antes de pedir presupuesto”, “qué plataforma me conviene”, “cómo comparar opciones” o “qué errores evitar”. Si tu blog y tus páginas no cubren esa fase, llegas tarde a parte de la decisión.</p>
+
+      <h3>4. Haz visibles precios orientativos, tiempos y disponibilidad cuando tenga sentido</h3>
+      <p>Las preguntas largas suelen intentar reducir incertidumbre. Cuando la web es ambigua en precio, proceso o tiempos, obliga al usuario a seguir investigando fuera. No siempre conviene publicar una tarifa cerrada, pero sí suele ayudar ofrecer <strong>rangos, escenarios, plazos o criterios de encaje</strong>. Para esa parte puede venirte bien revisar <a href="/blog/precios-orientativos-web-2026-cuando-ayudan-vender">cuándo conviene mostrar precios orientativos</a>.</p>
+
+      <h3>5. Refuerza el enlazado interno entre intención informativa y comercial</h3>
+      <p>Una búsqueda de AI Mode puede comenzar en una duda amplia y terminar en una decisión concreta. Tu web debería acompañar ese recorrido. Si alguien entra por una comparativa o por una duda de planificación, tendría que poder pasar después a una página de servicio, a un caso o a un contacto razonable sin perderse. Ahí el enlazado interno sigue siendo decisivo.</p>
+
+      <h2>Qué errores siguen siendo muy comunes</h2>
+      <ul>
+        <li>Escribir textos demasiado cortos para preguntas que ya vienen cargadas de contexto.</li>
+        <li>Subir imágenes bonitas pero inútiles para explicar el servicio.</li>
+        <li>Tener blog y páginas comerciales como si fueran dos mundos separados.</li>
+        <li>Confiar en que una home genérica responderá búsquedas complejas.</li>
+        <li>Hablar de “IA” en abstracto sin mejorar de verdad la claridad de la web.</li>
+      </ul>
+
+      <h2>Una buena forma de auditar tu sitio esta semana</h2>
+      <p>Haz este ejercicio simple: escribe cinco preguntas largas que un cliente potencial sí podría hacer en voz alta o en AI Mode. Después revisa si tu web puede responderlas con claridad. No en conjunto. <strong>Página por página</strong>. Si la respuesta es no, ahí tienes trabajo más útil que perseguir métricas vacías.</p>
+      <p>También conviene revisar si las entradas que mejor podrían captar esa demanda están conectadas con piezas como <a href="/blog/search-console-ai-mode-2026-medicion-visibilidad">tu medición en Search Console</a> o con contenidos de comparación que ya te estén ayudando a entrar en consideración.</p>
+
+      <h2>Conclusión</h2>
+      <p>AI Mode no está cambiando solo la interfaz de búsqueda. Está cambiando la <strong>calidad de pregunta</strong> que tu web debe saber responder. Más voz, más imágenes y más consultas largas significan una cosa: las webs que mejor explican, muestran y orientan deberían ganar terreno.</p>
+      <p><strong>¿Tu web sigue pensada para keywords cortas y no para decisiones reales?</strong> En Icono Studio podemos ayudarte a reestructurarla para que responda mejor a esta nueva forma de buscar. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Las búsquedas con voz e imagen importan también a un negocio pequeño?',
+        answer: 'Sí. Si vendes servicios locales o comparables, una parte creciente de usuarios está buscando de forma más visual y conversacional antes de contactar.'
+      },
+      {
+        question: '¿Hace falta crear muchas páginas nuevas?',
+        answer: 'No siempre. A veces basta con mejorar páginas de servicio y artículos ya existentes para que respondan preguntas más largas y concretas.'
+      },
+      {
+        question: '¿Qué cambio suele dar más resultado primero?',
+        answer: 'Normalmente, aclarar mejor precios orientativos, proceso, ejemplos y objeciones en páginas clave suele mejorar mucho más que abrir contenido genérico nuevo.'
+      }
+    ]
+  },
+  {
+    title: 'HubSpot AEO en 2026: cuándo merece la pena medir tu visibilidad en ChatGPT, Gemini y Perplexity',
+    subtitle: 'HubSpot ya plantea AEO como una categoría propia de trabajo y vende un panel con visibility score, prompt tracking, citation analysis y recomendaciones priorizadas. Para una pyme, la pregunta no es si suena bien, sino si de verdad lo necesita.',
+    slug: 'hubspot-aeo-2026-medir-visibilidad-chatgpt-gemini-perplexity',
+    date: '20 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'Herramientas',
+    image: '/blog/hubspot-aeo-2026.webp',
+    metaTitle: 'HubSpot AEO en 2026: cuándo tiene sentido para una pyme | Icono Studio',
+    metaDescription: 'Qué ofrece HubSpot AEO, cuándo una pyme debería medir visibilidad en ChatGPT, Gemini y Perplexity con una herramienta y cuándo basta un sistema manual.',
+    keywords: ['hubspot aeo', 'ai visibility tool', 'prompt tracking negocio', 'citation analysis ai', 'medir visibilidad chatgpt pyme'],
+    content: `
+      <p>En 2026 ya no solo existen posts sobre “salir en IA”. También empiezan a aparecer <strong>productos específicos para medir esa visibilidad</strong>. Uno de los ejemplos más claros es <strong>HubSpot AEO</strong>, que presenta cuatro bloques principales: <strong>visibility score</strong>, <strong>prompt tracking</strong>, <strong>citation analysis</strong> y <strong>recomendaciones priorizadas</strong> en motores como ChatGPT, Gemini y Perplexity.</p>
+      <p>Para un negocio pequeño, esto puede sonar interesante o totalmente excesivo según el momento en que esté. El error es quedarse con la etiqueta. La pregunta útil es otra: <strong>¿tengo suficiente volumen, complejidad y dependencia de contenido como para justificar una herramienta específica de visibilidad en IA?</strong></p>
+
+      <h2>Qué promete realmente una herramienta como HubSpot AEO</h2>
+      <p>La propuesta es bastante clara. El panel pretende mostrar:</p>
+      <ul>
+        <li>Una puntuación general de visibilidad.</li>
+        <li>Seguimiento por prompt para ver dónde apareces o no.</li>
+        <li>Análisis de citas para entender qué dominios y tipos de contenido alimentan esas menciones.</li>
+        <li>Recomendaciones accionables para cerrar huecos.</li>
+      </ul>
+      <p>Sobre el papel, tiene lógica. Si cada vez más personas comparan opciones en IA antes de entrar en una web, disponer de un sistema para observar esa fase puede ayudar. Pero eso no significa que todas las pymes necesiten empezar ahí.</p>
+
+      <h2>Cuándo sí tiene bastante sentido</h2>
+      <h3>1. Cuando tu negocio compite en varias comparativas a la vez</h3>
+      <p>Si vendes distintos servicios, trabajas varias ciudades o tienes varias líneas de captación, las preguntas relevantes se multiplican. En ese contexto, revisar manualmente 30 o 40 prompts con disciplina ya cuesta. Una herramienta puede ordenar mejor el trabajo.</p>
+
+      <h3>2. Cuando ya publicas contenido de forma estable</h3>
+      <p>Si tu web tiene comparativas, guías, páginas locales y piezas orientadas a decisión, sí existe material que una herramienta puede analizar con sentido. Si apenas tienes unas pocas URLs básicas, primero suele compensar crear contenido útil antes que medir demasiado fino.</p>
+
+      <h3>3. Cuando compites contra marcas que ya están entrando en esas respuestas</h3>
+      <p>Si al revisar algunas preguntas reales ves que siempre aparecen competidores, directorios o comparadores, puede merecer la pena una capa de seguimiento más ordenada. En ese punto ayuda mucho complementar la lectura con <a href="/blog/medir-citas-chatgpt-gemini-google-ai-2026-negocio">un sistema simple para medir citas y menciones</a>.</p>
+
+      <h3>4. Cuando necesitas priorizar mejor qué crear o qué actualizar</h3>
+      <p>Una de las partes más útiles de estas herramientas no es el score, sino la priorización. Si una plataforma te ayuda a ver que te falta una comparativa, una página de servicio concreta o una señal externa que tus competidores sí tienen, ya está aportando algo práctico.</p>
+
+      <h2>Cuándo probablemente todavía no lo necesitas</h2>
+      <h3>1. Cuando tu captación depende de muy pocas búsquedas clave</h3>
+      <p>Si eres un negocio local con dos o tres servicios claros y una zona bien acotada, muchas veces basta con un set manual de preguntas bien elegido. No hace falta una suite para descubrir algo que puedes observar con una hoja simple y media hora quincenal.</p>
+
+      <h3>2. Cuando tu web aún no resuelve lo básico</h3>
+      <p>Si tus páginas no explican bien qué haces, para quién, cuánto puedes costar o cómo trabajas, la prioridad no es medir la visibilidad en IA con más detalle. La prioridad es arreglar la claridad de la web. Si esa base cojea, empieza por <a href="/blog/que-debe-tener-una-pagina-web-para-atraer-clientes">lo que una página web debería tener para atraer clientes</a>.</p>
+
+      <h3>3. Cuando no tienes tiempo ni proceso para actuar sobre los datos</h3>
+      <p>Otra trampa frecuente: comprar una capa de analítica sin una rutina detrás. Si nadie va a revisar prompts, mejorar páginas, reforzar pruebas o publicar contenido derivado, la herramienta se convierte en un panel caro que confirma obviedades.</p>
+
+      <h2>Qué mirar si decides probar una herramienta así</h2>
+      <ul>
+        <li>Si te deja seguir prompts realmente cercanos a tus ventas.</li>
+        <li>Si diferencia mención, cita y tráfico útil.</li>
+        <li>Si te ayuda a comparar contra competidores directos, no solo marcas enormes.</li>
+        <li>Si aterriza recomendaciones en tareas realizables.</li>
+        <li>Si puedes unir esa lectura con Search Console, leads y páginas concretas.</li>
+      </ul>
+
+      <h2>La alternativa razonable para muchas pymes</h2>
+      <p>En muchos casos no hace falta empezar por HubSpot AEO. Hace falta empezar por un sistema manual bien planteado:</p>
+      <ul>
+        <li>Define 10 o 15 prompts con intención comercial real.</li>
+        <li>Revísalos cada dos semanas en 2 o 3 motores.</li>
+        <li>Anota si sales mencionado, citado o no apareces.</li>
+        <li>Identifica qué URL debería estar ayudando más.</li>
+        <li>Actualiza una sola página por ciclo.</li>
+      </ul>
+      <p>Ese sistema, combinado con la visión de <a href="/blog/seo-ia-flujo-unico-2026-pyme">un flujo unificado entre SEO e IA</a>, suele dar mucha más claridad que un dashboard sin criterio operativo.</p>
+
+      <h2>Conclusión</h2>
+      <p>HubSpot AEO refleja una tendencia real: la visibilidad en IA se está profesionalizando. Pero profesionalizar no significa complicar por defecto. Para muchas pymes, la decisión correcta no es “comprar o no comprar HubSpot AEO”. La decisión correcta es <strong>saber cuándo el problema ya es lo bastante grande como para merecer una herramienta específica</strong>.</p>
+      <p><strong>¿Quieres decidir si te basta un sistema manual o ya necesitas una capa más seria de seguimiento en IA?</strong> En Icono Studio podemos ayudarte a montarlo con criterio y sin añadir ruido. <a href="/contacto">Escríbenos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué es exactamente HubSpot AEO?',
+        answer: 'Es una herramienta orientada a medir visibilidad en buscadores y motores con IA mediante score, seguimiento por prompt, análisis de citas y recomendaciones.'
+      },
+      {
+        question: '¿Una pyme local necesita algo así desde el principio?',
+        answer: 'No normalmente. Si la web y el número de prompts clave todavía son limitados, suele bastar un sistema manual bien diseñado.'
+      },
+      {
+        question: '¿Qué debería medir antes de pagar una herramienta?',
+        answer: 'Conviene revisar si ya estás apareciendo en preguntas comerciales relevantes, qué páginas tuyas se citan y si esas apariciones están conectadas con visitas o leads útiles.'
+      }
+    ]
+  },
+  {
+    title: 'SEO + IA en un solo flujo en 2026: el sistema práctico que la mayoría de equipos todavía no tiene',
+    subtitle: 'Un estudio de Semrush publicado el 3 de junio de 2026 muestra que el 85% de los marketers ya ha cambiado su estrategia por la IA, pero solo el 22% ha integrado de verdad SEO e IA en estrategia, ejecución y reporting.',
+    slug: 'seo-ia-flujo-unico-2026-pyme',
+    date: '20 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO',
+    image: '/blog/flujo-seo-ia-2026.webp',
+    metaTitle: 'SEO + IA en un solo flujo en 2026 | Icono Studio',
+    metaDescription: 'Cómo unificar SEO e IA en un solo sistema de trabajo para una pyme y qué revela el estudio de Semrush sobre la brecha entre estrategia y ejecución.',
+    keywords: ['seo e ia juntos', 'flujo seo ai search', 'semrush ai seo study 2026', 'visibilidad ia pyme', 'workflow seo ia'],
+    content: `
+      <p>Uno de los hallazgos más interesantes del estudio de Semrush publicado el <strong>3 de junio de 2026</strong> no es que la IA esté cambiando el SEO. Eso ya lo sabíamos. Lo importante es la brecha entre lo que la gente dice y lo que realmente hace. El informe resume que <strong>el 85% de los marketers ya ha ajustado su estrategia por la IA</strong>, pero solo <strong>el 22%</strong> afirma tener SEO e IA <strong>integrados en estrategia, ejecución y reporting</strong>.</p>
+      <p>También hay otra cifra bastante útil: entre los equipos con ejecución realmente integrada, el <strong>81%</strong> reporta más tráfico o leads vinculados a plataformas de IA, frente al <strong>36%</strong> de los equipos que trabajan ambos frentes por separado. Dicho más claro: <strong>pensar SEO e IA juntos ayuda; operarlos juntos ayuda mucho más</strong>.</p>
+
+      <h2>Qué significa “un solo flujo” para una pyme</h2>
+      <p>En una empresa pequeña, un flujo unificado no significa montar un departamento nuevo. Significa algo más simple y más útil: que <strong>la misma duda del cliente</strong> se convierta en una página o artículo útil, en un contenido que AI Mode pueda resumir, en una pieza que refuerce la ficha local y en una respuesta que el equipo comercial pueda reutilizar.</p>
+      <p>Cuando esto no existe, pasa lo de siempre: el blog va por un lado, las respuestas comerciales por otro, la ficha local se actualiza “cuando hay tiempo” y la medición se queda a medias. El estudio de Semrush lo resume bien al mostrar que <strong>el 40%</strong> de los encuestados sigue usando comprobaciones manuales en ChatGPT como método principal de seguimiento, y que muchos perciben que los competidores aparecen más o describen mejor su propuesta.</p>
+
+      <h2>Cómo se rompe ese flujo en la práctica</h2>
+      <ul>
+        <li>Se escribe contenido para Google, pero no para preguntas reales que también haría alguien en IA.</li>
+        <li>Se publica una comparativa en el blog, pero no se conecta con la página de servicio.</li>
+        <li>Se detecta una objeción en ventas o WhatsApp, pero no se convierte en contenido estable.</li>
+        <li>Se mira Search Console, pero no se cruza con prompts, fichas, reseñas o calidad del lead.</li>
+        <li>Se habla de marca en distintos sitios, pero con mensajes poco coherentes.</li>
+      </ul>
+
+      <h2>Un sistema práctico de una pyme sí puede mantener</h2>
+      <h3>1. Empieza por diez preguntas que sí traen negocio</h3>
+      <p>No empieces por miles de keywords. Empieza por diez preguntas de verdad: comparativas, dudas de encaje, objeciones de precio, tiempos, plataformas o cobertura local. Esas preguntas deben servir tanto para SEO como para IA.</p>
+
+      <h3>2. Convierte cada pregunta en una pieza central</h3>
+      <p>Cada tema importante debería tener una URL principal bien trabajada. Puede ser una página de servicio reforzada, una comparativa o una guía de planificación. Lo importante es que resuelva el tema de fondo con suficiente claridad como para ayudarte en Google, AI Mode y conversación comercial a la vez.</p>
+
+      <h3>3. Saca derivados sin rehacer el trabajo desde cero</h3>
+      <p>De esa pieza central deberían salir fragmentos reutilizables para:</p>
+      <ul>
+        <li>Preguntas frecuentes en la web.</li>
+        <li>Google Business Profile o posts locales.</li>
+        <li>Secuencias de respuesta comercial.</li>
+        <li>Publicaciones sociales o email.</li>
+        <li>Prompts de seguimiento en motores con IA.</li>
+      </ul>
+      <p>Ese es el punto donde SEO e IA dejan de competir por recursos y empiezan a compartir base.</p>
+
+      <h3>4. Mide por URL y por pregunta, no solo por canal</h3>
+      <p>Una de las razones por las que esta integración falla es que la medición se queda fragmentada. Conviene mirar una misma URL desde varios ángulos: Search Console, leads, aparición en prompts y calidad posterior. Si quieres reforzar esa parte, conecta este sistema con <a href="/blog/search-console-ai-mode-2026-medicion-visibilidad">la lectura de Search Console y AI Mode</a> y con <a href="/blog/medir-citas-chatgpt-gemini-google-ai-2026-negocio">tu seguimiento de menciones y citas</a>.</p>
+
+      <h3>5. Reutiliza las objeciones del negocio como combustible editorial</h3>
+      <p>Si un cliente pregunta lo mismo tres veces en presupuestos o llamadas, esa duda no debería quedarse en la cabeza del comercial. Debería pasar a la web. Esa es probablemente la forma más simple y rentable de integrar SEO e IA en una pyme.</p>
+
+      <h2>Qué gana una pyme cuando sí lo hace así</h2>
+      <ul>
+        <li>Más coherencia entre lo que dice la marca y lo que entienden los motores.</li>
+        <li>Menos trabajo duplicado entre blog, ventas y atención.</li>
+        <li>Más facilidad para detectar qué contenido realmente mueve negocio.</li>
+        <li>Más opciones de aparecer bien descrita y mejor citada.</li>
+        <li>Un sistema de contenido menos dependiente de ocurrencias.</li>
+      </ul>
+
+      <h2>Qué no deberías copiar de los equipos grandes</h2>
+      <p>Una pyme no necesita cinco dashboards, ownership disperso ni una taxonomía infinita. Lo que sí necesita es una rutina simple. Por ejemplo:</p>
+      <ul>
+        <li>Una reunión breve al mes para elegir las dudas prioritarias.</li>
+        <li>Una mejora de página o artículo por semana.</li>
+        <li>Una revisión quincenal de prompts y Search Console.</li>
+        <li>Una forma de recoger objeciones repetidas desde ventas o atención.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>El estudio de Semrush deja una idea muy útil: casi todo el mundo ya ha cambiado el discurso sobre IA, pero muy pocos han cambiado el sistema de trabajo que lo sostiene. En una pyme, esa es una ventaja posible. <strong>No hace falta hacer más frentes; hace falta unir mejor los que ya existen</strong>.</p>
+      <p><strong>¿Quieres convertir tu blog, tus páginas y tus respuestas comerciales en un solo sistema que capte mejor en Google y en IA?</strong> En Icono Studio podemos ayudarte a montarlo con una lógica realista. <a href="/contacto">Cuéntanos tu caso</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Qué significa integrar SEO e IA en una pyme?',
+        answer: 'Significa usar las mismas preguntas, páginas y pruebas para trabajar visibilidad en Google, motores con IA, ficha local y respuestas comerciales dentro de un solo sistema.'
+      },
+      {
+        question: '¿Hace falta una herramienta compleja para hacerlo?',
+        answer: 'No. Puedes empezar con una lista de preguntas clave, una hoja de seguimiento, Search Console y una rutina simple de actualización de páginas.'
+      },
+      {
+        question: '¿Qué suele dar más resultado al principio?',
+        answer: 'Normalmente, convertir objeciones repetidas del negocio en páginas o artículos centrales y conectarlos bien con la medición y las páginas de servicio.'
+      }
+    ]
+  },
+  {
+    title: 'Herramientas de SEO local en 2026: stack realista para un negocio pequeño que quiere más llamadas y Maps',
+    subtitle: 'Semrush resumía en abril de 2026 una idea acertada: el SEO local ya no se juega solo en Google Maps. También influye cómo te entienden Google AI Mode, ChatGPT, Gemini o Perplexity. La cuestión es con qué stack merece la pena empezar.',
+    slug: 'herramientas-seo-local-2026-negocio-pequeno',
+    date: '20 Jun 2026',
+    author: 'Icono Studio',
+    tag: 'SEO Local',
+    image: '/blog/herramientas-seo-local-2026.webp',
+    metaTitle: 'Herramientas de SEO local en 2026 para negocios pequeños | Icono Studio',
+    metaDescription: 'Un stack realista de herramientas de SEO local para un negocio pequeño en 2026: Google Business Profile, Search Console, reviews, Maps y cuándo pagar por algo más.',
+    keywords: ['herramientas seo local 2026', 'stack seo local pyme', 'google business profile tools', 'map rank tracker negocio local', 'reviews seo local'],
+    content: `
+      <p>En abril de 2026, Semrush publicó una recopilación de herramientas de SEO local con una idea de fondo bastante acertada: <strong>la visibilidad local ya no depende solo de Google Maps y del buscador clásico</strong>. También entra en juego cómo te interpretan superficies como <strong>AI Mode, ChatGPT, Gemini o Perplexity</strong>. Para un negocio pequeño, eso no significa comprar media docena de herramientas nuevas. Significa elegir un <strong>stack realista</strong> según el problema que quieres resolver.</p>
+      <p>La mayoría de negocios locales no fallan por falta de software. Fallan por tres cosas más simples: ficha incompleta o poco atendida, señales inconsistentes y una web que no acompaña bien la intención local. Por eso conviene plantear las herramientas en capas, no como una lista de compras impulsivas.</p>
+
+      <h2>Capa 1: lo mínimo que casi cualquier negocio debería tener</h2>
+      <h3>1. Google Business Profile</h3>
+      <p>Sigue siendo la base. Aquí se decide buena parte de la visibilidad en Maps, llamadas, solicitudes de ruta, reseñas y primeras impresiones locales. Tener la ficha reclamada y bien completada sigue siendo el primer paso serio. Si no la tienes trabajada, empieza por <a href="/blog/google-business-profile-google-my-business-checklist-maps">nuestra checklist de Google Business Profile</a>.</p>
+
+      <h3>2. Google Search Console</h3>
+      <p>Te ayuda a ver qué búsquedas llevan a la web, qué páginas reciben impresiones y dónde empiezan a aparecer consultas locales, largas o con intención más clara. No sustituye a Maps, pero conecta la parte de búsqueda con la web y con el contenido.</p>
+
+      <h3>3. Google Analytics 4</h3>
+      <p>No te dirá todo lo que quieres sobre IA o Maps, pero sí te ayuda a ver si las páginas locales, los posts y los formularios están aportando algo real. Bien montado, te permite separar mejor ruido de negocio.</p>
+
+      <h3>4. Un sistema simple para pedir reseñas</h3>
+      <p>Puede ser un QR, un enlace corto o una plantilla sencilla por WhatsApp o email. Lo importante es que exista un proceso estable. Las reseñas no solo mejoran confianza humana; también ayudan a que Google y otros sistemas entiendan mejor qué haces y en qué contexto trabajas. Si esta parte aún no está ordenada, te interesa revisar <a href="/blog/como-conseguir-resenas-google-y-responderlas-bien">cómo pedir reseñas y responderlas bien</a>.</p>
+
+      <h2>Capa 2: cuándo tiene sentido pagar por algo más</h2>
+      <h3>1. Map rank tracking</h3>
+      <p>Si ya compites en una zona concreta y quieres saber cómo cambias por barrios, distritos o puntos del mapa, un rastreador de posiciones en Maps puede aportar valor. No es lo primero que necesita la mayoría, pero sí puede ayudar cuando ya hay trabajo local en marcha y necesitas ver si mejora.</p>
+
+      <h3>2. Listing management</h3>
+      <p>Si tu negocio aparece mal en directorios, cambia de teléfono, tiene varias ubicaciones o arrastra inconsistencias en nombre, dirección y teléfono, una herramienta de listings puede ahorrar bastante tiempo. Si solo tienes una ubicación y controlas bien tus datos, quizá no te haga falta todavía.</p>
+
+      <h3>3. Review management</h3>
+      <p>Cuando ya entran reseñas con frecuencia o gestionas varias ubicaciones, una bandeja centralizada puede ser útil para responder sin perder ritmo. Pero una pyme con poco volumen puede vivir perfectamente con un sistema manual serio.</p>
+
+      <h2>Un stack sensato según el momento del negocio</h2>
+      <h3>Si estás empezando o quieres gastar poco</h3>
+      <ul>
+        <li>Google Business Profile.</li>
+        <li>Search Console.</li>
+        <li>GA4.</li>
+        <li>Una hoja para seguimiento.</li>
+        <li>Un sistema estable para pedir reseñas.</li>
+      </ul>
+
+      <h3>Si ya compites en una ciudad o varias zonas</h3>
+      <ul>
+        <li>Todo lo anterior.</li>
+        <li>Un map rank tracker.</li>
+        <li>Una capa mejor de seguimiento de leads o formularios.</li>
+        <li>Páginas locales y comparativas mejor trabajadas.</li>
+      </ul>
+
+      <h3>Si tienes varias ubicaciones o mucho volumen</h3>
+      <ul>
+        <li>Todo lo anterior.</li>
+        <li>Listing management.</li>
+        <li>Review management.</li>
+        <li>Mayor disciplina para coordinar mensajes, horarios y servicios.</li>
+      </ul>
+
+      <h2>Qué herramientas no arreglan por sí solas</h2>
+      <ul>
+        <li>Una web que no explica bien el servicio.</li>
+        <li>Falta de proceso para pedir reseñas.</li>
+        <li>Inconsistencias entre ficha, web y atención.</li>
+        <li>Páginas locales pobres o demasiado genéricas.</li>
+        <li>Falta de seguimiento de leads reales.</li>
+      </ul>
+      <p>Por eso, antes de sumar herramientas, conviene reforzar base. Si todavía tienes dudas sobre esa parte, vuelve a <a href="/blog/seo-local-pequenas-empresas-guia-google-maps">la guía de SEO local para pequeñas empresas</a> y a <a href="/blog/paginas-barrio-codigo-postal-zona-seo-local-2026">cuándo crear páginas por zona sin parecer spam</a>.</p>
+
+      <h2>La decisión correcta suele ser más aburrida de lo que parece</h2>
+      <p>Muchas veces el stack correcto no es el más espectacular. Es el que te permite mantener bien lo básico durante meses: ficha viva, reseñas, web clara, medición mínima y consistencia. Cuando esa base existe, las herramientas extra empiezan a tener sentido. Antes, solo añaden complejidad.</p>
+
+      <h2>Conclusión</h2>
+      <p>El SEO local de 2026 sí se ha vuelto más amplio, porque la visibilidad local ya toca Maps, web, reseñas y motores con IA. Pero la solución no es perseguir todas las herramientas. La solución es <strong>elegir pocas, conectarlas bien y apoyar esa capa con una web que convierta</strong>.</p>
+      <p><strong>¿Quieres decidir qué stack local tiene sentido para tu negocio y qué gasto te puedes ahorrar?</strong> En Icono Studio podemos ayudarte a ordenar esa base con criterio. <a href="/contacto">Hablemos</a>.</p>
+    `,
+    faqs: [
+      {
+        question: '¿Cuál es la primera herramienta de SEO local que debería tener un negocio pequeño?',
+        answer: 'Google Business Profile. Es la base para Maps, llamadas, reseñas y muchas búsquedas locales con intención alta.'
+      },
+      {
+        question: '¿Puedo empezar solo con herramientas gratuitas?',
+        answer: 'Sí. GBP, Search Console, GA4 y un sistema estable para pedir reseñas ya cubren mucho terreno en una pyme pequeña.'
+      },
+      {
+        question: '¿Cuándo merece la pena pagar por map tracking o listings?',
+        answer: 'Cuando ya compites activamente en varias zonas, tienes inconsistencias de datos o necesitas medir mejor la evolución en Maps.'
+      }
+    ]
+  },
+  {
     title: 'Gemini con Google Business Profile en 2026: cómo ahorrar tiempo con reseñas, preguntas y tareas del negocio',
     subtitle: 'Google anunció el 10 de junio de 2026 una conexión directa entre Gemini y Google Business Profile. Para muchos negocios locales, eso convierte la ficha en una fuente operativa, no solo de visibilidad.',
     slug: 'gemini-google-business-profile-2026-resenas-tareas-negocio',
