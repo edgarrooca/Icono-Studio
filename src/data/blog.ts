@@ -1,7 +1,9 @@
 import { sortBlogEntries } from '../lib/blogUtils';
 import { BlogPost } from '../types/blog';
+import { blogBatch20260623 } from './blogBatch20260623';
 
 const latestBlogPosts: BlogPost[] = [
+  ...blogBatch20260623,
   {
     title: 'Chrome auto browse llega a Android: qué debe cambiar en la web de un negocio para que un agente pueda reservar, comparar o avanzar',
     subtitle: 'Google anunció el 12 de mayo de 2026 que Gemini en Chrome, incluido auto browse, llega a Android. Si parte de las visitas ya llegan con la tarea casi decidida, la web debe resolver mucho más rápido.',
