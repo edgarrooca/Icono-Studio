@@ -1,8 +1,10 @@
 import { sortBlogEntries } from '../lib/blogUtils';
 import { BlogPost } from '../types/blog';
+import { blogBatch20260624 } from './blogBatch20260624';
 import { blogBatch20260623 } from './blogBatch20260623';
 
 const latestBlogPosts: BlogPost[] = [
+  ...blogBatch20260624,
   ...blogBatch20260623,
   {
     title: 'Chrome auto browse llega a Android: qué debe cambiar en la web de un negocio para que un agente pueda reservar, comparar o avanzar',
