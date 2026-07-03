@@ -43,6 +43,41 @@ const covers = [
     subtitle: 'Campanas y landings listas para respuestas con IA',
     accent: [255, 125, 102],
   },
+  {
+    output: 'agent-readiness-2026-web-agentes-pyme.webp',
+    tag: 'AGENTES WEB',
+    titleLines: ['Agent', 'Readiness', 'para pymes'],
+    subtitle: 'Como revisar si tu web esta lista para asistentes y agentes',
+    accent: [81, 160, 255],
+  },
+  {
+    output: 'workspace-intelligence-2026-pyme-contexto.webp',
+    tag: 'WORKSPACE',
+    titleLines: ['Workspace', 'Intelligence', 'util'],
+    subtitle: 'Menos tiempo reuniendo contexto, mas tiempo trabajando',
+    accent: [86, 214, 132],
+  },
+  {
+    output: 'search-console-branded-queries-2026-marca.webp',
+    tag: 'SEARCH DATA',
+    titleLines: ['Marca o no', 'marca en', 'Search Console'],
+    subtitle: 'Separa demanda existente y descubrimiento nuevo',
+    accent: [247, 182, 62],
+  },
+  {
+    output: 'google-vids-ai-avatars-2026-web-servicios.webp',
+    tag: 'VIDEO IA',
+    titleLines: ['Avatares IA', 'para vender', 'servicios'],
+    subtitle: 'Donde un video breve ayuda y donde solo estorba',
+    accent: [255, 124, 160],
+  },
+  {
+    output: 'ia-local-inventa-datos-negocio-2026-checklist.webp',
+    tag: 'SEO LOCAL',
+    titleLines: ['La IA puede', 'contar mal', 'tu negocio'],
+    subtitle: 'Checklist para corregir hechos antes de perder leads',
+    accent: [121, 224, 112],
+  },
 ];
 
 const rgba = ([r, g, b], alpha) => `rgba(${r},${g},${b},${alpha})`;
