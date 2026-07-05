@@ -1,5 +1,6 @@
 import { sortBlogEntries } from '../lib/blogUtils';
 import { BlogPost } from '../types/blog';
+import { blogBatch20260705 } from './blogBatch20260705';
 import { blogBatch20260703 } from './blogBatch20260703';
 import { blogBatch20260702 } from './blogBatch20260702';
 import { blogBatch20260701 } from './blogBatch20260701';
@@ -11,6 +12,7 @@ import { blogBatch20260624 } from './blogBatch20260624';
 import { blogBatch20260623 } from './blogBatch20260623';
 
 const latestBlogPosts: BlogPost[] = [
+  ...blogBatch20260705,
   ...blogBatch20260703,
   ...blogBatch20260702,
   ...blogBatch20260701,
