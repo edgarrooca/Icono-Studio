@@ -7,7 +7,7 @@ export interface SeoLocation {
 
 const baseFaqs = [
   { q: '¿Cuánto cuesta una página web?', a: 'Depende del tipo de proyecto, pero una web básica empieza desde 350 € + IVA.' },
-  { q: '¿Cuánto tardas en hacerla?', a: 'Una web sencilla suele estar lista en 1–3 semanas, dependiendo del contenido y revisiones.' },
+  { q: '¿Cuánto tardas en hacerla?', a: 'Una web sencilla suele estar lista en 1-3 semanas, dependiendo del contenido y revisiones.' },
   { q: '¿Tengo que tener textos y fotos?', a: 'No necesariamente. Podemos ayudarte con los textos base y usar imágenes de stock si no tienes material propio.' },
   { q: '¿La web será mía?', a: 'Sí. Te entregamos tu web publicada y organizada.' },
   { q: '¿Incluyes hosting o mantenimiento?', a: 'Sí, podemos encargarnos del hosting y soporte mensual si quieres despreocuparte.' }

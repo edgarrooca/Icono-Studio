@@ -2,7 +2,25 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Icono Studio
+
+## Trabajar desde otro ordenador
+
+1. Clona `https://github.com/edgarrooca/Icono-Studio.git` con GitHub Desktop.
+2. Instala Node.js (versión 22 recomendada).
+3. Abre una terminal en la carpeta del proyecto y ejecuta `npm ci`.
+4. Ejecuta `npm run dev` y abre la dirección que indique Vite.
+
+Para verlo desde otro dispositivo en la misma Wi-Fi, utiliza la dirección
+`Network` que aparece en la terminal, no `localhost`.
+
+Las claves privadas no se guardan en GitHub. Si necesitas funciones de pago o
+integraciones, copia `.env.example` a `.env.local` y configura tus propias claves.
+No necesitas una clave de Gemini para visualizar y editar las páginas.
+
+Comprobaciones: `npm run lint` y `npm run build` (incluye prerenderizado SEO).
+
+## Información del proyecto original
 
 This contains everything you need to run your app locally.
 

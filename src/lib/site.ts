@@ -19,7 +19,8 @@ export const siteConfig = {
   phoneDisplay: '623 783 129',
   phoneHref: 'tel:+34623783129',
   whatsappHref: 'https://wa.me/34623783129',
-  defaultOgImage: '/brand-logo.png',
+  logo: '/icono-studio-logo.png',
+  defaultOgImage: '/og-image.png',
   defaultTitle: 'Diseño Web Valencia y SEO | Icono Studio',
   defaultDescription:
     'Agencia de diseño web en Valencia especializada en páginas rápidas, cuidadas y orientadas a captar clientes.',

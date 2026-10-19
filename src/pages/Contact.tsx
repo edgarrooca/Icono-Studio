@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useEffect, useState } from 'react';
+import { ArrowRight, Check, Clock3, Mail, MessageCircle, Phone, Send, Star, Users } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
-import { 
-  Check, Send, Clock, FileText, Heart
-} from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
@@ -14,8 +11,29 @@ import RelatedGuidesSection from '../components/RelatedGuidesSection';
 import { getBlogEntriesBySlugs } from '../lib/blogUtils';
 import { blogSummariesSorted } from '../data/blogSummaries';
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
+const inputClassName = 'w-full rounded-xl border border-[#DCE5EE] bg-[#F8FAFC] px-4 py-3 text-sm font-medium text-[#0B1B63] outline-none transition-[border-color,box-shadow,background-color] placeholder:text-[#91A0B0] focus:border-[#2A6D98] focus:bg-white focus:ring-4 focus:ring-[#9ED6F1]/25';
+const labelClassName = 'mb-2 block text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[#51667A]';
+
+const contactProof = [
+  { icon: Star, text: '5,0 en Google' },
+  { icon: Users, text: '+120 clientes satisfechos' },
+  { icon: Clock3, text: 'Respuesta en 24 h' },
+];
+
+interface ContactFormData {
+  nombre: string;
+  whatsapp: string;
+  email: string;
+  negocio: string;
+  ciudad: string;
+  necesidad: string;
+  presupuesto: string;
+  mensaje: string;
+  privacidad: boolean;
+}
+
+const readChatPrefill = (): ContactFormData => {
+  const emptyForm: ContactFormData = {
     nombre: '',
     whatsapp: '',
     email: '',
@@ -24,31 +42,55 @@ export default function Contact() {
     necesidad: '',
     presupuesto: '',
     mensaje: '',
-    privacidad: false
-  });
+    privacidad: false,
+  };
 
+  if (typeof window === 'undefined') return emptyForm;
+
+  try {
+    const rawPrefill = window.sessionStorage.getItem('icono_chat_prefill_v1');
+    if (!rawPrefill) return emptyForm;
+
+    const prefill = JSON.parse(rawPrefill) as Partial<ContactFormData>;
+    return {
+      ...emptyForm,
+      nombre: typeof prefill.nombre === 'string' ? prefill.nombre : '',
+      whatsapp: typeof prefill.whatsapp === 'string' ? prefill.whatsapp : '',
+      email: typeof prefill.email === 'string' ? prefill.email : '',
+      negocio: typeof prefill.negocio === 'string' ? prefill.negocio : '',
+      ciudad: typeof prefill.ciudad === 'string' ? prefill.ciudad : '',
+      necesidad: typeof prefill.necesidad === 'string' ? prefill.necesidad : '',
+      presupuesto: typeof prefill.presupuesto === 'string' ? prefill.presupuesto : '',
+      mensaje: typeof prefill.mensaje === 'string' ? prefill.mensaje : '',
+    };
+  } catch {
+    return emptyForm;
+  }
+};
+
+export default function Contact() {
+  const [formData, setFormData] = useState<ContactFormData>(readChatPrefill);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    window.sessionStorage.removeItem('icono_chat_prefill_v1');
   }, []);
 
   const contactSchema = {
-    "@context": "https://schema.org",
-    "@graph": [
+    '@context': 'https://schema.org',
+    '@graph': [
       buildOrganizationSchema(),
       buildBreadcrumbSchema([
         { name: 'Inicio', path: '/' },
         { name: 'Contacto' },
       ]),
       {
-        "@type": "ContactPage",
-        "@id": absoluteUrl('/contacto#page'),
-        "name": `Contacto | ${siteConfig.name}`,
-        "url": absoluteUrl('/contacto'),
-        "about": {
-          "@id": absoluteUrl('/#organization'),
-        },
+        '@type': 'ContactPage',
+        '@id': absoluteUrl('/contacto#page'),
+        name: 'Contacto | ' + siteConfig.name,
+        url: absoluteUrl('/contacto'),
+        about: { '@id': absoluteUrl('/#organization') },
       },
     ],
   };
@@ -59,109 +101,130 @@ export default function Contact() {
     'errores-pagina-web-no-consigue-clientes',
   ]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = event.target;
+
     if (type === 'checkbox') {
-      const target = e.target as HTMLInputElement;
-      setFormData(prev => ({ ...prev, [name]: target.checked }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
+      const target = event.target as HTMLInputElement;
+      setFormData((previous) => ({ ...previous, [name]: target.checked }));
+      return;
     }
+
+    setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     try {
       const response = await submitLeadForm('contact_page_main', formData);
-      
+
       if (response.ok) {
+        setIsSubmitted(true);
         redirectToLeadThankYouPage('contact_page_main');
         return;
-      } else {
-        alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
       }
-    } catch (error) {
+
+      alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
+    } catch {
       alert('Error de conexión.');
     }
   };
 
   return (
-    <div className="min-h-screen bg-brand-dark font-sans selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden relative">
+    <div className="min-h-screen overflow-x-hidden bg-[#F7F9FC] font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title="Presupuesto Web en Valencia | Contacto | Icono Studio"
         description="Cuéntanos tu proyecto y te responderemos con una propuesta clara para crear una web profesional, rápida y preparada para captar clientes."
         path="/contacto"
+        image="/home-hero-illustration-poster.png"
         type="service"
         schema={contactSchema}
       />
-      
-      <div className="absolute top-0 w-full z-50">
-        <Navbar initialTheme="dark" />
-      </div>
 
-      <main className="pt-24 pb-12">
-        <section id="vlc-form" className="py-16 sm:py-20 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="vlc-form-grid grid lg:grid-cols-[0.7fr_1.3fr] gap-12 lg:gap-16 items-start">
-              
-              {/* Left Column: Copied exactly from Valencia */}
-              <div className="lg:sticky lg:top-32">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="ui-eyebrow text-brand-lime">
-                    TU PRÓXIMO PASO
+      <Navbar initialTheme="light" />
+
+      <main>
+        <section className="relative overflow-hidden bg-[#D8ECFB] px-5 pb-20 pt-28 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
+          <div className="pointer-events-none absolute -top-44 left-1/2 h-[32rem] w-[52rem] -translate-x-1/2 rounded-full bg-white/40 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-48 -right-24 h-[24rem] w-[24rem] rounded-full bg-[#9ED6F1]/40 blur-3xl" />
+
+          <div className="relative mx-auto w-full max-w-[48rem] text-center">
+            <div className="flex justify-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#9BC8E4] bg-white/60 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#28536E]">
+                <span className="h-2 w-2 rounded-full bg-[#2A6D98]" aria-hidden="true" />
+                Hablemos de tu proyecto
+              </span>
+            </div>
+
+            <h1 className="mt-6 font-display text-[2.9rem] font-extrabold leading-[1.02] tracking-[-0.055em] text-[#0B1B63] sm:text-[3.7rem] lg:text-[4.1rem]">
+              Tu nueva web
+              <span className="block text-[#2A6D98]">empieza aquí.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-[34rem] text-[1.02rem] font-medium leading-[1.7] text-[#29456F] sm:text-[1.1rem]">
+              Cuéntanos qué necesitas. Te ayudaremos a ordenar la idea, elegir el camino adecuado y convertirla en una web que dé confianza.
+            </p>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <a
+                href={siteConfig.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="brand-button brand-button--dark inline-flex items-center gap-2 px-6 py-3 text-sm font-bold"
+              >
+                <MessageCircle size={17} strokeWidth={1.8} />
+                Escribir por WhatsApp
+              </a>
+              <a
+                href={'mailto:' + siteConfig.email}
+                className="brand-button brand-button--outline inline-flex items-center gap-2 px-6 py-3 text-sm font-bold"
+              >
+                <Mail size={17} strokeWidth={1.8} />
+                Enviar un email
+              </a>
+            </div>
+
+            <div className="mt-9 flex flex-wrap justify-center gap-x-6 gap-y-3 text-[0.82rem] font-bold text-[#45617B]">
+              {contactProof.map(({ icon: Icon, text }) => (
+                <span key={text} className="inline-flex items-center gap-2">
+                  <Icon size={15} className="text-[#2A6D98]" strokeWidth={2} />
+                  {text}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="vlc-form" className="relative px-5 pb-16 pt-4 sm:px-6 sm:pb-20 lg:px-8">
+          <div className="mx-auto w-full max-w-[46rem]">
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#2A6D98]">Pedir presupuesto</p>
+              <h2 className="mt-4 font-display text-[1.9rem] font-extrabold leading-[1.14] tracking-[-0.045em] text-[#0B1B63] sm:text-[2.4rem]">
+                Cuanto más nos cuentes, mejor podremos ayudarte.
+              </h2>
+              <p className="mx-auto mt-4 max-w-[32rem] text-[0.98rem] font-medium leading-[1.75] text-[#526477]">
+                No hace falta que sepas de webs. Explícanos tu negocio con tus palabras y nosotros lo convertimos en una propuesta clara.
+              </p>
+            </div>
+
+            <div className="mt-10 rounded-[1.75rem] border border-[#DCE5EE] bg-white p-5 shadow-[0_18px_55px_rgba(11,27,99,0.08)] sm:p-8">
+              {isSubmitted ? (
+                <div className="flex min-h-[24rem] flex-col items-center justify-center text-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E6F4FB] text-[#0B1B63]">
+                    <Check size={28} />
                   </span>
+                  <h2 className="mt-6 font-display text-2xl font-extrabold text-[#0B1B63]">Solicitud enviada</h2>
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#526477]">Gracias por contarnos tu proyecto. Te responderemos lo antes posible.</p>
+                  <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer" className="brand-button brand-button--dark mt-6 inline-flex items-center gap-2 px-5 py-3 text-sm font-bold">
+                    Hablar por WhatsApp <ArrowRight size={16} />
+                  </a>
                 </div>
-                <div className="ui-divider mb-6"></div>
-                <h1 className="ui-section-title text-white mb-8">
-                  TU NUEVA WEB <br/>
-                  <span className="text-brand-lime italic font-normal">EMPIEZA AQUÍ</span>
-                </h1>
-                <p className="ui-section-copy text-white/70 mb-8 max-w-sm">
-                  Cuéntanos qué necesitas y te responderemos con una orientación clara para crear una web profesional, cuidada y preparada para captar clientes.
-                </p>
-                
-                <div className="grid grid-cols-1 gap-4 mb-8 pt-6 border-t border-white/10">
-                  {[
-                    { t: "Respuesta en menos de 24h", i: Clock },
-                    { t: "Precio definido antes de empezar", i: FileText },
-                    { t: "Atención personalizada", i: Heart }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 text-xs font-bold text-white/90">
-                      <div className="w-6 h-6 rounded-lg bg-brand-lime/10 flex items-center justify-center text-brand-lime">
-                        <item.i size={14} />
-                      </div>
-                      {item.t}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column: The Form Card */}
-              <div className="bg-white/5 border border-white/10 p-5 md:p-7 rounded-[2.5rem] backdrop-blur-md shadow-2xl relative">
-                {isSubmitted ? (
-                  <div className="text-center py-10">
-                    <div className="w-16 h-16 bg-brand-lime rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(204,255,0,0.2)]">
-                      <Check size={32} className="text-brand-dark" />
-                    </div>
-                    <h3 className="font-display text-2xl uppercase mb-3 text-white italic">Solicitud enviada</h3>
-                    <p className="text-white/60 text-base mb-6 leading-relaxed">
-                      Gracias por contarnos tu proyecto. Te responderemos lo antes posible.
-                    </p>
-                    <a 
-                      href="https://wa.me/34623783129" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-black uppercase tracking-widest text-[11px] hover:scale-105 transition-all items-center gap-3 shadow-xl"
-                    >
-                      Hablar por WhatsApp <Send size={14} />
-                    </a>
-                  </div>
-                ) : (
-                  <>
-                  <div className="mb-6">
-                    <h3 className="font-display text-xl sm:text-2xl uppercase text-white italic tracking-tight leading-none mb-2">Pide tu presupuesto web</h3>
-                    <p className="text-sm text-white/70 font-medium">Te responderemos con una propuesta clara y sin compromiso.</p>
+              ) : (
+                <>
+                  <div className="mb-7 flex items-center justify-between gap-4">
+                    <p className="font-display text-2xl font-extrabold tracking-[-0.04em] text-[#0B1B63]">Cuéntanos qué necesitas</p>
+                    <span className="hidden shrink-0 rounded-full bg-[#F0F7FF] px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-[#2A6D98] sm:inline-flex">Sin compromiso</span>
                   </div>
 
                   <form
@@ -171,167 +234,103 @@ export default function Contact() {
                       const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
                       debugLeadFormInvalid('contact_page_main', target.name, target.validationMessage);
                     }}
-                    className="space-y-3.5"
+                    className="space-y-5"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                      <div className="space-y-1">
-                        <label htmlFor="contact-name" className="ui-form-label text-white/40 ml-1">Nombre</label>
-                        <input 
-                          id="contact-name"
-                          type="text" 
-                          name="nombre"
-                          required
-                          value={formData.nombre}
-                          onChange={handleInputChange}
-                          placeholder="Tu nombre" 
-                          className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all" 
-                        />
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="contact-name" className={labelClassName}>Nombre</label>
+                        <input id="contact-name" type="text" name="nombre" required value={formData.nombre} onChange={handleInputChange} placeholder="Tu nombre" className={inputClassName} />
                       </div>
-                      <div className="space-y-1">
-                        <label htmlFor="contact-business" className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
-                        <input 
-                          id="contact-business"
-                          type="text" 
-                          name="negocio"
-                          required
-                          value={formData.negocio}
-                          onChange={handleInputChange}
-                          placeholder="Nombre de tu empresa" 
-                          className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all" 
-                        />
+                      <div>
+                        <label htmlFor="contact-business" className={labelClassName}>Negocio o marca</label>
+                        <input id="contact-business" type="text" name="negocio" required value={formData.negocio} onChange={handleInputChange} placeholder="Nombre de tu negocio" className={inputClassName} />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                      <div className="space-y-1">
-                        <label htmlFor="contact-phone" className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
-                        <input 
-                          id="contact-phone"
-                          type="tel" 
-                          name="whatsapp"
-                          required
-                          value={formData.whatsapp}
-                          onChange={handleInputChange}
-                          placeholder="600 000 000" 
-                          className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all" 
-                        />
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="contact-phone" className={labelClassName}>WhatsApp o teléfono</label>
+                        <input id="contact-phone" type="tel" name="whatsapp" required value={formData.whatsapp} onChange={handleInputChange} placeholder="600 000 000" className={inputClassName} />
                       </div>
-                      <div className="space-y-1">
-                        <label htmlFor="contact-email" className="ui-form-label text-white/40 ml-1">Email</label>
-                        <input 
-                          id="contact-email"
-                          type="email" 
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="hola@tuweb.com" 
-                          className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all" 
-                        />
+                      <div>
+                        <label htmlFor="contact-email" className={labelClassName}>Email</label>
+                        <input id="contact-email" type="email" name="email" required value={formData.email} onChange={handleInputChange} placeholder="hola@tuweb.com" className={inputClassName} />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                      <div className="space-y-1">
-                        <label htmlFor="contact-need" className="ui-form-label text-white/40 ml-1">Tipo de web</label>
-                        <select 
-                          id="contact-need"
-                          name="necesidad"
-                          required
-                          value={formData.necesidad}
-                          onChange={handleInputChange}
-                          className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
-                        >
-                          <option value="" className="bg-brand-dark">Selecciona una opción</option>
-                          <option value="corporativa" className="bg-brand-dark">Web corporativa</option>
-                          <option value="landing" className="bg-brand-dark">Landing page</option>
-                          <option value="portfolio" className="bg-brand-dark">Portfolio</option>
-                          <option value="tienda" className="bg-brand-dark">Tienda online</option>
-                          <option value="rediseño" className="bg-brand-dark">Rediseño web</option>
-                          <option value="no-claro" className="bg-brand-dark">No lo tengo claro</option>
-                        </select>
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="contact-city" className={labelClassName}>Ciudad</label>
+                        <input id="contact-city" type="text" name="ciudad" value={formData.ciudad} onChange={handleInputChange} placeholder="Valencia, Madrid..." className={inputClassName} />
                       </div>
-                      <div className="space-y-1">
-                        <label htmlFor="contact-budget" className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
-                        <select 
-                          id="contact-budget"
-                          name="presupuesto"
-                          required
-                          value={formData.presupuesto}
-                          onChange={handleInputChange}
-                          className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
-                        >
-                          <option value="" className="bg-brand-dark">Selecciona un rango</option>
-                          <option value="350-500" className="bg-brand-dark">350 € – 500 €</option>
-                          <option value="500-800" className="bg-brand-dark">500 € – 800 €</option>
-                          <option value="800-1200" className="bg-brand-dark">800 € – 1.200 €</option>
-                          <option value="1200+" className="bg-brand-dark">Más de 1.200 €</option>
-                          <option value="orientacion" className="bg-brand-dark">Necesito orientación</option>
+                      <div>
+                        <label htmlFor="contact-need" className={labelClassName}>Qué quieres conseguir con tu web</label>
+                        <select id="contact-need" name="necesidad" required value={formData.necesidad} onChange={handleInputChange} className={inputClassName}>
+                          <option value="">Selecciona una opción</option>
+                          <option value="corporativa">Mostrar y presentar mi negocio</option>
+                          <option value="landing">Promocionar una oferta o campaña</option>
+                          <option value="portfolio">Enseñar mis trabajos</option>
+                          <option value="tienda">Vender por internet</option>
+                          <option value="rediseño">Mejorar la web que ya tengo</option>
+                          <option value="no-claro">No lo tengo claro</option>
                         </select>
                       </div>
                     </div>
 
-                    <div className="space-y-1">
-                      <label htmlFor="contact-message" className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
-                      <textarea 
-                        id="contact-message"
-                        name="mensaje"
-                        required
-                        rows={2} 
-                        value={formData.mensaje}
-                        onChange={handleInputChange}
-                        placeholder="Ej: necesito una web para mi clínica, con imagen profesional, contacto por WhatsApp y preparada para captar clientes." 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all resize-none"
-                      ></textarea>
+                    <div>
+                      <label htmlFor="contact-budget" className={labelClassName}>Presupuesto aproximado</label>
+                      <select id="contact-budget" name="presupuesto" required value={formData.presupuesto} onChange={handleInputChange} className={inputClassName}>
+                        <option value="">Selecciona un rango</option>
+                        <option value="350-500">350 € a 500 €</option>
+                        <option value="500-800">500 € a 800 €</option>
+                        <option value="800-1200">800 € a 1.200 €</option>
+                        <option value="1200+">Más de 1.200 €</option>
+                        <option value="orientacion">Necesito orientación</option>
+                      </select>
                     </div>
 
-                    <div className="flex items-start gap-3 py-1">
-                      <input 
-                        type="checkbox" 
-                        name="privacidad"
-                        id="privacidad"
-                        required
-                        checked={formData.privacidad}
-                        onChange={handleInputChange}
-                        className="mt-1 accent-brand-lime" 
-                      />
-                      <label htmlFor="privacidad" className="text-[11px] text-white/55 leading-relaxed">
-                        Acepto la{' '}
-                        <RouterLink to="/politica-de-privacidad" className="text-brand-lime hover:text-white underline underline-offset-4">
-                          política de privacidad
-                        </RouterLink>{' '}
-                        y autorizo a Icono Studio a contactar conmigo.
-                      </label>
+                    <div>
+                      <label htmlFor="contact-message" className={labelClassName}>Cuéntanos tu idea</label>
+                      <textarea id="contact-message" name="mensaje" required rows={4} value={formData.mensaje} onChange={handleInputChange} placeholder="Qué haces, qué te gustaría mejorar y qué debería conseguir tu web..." className={inputClassName} />
                     </div>
 
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       onClick={() => debugLeadFormButtonClick('contact_page_main')}
-                      className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[11px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
+                      className="brand-button brand-button--dark inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-sm font-bold"
                     >
-                      Pedir presupuesto gratis <Send size={14} />
+                      Pedir presupuesto gratis <Send size={16} />
                     </button>
                   </form>
-                  </>
-                )}
-              </div>
+
+                  <div className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 border-t border-[#EDF1F5] pt-6 text-sm">
+                    <span className="font-medium text-[#526477]">¿Prefieres hablar por teléfono?</span>
+                    <a
+                      href={siteConfig.phoneHref}
+                      className="inline-flex items-center gap-2 font-bold text-[#0B1B63] transition-colors hover:text-[#2A6D98]"
+                    >
+                      <Phone size={16} className="text-[#2A6D98]" />
+                      {siteConfig.phoneDisplay}
+                    </a>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>
 
-        <section className="pb-16 sm:pb-20 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="px-5 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+          <div className="mx-auto w-full max-w-[1180px]">
             <RelatedGuidesSection
-              theme="dark"
-              title="Si aún estás comparando, empieza por estas guías"
-              description="Suelen ayudar mucho cuando todavía estás valorando presupuesto, qué debería incluir tu web y qué errores conviene evitar antes de arrancar."
+              title="Antes de empezar, quizá te ayuden estas guías"
+              description="Respuestas sencillas para entender qué necesita tu web, cuánto puede costar y qué conviene revisar antes de lanzarla."
               posts={contactGuides}
             />
           </div>
         </section>
       </main>
 
-      <Footer hideCTA={true} />
+      <Footer hideCTA />
     </div>
   );
 }

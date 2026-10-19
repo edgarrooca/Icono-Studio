@@ -69,7 +69,7 @@ export default function SeoHead({
 
     upsertMeta('name', 'description', description);
     upsertMeta('name', 'robots', robots);
-    upsertMeta('name', 'theme-color', '#0A36E8');
+    upsertMeta('name', 'theme-color', '#0B1B63');
 
     upsertMeta('property', 'og:locale', siteConfig.locale);
     upsertMeta('property', 'og:site_name', siteConfig.name);
@@ -78,6 +78,7 @@ export default function SeoHead({
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:url', canonicalUrl);
     upsertMeta('property', 'og:image', imageUrl);
+    upsertMeta('property', 'og:image:alt', `${title} | ${siteConfig.name}`);
 
     if (type === 'article') {
       if (publishedTime) upsertMeta('property', 'article:published_time', publishedTime);
@@ -95,6 +96,7 @@ export default function SeoHead({
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', description);
     upsertMeta('name', 'twitter:image', imageUrl);
+    upsertMeta('name', 'twitter:image:alt', `${title} | ${siteConfig.name}`);
 
     upsertLink('canonical', canonicalUrl);
 

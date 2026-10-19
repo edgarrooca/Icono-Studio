@@ -15,7 +15,7 @@ export const mainNavLinks: NavLink[] = [
   { name: 'Inicio', href: '/#inicio' },
   { name: 'Proyectos', href: '/proyectos' },
   {
-    name: 'SERVICIOS',
+    name: 'Servicios',
     children: [
       ...seoLocations.map(loc => ({
         name: `Diseño Web ${loc.name}`,
@@ -29,3 +29,18 @@ export const mainNavLinks: NavLink[] = [
   { name: 'Precios', href: '/precios' },
   { name: 'Contacto', href: '/contacto' },
 ];
+
+export const homeHeroNavLinks: NavLink[] = [
+  { name: 'Servicios', href: '/#servicios' },
+  { name: 'Proyectos', href: '/#proyectos' },
+  { name: 'Por qué Icono Studio', href: '/#opiniones' },
+  {
+    name: 'Recursos',
+    children: [
+      { name: 'Blog', href: '/blog' },
+      { name: 'Precios', href: '/precios' },
+    ],
+  },
+  { name: 'Sobre nosotros', href: '/#soporte-web' },
+  { name: 'Contacto', href: '/#contacto' },
+] as const;

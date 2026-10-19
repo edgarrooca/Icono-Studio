@@ -6,7 +6,7 @@ import { siteConfig } from '../lib/site';
 
 export default function PoliticaPrivacidad() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark">
+    <div className="min-h-screen bg-[#F7F9FC] font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title="Política de Privacidad | Icono Studio"
         description="Información provisional sobre el tratamiento de datos personales en icono.studio."
@@ -14,22 +14,25 @@ export default function PoliticaPrivacidad() {
         robots="noindex,nofollow"
       />
 
-      <Navbar initialTheme="dark" />
+      <Navbar initialTheme="light" />
 
       <main>
-        <section className="relative pt-32 pb-18 sm:pt-36 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-brand-dark text-white rounded-b-[2.5rem] md:rounded-b-[4rem]">
-          <div className="absolute inset-0 opacity-20 bg-blueprint"></div>
-          <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <p className="ui-eyebrow text-brand-lime mb-4">Privacidad</p>
-            <h1 className="ui-section-title text-white mb-6">Política de privacidad</h1>
-            <p className="ui-section-copy text-white/75 max-w-2xl mx-auto">
+        <section className="relative overflow-hidden bg-[#F7F7F7] px-5 pb-12 pt-28 sm:px-6 sm:pb-14 sm:pt-32 lg:px-8 lg:pb-16">
+          <div className="pointer-events-none absolute -right-32 -top-40 h-[30rem] w-[30rem] rounded-full bg-[#D8ECFB] blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-44 left-[-6%] h-[22rem] w-[22rem] rounded-full bg-[#EAF5FA] blur-3xl" aria-hidden />
+          <div className="relative mx-auto max-w-4xl text-center">
+            <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+              Privacidad
+            </div>
+            <h1 className="mt-5 font-display text-[2.1rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0B1B63] sm:text-[2.6rem]">Política de privacidad</h1>
+            <p className="mx-auto mt-5 max-w-2xl font-sans text-[1rem] font-medium leading-[1.68] text-[#425776] sm:text-[1.05rem]">
               Resumen provisional del tratamiento de datos en la web. Está pensado para dejar la información accesible y enlazada
               mientras se completa una revisión legal final ajustada al negocio.
             </p>
           </div>
         </section>
 
-        <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-14 sm:py-20 px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto legal-content bg-white rounded-[2rem] border border-gray-100 shadow-sm p-6 sm:p-10">
             <h2>Responsable del tratamiento</h2>
             <p>

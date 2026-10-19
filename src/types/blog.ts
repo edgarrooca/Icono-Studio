@@ -18,6 +18,10 @@ export interface BlogPostSummary {
 }
 
 export interface BlogPost extends BlogPostSummary {
-  content: string; // HTML or Markdown formatted string
+  /**
+   * Cuerpo del artículo. Ya no viaja en `blog.ts`: se carga bajo demanda por artículo
+   * vía `blogContentLoaders` (ver src/data/blogContentLoaders.ts).
+   */
+  content?: string;
   faqs?: FAQItem[];
 }

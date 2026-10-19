@@ -1,0 +1,13 @@
+Options -MultiViews
+DirectoryIndex index.html
+
+RewriteEngine On
+
+# Serve the real asset files, robots.txt, sitemap.xml and prerendered route
+# directories before applying the SPA fallback below.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Keep client-side navigation working for routes that are not prerendered.
+RewriteRule ^ /index.html [L]

@@ -1,0 +1,54 @@
+export const content = `
+      <p>Si estás pensando en crear la web de tu negocio, seguramente te has hecho esta pregunta: <em><strong>¿cuánto cuesta una página web profesional en España en 2026?</strong></em></p>
+
+      <p>La realidad es que no hay un único precio. No cuesta lo mismo una web sencilla para presentar tus servicios que una página con más secciones, formularios avanzados, automatizaciones o un sistema de gestión interno. Aun así, sí que hay rangos orientativos que te pueden ayudar a entender cuánto deberías invertir y qué puedes esperar según tu caso.</p>
+
+      <p>En este artículo te contamos qué influye en el precio de una página web, qué suele incluir un proyecto profesional y por qué una web no debería valorarse solo por “tener más o menos páginas”.</p>
+
+      <h2>Cuánto cuesta una página web profesional en 2026</h2>
+      <p>En España, el precio de una página web profesional en 2026 puede moverse, de forma general, entre unos <strong>350 € y más de 1.500 €</strong>, dependiendo del tipo de proyecto.</p>
+
+      <p>De forma orientativa:</p>
+      <ul>
+        <li><strong>Web básica para un pequeño negocio:</strong> desde 350 € + IVA</li>
+        <li><strong>Web corporativa con algo más de estructura o catálogo:</strong> alrededor de 400 € + IVA</li>
+        <li><strong>Proyecto más avanzado con funcionalidades personalizadas:</strong> desde 1.350 € + IVA en adelante</li>
+      </ul>
+
+      <p>Estos precios pueden variar según el profesional, el nivel de personalización, los servicios incluidos y la complejidad del desarrollo, pero sirven para hacerte una idea realista.</p>
+
+      <h2>Por qué no todas las webs cuestan lo mismo</h2>
+      <p>Una página web no se valora solo por el diseño visual. Hay muchos factores que influyen en el presupuesto final, y algunos de ellos son invisibles para el cliente hasta que empieza el proyecto.</p>
+
+      <h3>1. El tipo de web que necesitas</h3>
+      <p>No es lo mismo una <em>one page</em> con la información principal de tu negocio, que una web corporativa con varias secciones, o que una web con formularios, paneles, reservas, pagos o automatizaciones.</p>
+
+      <h3>2. El nivel de personalización</h3>
+      <p>Aquí entran cosas como el diseño adaptado a la marca, estructura estratégica, textos bien organizados, experiencia móvil, velocidad de carga y optimización para captar contactos.</p>
+
+      <h3>3. Las funcionalidades especiales</h3>
+      <p>Desarrollos que requieren formularios avanzados, conexión con bases de datos, automatizaciones o integración con herramientas externas exigen más tiempo y planificación técnica.</p>
+
+      <h2>Qué suele incluir una página web profesional</h2>
+      <p>Aunque cada profesional trabaja de una forma distinta, una web profesional suele incluir al menos esto:</p>
+      <ul>
+        <li>Planificación de la estructura</li>
+        <li>Diseño de la web</li>
+        <li>Desarrollo y maquetación</li>
+        <li>Adaptación a móvil y tablet</li>
+        <li>Configuración técnica básica</li>
+        <li>Formularios de contacto</li>
+        <li>Optimización inicial de velocidad</li>
+        <li>SEO básico on-page</li>
+        <li>Publicación final</li>
+      </ul>
+
+      <h2>Qué opción suele salir más cara a la larga</h2>
+      <p>Muchas personas intentan ahorrar al principio recurriendo a opciones muy baratas. Pero una web hecha sin estrategia o con un diseño poco cuidado puede salir cara después si no transmite confianza, no consigue contactos o carga mal en móvil.</p>
+
+      <blockquote>
+        En Icono Studio creemos que una web no debería ser solo “estar en internet”, sino una base sólida para que tu negocio crezca con una imagen cuidada y una estructura bien pensada.
+      </blockquote>
+
+      <p><strong>¿Estás pensando en crear o renovar tu web?</strong> En Icono Studio diseñamos páginas web para negocios que quieren verse profesionales y transmitir confianza. Escríbenos y te orientamos sobre qué tipo de web encaja mejor con tu proyecto.</p>
+    `;

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase';
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { collection, addDoc, getDocs, doc, deleteDoc, setDoc, getDoc } from 'firebase/firestore';
-import { LayoutDashboard, Settings, Plus, LogOut, Trash2, Image as ImageIcon, Link as LinkIcon, Folder, FileText, CheckCircle2, Sparkles, Download } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { LayoutDashboard, Settings, Plus, LogOut, Trash2, Image as ImageIcon, Link as LinkIcon, Folder, CheckCircle2, Sparkles, Download } from 'lucide-react';
+import { m, AnimatePresence } from 'motion/react';
 import { GoogleGenAI, Type } from '@google/genai';
 import SeoHead from '../components/SeoHead';
 
@@ -421,7 +421,7 @@ export default function Dashboard() {
       {/* Toast Notification */}
       <AnimatePresence>
         {toast && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
@@ -431,7 +431,7 @@ export default function Dashboard() {
           >
             {toast.type === 'success' && <CheckCircle2 size={20} />}
             {toast.message}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -579,7 +579,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.img && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.img} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.img} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -591,7 +591,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgPc1 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgPc1} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgPc1} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -603,7 +603,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgReto && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgReto} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgReto} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -615,7 +615,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgMobile1 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgMobile1} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgMobile1} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -627,7 +627,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgMobile2 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgMobile2} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgMobile2} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -639,7 +639,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgMobile3 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgMobile3} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgMobile3} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -651,7 +651,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgMobile4 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgMobile4} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgMobile4} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -663,7 +663,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgMobile5 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgMobile5} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgMobile5} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -675,7 +675,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgObj1 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgObj1} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgObj1} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -687,7 +687,7 @@ export default function Dashboard() {
                           </div>
                           {projectForm.imgObj2 && (
                             <div className="mt-2 h-24 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                              <img src={projectForm.imgObj2} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/600x400?text=Error+al+cargar+imagen'; }} />
+                              <img src={projectForm.imgObj2} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                             </div>
                           )}
                         </div>
@@ -732,7 +732,7 @@ export default function Dashboard() {
                     projects.map(project => (
                       <div key={project.id} className="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-gray-100 group">
                         <div className="aspect-video bg-gray-100 relative overflow-hidden">
-                          <img src={project.img} alt={project.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }} />
+                          <img src={project.img} alt={project.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" onError={(e) => { (e.target as HTMLImageElement).src = '/og-image.png'; }} />
                           <div className="absolute top-3 right-3 flex gap-2">
                             <button 
                               onClick={() => editProject(project)}
@@ -802,13 +802,13 @@ export default function Dashboard() {
       {/* Delete Confirmation Modal */}
       <AnimatePresence>
         {projectToDelete && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
           >
-            <motion.div
+            <m.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
@@ -832,8 +832,8 @@ export default function Dashboard() {
                   Sí, eliminar
                 </button>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

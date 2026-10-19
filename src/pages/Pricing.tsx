@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { motion } from 'motion/react';
-import { Check, ArrowRight } from 'lucide-react';
+import { m } from 'motion/react';
+import { Check, ArrowRight, ShieldCheck, Star, Users } from 'lucide-react';
 import { Link as RouterLink } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -10,6 +10,72 @@ import { buildBreadcrumbSchema, buildOrganizationSchema, buildProviderReference 
 import RelatedGuidesSection from '../components/RelatedGuidesSection';
 import { getBlogEntriesBySlugs } from '../lib/blogUtils';
 import { blogSummariesSorted } from '../data/blogSummaries';
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const pricingProof = [
+  { icon: Star, text: '5,0 en Google' },
+  { icon: Users, text: '+120 clientes satisfechos' },
+  { icon: ShieldCheck, text: 'Sin costes ocultos' },
+];
+
+const pricingTiers = [
+  {
+    name: 'Landing Page',
+    description: 'Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.',
+    price: '350',
+    from: 'Desde',
+    features: [
+      'Página única optimizada',
+      'Copywriting persuasivo',
+      'Diseño responsive',
+      'Formulario de captación',
+    ],
+    featured: false,
+  },
+  {
+    name: 'Web corporativa',
+    description: 'Para empresas que buscan autoridad, credibilidad y presencia digital sólida.',
+    price: '500 - 800',
+    from: 'Desde',
+    features: [
+      'Hasta 5 páginas internas',
+      'Diseño UX/UI a medida',
+      'Optimización SEO On-page',
+      'Panel autogestionable',
+      'Integración de analítica',
+    ],
+    featured: true,
+  },
+  {
+    name: 'Tienda online',
+    description: 'Tiendas online de alto rendimiento diseñadas para maximizar las ventas.',
+    price: '1.300',
+    from: 'Desde',
+    features: [
+      'Catálogo de productos',
+      'Pasarelas de pago seguras',
+      'Gestión de stock y envíos',
+      'Emails transaccionales',
+      'Optimización de checkout',
+    ],
+    featured: false,
+  },
+  {
+    name: 'A medida',
+    description: 'Aplicaciones web complejas, portales personalizados e integraciones.',
+    price: '2.000',
+    from: 'Desde',
+    features: [
+      'Arquitectura escalable',
+      'Integración de APIs externas',
+      'Bases de datos complejas',
+      'Panel de control custom',
+      'Soporte técnico prioritario',
+    ],
+    featured: false,
+  },
+];
 
 export default function Pricing() {
   useEffect(() => {
@@ -107,8 +173,8 @@ export default function Pricing() {
   ]);
 
   return (
-    <div className="min-h-screen bg-brand-dark selection:bg-brand-lime/30 selection:text-brand-lime flex flex-col font-sans">
-      <SeoHead 
+    <div className="min-h-screen overflow-x-hidden bg-white font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
+      <SeoHead
         title="Precios Diseño Web | Icono Studio"
         description="Descubre nuestros planes de diseño web corporativo, landing pages y tiendas online. Tarifas claras, transparentes y orientadas a resultados para tu negocio."
         path="/precios"
@@ -116,208 +182,177 @@ export default function Pricing() {
       />
       <Navbar />
 
-      <main className="flex-grow pt-24 sm:pt-32 pb-16 sm:pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* HERO PRICING */}
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="ui-section-title text-white mb-6">
-                Transparencia desde <br />
-                <span className="text-brand-lime italic">el primer clic</span>
-              </h1>
-              <p className="ui-section-copy text-white/70 max-w-2xl mx-auto">
-                Sin letra pequeña. Te mostramos nuestras tarifas base para que puedas hacerte una idea real de la inversión necesaria para tu próximo proyecto digital.
-              </p>
-            </motion.div>
+      <main>
+        {/* HERO */}
+        <section className="relative overflow-hidden bg-[#F7F7F7] px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pb-20">
+          <div className="pointer-events-none absolute -right-32 -top-40 h-[32rem] w-[32rem] rounded-full bg-[#D8ECFB] blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-44 left-[-6%] h-[24rem] w-[24rem] rounded-full bg-[#EAF5FA] blur-3xl" aria-hidden />
+
+          <m.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="relative mx-auto max-w-3xl text-center"
+          >
+            <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+              Precios claros
+            </div>
+            <h1 className="mt-5 font-display text-[2.1rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0B1B63] sm:text-[2.6rem] lg:text-[3rem]">
+              Transparencia desde{' '}
+              <span style={{ color: '#3E88AE' }}>el primer clic</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl font-sans text-[1rem] font-medium leading-[1.68] text-[#1F3572] sm:text-[1.06rem]">
+              Sin letra pequeña. Te mostramos nuestras tarifas base para que puedas hacerte una idea real de la inversión necesaria para tu próximo proyecto digital.
+            </p>
+          </m.div>
+        </section>
+
+        {/* PRICING CARDS */}
+        <section className="relative bg-white py-10 sm:py-14 md:py-16">
+          <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {pricingTiers.map((tier, index) => (
+                <m.div
+                  key={tier.name}
+                  initial={{ opacity: 0, y: 26 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: EASE }}
+                  className={`group relative flex h-full flex-col rounded-[1.5rem] border bg-white p-6 shadow-[0_8px_24px_-12px_rgba(11,27,99,0.08)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 sm:p-7 ${
+                    tier.featured
+                      ? 'border-[#9ED6F1] ring-1 ring-[#9ED6F1] hover:border-[#9ED6F1] hover:shadow-[0_22px_56px_rgba(109,144,193,0.16)]'
+                      : 'border-[#E4E9F2] hover:border-[#C8DCF5] hover:shadow-[0_22px_56px_rgba(109,144,193,0.12)]'
+                  }`}
+                >
+                  {tier.featured && (
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#0B1B63] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-md">
+                      El más elegido
+                    </div>
+                  )}
+                  <h2 className="font-display text-[1.35rem] font-extrabold tracking-[-0.02em] text-[#0B1B63]">
+                    {tier.name}
+                  </h2>
+                  <p className="mt-2.5 text-sm font-medium leading-[1.6] text-[#34465D]">
+                    {tier.description}
+                  </p>
+
+                  <div className="mt-6">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#2A6D98]">
+                      {tier.from}
+                    </p>
+                    <div className="mt-1.5 flex items-baseline gap-1">
+                      <span className="font-display text-[2.15rem] font-extrabold leading-none tracking-[-0.03em] text-[#0B1B63]">
+                        {tier.price}
+                      </span>
+                      <span className="text-lg font-semibold text-[#5F7186]">
+                        € <span className="text-xs uppercase tracking-tight">+ IVA</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="my-6 h-px w-full bg-[#EDF1F7]" />
+
+                  <ul className="mb-7 flex-grow space-y-3">
+                    {tier.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2.5 text-sm font-medium text-[#34465D]">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E6F4FB]">
+                          <Check size={12} strokeWidth={3} className="text-[#2A6D98]" />
+                        </span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <RouterLink
+                    to="/contacto"
+                    className={`inline-flex w-full items-center justify-center gap-2 rounded-[0.9rem] px-5 py-3 text-sm font-semibold transition-colors duration-300 ${
+                      tier.featured
+                        ? 'bg-[#0B1B63] text-white hover:bg-[#1F3572]'
+                        : 'border-2 border-brand-blue bg-white text-[#0B1B63] hover:bg-brand-blue/[0.12]'
+                    }`}
+                  >
+                    Solicitar presupuesto
+                  </RouterLink>
+                </m.div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-x-8 gap-y-3 border-t border-[#EDF1F7] pt-6 sm:flex-row sm:flex-wrap">
+              {pricingProof.map(({ icon: Icon, text }) => (
+                <span key={text} className="inline-flex items-center gap-2 text-[0.82rem] font-bold text-[#526477]">
+                  <Icon size={15} className="text-[#2A6D98]" strokeWidth={2} />
+                  {text}
+                </span>
+              ))}
+            </div>
+            <p className="mt-5 text-center text-xs font-medium text-[#5F7186] sm:text-[13px]">
+              * Todos los precios son sin IVA. El coste final dependerá de los requisitos exactos de tu proyecto. Los precios son cerrados: si añadimos algo, lo acordamos contigo antes.
+            </p>
           </div>
+        </section>
 
-          {/* PRICING GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 relative z-10 mb-20 sm:mb-24">
-            {/* Background decoration */}
-            <div className="absolute top-1/2 left-1/2 w-full h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2 pointer-events-none z-[-1]"></div>
-            
-            {/* Tier 1 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm"
-            >
-              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">Landing Page</h3>
-              <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Ideal para validar ideas, campañas publicitarias o captar leads rápidamente.</p>
-              <div className="mb-5 sm:mb-6">
-                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-white">350</span>
-                  <span className="text-xl text-white/50">€ <span className="text-xs uppercase tracking-tighter opacity-50">+ IVA</span></span>
-                </div>
+        {/* FAQs */}
+        <section className="relative bg-[#F7F7F7] py-10 sm:py-12 md:py-16">
+          <div className="relative mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+                Dudas frecuentes
               </div>
-              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
-              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
-                {['Página única optimizada', 'Copywriting persuasivo', 'Diseño responsive', 'Formulario de captación'].map((feat, i) => (
-                  <li key={i} className={`flex items-start gap-3 text-xs sm:text-sm text-white/80`}>
-                    <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-              <RouterLink 
-                to="/contacto"
-                className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-center text-xs group-hover:border-white/40"
-              >
-                Solicitar
-              </RouterLink>
-            </motion.div>
+              <h2 className="mt-3 font-display text-[1.85rem] font-extrabold leading-[1.08] tracking-[-0.032em] text-[#0B1B63] sm:text-[2rem] lg:text-[2.15rem]">
+                Dudas habituales sobre <span style={{ color: '#3E88AE' }}>presupuestos</span>
+              </h2>
+            </div>
 
-            {/* Tier 2 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-gradient-to-b from-white/10 to-white/5 border border-brand-lime/40 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 transform xl:-translate-y-2 shadow-[0_0_40px_rgba(204,255,0,0.1)] flex flex-col relative backdrop-blur-sm hover:border-brand-lime/60 transition-all duration-300"
-            >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand-lime text-brand-dark text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg whitespace-nowrap">
-                Más Popular
-              </div>
-              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">Corporativa</h3>
-              <p className="text-white/60 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Para empresas que buscan autoridad, credibilidad y presencia digital sólida.</p>
-              <div className="mb-5 sm:mb-6">
-                <span className="text-[10px] text-brand-lime/80 uppercase tracking-widest block mb-1 font-bold">Desde</span>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-brand-lime">500</span>
-                  <span className="text-2xl text-brand-lime/50 px-1">–</span>
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-brand-lime">800</span>
-                  <span className="text-xl text-white/50 ml-1">€ <span className="text-xs uppercase tracking-tighter opacity-50">+ IVA</span></span>
-                </div>
-              </div>
-              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
-              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
-                {['Hasta 5 páginas internas', 'Diseño UX/UI a medida', 'Optimización SEO On-page', 'Panel autogestionable', 'Integración de analítica'].map((feat, i) => (
-                  <li key={i} className={`flex items-start gap-3 text-xs sm:text-sm text-white/90`}>
-                    <Check size={16} className="text-brand-lime shrink-0 mt-0.5" /> <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-              <RouterLink 
-                to="/contacto"
-                className="w-full py-2.5 sm:py-3 rounded-full bg-brand-lime text-brand-dark font-bold hover:bg-white transition-all duration-300 uppercase tracking-wide text-center text-xs shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]"
-              >
-                Solicitar
-              </RouterLink>
-            </motion.div>
-
-            {/* Tier 3 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white/5 border border-white/10 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm"
-            >
-              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">E-commerce</h3>
-              <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Tiendas online de alto rendimiento diseñadas para maximizar las ventas.</p>
-              <div className="mb-5 sm:mb-6">
-                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-white">1.300</span>
-                  <span className="text-xl text-white/50">€</span>
-                </div>
-              </div>
-              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
-              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
-                {['Catálogo de productos', 'Pasarelas de pago seguras', 'Gestión de stock y envíos', 'Emails transaccionales', 'Optimización de checkout'].map((feat, i) => (
-                  <li key={i} className={`flex items-start gap-3 text-xs sm:text-sm text-white/80`}>
-                    <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-              <RouterLink 
-                to="/contacto"
-                className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-center text-xs group-hover:border-white/40"
-              >
-                Solicitar
-              </RouterLink>
-            </motion.div>
-
-            {/* Tier 4 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white/5 border border-white/10 rounded-[1.6rem] sm:rounded-[2rem] p-5 sm:p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col group backdrop-blur-sm"
-            >
-              <h3 className="font-display text-lg sm:text-xl uppercase mb-2 text-white">A medida</h3>
-              <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6 leading-relaxed">Aplicaciones web complejas, portales personalizados e integraciones.</p>
-              <div className="mb-5 sm:mb-6">
-                <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-1 font-bold">Desde</span>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-display tracking-tight text-white">2.000</span>
-                  <span className="text-xl text-white/50">€</span>
-                </div>
-              </div>
-              <div className="w-full h-px bg-white/10 mb-5 sm:mb-6"></div>
-              <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
-                {['Arquitectura escalable', 'Integración de APIs externas', 'Bases de datos complejas', 'Panel de control custom', 'Soporte técnico prioritario'].map((feat, i) => (
-                  <li key={i} className={`flex items-start gap-3 text-xs sm:text-sm text-white/80`}>
-                    <Check size={16} className="text-white/30 shrink-0 mt-0.5" /> <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-              <RouterLink 
-                to="/contacto"
-                className="w-full py-2.5 sm:py-3 rounded-full border border-white/20 font-bold text-white hover:bg-white hover:text-brand-dark transition-all duration-300 uppercase tracking-wide text-center text-xs group-hover:border-white/40"
-              >
-                Solicitar
-              </RouterLink>
-            </motion.div>
-          </div>
-
-          <div className="text-center mb-24 border-t border-white/10 pt-6">
-            <p className="text-white/40 text-[10px] sm:text-xs font-mono uppercase tracking-widest">* Todos los precios son sin IVA. El coste final dependerá de los requisitos exactos de tu proyecto.</p>
-          </div>
-
-          {/* FAQs */}
-          <div className="max-w-4xl mx-auto mb-20 sm:mb-24">
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white text-center mb-10">Dudas habituales sobre presupuestos</h2>
-            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                  <h3 className="text-brand-lime font-bold mb-3">{faq.q}</h3>
-                  <p className="text-white/70 text-sm leading-relaxed">{faq.a}</p>
+            <div className="mt-9 grid gap-5 sm:grid-cols-2">
+              {faqs.map((faq) => (
+                <div key={faq.q} className="rounded-2xl border border-[#E4E9F2] bg-white p-6 shadow-[0_8px_24px_-12px_rgba(11,27,99,0.06)]">
+                  <h3 className="font-display text-[1.05rem] font-bold leading-[1.3] text-[#0B1B63]">
+                    {faq.q}
+                  </h3>
+                  <p className="mt-2.5 text-sm font-medium leading-[1.7] text-[#34465D]">
+                    {faq.a}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* CTA AL FINAL */}
-          <div className="bg-gradient-to-r from-brand-blue/20 to-brand-lime/10 border border-white/10 rounded-3xl p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden backdrop-blur-sm">
-            <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mb-4">¿No tienes claro cuál es para ti?</h2>
-              <p className="text-white/70 max-w-2xl mx-auto mb-8">
-                Cada proyecto es un mundo. Cuéntanos qué necesitas y te preparamos una propuesta a medida, sin ningún tipo de compromiso.
-              </p>
-              <RouterLink 
-                to="/contacto"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-lime px-8 py-4 text-xs sm:text-sm font-black uppercase tracking-widest text-brand-dark transition-transform hover:scale-[1.02] shadow-[0_0_30px_rgba(204,255,0,0.3)]"
-              >
-                Cuéntanos tu proyecto <ArrowRight size={18} />
-              </RouterLink>
+        {/* CTA */}
+        <section className="relative bg-white py-10 sm:py-12 md:py-16">
+          <div className="relative mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-[#C7E6F6] bg-[#F1F8FD] px-6 py-10 text-center sm:px-12 sm:py-14">
+              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/60 blur-2xl" aria-hidden />
+              <div className="relative">
+                <h2 className="font-display text-[1.7rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-[#0B1B63] sm:text-[2.1rem]">
+                  ¿No tienes claro cuál es para ti?
+                </h2>
+                <p className="mx-auto mt-4 max-w-2xl font-sans text-[0.98rem] font-medium leading-[1.68] text-[#425776] sm:text-[1.02rem]">
+                  Cada proyecto es un mundo. Cuéntanos qué necesitas y te preparamos una propuesta a medida, sin ningún tipo de compromiso.
+                </p>
+                <div className="mt-8 flex justify-center">
+                  <RouterLink
+                    to="/contacto"
+                    className="brand-button brand-button--outline inline-flex min-w-[17.5rem] items-center justify-center gap-3 px-8 py-[1.1rem] font-sans text-[1.06rem] font-semibold sm:min-w-[18.5rem] sm:text-[1.1rem]"
+                  >
+                    Cuéntanos tu proyecto <ArrowRight size={18} />
+                  </RouterLink>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div className="mt-16 sm:mt-20">
+        {/* GUIDES */}
+        <section className="bg-[#F7F7F7] px-5 pb-14 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
+          <div className="mx-auto w-full max-w-5xl">
             <RelatedGuidesSection
-              theme="dark"
               title="Guías que ayudan a decidir mejor"
               description="Estas lecturas resuelven las objeciones más habituales sobre precio, diferencia entre una web barata y una profesional, y cuándo compensa una landing frente a una web completa."
               posts={pricingGuides}
             />
           </div>
-
-        </div>
+        </section>
       </main>
 
       <Footer />

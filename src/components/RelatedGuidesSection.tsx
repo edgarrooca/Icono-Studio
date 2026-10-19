@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { BlogPostSummary } from '../types/blog';
 import { parseStructuredDate } from '../lib/structuredData';
@@ -17,7 +17,7 @@ export default function RelatedGuidesSection({
   title,
   description,
   posts,
-  eyebrow = 'Guías relacionadas',
+  eyebrow = 'También te puede ayudar',
   theme = 'light',
   ctaLabel = 'Ver blog',
   ctaTo = '/blog',
@@ -30,23 +30,19 @@ export default function RelatedGuidesSection({
 
   return (
     <section
-      className={`rounded-[2.5rem] border p-8 sm:p-10 lg:p-12 ${
+      className={`rounded-2xl border p-6 sm:p-8 lg:p-10 ${
         isDark
-          ? 'border-white/10 bg-white/5 text-white'
-          : 'border-gray-100 bg-white text-brand-dark shadow-sm'
+          ? 'border-white/15 bg-[#0B1B63] text-white'
+          : 'border-[#DCE5EE] bg-white text-[#0B1B63]'
       }`}
     >
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-3xl">
-          <p
-            className={`mb-3 text-[10px] font-black uppercase tracking-[0.22em] ${
-              isDark ? 'text-brand-lime' : 'text-brand-blue'
-            }`}
-          >
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-2xl">
+          <p className={`text-xs font-bold tracking-[0.14em] ${isDark ? 'text-[#9ED6F1]' : 'text-[#2A6D98]'}`}>
             {eyebrow}
           </p>
-          <h2 className="font-display text-3xl uppercase tracking-tight sm:text-4xl">{title}</h2>
-          <p className={`mt-4 max-w-2xl text-sm leading-relaxed sm:text-base ${isDark ? 'text-white/70' : 'text-gray-500'}`}>
+          <h2 className="mt-3 font-display text-2xl font-bold tracking-[-0.035em] sm:text-3xl">{title}</h2>
+          <p className={`mt-3 max-w-xl text-sm leading-[1.7] sm:text-base ${isDark ? 'text-white/72' : 'text-[#526477]'}`}>
             {description}
           </p>
         </div>
@@ -54,45 +50,50 @@ export default function RelatedGuidesSection({
         {ctaTo ? (
           <Link
             to={ctaTo}
-            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.18em] transition-colors ${
-              isDark ? 'text-white hover:text-brand-lime' : 'text-brand-dark hover:text-brand-blue'
+            className={`inline-flex shrink-0 items-center gap-2 text-sm font-bold transition-colors ${
+              isDark ? 'text-white hover:text-[#9ED6F1]' : 'text-[#0B1B63] hover:text-[#2A6D98]'
             }`}
           >
-            {ctaLabel} <ArrowRight size={16} />
+            {ctaLabel} <ArrowUpRight size={16} strokeWidth={1.8} />
           </Link>
         ) : null}
       </div>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
         {posts.map((post) => (
           <Link
             key={post.slug}
             to={`/blog/${post.slug}`}
-            className={`group rounded-[2rem] border p-6 transition-all duration-300 ${
+            className={`group rounded-xl border p-5 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 ${
               isDark
-                ? 'border-white/10 bg-white/[0.03] hover:border-brand-lime/40 hover:bg-white/[0.06]'
-                : 'border-gray-100 bg-zinc-50 hover:border-brand-blue/20 hover:bg-white hover:shadow-lg'
+                ? 'border-white/12 bg-white/[0.04] hover:border-[#9ED6F1]/50 hover:bg-white/[0.08]'
+                : 'border-[#DCE5EE] bg-[#F7F9FC] hover:border-[#9ED6F1] hover:bg-white hover:shadow-[0_14px_34px_-22px_rgba(11,27,99,0.3)]'
             }`}
           >
-            <span
-              className={`inline-flex rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] ${
-                isDark ? 'bg-white/10 text-brand-lime' : 'bg-brand-blue/10 text-brand-blue'
-              }`}
-            >
-              {post.tag}
-            </span>
-            <h3 className="mt-4 font-display text-2xl uppercase leading-[1.05] tracking-tight group-hover:text-brand-blue">
+            <div className={`relative mb-5 aspect-[1.7] overflow-hidden rounded-lg ${isDark ? 'bg-white/10' : 'bg-[#D8ECFB]'}`}>
+              <img
+                src={post.image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+            </div>
+            <div className="flex items-center justify-between gap-3 text-xs font-semibold">
+              <span className={isDark ? 'text-[#9ED6F1]' : 'text-[#2A6D98]'}>{post.tag}</span>
+              <time className={isDark ? 'text-white/45' : 'text-[#5F7186]'} dateTime={parseStructuredDate(post.modifiedDate || post.date)}>
+                {post.date}
+              </time>
+            </div>
+            <h3 className="mt-4 line-clamp-3 font-display text-lg font-bold leading-[1.2] tracking-[-0.025em] group-hover:text-[#2A6D98]">
               {post.title}
             </h3>
-            <p className={`mt-4 line-clamp-3 text-sm leading-relaxed ${isDark ? 'text-white/65' : 'text-gray-500'}`}>
+            <p className={`mt-3 line-clamp-3 text-sm leading-[1.6] ${isDark ? 'text-white/65' : 'text-[#526477]'}`}>
               {post.subtitle || post.metaDescription}
             </p>
-            <div className={`mt-6 flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.16em] ${isDark ? 'text-white/45' : 'text-gray-400'}`}>
-              <time dateTime={parseStructuredDate(post.modifiedDate || post.date)}>{post.date}</time>
-              <span className={isDark ? 'text-white' : 'text-brand-dark'}>
-                Leer
-              </span>
-            </div>
+            <span className={`mt-5 inline-flex items-center gap-1.5 text-sm font-bold ${isDark ? 'text-white' : 'text-[#0B1B63]'}`}>
+              Leer guía <ArrowUpRight size={15} strokeWidth={1.8} />
+            </span>
           </Link>
         ))}
       </div>

@@ -146,28 +146,6 @@ const buildFaqSchema = (faqs: Array<{ q: string; a: string }>) => ({
   })),
 });
 
-const buildServiceSchema = (serviceName: string, servicePath: string, description: string, faqs: Array<{ q: string; a: string }>, areaServed: string[]) => ({
-  '@context': 'https://schema.org',
-  '@graph': [
-    buildOrganizationSchema(),
-    {
-      '@type': 'ProfessionalService',
-      '@id': absoluteUrl(`${servicePath}#service`),
-      name: `${serviceName} | ${siteConfig.name}`,
-      url: absoluteUrl(servicePath),
-      description,
-      image: absoluteUrl(siteConfig.defaultOgImage),
-      areaServed,
-      serviceType: ['Diseño web', 'Landing pages', 'SEO inicial', 'Soporte web'],
-      telephone: siteConfig.phoneDisplay,
-      email: siteConfig.email,
-      availableLanguage: ['es'],
-      provider: buildProviderReference(),
-    },
-    buildFaqSchema(faqs),
-  ],
-});
-
 const buildBlogPostSchema = (post: (typeof blogPostsSorted)[number]) => ({
   '@context': 'https://schema.org',
   '@graph': [
@@ -649,7 +627,7 @@ async function writeRouteHtml(templateHtml: string, route: RouteMeta) {
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(route.title)}</title>`);
   html = upsertMetaByName(html, 'description', route.description);
   html = upsertMetaByName(html, 'robots', route.robots || 'index,follow');
-  html = upsertMetaByName(html, 'theme-color', '#0A36E8');
+  html = upsertMetaByName(html, 'theme-color', '#0B1B63');
   html = upsertMetaByProperty(html, 'og:locale', siteConfig.locale);
   html = upsertMetaByProperty(html, 'og:site_name', siteConfig.name);
   html = upsertMetaByProperty(html, 'og:title', route.title);
@@ -793,7 +771,23 @@ async function renderRoutesWithBrowser(routes: RouteMeta[]) {
                 return normalizedText.length > 40;
               }
 
-              return hasPrimaryContent && normalizedText.length > 120;
+              // Esperamos a que la animación de entrada del hero (motion) haya
+              // terminado, para no capturar el h1 a media animación (p. ej.
+              // translateY/opacity intermedios en el HTML estático).
+              const h1 = document.querySelector('h1');
+              const heroSettled =
+                !h1 ||
+                !(h1.getAttribute('style') || '').includes('translateY') ||
+                /transform:\s*none/.test(h1.getAttribute('style') || '');
+
+              // En rutas de blog, el cuerpo del artículo se carga bajo demanda:
+              // esperamos a que exista texto real dentro de .blog-content.
+              const blogElement = document.querySelector('.blog-content');
+              const hasBlogBody =
+                !blogElement ||
+                ((blogElement.textContent || '').replace(/\s+/g, ' ').trim().length > 40);
+
+              return hasPrimaryContent && normalizedText.length > 120 && hasBlogBody && heroSettled;
             },
             {
               timeout: requirePrimaryContent

@@ -26,8 +26,8 @@ import { buildBreadcrumbSchema, buildOrganizationSchema, buildProviderReference 
 const heroBenefits = [
   'Imagen profesional desde el primer día',
   'La mejor velocidad de carga posible',
-  'Contacto directo y versión móvil cuidada',
-  'Hosting, SSL y gestión técnica resueltos',
+  'Contacto directo y funciona perfectamente en el móvil',
+  'Hosting, seguridad y configuración técnica resueltos',
 ];
 
 const idealFor = [
@@ -77,7 +77,7 @@ const includedFeatures = [
     icon: Smartphone,
   },
   {
-    title: 'Hosting, SSL y base técnica',
+    title: 'Hosting, seguridad y base técnica',
     description:
       'Nos ocupamos de publicar la web, mantener el certificado de seguridad y dejar una base ligera y rápida.',
     icon: ShieldCheck,
@@ -120,6 +120,48 @@ const faqs = [
     question: '¿Y si necesito algo más completo?',
     answer:
       'Si tu proyecto necesita una web personalizada, varias páginas, tienda online o funcionalidades específicas, podemos prepararte una propuesta a medida.',
+  },
+];
+
+const plans = [
+  {
+    featured: true,
+    title: 'Plan anual',
+    price: '8 € / mes',
+    priceDetail: 'Facturados anualmente. 33% de ahorro.',
+    billed: '116,16 € al año IVA incluido',
+    benefit: 'Ahorra un 33%',
+    href: '/contratar-web-express?plan=annual',
+  },
+  {
+    featured: false,
+    title: 'Plan mensual',
+    price: '12 € / mes',
+    priceDetail: 'Facturación mensual, sin permanencia.',
+    billed: '14,52 € al mes IVA incluido',
+    benefit: '',
+    href: '/contratar-web-express?plan=monthly',
+  },
+];
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Recogemos la información clave',
+    text: 'Negocio, servicios, ciudad, contacto, referencias visuales y preferencia de dominio.',
+    icon: FileText,
+  },
+  {
+    step: '02',
+    title: 'Adaptamos la estructura y la imagen',
+    text: 'Trabajamos sobre una base profesional, ajustando jerarquía, estilo y contenido a tu marca.',
+    icon: Layers,
+  },
+  {
+    step: '03',
+    title: 'Publicamos y dejamos todo listo',
+    text: 'Conectamos la parte técnica y tu web queda online para empezar a recibir visitas y contactos.',
+    icon: Check,
   },
 ];
 
@@ -187,8 +229,24 @@ export default function WebExpress() {
     ],
   };
 
+  const sectionHeader = (eyebrow: string, title: React.ReactNode, copy?: string) => (
+    <div className="max-w-3xl">
+      <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+        {eyebrow}
+      </div>
+      <h2 className="mt-4 font-display text-[1.85rem] font-extrabold leading-[1.08] tracking-[-0.032em] text-[#0B1B63] sm:text-[2rem] lg:text-[2.15rem]">
+        {title}
+      </h2>
+      {copy ? (
+        <p className="mt-4 font-sans text-[0.98rem] font-medium leading-[1.68] text-[#425776] sm:text-[1.02rem]">
+          {copy}
+        </p>
+      ) : null}
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-white font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-white font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title="Página web profesional desde 8 €/mes | Web Express | Icono Studio"
         description="Web Express es una página web profesional para negocios, autónomos y marcas locales desde 8 €/mes, con hosting, SSL, versión móvil y gestión de dominio disponible."
@@ -200,242 +258,233 @@ export default function WebExpress() {
       <Navbar ctaHref="/contratar-web-express" ctaLabel="Contratar" />
 
       <main>
-        <section className="relative overflow-hidden bg-support-mesh pt-28 pb-18 sm:pt-34 sm:pb-22 lg:pt-38 lg:pb-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(212,255,0,0.12),transparent_22%)] pointer-events-none" />
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div className="max-w-3xl">
-                <p className="ui-eyebrow text-brand-lime mb-4">Web Express de Icono Studio</p>
-                <h1 className="font-display text-white text-[clamp(2rem,5.8vw,4.2rem)] leading-[0.94] tracking-[-0.04em] uppercase text-balance">
-                  Tu página web lista
-                  <span className="mt-2 block text-[0.8em] text-brand-lime italic font-normal">desde 8 € / mes</span>
-                </h1>
-                <p className="mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-white/78">
-                  Lanza una página web profesional para tu negocio con una base visual cuidada, la mejor velocidad de carga
-                  posible y una presencia que transmite confianza. Adaptamos la estructura a tu marca, la publicamos en
-                  nuestro hosting y la dejamos lista para que no tengas que preocuparte por la parte técnica.
-                </p>
+        {/* HERO */}
+        <section className="relative overflow-hidden bg-[#F7F7F7] px-5 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:px-8 lg:pb-24">
+          <div className="pointer-events-none absolute -right-32 -top-40 h-[34rem] w-[34rem] rounded-full bg-[#D8ECFB] blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-44 left-[-6%] h-[24rem] w-[24rem] rounded-full bg-[#EAF5FA] blur-3xl" aria-hidden />
 
-                <div className="mt-8">
-                  <RouterLink
-                    to="/contratar-web-express"
-                    className="inline-flex items-center justify-center gap-3 rounded-full bg-brand-lime px-8 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-brand-dark transition-transform hover:scale-[1.02]"
+          <div className="relative mx-auto grid w-full max-w-[1380px] items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+            <div className="max-w-[44rem]">
+              <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+                Web Express de Icono Studio
+              </div>
+              <h1 className="mt-5 font-display text-[2.3rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0B1B63] sm:text-[2.9rem] lg:text-[3.3rem]">
+                Tu página web lista{' '}
+                <span style={{ color: '#3E88AE' }}>desde 8 € / mes</span>
+              </h1>
+              <p className="mt-6 max-w-2xl font-sans text-[1.02rem] font-medium leading-[1.7] text-[#1F3572] sm:text-[1.1rem]">
+                Lanza una página web profesional para tu negocio con una base visual cuidada, la mejor velocidad de carga
+                posible y una presencia que transmite confianza. Adaptamos la estructura a tu marca, la publicamos en
+                nuestro hosting y la dejamos lista para que no tengas que preocuparte por la parte técnica.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <RouterLink
+                  to="/contratar-web-express"
+                  className="brand-button brand-button--outline inline-flex items-center justify-center gap-3 px-8 py-[1.05rem] font-sans text-[1.06rem] font-semibold"
+                >
+                  Crear mi web <ArrowRight size={18} />
+                </RouterLink>
+                <RouterLink
+                  to="/contacto"
+                  className="inline-flex items-center justify-center gap-2 font-sans text-[1rem] font-semibold text-[#0B1B63] transition-colors hover:text-[#2A6D98]"
+                >
+                  ¿Tienes dudas? Escríbenos
+                </RouterLink>
+              </div>
+
+              <div className="mt-10 grid gap-3 sm:grid-cols-2">
+                {heroBenefits.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 rounded-2xl border border-[#E4E9F2] bg-white px-4 py-3.5 text-sm font-medium text-[#34465D] shadow-[0_8px_24px_-16px_rgba(11,27,99,0.15)]"
                   >
-                    Crear mi web
-                    <ArrowRight size={16} />
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E6F4FB]">
+                      <Check size={12} strokeWidth={3} className="text-[#2A6D98]" />
+                    </span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Plan card */}
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+              <div className="rounded-[1.75rem] border border-[#C7E6F6] bg-[#F1F8FD] p-5 shadow-[0_20px_60px_-20px_rgba(11,27,99,0.2)] sm:p-7">
+                <div className="border-b border-[#C7E6F6] pb-5">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#2A6D98]">Web Express</p>
+                  <h2 className="mt-2 font-display text-[1.6rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-[#0B1B63]">
+                    Todo listo para activar tu web
+                  </h2>
+                </div>
+
+                <div className="space-y-3.5 py-5">
+                  {[
+                    'Estructura profesional y carga rápida',
+                    'Hasta 5 secciones y contacto directo',
+                    'Hosting, seguridad y versión móvil incluidos',
+                    'Opción de gestión de dominio',
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#9ED6F1]">
+                        <Check size={14} strokeWidth={3} className="text-[#0B1B63]" />
+                      </span>
+                      <p className="text-sm font-medium leading-relaxed text-[#34465D]">{item}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="relative rounded-[1.25rem] bg-[#0B1B63] p-5 text-white transition-transform duration-300 hover:-translate-y-0.5">
+                    <div className="absolute -top-2.5 left-4 rounded-full bg-[#E6F4FB] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0B1B63] shadow-sm">
+                      Ahorra un 33%
+                    </div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#9ED6F1]">Plan anual</p>
+                    <div className="mt-2.5 flex items-end gap-1.5">
+                      <p className="font-display text-[1.9rem] font-extrabold leading-none">8 € / mes</p>
+                      <span className="pb-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">+ IVA</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-white/70">Facturado anualmente · 116,16 € al año IVA incluido</p>
+                  </div>
+
+                  <RouterLink
+                    to="/contratar-web-express?plan=monthly"
+                    className="rounded-[1.25rem] border-2 border-[#C7E6F6] bg-white p-5 text-left transition-colors duration-300 hover:bg-[#E6F4FB]"
+                  >
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#2A6D98]">Plan mensual</p>
+                    <div className="mt-2.5 flex items-end gap-1.5">
+                      <p className="font-display text-[1.9rem] font-extrabold leading-none text-[#0B1B63]">12 € / mes</p>
+                      <span className="pb-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5F7186]">+ IVA</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-[#526477]">14,52 € al mes IVA incluido</p>
                   </RouterLink>
                 </div>
               </div>
-
-              <div className="relative">
-                <div className="rounded-[2rem] border border-white/15 bg-white/10 p-5 sm:p-7 backdrop-blur-md shadow-[0_30px_80px_rgba(15,23,42,0.35)]">
-                  <div className="rounded-[1.75rem] bg-white p-6 text-brand-dark">
-                    <div className="border-b border-gray-100 pb-5">
-                      <p className="ui-eyebrow text-brand-blue mb-2">Web Express</p>
-                      <h2 className="font-display text-[2rem] uppercase leading-none">Todo listo para activar tu web</h2>
-                    </div>
-
-                    <div className="space-y-4 py-5">
-                      {[
-                        'Estructura profesional y carga rápida',
-                        'Hasta 5 secciones y contacto directo',
-                        'Hosting, SSL y versión móvil incluidos',
-                        'Opción de gestión de dominio',
-                      ].map((item) => (
-                        <div key={item} className="flex items-start gap-3">
-                          <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-blue text-white">
-                            <Check size={14} />
-                          </div>
-                          <p className="text-sm leading-relaxed text-gray-700">{item}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="relative pt-4">
-                        <div className="absolute left-4 top-0 z-10 -translate-y-1/2 rounded-full bg-brand-lime px-3 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-brand-dark shadow-sm">
-                          Ahorra un 33%
-                        </div>
-                        <RouterLink
-                          to="/contratar-web-express?plan=annual"
-                          className="block rounded-[1.5rem] bg-brand-dark px-5 py-5 text-left text-white transition-transform hover:scale-[1.01]"
-                        >
-                          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-lime">Plan anual</p>
-                          <div className="mt-3 flex items-end gap-2">
-                            <p className="font-display text-[2rem] leading-none">8 € / mes</p>
-                            <span className="pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/68">+ IVA</span>
-                          </div>
-                          <p className="mt-3 text-sm text-white/72">
-                            Facturado anualmente · 116,16 € al año IVA incluido
-                          </p>
-                        </RouterLink>
-                      </div>
-
-                      <RouterLink
-                        to="/contratar-web-express?plan=monthly"
-                        className="block rounded-[1.5rem] border border-gray-200 bg-gray-50 px-5 py-5 text-left transition-transform hover:scale-[1.01]"
-                      >
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-blue">Plan mensual</p>
-                        <div className="mt-3 flex items-end gap-2">
-                          <p className="font-display text-[2rem] leading-none text-brand-dark">12 € / mes</p>
-                          <span className="pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">+ IVA</span>
-                        </div>
-                        <p className="mt-3 text-sm text-gray-600">14,52 € al mes IVA incluido</p>
-                      </RouterLink>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {heroBenefits.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[1.5rem] border border-white/12 bg-white/10 px-5 py-4 text-sm font-medium text-white/84 backdrop-blur-md"
-                >
-                  {item}
-                </div>
-              ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-white py-20 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="ui-eyebrow text-brand-blue mb-4">Página web profesional</p>
-              <div className="ui-divider mb-6" />
-              <h2 className="ui-section-title text-brand-dark mb-5">Empieza con buena imagen</h2>
-              <p className="ui-section-copy max-w-3xl">
-                Web Express está pensada para negocios que necesitan una web seria, clara y visualmente sólida desde el
-                primer momento. Una forma ágil de tener una presencia profesional sin renunciar a una ejecución cuidada.
-              </p>
-            </div>
+        {/* PARA QUIÉN */}
+        <section className="bg-white py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+            {sectionHeader(
+              'Página web profesional',
+              'Empieza con buena imagen',
+              'Web Express está pensada para negocios que necesitan una web seria, clara y visualmente sólida desde el primer momento. Una forma ágil de tener una presencia profesional sin renunciar a una ejecución cuidada.',
+            )}
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className="mt-9 grid gap-5 md:grid-cols-3">
               {idealFor.map((item) => (
-                <article key={item.title} className="rounded-[2rem] border border-gray-100 bg-[#FAFAFA] p-7 shadow-sm">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue text-white">
-                    <item.icon size={20} />
+                <article
+                  key={item.title}
+                  className="group rounded-2xl border border-[#E4E9F2] bg-white p-6 shadow-[0_8px_24px_-12px_rgba(11,27,99,0.06)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#C8DCF5] hover:shadow-[0_22px_56px_rgba(109,144,193,0.12)] sm:p-7"
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E6F4FB] text-[#2A6D98] transition-colors duration-300 group-hover:bg-[#9ED6F1] group-hover:text-[#0B1B63]">
+                    <item.icon size={22} strokeWidth={1.8} />
                   </div>
-                  <h3 className="ui-card-title text-brand-dark mb-3">{item.title}</h3>
-                  <p className="text-sm leading-7 text-gray-600">{item.description}</p>
+                  <h3 className="font-display text-[1.15rem] font-bold leading-[1.25] tracking-[-0.02em] text-[#0B1B63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm font-medium leading-[1.65] text-[#34465D]">{item.description}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-support-mesh-light py-20 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="ui-eyebrow text-brand-blue mb-4">Qué incluye Web Express</p>
-              <div className="ui-divider mb-6" />
-              <h2 className="ui-section-title text-brand-dark mb-5">Todo lo esencial para una web profesional</h2>
-              <p className="ui-section-copy">
-                Una base bien resuelta para lanzar una página clara, rápida y preparada para presentar tu negocio con buena
-                imagen desde el primer día.
-              </p>
-            </div>
+        {/* QUÉ INCLUYE */}
+        <section className="relative bg-[#F7F7F7] py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+            {sectionHeader(
+              'Qué incluye Web Express',
+              'Todo lo esencial para una web profesional',
+              'Una base bien resuelta para lanzar una página clara, rápida y preparada para presentar tu negocio con buena imagen desde el primer día.',
+            )}
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {includedFeatures.map((feature) => (
-                <article key={feature.title} className="rounded-[2rem] border border-white/70 bg-white p-7 shadow-[0_16px_50px_rgba(15,23,42,0.06)]">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-dark text-brand-lime">
-                    <feature.icon size={20} />
+                <article
+                  key={feature.title}
+                  className="group rounded-2xl border border-[#E4E9F2] bg-white p-6 shadow-[0_8px_24px_-12px_rgba(11,27,99,0.06)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#C8DCF5] hover:shadow-[0_22px_56px_rgba(109,144,193,0.12)] sm:p-7"
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B1B63] text-[#9ED6F1]">
+                    <feature.icon size={22} strokeWidth={1.8} />
                   </div>
-                  <h3 className="ui-card-title text-brand-dark mb-3">{feature.title}</h3>
-                  <p className="text-sm leading-7 text-gray-600">{feature.description}</p>
+                  <h3 className="font-display text-[1.15rem] font-bold leading-[1.25] tracking-[-0.02em] text-[#0B1B63]">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm font-medium leading-[1.65] text-[#34465D]">{feature.description}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="planes" className="bg-white py-20 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="ui-eyebrow text-brand-blue mb-4">Planes</p>
-              <div className="ui-divider mb-6" />
-              <h2 className="ui-section-title text-brand-dark mb-5">Dos formas de activar tu web</h2>
-              <p className="ui-section-copy">
-                El mismo servicio, con una modalidad anual más ventajosa y una mensual para empezar con más flexibilidad.
-              </p>
-            </div>
+        {/* PLANES */}
+        <section id="planes" className="bg-white py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+            {sectionHeader(
+              'Planes',
+              'Dos formas de activar tu web',
+              'El mismo servicio, con una modalidad anual más ventajosa y una mensual para empezar con más flexibilidad.',
+            )}
 
-            <div className="mt-14 grid gap-6 lg:grid-cols-2">
-              {[
-                {
-                  featured: true,
-                  title: 'Plan anual',
-                  price: '8 € / mes + IVA',
-                  priceDetail: 'Facturados anualmente.',
-                  billed: '116,16 € al año IVA incluido',
-                  benefit: '33% de ahorro',
-                  href: '/contratar-web-express?plan=annual',
-                },
-                {
-                  featured: false,
-                  title: 'Plan mensual',
-                  price: '12 € / mes + IVA',
-                  priceDetail: 'Facturación mensual.',
-                  billed: '14,52 € al mes IVA incluido',
-                  benefit: '',
-                  href: '/contratar-web-express?plan=monthly',
-                },
-              ].map((plan) => (
+            <div className="mx-auto mt-12 grid max-w-4xl gap-6 lg:grid-cols-2">
+              {plans.map((plan) => (
                 <article
                   key={plan.title}
-                  className={`relative rounded-[2rem] border p-7 shadow-sm ${
+                  className={`relative flex flex-col rounded-[1.75rem] p-7 ${
                     plan.featured
-                      ? 'border-brand-dark bg-brand-dark text-white shadow-[0_24px_70px_rgba(15,23,42,0.18)]'
-                      : 'border-gray-100 bg-[#FAFAFA] text-brand-dark'
+                      ? 'bg-[#0B1B63] text-white shadow-[0_24px_70px_rgba(15,23,42,0.22)]'
+                      : 'border border-[#E4E9F2] bg-white text-[#0B1B63] shadow-[0_8px_24px_-12px_rgba(11,27,99,0.08)]'
                   }`}
                 >
                   {plan.benefit ? (
                     <div className="absolute left-7 top-0 -translate-y-1/2">
-                      <span className="inline-flex rounded-full bg-brand-lime px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-brand-dark shadow-sm">
+                      <span className="inline-flex rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0B1B63] shadow-sm">
                         {plan.benefit}
                       </span>
                     </div>
                   ) : null}
-                  <h3 className="font-display pt-4 text-4xl uppercase leading-none">{plan.title}</h3>
+                  <h3 className="pt-3 font-display text-[1.6rem] font-extrabold tracking-[-0.02em]">
+                    {plan.title}
+                  </h3>
                   <div className="mt-4 flex items-end gap-2">
-                    <p className={`font-display text-[2.7rem] leading-none ${plan.featured ? 'text-white' : 'text-brand-dark'}`}>
-                      {plan.price.replace(' + IVA', '')}
+                    <p className={`font-display text-[2.5rem] font-extrabold leading-none tracking-[-0.03em] ${plan.featured ? 'text-white' : 'text-[#0B1B63]'}`}>
+                      {plan.price}
                     </p>
-                    <span className={`pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${plan.featured ? 'text-white/65' : 'text-gray-500'}`}>
+                    <span className={`pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${plan.featured ? 'text-white/60' : 'text-[#5F7186]'}`}>
                       + IVA
                     </span>
                   </div>
-                  <div className={`my-7 h-px ${plan.featured ? 'bg-white/12' : 'bg-gray-200'}`} />
-                  <p className={`text-sm ${plan.featured ? 'text-white/72' : 'text-gray-600'}`}>{plan.priceDetail}</p>
-                  <p className={`mt-2 text-sm ${plan.featured ? 'text-white/80' : 'text-gray-700'}`}>{plan.billed}</p>
+                  <div className={`my-6 h-px ${plan.featured ? 'bg-white/12' : 'bg-[#EDF1F7]'}`} />
+                  <p className={`text-sm ${plan.featured ? 'text-white/75' : 'text-[#526477]'}`}>{plan.priceDetail}</p>
+                  <p className={`mt-1.5 text-sm font-semibold ${plan.featured ? 'text-white/90' : 'text-[#34465D]'}`}>{plan.billed}</p>
 
-                  <ul className="mt-6 space-y-3">
+                  <ul className="mt-6 flex-grow space-y-3">
                     {[
                       'Página web profesional',
-                      'Hosting y SSL incluidos',
-                      'Versión móvil cuidada',
+                      'Hosting y seguridad SSL incluidos',
+                      'Funciona perfectamente en el móvil',
                       'Contacto directo',
-                      'Opción de gestión de dominio',
+                      'Opción de gestión del dominio (tuweb.es)',
                     ].map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm">
-                        <Check size={16} className={`mt-1 shrink-0 ${plan.featured ? 'text-brand-lime' : 'text-brand-blue'}`} />
-                        <span>{item}</span>
+                      <li key={item} className="flex items-start gap-3 text-sm font-medium">
+                        <Check size={16} strokeWidth={2.5} className={`mt-1 shrink-0 ${plan.featured ? 'text-[#9ED6F1]' : 'text-[#2A6D98]'}`} />
+                        <span className={plan.featured ? 'text-white/85' : 'text-[#34465D]'}>{item}</span>
                       </li>
                     ))}
                   </ul>
 
                   <RouterLink
                     to={plan.href}
-                    className={`mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full px-6 py-4 text-[11px] font-black uppercase tracking-[0.22em] transition-transform hover:scale-[1.01] ${
-                      plan.featured ? 'bg-brand-lime text-brand-dark' : 'bg-brand-dark text-white'
+                    className={`mt-8 inline-flex w-full items-center justify-center gap-3 rounded-[0.95rem] px-6 py-3.5 text-[0.98rem] font-semibold transition-colors duration-300 ${
+                      plan.featured
+                        ? 'bg-white text-[#0B1B63] hover:bg-[#D8ECFB]'
+                        : 'border-2 border-brand-blue bg-white text-[#0B1B63] hover:bg-brand-blue/[0.12]'
                     }`}
                   >
-                    Contratar este plan
-                    <ArrowRight size={16} />
+                    Contratar este plan <ArrowRight size={17} />
                   </RouterLink>
                 </article>
               ))}
@@ -443,101 +492,96 @@ export default function WebExpress() {
           </div>
         </section>
 
-        <section className="bg-[#E7EEFF] py-20 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-[2.2rem] border border-brand-dark/5 bg-brand-dark p-7 text-white shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
-              <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+        {/* CTA A MEDIDA */}
+        <section className="bg-white py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-[1.75rem] bg-[#0B1B63] p-7 text-white sm:p-10">
+              <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-[#9ED6F1]/15 blur-3xl" aria-hidden />
+              <div className="relative grid items-center gap-6 lg:grid-cols-[1fr_auto]">
                 <div>
-                  <p className="ui-eyebrow text-brand-lime mb-4">¿Necesitas algo más completo?</p>
-                  <h2 className="font-display text-3xl uppercase leading-none text-white">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9ED6F1]">¿Necesitas algo más completo?</p>
+                  <h2 className="mt-3 font-display text-[1.6rem] font-extrabold leading-[1.12] tracking-[-0.03em] sm:text-[1.9rem]">
                     También podemos prepararte una propuesta a medida
                   </h2>
-                  <p className="mt-4 max-w-3xl leading-7 text-white/72">
+                  <p className="mt-4 max-w-3xl text-sm font-medium leading-[1.7] text-white/75 sm:text-base">
                     Si tu proyecto necesita varias páginas, tienda online, funcionalidades específicas o un planteamiento
                     completamente personalizado, lo trabajamos contigo aparte.
                   </p>
                 </div>
                 <RouterLink
                   to="/contacto"
-                  className="inline-flex items-center justify-center gap-3 rounded-full bg-brand-lime px-7 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-brand-dark transition-transform hover:scale-[1.02]"
+                  className="inline-flex items-center justify-center gap-3 rounded-[1rem] bg-white px-7 py-3.5 text-[0.98rem] font-semibold text-[#0B1B63] transition-colors hover:bg-[#D8ECFB]"
                 >
-                  Contactar
-                  <ArrowRight size={16} />
+                  Contactar <ArrowRight size={17} />
                 </RouterLink>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-support-mesh-light py-20 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="ui-eyebrow text-brand-blue mb-4">Proceso</p>
-              <div className="ui-divider mb-6" />
-              <h2 className="ui-section-title text-brand-dark mb-5">Así preparamos tu Web Express</h2>
-            </div>
+        {/* PROCESO */}
+        <section className="bg-[#F7F7F7] py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+            {sectionHeader('Proceso', 'Así preparamos tu Web Express')}
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  step: '01',
-                  title: 'Recogemos la información clave',
-                  text: 'Negocio, servicios, ciudad, contacto, referencias visuales y preferencia de dominio.',
-                  icon: FileText,
-                },
-                {
-                  step: '02',
-                  title: 'Adaptamos la estructura y la imagen',
-                  text: 'Trabajamos sobre una base profesional, ajustando jerarquía, estilo y contenido a tu marca.',
-                  icon: Layers,
-                },
-                {
-                  step: '03',
-                  title: 'Publicamos y dejamos todo listo',
-                  text: 'Conectamos la parte técnica y tu web queda online para empezar a recibir visitas y contactos.',
-                  icon: Check,
-                },
-              ].map((item) => (
-                <article key={item.step} className="rounded-[2rem] border border-white/70 bg-white p-7 shadow-[0_16px_50px_rgba(15,23,42,0.06)]">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-blue">{item.step}</p>
-                  <div className="mt-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-dark text-brand-lime">
-                    <item.icon size={20} />
+            <div className="mt-9 grid gap-5 md:grid-cols-3">
+              {processSteps.map((item) => (
+                <article
+                  key={item.step}
+                  className="group rounded-2xl border border-[#E4E9F2] bg-white p-6 shadow-[0_8px_24px_-12px_rgba(11,27,99,0.06)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-[#C8DCF5] hover:shadow-[0_22px_56px_rgba(109,144,193,0.12)] sm:p-7"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="inline-block rounded-full bg-[#E6F4FB] px-3.5 py-1 text-[11px] font-bold tracking-[0.14em] text-[#2A6D98]">
+                      {item.step}
+                    </span>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B1B63] text-[#9ED6F1]">
+                      <item.icon size={22} strokeWidth={1.8} />
+                    </div>
                   </div>
-                  <h3 className="ui-card-title mt-5 text-brand-dark">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-gray-600">{item.text}</p>
+                  <h3 className="mt-5 font-display text-[1.15rem] font-bold leading-[1.25] tracking-[-0.02em] text-[#0B1B63]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm font-medium leading-[1.65] text-[#34465D]">{item.text}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-white py-20 sm:py-24">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="ui-eyebrow text-brand-blue mb-4">Preguntas frecuentes</p>
-              <div className="ui-divider mb-6" />
-              <h2 className="ui-section-title text-brand-dark mb-5">Dudas habituales antes de contratar</h2>
-              <p className="ui-section-copy">Las preguntas más comunes sobre el servicio, la propiedad y la gestión técnica.</p>
-            </div>
+        {/* FAQ */}
+        <section className="bg-white py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
+            {sectionHeader(
+              'Preguntas frecuentes',
+              'Dudas habituales antes de contratar',
+              'Las preguntas más comunes sobre el servicio, la propiedad y la gestión técnica.',
+            )}
 
-            <div className="mt-10 space-y-4">
+            <div className="mt-9 space-y-4">
               {faqs.map((faq, index) => {
                 const isOpen = activeFaq === index;
 
                 return (
-                  <article key={faq.question} className="rounded-[1.75rem] border border-gray-100 bg-[#FAFAFA] px-5 sm:px-7">
+                  <article key={faq.question} className="overflow-hidden rounded-2xl border border-[#E4E9F2] bg-white shadow-[0_8px_24px_-16px_rgba(11,27,99,0.1)]">
                     <button
                       type="button"
                       onClick={() => setActiveFaq(isOpen ? null : index)}
-                      className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                      aria-expanded={isOpen}
+                      className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
                     >
-                      <h3 className="text-base sm:text-lg font-bold tracking-tight text-brand-dark">{faq.question}</h3>
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-brand-dark">
-                        {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                      <h3 className="text-[0.98rem] font-bold tracking-[-0.01em] text-[#0B1B63] sm:text-base">
+                        {faq.question}
+                      </h3>
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6F4FB] text-[#0B1B63] transition-transform duration-300">
+                        {isOpen ? <ChevronUp size={17} /> : <ChevronDown size={17} />}
                       </div>
                     </button>
 
-                    {isOpen && <p className="pb-6 text-sm sm:text-base leading-7 text-gray-600">{faq.answer}</p>}
+                    {isOpen && (
+                      <p className="px-5 pb-6 text-sm font-medium leading-[1.7] text-[#425776] sm:px-6 sm:text-[0.95rem]">
+                        {faq.answer}
+                      </p>
+                    )}
                   </article>
                 );
               })}
@@ -545,31 +589,34 @@ export default function WebExpress() {
           </div>
         </section>
 
-        <section className="bg-brand-dark py-20 sm:py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-6 rounded-[2.2rem] border border-white/10 bg-white/5 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <p className="ui-eyebrow text-brand-lime mb-4">Compra online</p>
-                <h2 className="ui-section-title text-white mb-4">Activa tu Web Express hoy</h2>
-                <p className="max-w-2xl text-white/70 leading-7">
-                  Pasa a la página de contratación, rellena los datos básicos de tu negocio y continúa al pago seguro con Stripe.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <RouterLink
-                  to="/contratar-web-express?plan=annual"
-                  className="inline-flex items-center justify-center gap-3 rounded-full bg-brand-lime px-7 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-brand-dark transition-transform hover:scale-[1.02]"
-                >
-                  Contratar anual
-                  <ArrowRight size={16} />
-                </RouterLink>
-                <RouterLink
-                  to="/contratar-web-express?plan=monthly"
-                  className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/8 px-7 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-white transition-transform hover:scale-[1.02]"
-                >
-                  Contratar mensual
-                  <ArrowRight size={16} />
-                </RouterLink>
+        {/* CTA FINAL */}
+        <section className="bg-[#F7F7F7] py-10 sm:py-14 md:py-16">
+          <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
+            <div className="rounded-[1.75rem] border border-[#C7E6F6] bg-[#F1F8FD] p-7 sm:p-10">
+              <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2A6D98]">Compra online</p>
+                  <h2 className="mt-3 font-display text-[1.6rem] font-extrabold leading-[1.12] tracking-[-0.03em] text-[#0B1B63] sm:text-[1.9rem]">
+                    Activa tu Web Express hoy
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm font-medium leading-[1.7] text-[#425776] sm:text-base">
+                    Pasa a la página de contratación, rellena los datos básicos de tu negocio y continúa al pago seguro con Stripe.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <RouterLink
+                    to="/contratar-web-express?plan=annual"
+                    className="brand-button brand-button--dark inline-flex items-center justify-center gap-3 px-7 py-3.5 text-[0.98rem] font-semibold"
+                  >
+                    Contratar anual <ArrowRight size={17} />
+                  </RouterLink>
+                  <RouterLink
+                    to="/contratar-web-express?plan=monthly"
+                    className="brand-button brand-button--outline inline-flex items-center justify-center gap-3 px-7 py-3.5 text-[0.98rem] font-semibold"
+                  >
+                    Contratar mensual <ArrowRight size={17} />
+                  </RouterLink>
+                </div>
               </div>
             </div>
           </div>

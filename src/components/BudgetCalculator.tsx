@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, ArrowLeft, CheckCircle2, ChevronRight, Calculator, Store, LayoutTemplate, Globe, Clock, FileText, HelpCircle, Briefcase } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { m, AnimatePresence } from 'motion/react';
+import { X, ArrowLeft, CheckCircle2, ChevronRight, Calculator, Store, LayoutTemplate, Globe, Clock, FileText, HelpCircle, Briefcase } from 'lucide-react';
 import { submitLeadForm } from '../lib/analytics';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 interface BudgetCalculatorProps {
   isOpen: boolean;
@@ -48,9 +49,10 @@ const STEPS = [
 ];
 
 export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [selections, setSelections] = useState<Record<string, string>>({});
-  
+
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -58,21 +60,43 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
     mensaje: '',
     privacidad: false
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Bloquear scroll cuando el modal está abierto
+  useScrollLock(isOpen);
+
+  // Cerrar con Escape, mover el foco al abrir y devolverlo al cerrar
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
+    if (!isOpen) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
     };
-  }, [isOpen]);
+    window.addEventListener('keydown', onKey);
+    const timer = window.setTimeout(() => dialogRef.current?.focus(), 50);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.clearTimeout(timer);
+      previousFocus?.focus?.();
+    };
+  }, [isOpen, onClose]);
+
+  // Mantener el Tab dentro del diálogo
+  const handleDialogKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab' || !dialogRef.current) return;
+    const focusables = [...dialogRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   // Resetear estado al cerrar o abrir
   useEffect(() => {
@@ -101,20 +125,20 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Mapear IDs a respuestas legibles para el email
     const tipoMap: Record<string, string> = {
       'landing': 'Web sencilla (1-3 apartados)',
       'corporativa': 'Web completa',
       'ecommerce': 'Tienda Online'
     };
-    
+
     const contenidoMap: Record<string, string> = {
       'todo_listo': 'Tienen textos y fotos',
       'ayuda_parcial': 'Necesitan ayuda con textos/fotos',
       'nada': 'No tienen nada, necesitan todo'
     };
-    
+
     const plazoMap: Record<string, string> = {
       'urgente': 'Urgente',
       'normal': '1 a 2 meses',
@@ -148,32 +172,42 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
   const progress = ((currentStep) / (STEPS.length + 1)) * 100;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-      <div 
+    <div
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Calculadora de precio"
+      tabIndex={-1}
+      onKeyDown={handleDialogKeyDown}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 outline-none sm:p-6"
+    >
+      <div
         className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm"
         onClick={onClose}
       />
-      
-      <motion.div 
+
+      <m.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"
       >
         {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between shrink-0 bg-white z-10">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue">
+        <div className="relative z-10 flex shrink-0 items-center justify-between gap-2 border-b border-gray-100 bg-white px-4 py-4 sm:px-6">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-blue/10 text-[#2A6D98]">
               <Calculator size={20} />
             </div>
-            <div>
-              <h3 className="font-bold text-gray-900 leading-tight">Calculadora de Precio</h3>
+            <div className="min-w-0">
+              <h3 className="text-sm font-bold leading-tight text-brand-dark sm:text-base">Calculadora de precio</h3>
               <p className="text-xs text-gray-500">Presupuesto en 1 minuto</p>
             </div>
           </div>
-          <button 
+          <button
+            type="button"
+            aria-label="Cerrar calculadora"
             onClick={onClose}
-            className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-brand-dark transition-colors hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3E88AE]"
           >
             <X size={20} />
           </button>
@@ -182,8 +216,8 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
         {/* Progress bar */}
         {!isSuccess && (
           <div className="w-full h-1.5 bg-gray-100 shrink-0">
-            <motion.div 
-              className="h-full bg-brand-lime"
+            <m.div
+              className="h-full bg-[#9ED6F1]"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.3 }}
@@ -192,10 +226,10 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
         )}
 
         {/* Content Area */}
-        <div className="p-6 sm:p-8 sm:px-10 overflow-y-auto grow">
+        <div className="min-h-0 grow overflow-y-auto overscroll-contain p-5 sm:p-8 sm:px-10">
           <AnimatePresence mode="wait">
             {!isSuccess && currentStep < STEPS.length && (
-              <motion.div
+              <m.div
                 key={`step-${currentStep}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -203,7 +237,7 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                 transition={{ duration: 0.2 }}
               >
                 <div className="mb-8">
-                  <span className="text-xs font-black text-brand-blue tracking-wider uppercase mb-2 block">
+                  <span className="text-xs font-black text-[#2A6D98] tracking-wider uppercase mb-2 block">
                     Paso {currentStep + 1} de {STEPS.length}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-brand-dark mb-3 leading-tight">
@@ -223,17 +257,17 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                         key={answer.id}
                         onClick={() => handleSelect(STEPS[currentStep].id, answer.id)}
                         className={`w-full text-left p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 flex items-start sm:items-center gap-4 group ${
-                          isSelected 
-                            ? 'border-brand-blue bg-brand-blue/5' 
+                          isSelected
+                            ? 'border-brand-blue bg-brand-blue/5'
                             : 'border-gray-100 hover:border-brand-blue/30 hover:bg-gray-50'
                         }`}
                       >
                         <div className={`mt-0.5 sm:mt-0 shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors ${
-                          isSelected ? 'bg-brand-blue text-white' : 'bg-white border border-gray-200 text-gray-400 group-hover:text-brand-blue'
+                          isSelected ? 'bg-brand-blue text-[#0B1B63]' : 'bg-white border border-gray-200 text-gray-400 group-hover:text-[#2A6D98]'
                         }`}>
                           <Icon size={20} />
                         </div>
-                        <span className={`font-medium sm:text-lg flex-1 ${isSelected ? 'text-brand-blue' : 'text-gray-700'}`}>
+                        <span className={`font-medium sm:text-lg flex-1 ${isSelected ? 'text-[#2A6D98]' : 'text-gray-700'}`}>
                           {answer.label}
                         </span>
                         <div className={`shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center ${
@@ -245,11 +279,11 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                     );
                   })}
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {!isSuccess && currentStep === STEPS.length && (
-              <motion.div
+              <m.div
                 key="step-final"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -257,7 +291,7 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                 transition={{ duration: 0.2 }}
               >
                 <div className="mb-8 text-center sm:text-left">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-lime/20 text-brand-dark mb-4">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#E6F4FB] text-[#0B1B63]">
                     <CheckCircle2 size={24} />
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-brand-dark mb-3 leading-tight">
@@ -281,7 +315,7 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                       placeholder="Ej. Juan Pérez"
                     />
                   </div>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className="block text-sm font-bold text-gray-900 mb-1.5">Teléfono / WhatsApp *</label>
@@ -310,23 +344,23 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                   </div>
 
                   <label className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors mt-2">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       name="privacidad"
                       required
                       checked={formData.privacidad}
                       onChange={handleInputChange}
-                      className="mt-1 shrink-0 w-4 h-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue"
+                      className="mt-1 shrink-0 w-4 h-4 rounded border-gray-300 text-[#2A6D98] focus:ring-[#2A6D98]"
                     />
                     <span className="text-[11px] sm:text-xs text-gray-500 leading-relaxed">
-                      Acepto la <a href="/politica-de-privacidad" target="_blank" className="text-brand-blue underline">Política de Privacidad</a> y consiento el tratamiento de mis datos para recibir la propuesta.
+                      Acepto la <a href="/politica-de-privacidad" target="_blank" className="text-[#2A6D98] underline">Política de Privacidad</a> y consiento el tratamiento de mis datos para recibir la propuesta.
                     </span>
                   </label>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full mt-4 bg-brand-blue text-white py-4 px-6 rounded-xl font-bold text-base hover:bg-brand-dark transition-colors flex justify-center items-center gap-2 disabled:opacity-70"
+                className="brand-button w-full mt-4 py-4 px-6 font-bold text-base flex justify-center items-center gap-2 disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <span className="animate-pulse">Enviando solicitud...</span>
@@ -337,11 +371,11 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                     )}
                   </button>
                 </form>
-              </motion.div>
+              </m.div>
             )}
 
             {isSuccess && (
-              <motion.div
+              <m.div
                 key="step-success"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -362,23 +396,23 @@ export default function BudgetCalculator({ isOpen, onClose }: BudgetCalculatorPr
                 >
                   Volver a la web
                 </button>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
-        
+
         {/* Footer controls */}
         {!isSuccess && currentStep > 0 && currentStep <= STEPS.length && (
           <div className="px-6 py-4 border-t border-gray-100 bg-gray-50 shrink-0">
             <button
               onClick={() => setCurrentStep(prev => prev - 1)}
-              className="flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-brand-blue transition-colors"
+              className="flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-[#2A6D98] transition-colors"
             >
               <ArrowLeft size={16} /> Volver al paso anterior
             </button>
           </div>
         )}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

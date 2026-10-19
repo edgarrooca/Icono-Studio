@@ -44,7 +44,7 @@ export default function GraciasPresupuesto() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-dark font-sans selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden relative">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#F7F9FC] font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title="Gracias por tu solicitud | Icono Studio"
         description="Hemos recibido tu solicitud y te responderemos lo antes posible."
@@ -53,67 +53,63 @@ export default function GraciasPresupuesto() {
         schema={thankYouSchema}
       />
 
-      <div className="absolute top-0 w-full z-50">
-        <Navbar initialTheme="dark" />
+      <div className="absolute top-0 z-50 w-full">
+        <Navbar initialTheme="light" />
       </div>
 
-      <main className="pt-28 pb-0 relative">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-28 left-0 h-72 w-72 rounded-full bg-brand-blue/25 blur-3xl" />
-          <div className="absolute top-40 right-0 h-80 w-80 rounded-full bg-brand-lime/10 blur-3xl" />
-          <div className="absolute inset-0 opacity-[0.06] bg-blueprint" />
+      <main className="relative pt-28">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="pointer-events-none absolute -right-32 -top-40 h-[30rem] w-[30rem] rounded-full bg-[#D8ECFB] blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-44 left-[-6%] h-[22rem] w-[22rem] rounded-full bg-[#EAF5FA] blur-3xl" aria-hidden />
         </div>
 
-        <section className="relative z-10 px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 shadow-[0_24px_80px_rgba(2,6,23,0.45)] backdrop-blur-md">
-              <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-0">
-                <div className="relative p-7 sm:p-10 lg:p-14">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-brand-lime/20 bg-brand-lime/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-brand-lime">
+        <section className="relative z-10 px-5 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+          <div className="mx-auto w-full max-w-6xl">
+            <div className="overflow-hidden rounded-[1.75rem] border border-[#DCE5EE] bg-white shadow-[0_24px_80px_rgba(11,27,99,0.12)]">
+              <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+                <div className="p-7 sm:p-10 lg:p-14">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
                     <CheckCircle2 size={14} />
                     Solicitud recibida
                   </div>
 
-                  <div className="mt-8">
-                    <div className="ui-divider mb-6"></div>
-                    <h1 className="ui-section-title text-white mb-6">
-                      Gracias. <br />
-                      <span className="text-brand-lime italic font-normal">Ya tenemos tu mensaje.</span>
-                    </h1>
-                    <p className="max-w-2xl text-base sm:text-lg text-white/72 leading-relaxed font-medium">
-                      Hemos recibido tu formulario correctamente. Ahora revisaremos tu proyecto y te responderemos con una
-                      orientación clara para que sepas cuál es el siguiente paso.
-                    </p>
-                  </div>
+                  <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0B1B63] sm:text-[2.6rem]">
+                    Gracias.{' '}
+                    <span style={{ color: '#3E88AE' }}>Ya tenemos tu mensaje.</span>
+                  </h1>
+                  <p className="mt-5 max-w-2xl text-base font-medium leading-[1.7] text-[#425776] sm:text-lg">
+                    Hemos recibido tu formulario correctamente. Ahora revisaremos tu proyecto y te responderemos con una
+                    orientación clara para que sepas cuál es el siguiente paso.
+                  </p>
 
-                  <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
                     <a
                       href={`${siteConfig.whatsappHref}?text=${encodeURIComponent('Hola, acabo de enviar el formulario de presupuesto en la web y quería comentaros mi proyecto por aquí.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-lime px-6 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-brand-dark transition-transform hover:scale-[1.02]"
+                      className="brand-button brand-button--outline inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[0.98rem] font-semibold"
                     >
                       Hablar por WhatsApp
-                      <ArrowRight size={16} />
+                      <ArrowRight size={17} />
                     </a>
 
                     <RouterLink
                       to="/proyectos"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-brand-dark"
+                      className="brand-button brand-button--outline inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[0.98rem] font-semibold"
                     >
                       Ver proyectos
-                      <ArrowRight size={16} />
+                      <ArrowRight size={17} />
                     </RouterLink>
                   </div>
 
-                  <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-brand-blue/10 p-5 sm:p-6">
+                  <div className="mt-8 rounded-[1.5rem] border border-[#C7E6F6] bg-[#F1F8FD] p-5 sm:p-6">
                     <div className="flex items-start gap-3">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-lime text-brand-dark">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#9ED6F1] text-[#0B1B63]">
                         <ShieldCheck size={20} />
                       </div>
                       <div>
-                        <p className="text-sm font-black uppercase tracking-[0.16em] text-white">Confirmación enviada</p>
-                        <p className="mt-2 text-sm sm:text-[15px] leading-relaxed text-white/65">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#0B1B63]">Confirmación enviada</p>
+                        <p className="mt-2 text-sm font-medium leading-relaxed text-[#425776] sm:text-[15px]">
                           Si nos has dejado WhatsApp o email, usaremos ese canal para responderte. Si necesitas adelantarnos algo,
                           también puedes escribirnos directamente al {siteConfig.phoneDisplay}.
                         </p>
@@ -122,22 +118,23 @@ export default function GraciasPresupuesto() {
                   </div>
                 </div>
 
-                <div className="border-t border-white/10 lg:border-t-0 lg:border-l lg:border-white/10 bg-black/10 p-7 sm:p-10 lg:p-12">
-                  <p className="ui-eyebrow text-brand-lime mb-4">Qué ocurre ahora</p>
-                  <div className="ui-divider mb-6"></div>
-                  <div className="space-y-4">
+                <div className="border-t border-[#EDF1F7] bg-[#F7F9FC] p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+                  <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+                    Qué ocurre ahora
+                  </div>
+                  <div className="mt-6 space-y-4">
                     {nextSteps.map((step) => {
                       const Icon = step.icon;
 
                       return (
-                        <div key={step.title} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                        <div key={step.title} className="rounded-2xl border border-[#E4E9F2] bg-white p-5 shadow-[0_8px_24px_-16px_rgba(11,27,99,0.1)]">
                           <div className="flex items-start gap-4">
-                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/8 text-brand-lime">
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#E6F4FB] text-[#2A6D98]">
                               <Icon size={20} />
                             </div>
                             <div>
-                              <p className="text-sm font-black uppercase tracking-[0.14em] text-white">{step.title}</p>
-                              <p className="mt-2 text-sm leading-relaxed text-white/62">{step.description}</p>
+                              <p className="text-sm font-bold tracking-[-0.01em] text-[#0B1B63]">{step.title}</p>
+                              <p className="mt-2 text-sm font-medium leading-relaxed text-[#425776]">{step.description}</p>
                             </div>
                           </div>
                         </div>
@@ -145,14 +142,20 @@ export default function GraciasPresupuesto() {
                     })}
                   </div>
 
-                  <div className="mt-6 rounded-[1.5rem] border border-brand-lime/20 bg-brand-lime/8 p-5">
-                    <p className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-lime">Contacto directo</p>
-                    <div className="mt-3 space-y-2 text-sm text-white/72">
+                  <div className="mt-6 rounded-2xl border border-[#C7E6F6] bg-[#F1F8FD] p-5">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#2A6D98]">Contacto directo</p>
+                    <div className="mt-3 space-y-2 text-sm font-medium text-[#425776]">
                       <p>
-                        WhatsApp: <a href={siteConfig.whatsappHref} className="text-white hover:text-brand-lime transition-colors">{siteConfig.phoneDisplay}</a>
+                        WhatsApp:{' '}
+                        <a href={siteConfig.whatsappHref} className="font-semibold text-[#0B1B63] transition-colors hover:text-[#2A6D98]">
+                          {siteConfig.phoneDisplay}
+                        </a>
                       </p>
                       <p>
-                        Email: <a href={`mailto:${siteConfig.email}`} className="text-white hover:text-brand-lime transition-colors">{siteConfig.email}</a>
+                        Email:{' '}
+                        <a href={`mailto:${siteConfig.email}`} className="font-semibold text-[#0B1B63] transition-colors hover:text-[#2A6D98]">
+                          {siteConfig.email}
+                        </a>
                       </p>
                     </div>
                   </div>

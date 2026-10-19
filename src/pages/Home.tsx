@@ -1,208 +1,253 @@
-import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { Suspense, lazy, useState } from 'react';
+import { m, AnimatePresence, MotionConfig, useReducedMotion } from 'motion/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Check, Menu, X, Star, TrendingUp, Users, Zap, MonitorSmartphone, ShoppingCart, Search, ChevronDown, ChevronUp, Download, Code, Layers, Cpu, Clock, Rocket, ShieldCheck, LayoutTemplate, FileText, Video, Layout, Calendar, LineChart, Send, Heart } from 'lucide-react';
-import { blogSummariesSorted } from '../data/blogSummaries';
-import { projectSummaries, type ProjectSummary } from '../data/projectSummaries';
+import { ArrowRight, Check, CheckCircle2, Star, ChevronDown, ShieldCheck, Send, Mail, RefreshCcw, Pencil, MessageCircle } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
-import { debugLeadFormButtonClick, debugLeadFormInvalid, debugLeadFormSubmitCapture, redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
+import ProyectosRecientes from '../components/ProyectosRecientes';
+import HomeProcess from '../components/HomeProcess';
+import HomeContactForm from '../components/HomeContactForm';
+import '../components/HomeSections.css';
+import { redirectToLeadThankYouPage, submitLeadForm } from '../lib/analytics';
 import { absoluteUrl, siteConfig } from '../lib/site';
-import { buildOrganizationSchema, buildProviderReference, parseStructuredDate } from '../lib/structuredData';
-import MobileStickyCTA from '../components/MobileStickyCTA';
-import { loadMergedProjects } from '../lib/publicProjects';
-import { isPrerenderUserAgent, scheduleIdleTask } from '../lib/runtime';
-import { getBlogEntriesBySlugs } from '../lib/blogUtils';
+import { buildOrganizationSchema, buildProviderReference } from '../lib/structuredData';
+import { homeHeroNavLinks } from '../data/navigation';
 
 const BudgetCalculator = lazy(() => import('../components/BudgetCalculator'));
 
-// Gradient Blob Component for Hero
-const GradientBlob = ({ color, className, delay = 0 }: { color: string, className: string, delay?: number }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ 
-      opacity: [0.4, 0.8, 0.4],
-      scale: [1, 1.4, 1],
-      x: [0, 100, 0],
-      y: [0, 60, 0],
-    }}
-    transition={{ 
-      duration: 12, 
-      repeat: Infinity, 
-      ease: "easeInOut",
-      delay 
-    }}
-    className={`absolute rounded-full blur-[100px] pointer-events-none ${color} ${className}`}
-  />
-);
-
 const faqs = [
   { q: "¿El precio incluye el hosting y dominio?", a: "No. El dominio no está incluido, aunque podemos recomendarte la mejor opción y ayudarte a dejarlo configurado. El hosting tampoco va incluido en el precio base de la web, pero si quieres podemos gestionarlo nosotros como un servicio aparte." },
-  { q: "¿Cuánto tardáis en hacer una web?", a: "Depende de la complejidad del proyecto. Una Landing Page suele estar lista en 1-2 semanas, mientras que una web corporativa o e-commerce puede llevar entre 4 y 8 semanas." },
+  { q: "¿Cuánto tardáis en hacer una web?", a: "Depende de la complejidad del proyecto. Una página sencilla (como la de presentar un servicio o una oferta) suele estar lista en 1-2 semanas, mientras que una web con varias secciones o una tienda online puede llevar entre 4 y 8 semanas." },
   { q: "¿Podré modificar la web yo mismo?", a: "¡Por supuesto! Desarrollamos nuestras webs con paneles de control autogestionables (como WordPress o Shopify) y te damos una formación básica para que puedas cambiar textos, imágenes o productos sin depender de nosotros." },
-  { q: "¿Hacéis mantenimiento web?", a: "Sí, ofrecemos planes de mantenimiento mensual para asegurar que tu web esté siempre actualizada, segura y funcionando al 100% de su capacidad." }
-];
-
-const workProcess = [
-  { 
-    step: "01", 
-    title: "Presupuesto", 
-    subtitle: "Solicitud y Análisis",
-    desc: "Todo comienza con tu solicitud. Analizamos tu proyecto a fondo y te preparamos una propuesta a medida si podemos ayudarte.",
-    features: ["Estudio de viabilidad", "Propuesta personalizada", "Transparencia total"],
-    icon: FileText,
-    iconColor: "text-blue-500",
-    iconBg: "bg-blue-50",
-    hoverBorder: "group-hover:border-blue-200",
-    gradient: "from-blue-500/5"
-  },
-  { 
-    step: "02", 
-    title: "Reunión", 
-    subtitle: "Videollamada o Presencial",
-    desc: "Nos cuentas tu proyecto en detalle. Nos conocemos y empezamos a dar forma a tu idea, ya sea desde cero o mejorando tu web actual.",
-    features: ["Toma de requisitos", "Definición de objetivos", "Alineación de ideas"],
-    icon: Video,
-    iconColor: "text-purple-500",
-    iconBg: "bg-purple-50",
-    hoverBorder: "group-hover:border-purple-200",
-    gradient: "from-purple-500/5"
-  },
-  { 
-    step: "03", 
-    title: "Diseño", 
-    subtitle: "Estructura y UX/UI",
-    desc: "Te proponemos diseños orientados a conversión y estructuramos la web a nivel interno para que Google te posicione mejor.",
-    features: ["Prototipos visuales", "Arquitectura web", "Diseño SEO-Friendly"],
-    icon: Layout,
-    iconColor: "text-pink-500",
-    iconBg: "bg-pink-50",
-    hoverBorder: "group-hover:border-pink-200",
-    gradient: "from-pink-500/5"
-  },
-  { 
-    step: "04", 
-    title: "Desarrollo", 
-    subtitle: "Tiempos y Programación",
-    desc: "Con el diseño validado, organizamos un calendario de entregas por semanas para programar tu web y cumplir plazos sin sorpresas.",
-    features: ["Código optimizado", "Calendario cerrado", "Entregas puntuales"],
-    icon: Calendar,
-    iconColor: "text-emerald-500",
-    iconBg: "bg-emerald-50",
-    hoverBorder: "group-hover:border-emerald-200",
-    gradient: "from-emerald-500/5"
-  },
-  { 
-    step: "05", 
-    title: "SEO On-Page", 
-    subtitle: "Buscadores y Analítica",
-    desc: "Le decimos a Google que existes. Enviamos tu web a Search Console, instalamos Analytics y optimizamos tus páginas internas.",
-    features: ["Google Search Console", "Google Analytics", "Optimización de metas"],
-    icon: LineChart,
-    iconColor: "text-orange-500",
-    iconBg: "bg-orange-50",
-    hoverBorder: "group-hover:border-orange-200",
-    gradient: "from-orange-500/5"
-  },
-  { 
-    step: "06", 
-    title: "Entrega", 
-    subtitle: "Lanzamiento y Soporte",
-    desc: "Instalamos las páginas legales y publicamos. Te damos formación para que la controles tú mismo y ofrecemos mantenimiento opcional.",
-    features: ["Textos legales", "Formación de uso", "Mantenimiento mensual"],
-    icon: ShieldCheck,
-    iconColor: "text-indigo-500",
-    iconBg: "bg-indigo-50",
-    hoverBorder: "group-hover:border-indigo-200",
-    gradient: "from-indigo-500/5"
-  }
-];
-
-const techStack = [
-  { name: "React", slug: "react" },
-  { name: "Next.js", slug: "nextdotjs" },
-  { name: "TypeScript", slug: "typescript" },
-  { name: "Tailwind CSS", slug: "tailwindcss" },
-  { name: "WordPress", slug: "wordpress" },
-  { name: "Astro", slug: "astro" },
-  { name: "Figma", slug: "figma" },
-  { name: "Node.js", slug: "nodedotjs" },
-  { name: "Vercel", slug: "vercel" },
-  { name: "Webflow", slug: "webflow" }
-];
-const platformLogos = [
-  { name: "Google", slug: "google" },
-  { name: "Meta", slug: "meta" },
-  { name: "Stripe", slug: "stripe" },
-  { name: "Shopify", slug: "shopify" },
-  { name: "WhatsApp", slug: "whatsapp" },
-  { name: "Mailchimp", slug: "mailchimp" },
-  { name: "AWS", isCustom: true },
-  { name: "Zapier", slug: "zapier" }
+  { q: "¿Hacéis mantenimiento web?", a: "Sí, ofrecemos planes de mantenimiento mensual para asegurar que tu web esté siempre actualizada, segura y funcionando al 100% de su capacidad." },
+  { q: "¿Qué necesito tener preparado para empezar?", a: "No necesitas tenerlo todo listo. Cuéntanos qué hace tu negocio, qué quieres conseguir y qué tienes ahora mismo; nosotros te ayudamos a ordenar las ideas y te indicamos el siguiente paso." }
 ];
 
 const reviews = [
-  { name: "TALLER LORIGUILLA S.L.", date: "Hace 3 semanas", text: "Muy amables y rápidos!!!", source: "Google", rating: 5 },
-  { name: "Cristian", date: "Hace 3 semanas", text: "Excelente servicio, rapidez y profesionalidad. Inmejorable precio.", source: "Google", rating: 5 },
-  { name: "Yolanda Aldeguer", date: "Hace un año", text: "Han sido muy educados y amables, en cuanto a la página web han cuidado mucho el detalle y han sido fieles a lo que hemos pedido, estamos muy contentos con el resultado.", source: "Google", rating: 5 },
-  { name: "Ruth Sauri Carrasco", date: "Hace un año", text: "Rápido, comunicación fácil y resultado espectacular.", source: "Google", rating: 5 },
-  { name: "Gerrit winkler vazquez", date: "Hace un año", text: "Estoy muy contenta con el equipo, ¡son unos grandes profesionales! Necesitaba una página web a modo de portfolio para mis trabajos y proyectos como fotógrafa y me puse en contacto con ellos. Sin duda volvería a repetir y además no tardaron mucho en hacerlo. Recomendado 100%.", source: "Google", rating: 5 },
-  { name: "Akunaee", date: "Hace un año", text: "Me hicieron una web para mi proyecto personal y quedó genial, rápidos y profesionales. ¡Recomendados!", source: "Google", rating: 5 },
-  { name: "Allegra Traver", date: "Hace un año", text: "Son unos profesionales de cabeza a pies. Para mi empresa necesitaba una web con altas expectativas y las cumplieron todas de forma eficaz.", source: "Google", rating: 5 },
-  { name: "Carlos Martínez", date: "Hace 2 meses", text: "Un trato excepcional. Captaron la idea de mi negocio desde el primer momento y la plasmaron en una web moderna y muy rápida.", source: "Google", rating: 5 },
-  { name: "Laura Gómez", date: "Hace 4 meses", text: "Trabajar con el estudio ha sido un acierto. Cumplieron con los plazos y el diseño superó mis expectativas.", source: "Google", rating: 5 },
-  { name: "David Ruiz", date: "Hace 5 meses", text: "Grandes profesionales. Resolvieron todas mis dudas y me asesoraron sobre la mejor estrategia para mi tienda online.", source: "Google", rating: 5 },
-  { name: "Marta López", date: "Hace 6 meses", text: "La web ha quedado preciosa y muy intuitiva. Mis clientes me felicitan constantemente por el nuevo diseño.", source: "Google", rating: 5 },
-  { name: "Javier Fernández", date: "Hace 7 meses", text: "Servicio impecable. Muy atentos a los detalles y siempre dispuestos a hacer cambios hasta que quedó perfecta.", source: "Google", rating: 5 },
-  { name: "Elena Navarro", date: "Hace 8 meses", text: "Son unos cracks. Me ayudaron a modernizar la imagen de mi empresa con una web súper profesional y adaptada a móviles.", source: "Google", rating: 5 },
-  { name: "Pablo Sánchez", date: "Hace 9 meses", text: "Totalmente recomendables. Precio competitivo y un resultado de muchísima calidad. ¡Gracias!", source: "Google", rating: 5 },
-  { name: "Ana Morales", date: "Hace 10 meses", text: "Buscaba a un equipo de confianza para rehacer mi web y lo encontré. Comunicación fluida y trabajo de 10.", source: "Google", rating: 5 },
-  { name: "Sergio Romero", date: "Hace 11 meses", text: "Muy perfeccionistas. Se nota que les apasiona su trabajo. La web carga rapidísimo y el diseño es espectacular.", source: "Google", rating: 5 },
-  { name: "Lucía Torres", date: "Hace 11 meses", text: "Me hicieron el portfolio perfecto. Minimalista, elegante y justo lo que necesitaba para mostrar mis proyectos.", source: "Google", rating: 5 },
-  { name: "Raúl Gil", date: "Hace 1 año", text: "Atención al cliente inmejorable. El equipo te acompaña en todo el proceso y te explica todo de forma sencilla.", source: "Google", rating: 5 },
-  { name: "Carmen Vargas", date: "Hace 1 año", text: "La mejor inversión para mi negocio. Desde que lanzamos la nueva web, he notado un aumento en los contactos.", source: "Google", rating: 5 },
-  { name: "Diego Castro", date: "Hace 1 año", text: "Rápidos, eficientes y con mucho gusto para el diseño. Sin duda volveré a contar con ellos para futuros proyectos.", source: "Google", rating: 5 }
+  {
+    name: 'Carolina Méndez',
+    profession: 'Estudio de arquitectura',
+    text: 'El equipo entendió desde el primer momento lo que necesitábamos. La web quedó impecable y nuestros clientes lo notan.',
+    avatar: '/testimonials/avatars/carolina-head.png',
+  },
+  {
+    name: 'Martín Rojas',
+    profession: 'Tienda online de accesorios',
+    text: 'Profesionales, claros y muy organizados. El proceso fue simple y el resultado superó nuestras expectativas.',
+    avatar: '/testimonials/avatars/martin-head.png',
+  },
+  {
+    name: 'Lucía Fernández',
+    profession: 'Consultora de marketing',
+    text: 'Nuestra nueva web nos ayudó a transmitir mejor y a recibir muchos más contactos. 100% recomendados.',
+    avatar: '/testimonials/avatars/lucia-head.png',
+  },
+  {
+    name: 'Inés Ferrer',
+    profession: 'Clínica dental',
+    text: 'Nos explicaron todo sin tecnicismos y ahora nuestra web transmite la confianza que queríamos desde el primer vistazo.',
+    avatar: '/testimonials/avatars/ines-head.png',
+  },
+  {
+    name: 'Javier Navarro',
+    profession: 'Taller de bicicletas',
+    text: 'Ahora nuestros servicios se entienden a la primera y las consultas que recibimos llegan mucho más claras.',
+    avatar: '/testimonials/avatars/javier-head.png',
+  },
+  {
+    name: 'Marta Pardo',
+    profession: 'Estudio de interiorismo',
+    text: 'El resultado se siente profesional, cercano y muy nuestro. Ha sido un cambio enorme para el negocio.',
+    avatar: '/testimonials/avatars/marta-head.png',
+  },
 ];
 
-const supportTeaserItems = [
-  {
-    title: "Hosting",
-    description: "Alojamiento, SSL y configuración inicial.",
-    icon: Rocket,
-    iconClassName: "bg-brand-blue/10 text-brand-blue",
-  },
-  {
-    title: "Cuidado mensual",
-    description: "Revisiones, actualizaciones y seguimiento.",
-    icon: ShieldCheck,
-    iconClassName: "bg-slate-100 text-slate-700",
-  },
-  {
-    title: "Soporte cercano",
-    description: "Dudas, pequeños ajustes y ayuda cuando la necesites.",
-    icon: Check,
-    iconClassName: "bg-brand-lime/35 text-brand-dark",
-  },
+const hostingFeatures = [
+  { label: "SSL incluido", icon: ShieldCheck },
+  { label: "Correo profesional", icon: Mail },
+  { label: "Copias semanales", icon: RefreshCcw },
+  { label: "Revisión mensual", icon: CheckCircle2 },
 ];
+
+const maintenanceFeatures = [
+  { label: "Hasta 3 cambios al mes", icon: Pencil },
+  { label: "Ayuda 24 h", icon: MessageCircle },
+];
+
+const supportPlans = [
+  {
+    eyebrow: "La base de tu web",
+    title: "Hosting",
+    description: "Tu web alojada, protegida y siempre disponible.",
+    price: "8 €/mes",
+    imageSrc: "/seccion-3/hosting-v2.png",
+    imageAlt: "Servidor protegido",
+    features: hostingFeatures,
+  },
+  {
+    eyebrow: "Para seguir mejorando",
+    title: "Mantenimiento web",
+    description: "Pequeños cambios en tu web sin preocuparte de hacerlos tú.",
+    price: "30 €/mes",
+    imageSrc: "/seccion-3/maintenance-v2.png",
+    imageAlt: "Mantenimiento y actualizaciones web",
+    features: maintenanceFeatures,
+  },
+] as const;
+
+const heroTrustItems = [
+  { icon: Star, label: "5,0 en Google", iconClassName: "text-amber-400" },
+  { icon: CheckCircle2, label: "Webs a medida", iconClassName: "text-slate-400" },
+  { icon: ShieldCheck, label: "SEO incluido", iconClassName: "text-slate-400" },
+];
+
+const heroVisualItems = [
+  { key: 'browser', className: 'hero-visual-item--browser', depth: 0.45, src: '/home-hero/browser.webp', fallbackSrc: '/home-hero/browser.png', alt: '' },
+  { key: 'cursor', className: 'hero-visual-item--cursor', depth: 0.8, src: '/home-hero/cursor.webp', fallbackSrc: '/home-hero/cursor.png', alt: '' },
+  { key: 'phone', className: 'hero-visual-item--phone', depth: 0.65, src: '/home-hero/phone.webp', fallbackSrc: '/home-hero/phone.png', alt: '' },
+  { key: 'message', className: 'hero-visual-item--message', depth: 0.55, src: '/home-hero/message.webp', fallbackSrc: '/home-hero/message.png', alt: '' },
+  { key: 'code', className: 'hero-visual-item--code', depth: 0.9, src: '/home-hero/code.webp', fallbackSrc: '/home-hero/code.png', alt: '' },
+  { key: 'sparkles', className: 'hero-visual-item--sparkles', depth: 0.35, src: '/home-hero/sparkles.webp', fallbackSrc: '/home-hero/sparkles.png', alt: '' },
+] as const;
+
+function HeroVisual() {
+  const reduceMotion = useReducedMotion();
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse' || reduceMotion) {
+      return;
+    }
+
+    const stage = event.currentTarget;
+    const bounds = stage.getBoundingClientRect();
+    const normalizedX = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const normalizedY = (event.clientY - bounds.top) / bounds.height - 0.5;
+    const easedX = Math.sin(normalizedX * Math.PI / 2);
+    const easedY = Math.sin(normalizedY * Math.PI / 2);
+
+    stage.style.setProperty('--hero-light-x', `${(normalizedX + 0.5) * 100}%`);
+    stage.style.setProperty('--hero-light-y', `${(normalizedY + 0.5) * 100}%`);
+
+    stage.querySelectorAll<HTMLElement>('[data-hero-depth]').forEach((layer) => {
+      const depth = Number(layer.dataset.heroDepth ?? 0);
+      layer.style.setProperty('--hero-parallax-x', `${easedX * depth * 18}px`);
+      layer.style.setProperty('--hero-parallax-y', `${easedY * depth * 13}px`);
+      layer.style.setProperty('--hero-parallax-rotate', `${(easedX * 3.2 - easedY * 1.4) * depth}deg`);
+    });
+  };
+
+  const resetPointerPosition = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty('--hero-light-x', '50%');
+    event.currentTarget.style.setProperty('--hero-light-y', '45%');
+    event.currentTarget.querySelectorAll<HTMLElement>('[data-hero-depth]').forEach((layer) => {
+      layer.style.setProperty('--hero-parallax-x', '0px');
+      layer.style.setProperty('--hero-parallax-y', '0px');
+      layer.style.setProperty('--hero-parallax-rotate', '0deg');
+    });
+  };
+
+  return (
+    <div
+      className="hero-visual"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetPointerPosition}
+      aria-hidden="true"
+    >
+      <img
+        className="hero-visual-character"
+        src="/home-hero/character.webp"
+        alt=""
+        fetchPriority="high"
+        decoding="async"
+        onError={(event) => {
+          event.currentTarget.src = '/home-hero/character.png';
+        }}
+      />
+
+      {heroVisualItems.map((item) => (
+        <div
+          key={item.key}
+          className={`hero-visual-item ${item.className}`}
+          data-hero-depth={item.depth}
+        >
+          <div className="hero-visual-float">
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="eager"
+              decoding="async"
+              onError={(event) => {
+                event.currentTarget.src = item.fallbackSrc;
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const homeProblemItems = [
+  {
+    title: "No te ven",
+    description: "No apareces en Google o tu web pasa desapercibida.",
+    imageSrc: "/seccion-2/duda.webp",
+    imageClassName: "w-[5.2rem] sm:w-[5.75rem] lg:w-[6.2rem]",
+  },
+  {
+    title: "No conectas",
+    description: "Tu mensaje no genera confianza ni conecta con tus clientes.",
+    imageSrc: "/seccion-2/mensaje.webp",
+    imageClassName: "w-[5.4rem] sm:w-[6rem] lg:w-[6.4rem]",
+  },
+  {
+    title: "No queda claro",
+    description: "Tus servicios, beneficios o pasos no se entienden rápido.",
+    imageSrc: "/seccion-2/flechas.webp",
+    imageClassName: "w-[5.8rem] sm:w-[6.4rem] lg:w-[6.9rem]",
+  },
+  {
+    title: "No conviertes",
+    description: "Visitan tu web, pero no te escriben, no llaman ni compran.",
+    imageSrc: "/seccion-2/carrito.webp",
+    imageClassName: "w-[5.4rem] sm:w-[6rem] lg:w-[6.5rem]",
+  },
+] as const;
+
+const homeServiceCards = [
+  {
+    key: "design",
+    title: "Diseño web",
+    description: "Una web a medida para presentar tu negocio, tus servicios y todo lo que ofreces.",
+    imageSrc: "/seccion-3/service-web-hover-poster.png",
+    imageAlt: "Diseño web",
+    hoverAnimationSrc: "/seccion-3/service-web-hover.webp",
+  },
+  {
+    key: "landing",
+    title: "Página promocional",
+    description: "Una página directa para promocionar un servicio, una oferta o una campaña.",
+    imageSrc: "/seccion-3/service-promotion-hover-poster.png",
+    imageAlt: "Página promocional",
+    hoverAnimationSrc: "/seccion-3/service-promotion-hover.webp",
+  },
+  {
+    key: "shop",
+    title: "Tienda online",
+    description: "Tu tienda preparada para mostrar y vender productos por internet de forma sencilla.",
+    imageSrc: "/seccion-3/service-shop-hover-poster.png?v=3",
+    imageAlt: "Tienda online",
+    hoverAnimationSrc: "/seccion-3/service-shop-hover.webp",
+  },
+] as const;
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
-  
-  const [projects, setProjects] = useState<ProjectSummary[]>(projectSummaries);
-  const [activeStep, setActiveStep] = useState(0);
-  const metodologiaRef = useRef<HTMLDivElement>(null);
-
-  const handleMetodologiaScroll = () => {
-    if (metodologiaRef.current) {
-      const scrollPosition = metodologiaRef.current.scrollLeft;
-      const cardWidth = metodologiaRef.current.offsetWidth * 0.85;
-      const index = Math.round(scrollPosition / cardWidth);
-      setActiveStep(index);
-    }
-  };
-
+  const [hoveredServiceKey, setHoveredServiceKey] = useState<string | null>(null);
+  const [serviceAnimationRun, setServiceAnimationRun] = useState(0);
+  const [serviceAnimationReady, setServiceAnimationReady] = useState(false);
+  const reduceMotion = useReducedMotion();
   const [formData, setFormData] = useState({
     nombre: '',
     whatsapp: '',
@@ -214,7 +259,9 @@ export default function Home() {
     privacidad: false,
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -229,6 +276,9 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setFormError('');
 
     try {
       const response = await submitLeadForm('contact_home_integrated', formData);
@@ -237,53 +287,14 @@ export default function Home() {
         redirectToLeadThankYouPage('contact_home_integrated');
         return;
       } else {
-        alert(response.data?.message || 'Hubo un error al enviar. Por favor, inténtalo de nuevo.');
+        setFormError(response.data?.message || 'No se ha podido enviar. Inténtalo de nuevo en un momento.');
       }
     } catch (error) {
-      alert('Error de conexión.');
+      setFormError('No hemos podido conectar. Revisa tu conexión y vuelve a intentarlo.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    if (isPrerenderUserAgent()) {
-      return;
-    }
-
-    return scheduleIdleTask(async () => {
-      const mergedProjects = await loadMergedProjects();
-      setProjects(mergedProjects);
-    }, { delay: 4000, timeout: 2000 });
-  }, []);
-
-  const featuredProjectIds = [
-    'dogcat',
-    'instalaciones-torrijos-fontaneria',
-    'libreria-garcia-lorca',
-  ];
-
-  const featuredProjects = [
-    ...featuredProjectIds
-      .map((idOrTitle) => projects.find((p) => 
-        p.id.toString() === idOrTitle || 
-        p.title.toLowerCase().includes('dogcat') || // Force match for dogcat
-        (p.title && idOrTitle.toLowerCase().includes(p.title.toLowerCase()))
-      ))
-      .filter((project): project is ProjectSummary => Boolean(project)),
-    ...projects.filter((p) => !featuredProjectIds.some(id => 
-      p.id.toString() === id || 
-      p.title.toLowerCase().includes('dogcat') ||
-      (p.title && id.toLowerCase().includes(p.title.toLowerCase()))
-    )),
-  ]
-    .filter((project, index, array) => array.findIndex((item) => item.id.toString() === project.id.toString()) === index)
-    .filter(p => p.id !== 'gameshelf-app' && !p.title.toLowerCase().includes('gameshelf')) // Explicitly remove gameshelf
-    .slice(0, 3);
-
-  const homeBlogPosts = getBlogEntriesBySlugs(blogSummariesSorted, [
-    'que-debe-tener-una-pagina-web-para-atraer-clientes',
-    'cuanto-cuesta-pagina-web-profesional-espana-2026',
-    'seo-local-pequenas-empresas-guia-google-maps',
-  ]);
 
   const homeSchema = {
     "@context": "https://schema.org",
@@ -315,7 +326,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+    <MotionConfig reducedMotion="user">
+    <div className="home-page min-h-screen overflow-x-clip bg-[#F7F9FC] font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title="Diseño Web Valencia y SEO | Icono Studio"
         description="Diseñamos páginas web en Valencia rápidas, cuidadas y orientadas a captar clientes. Desarrollo web, SEO y soporte continuo para negocios que quieren crecer."
@@ -323,920 +335,690 @@ export default function Home() {
         schema={homeSchema}
       />
 
-      <Navbar initialTheme="light" />
+      <Navbar initialTheme="light" ctaHref="#contacto" ctaLabel="Pedir presupuesto" linksOverride={homeHeroNavLinks} />
       {isCalculatorOpen && (
         <Suspense fallback={null}>
           <BudgetCalculator isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
         </Suspense>
       )}
-      <MobileStickyCTA onOpenCalculator={() => setIsCalculatorOpen(true)} />
       <main>
 
       {/* 1. HERO SECTION */}
-      <section id="inicio" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 md:pt-32 md:pb-16 lg:pt-36 lg:pb-16 xl:pt-40 xl:pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white text-brand-dark z-20 rounded-b-[2.5rem] sm:rounded-b-[3rem] md:rounded-b-[4rem] shadow-[0_18px_50px_rgba(15,23,42,0.04)]">
-        
-        {/* Beautiful Gradient Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-blue-100/50 via-white to-zinc-100/50">
-          <GradientBlob color="bg-brand-blue/15" className="w-[700px] h-[700px] -top-40 -right-40" delay={0} />
-          <GradientBlob color="bg-brand-lime/15" className="w-[500px] h-[500px] top-1/3 -left-32" delay={2} />
-        </div>
-        
-        <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl mx-auto">
-          <motion.h1 
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[5.5rem] leading-[0.95] tracking-tighter uppercase mb-6 text-brand-dark"
-          >
-            Hacemos webs <br/>
-            <span className="text-brand-blue">que venden</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-            className="text-base sm:text-lg max-w-xl text-gray-500 font-medium mb-8 leading-relaxed mx-auto"
-          >
-            Diseño web optimizado para SEO, sin complicaciones técnicas. Tú te enfocas en tus clientes, nosotros en que tu web venda.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-          >
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                setIsCalculatorOpen(true);
-                (window as any).dataLayer?.push({
-                  'event': 'cta_click',
-                  'cta_id': 'hero_calculator',
-                  'cta_text': 'Calcular precio web',
-                  'page_path': window.location.pathname
-                });
-              }}
-              className="bg-brand-blue text-white px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:bg-brand-dark transition-colors flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg shadow-brand-blue/20"
+      <section id="inicio" className="relative z-20 scroll-mt-24 overflow-hidden bg-[#F7F7F7] px-5 pb-16 pt-28 text-brand-dark sm:px-6 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24 lg:pt-28 xl:pt-32">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-8 lg:min-h-[29rem] lg:grid-cols-[1.12fr_1fr] lg:gap-6 xl:gap-12">
+          <div className="home-section-intro relative z-20 min-w-0 max-w-[42rem] lg:pl-4 xl:pl-7">
+            <m.h1
+              initial={{ y: 40 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+              className="font-display text-[clamp(1.85rem,8vw,2.2rem)] font-extrabold leading-[1.14] tracking-[-0.025em] text-[#0B1B63] sm:text-[2.75rem] md:text-[2.82rem] lg:text-[clamp(2.1rem,3.1vw,2.88rem)]"
             >
-              Calcular precio web <ArrowRight size={20} />
-            </button>
-            <RouterLink 
-              to="/proyectos" 
-              id="cta_hero_projects"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'cta_click',
-                'cta_id': 'hero_projects',
-                'cta_text': 'Ver proyectos',
-                'page_path': window.location.pathname
-              })}
-              className="bg-white border border-gray-200 text-brand-dark px-6 py-3 sm:px-8 sm:py-3.5 rounded-full font-bold text-base hover:border-brand-blue hover:text-brand-blue transition-colors flex items-center justify-center gap-2 w-full sm:w-auto shadow-sm"
-            >
-              Ver proyectos
-            </RouterLink>
-          </motion.div>
-
-          {/* Social Proof ATF */}
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-            className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4 text-xs text-gray-500 font-medium"
-          >
-            <div className="flex items-center gap-2">
-              <div className="flex text-yellow-500">
-                {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-current" />)}
-              </div>
-              <span>5.0 de 5 en reseñas de clientes</span>
-            </div>
-
-            <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-300"></div>
-
-            <div className="flex items-center gap-2 text-brand-dark font-semibold bg-white/50 px-3 py-1.5 rounded-full border border-gray-200">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+              <span className="lg:block">Tu negocio merece una web </span>
+              <span className="lg:block">
+                que transmita <span style={{ color: "#3E88AE" }}>confianza</span>
               </span>
-              14 personas están solicitando presupuesto
-            </div>
-          </motion.div>
+            </m.h1>
+
+            <m.p
+              initial={{ y: 20 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.22 }}
+              className="mt-6 max-w-[35rem] font-sans text-[1.02rem] font-medium leading-[1.76] text-[#27396C] sm:text-[1.1rem]"
+            >
+              Diseñamos páginas web claras, bonitas y estratégicas para que tu negocio reciba más llamadas, WhatsApps y solicitudes.
+            </m.p>
+
+            <m.div
+              initial={{ y: 20 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.34 }}
+              className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap lg:justify-start"
+            >
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCalculatorOpen(true);
+                  (window as any).dataLayer?.push({
+                    'event': 'cta_click',
+                    'cta_id': 'hero_calculator',
+                    'cta_text': 'Pedir presupuesto',
+                    'page_path': window.location.pathname
+                  });
+                }}
+                className="brand-button inline-flex min-w-0 items-center justify-center gap-2 px-7 py-4 font-sans text-[1.02rem] font-semibold sm:px-8"
+              >
+                Pedir presupuesto <ArrowRight size={18} />
+              </button>
+              <RouterLink
+                to="/proyectos"
+                id="cta_hero_projects"
+                onClick={() => (window as any).dataLayer?.push({
+                  'event': 'cta_click',
+                  'cta_id': 'hero_projects',
+                  'cta_text': 'Ver proyectos',
+                  'page_path': window.location.pathname
+                })}
+                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-full border border-[#9ED6F1] bg-white px-7 py-4 font-sans text-[1.02rem] font-semibold text-[#0B1B63] transition-colors hover:bg-[#EAF6FC] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#9ED6F1]/45 sm:px-8"
+              >
+                Ver proyectos
+              </RouterLink>
+            </m.div>
+
+            <m.div
+              initial={{ y: 20 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.46 }}
+              className="mt-7 flex flex-wrap justify-center gap-x-5 gap-y-3 font-sans text-[0.82rem] font-medium text-[#17295E] sm:text-[0.88rem] lg:justify-start lg:gap-x-4 lg:text-[0.84rem] xl:gap-x-6"
+            >
+              {heroTrustItems.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2.5 whitespace-nowrap"
+                  >
+                    <Icon size={18} className={item.iconClassName} />
+                    <span>{item.label}</span>
+                  </div>
+                );
+              })}
+            </m.div>
+          </div>
+
+          <m.div
+            initial={{ y: 24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            className="relative z-10 mx-auto w-full min-w-0 max-w-[38rem] px-2 sm:px-4 lg:max-w-none lg:px-2"
+          >
+            <HeroVisual />
+          </m.div>
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden leading-none">
+          <svg
+            viewBox="0 0 1440 180"
+            preserveAspectRatio="none"
+            className="home-wave home-wave--hero block h-[60px] w-full fill-[#D8ECFB] sm:h-[72px] lg:h-[92px] xl:h-[104px]"
+          >
+            <path className="hidden sm:block" d="M-360,104 C-300,66 -240,60 -180,96 C-120,130 -60,136 0,104 C60,70 120,64 180,98 C240,132 300,138 360,104 C420,70 480,64 540,98 C600,132 660,138 720,104 C780,70 840,64 900,98 C960,132 1020,138 1080,104 C1140,70 1200,64 1260,98 C1320,132 1380,138 1440,104 C1500,70 1560,64 1620,98 C1680,132 1740,138 1800,104 L1800,180 L-360,180 Z">
+              {!reduceMotion && <animateTransform
+                className="home-wave-motion"
+                attributeName="transform"
+                type="translate"
+                dur="16s"
+                calcMode="linear"
+                repeatCount="indefinite"
+                values="0 0; -360 0"
+              />}
+            </path>
+            <path className="block sm:hidden" d="M-720,104 C-600,84 -480,80 -360,100 C-240,122 -120,124 0,104 C120,84 240,80 360,100 C480,122 600,124 720,104 C840,84 960,80 1080,100 C1200,122 1320,124 1440,104 C1560,84 1680,80 1800,100 C1920,122 2040,124 2160,104 L2160,180 L-720,180 Z">
+              {!reduceMotion && <animateTransform
+                className="home-wave-motion"
+                attributeName="transform"
+                type="translate"
+                dur="17s"
+                calcMode="linear"
+                repeatCount="indefinite"
+                values="0 0; -720 0"
+              />}
+            </path>
+            <rect x="0" y="176" width="1440" height="4" fill="#D8ECFB" />
+          </svg>
         </div>
       </section>
 
-      {/* 1.5 INTEGRATIONS / OPTIMIZED FOR */}
-      <section className="pt-16 pb-10 bg-zinc-50 overflow-hidden z-10 relative -mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
-          <p className="text-sm sm:text-base text-gray-400 font-medium">
-            Herramientas con las que trabajamos
-          </p>
+      {/* 1.5 HOME PROBLEMS */}
+      <section className="relative z-10 overflow-hidden bg-[linear-gradient(180deg,#D8ECFB_0%,#D2E8FA_100%)] pb-[5rem] pt-8 sm:pb-[5.5rem] sm:pt-10 lg:pb-[6.5rem] lg:pt-12 xl:pt-[3.25rem]">
+        <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[67rem] text-center">
+            <h2 className="text-balance font-display text-[1.85rem] font-extrabold leading-[1.12] tracking-[-0.032em] text-[#0B1B63] sm:text-[2.15rem] lg:text-[2.32rem] xl:text-[2.52rem]">
+              Cuando alguien busca tu negocio, ¿qué encuentra?
+            </h2>
+            <p className="mx-auto mt-4 max-w-[54rem] font-sans text-[0.98rem] font-medium leading-[1.68] text-[#1F3572] sm:text-[1.02rem] lg:text-[1.06rem]">
+              Antes de llamar o pedir presupuesto, muchos clientes ya han buscado tu negocio, han comparado opciones y se han formado una primera impresión.
+            </p>
+          </div>
+
+          <div className="home-problems-grid mt-8 grid grid-cols-2 gap-x-5 gap-y-8 sm:mt-10 sm:gap-x-8 sm:gap-y-12 lg:mt-12 lg:grid-cols-4 lg:gap-x-8">
+            {homeProblemItems.map((item) => (
+              <article key={item.title} className="flex flex-col items-center text-center">
+                <div className="flex h-[7.5rem] items-center justify-center sm:h-[8rem] lg:h-[8.6rem]">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    className={`${item.imageClassName} home-problem-image h-auto max-h-full object-contain`}
+                  />
+                </div>
+                <h3 className="mt-4 font-sans text-[1.6rem] font-bold tracking-[-0.04em] text-[#0B1B63] sm:text-[1.72rem]">
+                  {item.title}
+                </h3>
+                <p className="mt-2 max-w-[15.5rem] font-sans text-[0.96rem] font-medium leading-[1.5] text-[#1F3572] sm:max-w-[16.5rem]">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
-        
-        <div className="relative flex flex-col gap-6 overflow-hidden">
-          <style>{`
-            @keyframes scroll-left {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            @keyframes scroll-right {
-              0% { transform: translateX(-50%); }
-              100% { transform: translateX(0); }
-            }
-            .animate-scroll-left { animation: scroll-left 80s linear infinite; }
-            .animate-scroll-right { animation: scroll-right 80s linear infinite; }
-            .pause-on-hover:hover { animation-play-state: paused; }
-          `}</style>
-          
-          {/* Row 1: Platforms (Scroll Left) */}
-          <div className="flex w-max animate-scroll-left">
-            {[1, 2].map((group) => (
-              <div key={`platforms-${group}`} className="flex gap-12 sm:gap-20 px-6 sm:px-10 items-center">
-                {platformLogos.map((logo, i) => (
-                  <div key={`logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-default">
-                    {logo.isCustom ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333334 199332" className="h-8 sm:h-10 w-auto fill-[#52525b]">
-                        <path d="M93937 72393c0 4102 443 7428 1219 9867 887 2439 1996 5100 3548 7982 554 887 776 1774 776 2550 0 1109-665 2217-2106 3326l-6985 4656c-998 665-1995 998-2882 998-1109 0-2217-554-3326-1552-1552-1663-2882-3437-3991-5211-1109-1885-2217-3991-3437-6541-8648 10200-19512 15299-32594 15299-9312 0-16740-2661-22172-7982-5432-5322-8204-12417-8204-21286 0-9424 3326-17073 10089-22838s15743-8647 27161-8647c3769 0 7650 332 11752 887 4102 554 8315 1441 12749 2439v-8093c0-8426-1774-14301-5211-17738-3548-3437-9534-5100-18071-5100-3880 0-7871 443-11973 1441s-8093 2217-11973 3769c-1774 776-3104 1219-3880 1441s-1330 332-1774 332c-1552 0-2328-1109-2328-3437v-5432c0-1774 222-3104 776-3880s1552-1552 3104-2328c3880-1996 8537-3659 13969-4989C43606 885 49370 220 55468 220c13193 0 22838 2993 29046 8980 6098 5987 9202 15077 9202 27272v35920h222zM48926 89244c3659 0 7428-665 11419-1995s7539-3769 10532-7095c1774-2106 3104-4435 3770-7095 665-2661 1108-5876 1108-9645v-4656c-3215-776-6652-1441-10199-1885-3548-443-6984-665-10421-665-7428 0-12860 1441-16519 4435-3659 2993-5432 7206-5432 12749 0 5211 1330 9091 4102 11751 2661 2772 6541 4102 11641 4102zm89023 11973c-1996 0-3326-332-4213-1109-887-665-1663-2217-2328-4324l-26053-85697c-665-2217-998-3658-998-4434 0-1774 887-2772 2661-2772h10865c2106 0 3548 333 4324 1109 887 665 1552 2217 2217 4324l18625 73391 17295-73391c554-2217 1219-3659 2106-4324s2439-1109 4435-1109h8869c2106 0 3548 333 4435 1109 887 665 1663 2217 2106 4324l17516 74278 19180-74278c665-2217 1441-3659 2217-4324 887-665 2328-1109 4324-1109h10310c1774 0 2772 887 2772 2772 0 554-111 1109-222 1774s-333 1552-776 2772l-26718 85697c-665 2217-1441 3658-2328 4324-887 665-2328 1109-4213 1109h-9534c-2107 0-3548-333-4435-1109s-1663-2217-2106-4435l-17184-71507-17073 71396c-554 2217-1220 3658-2107 4434s-2439 1109-4434 1109h-9534zm142459 2993c-5765 0-11530-665-17073-1995s-9867-2772-12749-4435c-1774-998-2993-2106-3437-3104-443-998-665-2106-665-3104v-5654c0-2328 887-3437 2550-3437 665 0 1330 111 1995 333s1663 665 2772 1109c3769 1663 7871 2993 12195 3880 4435 887 8758 1330 13193 1330 6984 0 12417-1220 16186-3659s5765-5987 5765-10532c0-3104-998-5654-2993-7760-1996-2107-5765-3991-11197-5765l-16075-4989c-8093-2550-14080-6319-17738-11308-3658-4878-5543-10310-5543-16075 0-4656 998-8758 2993-12306s4656-6652 7982-9091c3326-2550 7095-4434 11530-5765S279190-2 284068-2c2439 0 4989 111 7428 443 2550 333 4878 776 7206 1219 2217 554 4324 1109 6319 1774s3548 1330 4656 1996c1552 887 2661 1774 3326 2771 665 887 998 2107 998 3659v5211c0 2328-887 3548-2550 3548-887 0-2328-444-4213-1331-6319-2882-13415-4324-21286-4324-6319 0-11308 998-14745 3104s-5211 5321-5211 9867c0 3104 1109 5765 3326 7871s6319 4213 12195 6097l15743 4989c7982 2550 13747 6098 17184 10643s5100 9756 5100 15521c0 4767-998 9091-2882 12860-1996 3770-4656 7095-8093 9756-3437 2771-7539 4767-12306 6208-4989 1552-10199 2328-15854 2328z" />
-                        <path d="M301362 158091c-36474 26940-89467 41241-135031 41241-63858 0-121395-23614-164854-62859-3437-3104-332-7317 3770-4878 47006 27272 104988 43791 164964 43791 40465 0 84921-8426 125830-25721 6097-2772 11308 3991 5321 8426z" />
-                        <path d="M316550 140796c-4656-5987-30820-2883-42682-1441-3548 443-4102-2661-887-4989 20842-14634 55099-10421 59090-5543 3991 4989-1109 39246-20620 55653-2993 2550-5876 1220-4545-2106 4435-10976 14301-35698 9645-41574z" />
-                      </svg>
-                    ) : (
-                      <>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden leading-none">
+          <svg
+            viewBox="0 0 1440 180"
+            preserveAspectRatio="none"
+            className="home-wave home-wave--problems block h-[58px] w-full fill-[#F7F7F7] sm:h-[72px] lg:h-[92px]"
+          >
+            <path className="hidden sm:block" d="M-360,100 C-300,64 -240,58 -180,96 C-120,128 -60,136 0,100 C60,68 120,62 180,98 C240,132 300,140 360,100 C420,68 480,62 540,98 C600,132 660,140 720,100 C780,68 840,62 900,98 C960,132 1020,140 1080,100 C1140,68 1200,62 1260,98 C1320,132 1380,140 1440,100 C1500,68 1560,62 1620,98 C1680,132 1740,140 1800,100 L1800,180 L-360,180 Z">
+              {!reduceMotion && <animateTransform
+                className="home-wave-motion"
+                attributeName="transform"
+                type="translate"
+                dur="18s"
+                calcMode="linear"
+                repeatCount="indefinite"
+                values="0 0; -360 0"
+              />}
+            </path>
+            <path className="block sm:hidden" d="M-720,100 C-600,82 -480,78 -360,98 C-240,120 -120,122 0,100 C120,82 240,78 360,98 C480,120 600,122 720,100 C840,82 960,78 1080,98 C1200,120 1320,122 1440,100 C1560,82 1680,78 1800,98 C1920,120 2040,122 2160,100 L2160,180 L-720,180 Z">
+              {!reduceMotion && <animateTransform
+                className="home-wave-motion"
+                attributeName="transform"
+                type="translate"
+                dur="19s"
+                calcMode="linear"
+                repeatCount="indefinite"
+                values="0 0; -720 0"
+              />}
+            </path>
+            <rect x="0" y="176" width="1440" height="4" fill="#F7F7F7" />
+          </svg>
+        </div>
+      </section>
+
+      {/* 2. SERVICIOS PRINCIPALES */}
+      <section id="servicios" className="relative scroll-mt-24 overflow-hidden bg-[#F7F7F7] py-12 sm:py-14 lg:py-16">
+        <div className="pointer-events-none absolute -right-24 top-16 h-80 w-80 rounded-full bg-[#EAF5FA] opacity-70 blur-3xl" aria-hidden />
+
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="grid items-start gap-9 lg:grid-cols-[1fr_1.1fr] lg:gap-12 xl:gap-16">
+            <div className="home-section-intro max-w-[34rem]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#2A6D98]">Lo que podemos hacer</p>
+              <h2 className="mt-4 font-display text-[2rem] font-extrabold leading-[1.06] tracking-[-0.05em] text-[#0B1B63] sm:text-[2.65rem] lg:text-[2.45rem]">
+                <span className="block">Diseñamos la web que</span>
+                <span className="block">tu negocio <span style={{ color: '#3E88AE' }}>se merece</span></span>
+              </h2>
+              <p className="mt-5 max-w-[22rem] font-sans text-[0.98rem] font-medium leading-[1.7] text-[#1F3572]">
+                Tú conoces tu negocio mejor que nadie. Nosotros nos encargamos de convertirlo en una web hecha a tu medida.
+              </p>
+              <RouterLink
+                to="/contacto"
+                id="cta_services_overview"
+                onClick={() => (window as any).dataLayer?.push({
+                  event: 'cta_click',
+                  cta_id: 'services_overview',
+                  cta_text: 'Ver cómo puedo ayudarte',
+                  page_path: window.location.pathname
+                })}
+                className="brand-button brand-button--dark-soft mt-7 inline-flex items-center gap-3 px-6 py-3.5 font-sans text-[0.98rem] font-semibold"
+              >
+                Ver cómo puedo ayudarte <ArrowRight size={17} />
+              </RouterLink>
+            </div>
+
+            <div className="mx-auto w-full max-w-[42rem] border-b border-[#C8DDEA] lg:max-w-none">
+              {homeServiceCards.map((item, index) => (
+                <article
+                  key={item.key}
+                  onMouseEnter={() => {
+                    if (!item.hoverAnimationSrc || reduceMotion) return;
+                    setServiceAnimationReady(false);
+                    setServiceAnimationRun((run) => run + 1);
+                    setHoveredServiceKey(item.key);
+                  }}
+                  onMouseLeave={() => item.hoverAnimationSrc && setHoveredServiceKey(null)}
+                  className="group relative flex items-center gap-3 border-b border-[#C8DDEA] py-6 last:border-b-0 sm:gap-4 sm:py-7"
+                >
+                  <span className="hidden w-6 shrink-0 font-display text-sm font-extrabold text-[#3E88AE] sm:block sm:text-base">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="relative h-12 w-12 shrink-0 sm:h-16 sm:w-16 lg:h-14 lg:w-14 xl:h-16 xl:w-16">
+                    <img
+                      src={item.imageSrc}
+                      alt={item.imageAlt}
+                      loading="lazy"
+                      decoding="async"
+                      className={`absolute inset-0 h-full w-full object-contain ${hoveredServiceKey === item.key && serviceAnimationReady ? 'opacity-0' : 'opacity-100'}`}
+                    />
+                    {item.hoverAnimationSrc && hoveredServiceKey === item.key && serviceAnimationRun > 0 ? (
+                      <img
+                        key={`${item.key}-service-hover-${serviceAnimationRun}`}
+                        className={`absolute inset-0 h-full w-full object-contain ${hoveredServiceKey === item.key && serviceAnimationReady ? 'opacity-100' : 'opacity-0'}`}
+                        src={`${item.hoverAnimationSrc}?v=3&run=${serviceAnimationRun}`}
+                        alt=""
+                        aria-hidden="true"
+                        decoding="async"
+                        fetchPriority="high"
+                        onLoad={() => item.key === hoveredServiceKey && setServiceAnimationReady(true)}
+                      />
+                    ) : null}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-display text-[1.25rem] font-extrabold leading-[1.15] tracking-[-0.035em] text-[#0B1B63] sm:text-[1.5rem]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 max-w-[31rem] text-sm font-medium leading-[1.55] text-[#526477] sm:text-[0.95rem]">
+                      {item.description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. PROYECTOS: carrusel horizontal con resultado por proyecto */}
+      <ProyectosRecientes />
+
+      {/* 4. PROCESO DE TRABAJO */}
+      <HomeProcess />
+
+      {/* 6. TESTIMONIOS */}
+      <section id="opiniones" aria-labelledby="reviews-heading" className="relative scroll-mt-24 overflow-hidden bg-[#0B1B63] py-14 text-white sm:py-16 md:py-20">
+        <div className="pointer-events-none absolute -right-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-[#1C78B6]/20 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-52 -left-36 h-[25rem] w-[25rem] rounded-full bg-[#3E88AE]/10 blur-3xl" aria-hidden="true" />
+        <div className="relative mx-auto w-full max-w-[100rem]">
+          <m.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto max-w-[42rem] px-5 text-center sm:px-6 lg:px-8"
+          >
+            <h2 id="reviews-heading" className="font-display text-[1.85rem] font-extrabold leading-[1.08] tracking-[-0.032em] text-white sm:text-[2rem] lg:text-[2.15rem] xl:text-[2.32rem]">
+              <span className="block">Gente real.</span>
+              <span className="block text-[#9ED6F1]">Opiniones reales.</span>
+            </h2>
+          </m.div>
+
+          <div className="reviews-stream-viewport relative mt-10 sm:mt-11" role="region" tabIndex={0} aria-label="Reseñas de clientes">
+            <div className="reviews-stream flex w-max gap-6 pl-5 pr-5 sm:gap-8 sm:pl-[max(1.5rem,calc((100vw-96rem)/2))] sm:pr-0 lg:gap-10">
+              {[...reviews, ...reviews].map((review, index) => {
+                const isDuplicate = index >= reviews.length;
+
+                return (
+                  <article
+                    key={`${review.name}-${index}`}
+                    aria-hidden={isDuplicate}
+                    className="w-[min(82vw,22rem)] shrink-0 border-l border-white/20 pl-5 sm:w-[24rem] sm:pl-6 lg:w-[27rem] lg:pl-7"
+                  >
+                    <div className="flex gap-1" aria-label="5 de 5 estrellas">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star key={star} className="h-4 w-4 fill-[#FFB800] text-[#FFB800]" strokeWidth={0} aria-hidden="true" />
+                      ))}
+                    </div>
+                    <blockquote className="mt-5 min-h-[8.2rem] font-display text-[1.18rem] font-extrabold leading-[1.27] tracking-[-0.018em] text-white sm:text-[1.28rem]">
+                      “{review.text}”
+                    </blockquote>
+                    <div className="mt-7 flex items-center gap-3">
+                      <span className="flex h-[3.65rem] w-[3.65rem] shrink-0 items-end justify-center overflow-hidden rounded-full bg-white/[0.09] ring-1 ring-inset ring-white/10">
                         <img
-                          src={`https://cdn.simpleicons.org/${logo.slug}/52525b`}
-                          alt={`${logo.name} icon`}
-                          className="h-7 sm:h-8 w-auto object-contain"
-                          referrerPolicy="no-referrer"
+                          src={review.avatar}
+                          alt=""
+                          aria-hidden="true"
+                          className="h-[3.7rem] w-[3.7rem] object-contain"
                           loading="lazy"
                           decoding="async"
                         />
-                        <span className="text-xl sm:text-2xl font-bold text-zinc-600 tracking-tight">{logo.name}</span>
-                      </>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2: Tech Stack (Scroll Right) */}
-          <div className="flex w-max animate-scroll-right">
-            {[1, 2].map((group) => (
-              <div key={`tech-${group}`} className="flex gap-12 sm:gap-20 px-6 sm:px-10 items-center">
-                {techStack.map((tech, i) => (
-                  <div key={`tech-logo-${i}`} className="flex items-center gap-2 sm:gap-3 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default">
-                    <img
-                      src={`https://cdn.simpleicons.org/${tech.slug}/a1a1aa`}
-                      alt={`${tech.name} icon`}
-                      className="h-7 sm:h-8 w-auto object-contain"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span className="text-xl sm:text-2xl font-bold text-zinc-400 tracking-tight">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          {/* Gradients */}
-          <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-zinc-50 to-transparent pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-zinc-50 to-transparent pointer-events-none"></div>
-        </div>
-      </section>
-
-      {/* 2. SERVICIOS PRINCIPALES (SEO) */}
-      <section id="servicios" className="pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* Card 1 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
-                Diseño Web
-              </h3>
-              <img 
-                src="/lapiz.svg" 
-                alt="Diseño Web" 
-                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
-              Diseñamos tu página web paso a paso, a medida y centrada en crear una experiencia de usuario (UX/UI) única que represente tu marca.
-            </p>
-            <RouterLink 
-              to="/diseno-web-valencia" 
-              id="cta_service_web"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'service_view', 
-                'service_name': 'Diseño Web',
-                'page_path': window.location.pathname
-              })} 
-              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
-            >
-              Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </RouterLink>
-          </div>
-
-          {/* Card 2 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-brand-lime/50 transition-all duration-300 flex flex-col h-full hover:-translate-y-1">
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
-                Tienda Online
-              </h3>
-              <img 
-                src="/Teclado.svg" 
-                alt="Tienda Online" 
-                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
-              Desarrollamos e-commerce escalables. Gestiona tu tienda online fácilmente: catálogo, envíos y pagos.
-            </p>
-            <RouterLink 
-              to="/#servicios" 
-              id="cta_service_ecommerce"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'service_view', 
-                'service_name': 'Tienda Online',
-                'page_path': window.location.pathname
-              })} 
-              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
-            >
-              Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </RouterLink>
-          </div>
-
-          {/* Card 3 */}
-          <div className="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-100 hover:border-gray-300 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 md:col-span-2 md:max-w-[30rem] md:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0">
-            <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-dark leading-tight flex-1 min-w-0 text-balance">
-                Posicionamiento SEO
-              </h3>
-              <img 
-                src="/seo.svg" 
-                alt="Posicionamiento SEO" 
-                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300 shrink-0"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm sm:text-base">
-              Utilizamos las técnicas SEO más avanzadas para mejorar la visibilidad de tu web en Google y superar a tu competencia.
-            </p>
-            <RouterLink 
-              to="/#servicios" 
-              id="cta_service_seo"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'service_view', 
-                'service_name': 'Posicionamiento SEO',
-                'page_path': window.location.pathname
-              })} 
-              className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-dark transition-colors mt-auto text-sm tracking-wide uppercase"
-            >
-              Ver servicio <ArrowRight size={18} className="transform group-hover:translate-x-1 transition-transform" />
-            </RouterLink>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/* 3. PROYECTOS */}
-      <section id="proyectos" className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-[#FAFAFA] border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end mb-12 md:mb-16 gap-8 sm:gap-10 text-center lg:text-left">
-            <div className="max-w-2xl shrink-0 flex flex-col items-center lg:items-start">
-
-              <h2 className="ui-section-title text-brand-dark mb-4">Proyectos recientes</h2>
-            </div>
-            <RouterLink
-              to="/proyectos"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'nav_click',
-                'nav_item': 'Ver todos los proyectos Home',
-                'page_path': window.location.pathname
-              })}
-              className="hidden lg:block text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200 mb-2"
-            >
-              Ver todos los proyectos
-            </RouterLink>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
-            {featuredProjects.map((project, index) => (
-              <div
-                key={project.id}
-                className={index === featuredProjects.length - 1 ? 'sm:col-span-2 sm:max-w-[24rem] sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0' : ''}
-              >
-                <RouterLink
-                  to={`/proyecto/${project.id}`}
-                  id={`project_link_${project.id}`}
-                  onClick={() => (window as any).dataLayer?.push({
-                    'event': 'project_click',
-                    'project_id': project.id,
-                    'project_title': project.title,
-                    'page_path': window.location.pathname
-                  })}
-                  className="group cursor-pointer flex flex-col"
-                >
-                  <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[4/5] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-                    <img
-                      src={project.imgReto || project.img}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
-                  </div>
-
-                  <div className="flex justify-between items-start gap-2">
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-brand-dark mb-1 group-hover:text-brand-dark transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      <p className="text-[9px] font-black text-brand-blue uppercase tracking-widest mb-1.5">
-                        {project.category}
-                      </p>
+                      </span>
+                      <div>
+                        <p className="text-[0.94rem] font-extrabold leading-[1.3] text-white sm:text-[1rem]">{review.name}</p>
+                        <p className="mt-1 text-[0.8rem] font-medium leading-[1.35] text-white/60 sm:text-[0.84rem]">{review.profession}</p>
+                      </div>
                     </div>
-                    <div className="w-8 h-8 shrink-0 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-brand-dark group-hover:text-white group-hover:border-brand-dark transition-all duration-300 transform group-hover:rotate-45">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </RouterLink>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 flex justify-center lg:hidden">
-            <RouterLink
-              to="/proyectos"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'nav_click',
-                'nav_item': 'Ver todos los proyectos Home Mobile',
-                'page_path': window.location.pathname
+                  </article>
+                );
               })}
-              className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 hover:text-brand-dark transition-colors pb-2 border-b-2 border-gray-200"
-            >
-              Ver todos los proyectos
-            </RouterLink>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. PROCESO DE TRABAJO */}
-      <section className="pt-10 sm:pt-12 md:pt-14 pb-14 sm:pb-16 md:pb-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
-
-            <h2 className="ui-section-title text-brand-dark mb-5">
-                Cómo trabajamos <br className="hidden md:block" />
-                <span className="italic font-normal">tu proyecto</span>
-              </h2>
-              <p className="ui-section-copy max-w-2xl mx-auto lg:mx-0">
-                Un proceso claro, sin improvisaciones, para que tu web salga bien planteada desde el principio.
-              </p>
+            </div>
           </div>
 
-          <div 
-            ref={metodologiaRef}
-            onScroll={handleMetodologiaScroll}
-            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-1 pr-[10vw] md:pr-0"
+          <m.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mt-11 flex max-w-7xl flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-white/15 px-5 pt-5 text-[0.94rem] font-semibold text-white/75 sm:mt-13 sm:px-6 lg:px-8"
           >
-            {workProcess.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <div 
-                  key={i} 
-                  className={`min-w-[85vw] md:min-w-0 bg-white rounded-[2rem] p-7 sm:p-8 lg:p-10 shadow-sm border border-gray-200 ${item.hoverBorder} hover:shadow-xl transition-all duration-300 group relative overflow-hidden snap-center`}
-                >
-                  {/* Subtle unified gradient on hover */}
-                  <div className={`absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-bl ${item.gradient} to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -mr-16 sm:-mr-20 -mt-16 sm:-mt-20`}></div>
-                  
-                  {/* Watermark Number */}
-                  <span className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 text-7xl sm:text-9xl font-display font-bold text-zinc-50 opacity-50 transition-colors duration-500 select-none pointer-events-none">
-                    {item.step}
-                  </span>
-
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-6 sm:mb-7">
-                      <div className="flex items-center gap-3 sm:gap-4">
-                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${item.iconBg} flex items-center justify-center border border-white/50 group-hover:scale-110 transition-transform duration-300 ${item.iconColor}`}>
-                          <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-[11px] sm:text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Fase {item.step}</p>
-                          <h3 className="font-display text-xl sm:text-[1.75rem] uppercase text-brand-dark leading-[0.95] text-balance break-words">{item.title}</h3>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-6 sm:mb-6">
-                      <h4 className="font-bold text-sm sm:text-base text-gray-900 mb-2">{item.subtitle}</h4>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2.5">
-                      {item.features.map((feature, idx) => (
-                        <div key={idx} className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-[#F8FAFB] px-3 py-2 text-xs font-medium text-gray-700">
-                          <div className={`w-4 h-4 rounded-full ${item.iconBg} border border-white flex items-center justify-center flex-shrink-0`}>
-                            <Check className={`w-2.5 h-2.5 ${item.iconColor}`} />
-                          </div>
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Mobile Indicators */}
-          <div className="flex justify-center gap-2 mt-8 md:hidden">
-            {workProcess.map((_, i) => (
-              <div 
-                key={i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeStep === i ? 'w-8 bg-brand-blue' : 'w-2 bg-gray-200'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. OPINIONES */}
-      <section id="opiniones" className="py-14 sm:py-16 md:py-20 bg-[#FAFAFA] overflow-hidden border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 md:gap-12 text-center lg:text-left">
-            <div className="md:w-2/3 flex flex-col items-center lg:items-start">
-
-              <h2 className="ui-section-title text-brand-dark">
-                Lo que dicen <br className="hidden sm:block" />
-                <span className="italic font-normal">nuestros clientes</span>
-              </h2>
+            <div className="flex items-center gap-2">
+              <Star className="h-[1.15rem] w-[1.15rem] fill-[#FFB800] text-[#FFB800]" strokeWidth={0} aria-hidden="true" />
+              <span>5,0 en Google</span>
             </div>
-            <div className="md:w-1/3 flex justify-center lg:justify-end pb-2">
-              <div className="flex items-center gap-5 bg-white px-6 py-4 rounded-2xl border border-gray-200 shadow-sm">
-                <div className="flex flex-col items-center">
-                  <span className="text-4xl font-display text-brand-dark leading-none">5.0</span>
-                </div>
-                <div className="w-px h-12 bg-gray-200"></div>
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-                  </div>
-                  <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">Valoración media</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative flex flex-col gap-4 sm:gap-6">
-          {/* Fila única: Hacia la izquierda */}
-          <div className="flex w-max animate-scroll-left pause-on-hover">
-            {[1, 2].map((group) => (
-              <div key={group} className="flex gap-4 sm:gap-6 px-2 sm:px-3">
-                {reviews.map((review, idx) => (
-                  <div key={idx} className="w-[280px] sm:w-[320px] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm shrink-0 flex flex-col">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue font-bold text-sm shrink-0">
-                          {review.name.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-brand-dark text-sm leading-none">{review.name}</p>
-                          <p className="text-[11px] text-gray-400 mt-1">{review.date}</p>
-                        </div>
-                      </div>
-                      <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                      </svg>
-                    </div>
-                    <div className="flex text-yellow-400 mb-2">
-                      {[...Array(review.rating)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
-                    </div>
-                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                      "{review.text}"
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          
-          {/* Gradientes laterales para suavizar la entrada/salida */}
-          <div className="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-zinc-50 to-transparent pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-zinc-50 to-transparent pointer-events-none"></div>
+            <span className="text-white/30" aria-hidden="true">/</span>
+            <span>+120 clientes satisfechos</span>
+          </m.div>
         </div>
       </section>
 
 
 
       {/* 8. SUPPORT TEASER */}
-      <section id="soporte-web" className="pt-14 sm:pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-20 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.25rem] md:rounded-[2.75rem] border border-[#D8E2E7] bg-[#F2F6F7] p-5 sm:p-8 lg:p-9 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_26%)]"></div>
-            <div className="absolute -top-20 right-0 w-72 h-72 bg-white/80 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-5 sm:gap-6 lg:gap-8 items-center">
-              <div className="max-w-xl mx-auto lg:mx-0 flex flex-col items-center text-center lg:items-start lg:text-left">
-
-
-                <h2 className="ui-section-title text-brand-dark mb-4">
-                  Tu web, siempre en buenas manos
-                </h2>
-
-                <p className="ui-section-copy max-w-xl mb-5 sm:mb-6">
-                  Después de publicar, también podemos seguir a tu lado para que la web esté atendida, actualizada y funcionando para que no tengas que preocuparte por nada.
-                </p>
-
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 justify-center lg:justify-start">
-                  <RouterLink
-                    to="/hosting-mantenimiento-web"
-                    id="cta_support_plans_hero"
-                    onClick={() => (window as any).dataLayer?.push({
-                      'event': 'support_click',
-                      'cta_id': 'support_plans_hero',
-                      'page_path': window.location.pathname
-                    })}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-dark px-6 py-3 font-bold text-white hover:bg-brand-blue transition-colors"
-                  >
-                    Ver planes <ArrowRight size={18} />
-                  </RouterLink>
-                  <p className="text-sm font-semibold text-gray-700">Hosting por 8€ / mes + IVA</p>
+      <section id="soporte-web" aria-labelledby="support-heading" className="relative scroll-mt-24 bg-[#F7F7F7] py-12 sm:py-14 md:py-20">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="home-support-intro">
+            <h2 id="support-heading" className="max-w-[36rem] font-display text-[1.9rem] font-extrabold leading-[1.1] tracking-[-0.035em] text-[#0B1B63] sm:text-[2.25rem] lg:text-[2.55rem]">
+              Nos ocupamos también <span className="inline-block text-[#3E88AE]">del después</span>
+            </h2>
+            <p className="mt-4 text-[0.98rem] font-medium leading-[1.65] text-[#425776]">
+              Hosting y mantenimiento para que tu web siga funcionando después del lanzamiento.
+            </p>
+          </div>
+          <div className="home-support-plans">
+            {supportPlans.map(plan => (
+              <article key={plan.title} className="home-support-card">
+                <div className="home-support-top">
+                  <h3 className="font-display">{plan.title}</h3>
+                  <p className="home-support-price"><strong className="font-display">{plan.price}</strong><small>+ IVA</small></p>
                 </div>
-              </div>
-
-              <div className="rounded-[1.7rem] sm:rounded-[1.9rem] border border-white/85 bg-white/88 p-4 sm:p-6 shadow-[0_12px_32px_rgba(15,23,42,0.05)] backdrop-blur-sm">
-                <div className="mb-3 sm:mb-4">
-                  <div>
-                    <p className="ui-form-label text-gray-400 mb-2">Servicio opcional</p>
-                    <h3 className="font-display text-xl sm:text-[2rem] leading-none text-brand-dark">
-                      Todo bajo control
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  {supportTeaserItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={item.title} className="rounded-[1rem] sm:rounded-[1.1rem] border border-[#E7EDF0] bg-[#F8FBFB] px-3 py-3 sm:px-3.5 sm:py-3.5">
-                        <div className="flex items-start gap-3 text-brand-dark">
-                          <span className={`mt-0.5 flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-xl ${item.iconClassName}`}>
-                            <Icon className="w-4 h-4" />
-                          </span>
-                          <div>
-                            <p className="font-semibold leading-none mb-1.5">{item.title}</p>
-                            <p className="text-[13px] sm:text-sm text-gray-600 leading-relaxed">{item.description}</p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-3 sm:mt-4 rounded-[1.1rem] sm:rounded-[1.2rem] bg-[#ECF3F4] px-4 py-3.5 sm:py-4">
-                  <p className="text-[13px] sm:text-sm text-gray-600 leading-relaxed">
-                    Puedes empezar solo con el hosting y, cuando tu web necesite más atención, sumar mantenimiento, soporte y pequeñas mejoras para que siga bien cuidada sin complicarte con la parte técnica.
-                  </p>
-                </div>
-              </div>
-            </div>
+                <p className="home-support-description">{plan.description}</p>
+                <ul className="home-support-features">
+                  {plan.features.map(({ label }) => (
+                    <li key={label} className="home-support-feature">
+                      <Check strokeWidth={1.8} aria-hidden="true" />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="home-support-action">
+            <RouterLink to="/hosting-mantenimiento-web#planes" className="brand-button brand-button--outline inline-flex min-h-12 items-center justify-center gap-3 px-7 py-3.5 font-semibold">
+              Ver los planes <ArrowRight size={17} aria-hidden="true" />
+            </RouterLink>
           </div>
         </div>
       </section>
 
       {/* 9. FAQ */}
-      <section className="py-14 sm:py-16 md:py-20 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-
-            <h2 className="ui-section-title text-brand-dark mb-6">
-              Preguntas <span className="italic font-normal">frecuentes</span>
-            </h2>
-            <p className="ui-section-copy">Resolvemos tus dudas antes de empezar.</p>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <div 
-                key={i} 
-                className={`bg-white border rounded-2xl overflow-hidden transition-all duration-300 ${activeFaq === i ? 'border-brand-blue shadow-md' : 'border-gray-200'}`}
-              >
-                <button 
-                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
-                >
-                  <span className="font-bold text-lg text-brand-dark pr-4">{faq.q}</span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${activeFaq === i ? 'bg-brand-blue text-white' : 'bg-gray-100 text-gray-500'}`}>
-                    {activeFaq === i ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {activeFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 11. BLOG */}
-      <section id="blog" className="py-14 sm:py-16 md:py-20 bg-zinc-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-6 mb-12 md:mb-16 text-center lg:text-left">
-            <div className="max-w-3xl flex flex-col items-center lg:items-start">
-
-              <h2 className="ui-section-title text-brand-dark mb-4">Blog</h2>
-              <p className="ui-section-copy max-w-2xl">
-                Hemos priorizado tres guías base que responden a las dudas que más influyen en la decisión de contratar una web.
-              </p>
-            </div>
-          <RouterLink to="/blog" onClick={() => (window as any).dataLayer?.push({'event': 'blog_home_click'})} className="flex items-center gap-2 font-bold text-base sm:text-lg uppercase tracking-wide hover:text-brand-blue transition-colors">
-            Ver todos <ArrowRight size={20} className="sm:w-6 sm:h-6" />
-          </RouterLink>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {homeBlogPosts.map((post) => (
-            <RouterLink 
-              key={post.slug} 
-              to={`/blog/${post.slug}`} 
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'nav_click',
-                'nav_item': `Blog: ${post.title}`,
-                'page_path': window.location.pathname
-              })}
-              className="group cursor-pointer"
-              >
-                <div className="overflow-hidden rounded-[2rem] mb-4 sm:mb-6 relative">
-                <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full aspect-square object-cover transform group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-                <div className="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full uppercase tracking-wider">
-                  {post.tag}
-                </div>
-              </div>
-              <div className="flex items-center gap-4 mb-2 sm:mb-3">
-                <time dateTime={parseStructuredDate(post.modifiedDate || post.date)} className="text-xs sm:text-sm text-gray-500 font-mono">
-                  {post.date}
-                </time>
-              </div>
-              <h3 className="font-display text-xl sm:text-2xl uppercase leading-tight group-hover:text-brand-blue transition-colors">{post.title}</h3>
-            </RouterLink>
+      <section id="faq" aria-labelledby="faq-heading" className="relative scroll-mt-24 overflow-hidden bg-[#163A70] pb-12 pt-10 sm:pb-14 sm:pt-12 md:pb-16 md:pt-14">
+        <div className="pointer-events-none absolute -left-40 -top-44 h-[32rem] w-[42rem] rounded-[48%] bg-[#2C6598]/75 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-52 -right-40 h-[30rem] w-[30rem] rounded-full bg-[#2479A8]/35 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+          {[
+            { left: '8%', top: '18%', size: 'h-1.5 w-1.5', delay: '0s' },
+            { left: '17%', top: '66%', size: 'h-1.5 w-1.5', delay: '1.7s' },
+            { left: '31%', top: '13%', size: 'h-1.5 w-1.5', delay: '3.1s' },
+            { left: '46%', top: '83%', size: 'h-2 w-2', delay: '0.9s' },
+            { left: '60%', top: '11%', size: 'h-1.5 w-1.5', delay: '2.4s' },
+            { left: '73%', top: '28%', size: 'h-2 w-2', delay: '4.2s' },
+            { left: '88%', top: '68%', size: 'h-1.5 w-1.5', delay: '1.1s' },
+            { left: '94%', top: '16%', size: 'h-1.5 w-1.5', delay: '2.9s' },
+            { left: '26%', top: '91%', size: 'h-1.5 w-1.5', delay: '4.8s' },
+            { left: '69%', top: '91%', size: 'h-1.5 w-1.5', delay: '3.6s' },
+            { left: '82%', top: '53%', size: 'h-1.5 w-1.5', delay: '0.4s' },
+            { left: '52%', top: '8%', size: 'h-1.5 w-1.5', delay: '5.2s' },
+            { left: '4%', top: '47%', size: 'h-1 w-1', delay: '2.2s' },
+            { left: '12%', top: '88%', size: 'h-1 w-1', delay: '5.7s' },
+            { left: '23%', top: '34%', size: 'h-1 w-1', delay: '0.8s' },
+            { left: '38%', top: '58%', size: 'h-1.5 w-1.5', delay: '3.9s' },
+            { left: '57%', top: '43%', size: 'h-1 w-1', delay: '1.4s' },
+            { left: '65%', top: '76%', size: 'h-1 w-1', delay: '5.1s' },
+            { left: '78%', top: '9%', size: 'h-1 w-1', delay: '2.7s' },
+            { left: '86%', top: '39%', size: 'h-1.5 w-1.5', delay: '4.6s' },
+            { left: '98%', top: '86%', size: 'h-1 w-1', delay: '1.9s' },
+            { left: '43%', top: '25%', size: 'h-1 w-1', delay: '6s' },
+          ].map((star, index) => (
+            <svg
+              key={`faq-star-${index}`}
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className={`faq-star absolute ${star.size}`}
+              style={{ left: star.left, top: star.top, animationDelay: star.delay }}
+            >
+              <path d="M12 1.5c.9 0 1.5 1.2 1.9 4.4.2 1.8.9 2.8 2.4 3.1 3.2.5 4.4 1.1 4.4 2s-1.2 1.5-4.4 2c-1.5.3-2.2 1.3-2.4 3.1-.4 3.2-1 4.4-1.9 4.4s-1.5-1.2-1.9-4.4c-.2-1.8-.9-2.8-2.4-3.1-3.2-.5-4.4-1.1-4.4-2s1.2-1.5 4.4-2c1.5-.3 2.2-1.3 2.4-3.1.4-3.2 1-4.4 1.9-4.4Z" />
+            </svg>
           ))}
+          <span className="faq-shooting-star absolute left-[66%] top-[13%]" aria-hidden="true" />
+          <span className="faq-shooting-star faq-shooting-star--second absolute left-[31%] top-[35%]" aria-hidden="true" />
+          <span className="faq-shooting-star faq-shooting-star--third absolute left-[78%] top-[56%]" aria-hidden="true" />
         </div>
+
+        <div className="faq-side-character faq-side-character--left pointer-events-none absolute left-[-0.25rem] top-[48%] z-[2] hidden w-[9rem] lg:block xl:left-[0.5rem] xl:w-[11rem]" aria-hidden="true">
+          <img
+            src="/faq/faq-gardener-floating-v3.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full"
+          />
         </div>
+        <div className="faq-side-character faq-side-character--right pointer-events-none absolute right-[-0.25rem] top-[39%] z-[2] hidden w-[9rem] xl:block xl:right-[0.5rem] xl:w-[9.5rem]" aria-hidden="true">
+          <img
+            src="/faq/faq-mechanic-floating-v3.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full"
+          />
+        </div>
+        <div className="faq-side-character faq-side-character--painter pointer-events-none absolute left-[2%] top-[74%] z-[1] hidden w-[5rem] lg:block xl:left-[38%] xl:top-[66%] xl:w-[6.75rem]" aria-hidden="true">
+          <img
+            src="/faq/faq-painter-floating.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full"
+          />
+        </div>
+        <div className="faq-floating-prop faq-floating-prop--plant pointer-events-none absolute left-[13%] top-[39%] z-[1] hidden w-[4rem] xl:block" aria-hidden="true">
+          <img
+            src="/faq/faq-floating-plant.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full"
+          />
+        </div>
+        <div className="faq-floating-prop faq-floating-prop--wrench pointer-events-none absolute right-[1%] top-[28%] z-[3] hidden w-[2.75rem] xl:block" aria-hidden="true">
+          <img
+            src="/faq/faq-floating-wrench.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full"
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-14 xl:gap-20">
+            <m.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center lg:sticky lg:top-28 lg:self-start lg:text-left"
+            >
+              <h2 id="faq-heading" className="mx-auto max-w-[32rem] font-display text-[1.9rem] font-extrabold leading-[1.06] tracking-[-0.035em] text-white sm:text-[2.25rem] lg:mx-0 lg:text-[2.55rem]">
+                ¿Tienes dudas? <span className="block text-[#9ED6F1]">Te ayudamos</span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-[24rem] font-sans text-[1.02rem] font-medium leading-[1.6] text-white/75 lg:mx-0">
+                Respuestas claras para que sepas qué esperar antes de empezar tu proyecto.
+              </p>
+
+              <div className="faq-idea-float relative mx-auto mt-5 flex h-[11.5rem] w-full max-w-[19rem] items-center justify-center sm:mt-7 sm:h-[13rem] sm:max-w-[21rem] lg:mx-0 lg:mt-8 lg:h-[14rem] lg:max-w-[22rem]">
+                <div className="faq-bulb-glow pointer-events-none absolute right-[21%] top-[-0.2rem] z-0 h-16 w-16 rounded-full" aria-hidden="true" />
+                <div className="pointer-events-none absolute bottom-4 left-1/2 h-32 w-56 -translate-x-1/2 rounded-full bg-[#9ED6F1]/25 blur-3xl" aria-hidden="true" />
+                <img
+                  src="/seccion-2/faq-idea-character.png"
+                  alt="Personaje de Icono Studio flotando junto a una bombilla"
+                  loading="lazy"
+                  decoding="async"
+                  className="relative z-10 h-full w-full object-contain object-center drop-shadow-[0_18px_24px_rgba(0,0,0,0.22)]"
+                />
+              </div>
+            </m.div>
+
+            <div className="mx-auto w-full max-w-[43rem] overflow-hidden rounded-[1.75rem] border border-white/15 bg-[#0B2B5F]/60 p-2 shadow-[0_24px_70px_-38px_rgba(0,0,0,0.58)] sm:p-3 lg:max-w-none">
+              {faqs.map((faq, i) => {
+                const isActive = activeFaq === i;
+                const questionId = `faq-question-${i}`;
+                const answerId = `faq-answer-${i}`;
+
+                return (
+                  <m.div
+                    key={faq.q}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    className={`group overflow-hidden rounded-[1.1rem] ${isActive ? 'bg-[#D8ECFB] shadow-[0_12px_28px_-22px_rgba(0,0,0,0.65)]' : ''}`}
+                  >
+                    <h3>
+                      <button
+                        type="button"
+                        id={questionId}
+                        aria-expanded={isActive}
+                        aria-controls={answerId}
+                        onClick={() => setActiveFaq(isActive ? null : i)}
+                        className={`flex min-h-[4.75rem] w-full items-center justify-between gap-4 rounded-[1.1rem] px-3 py-4 text-left transition-[background-color,box-shadow,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#9ED6F1] sm:px-5 sm:py-5 ${isActive ? 'bg-transparent text-[#0B1B63]' : 'hover:bg-white/[0.08]'}`}
+                      >
+                        <span className="flex min-w-0 items-center gap-3 sm:gap-4">
+                          <span className={`shrink-0 font-display text-[0.76rem] font-extrabold tracking-[0.12em] transition-colors duration-300 ${isActive ? 'text-[#1C78B6]' : 'text-[#9ED6F1]'}`} aria-hidden="true">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <span className={`pr-2 font-sans text-[1.02rem] font-bold leading-[1.35] transition-colors sm:text-[1.08rem] ${isActive ? 'text-[#0B1B63]' : 'text-white/90'}`}>
+                            {faq.q}
+                          </span>
+                        </span>
+                        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isActive ? 'border-[#0B1B63] bg-[#0B1B63] text-white' : 'border-white/25 bg-white/10 text-white/70 group-hover:border-[#9ED6F1] group-hover:text-[#9ED6F1]'}`}>
+                          <ChevronDown className={`h-[1.1rem] w-[1.1rem] transition-transform duration-300 ${isActive ? 'rotate-180' : ''}`} aria-hidden="true" />
+                        </span>
+                      </button>
+                    </h3>
+
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <m.div
+                          id={answerId}
+                          role="region"
+                          aria-labelledby={questionId}
+                          initial={{ height: 0, opacity: 0, y: -4 }}
+                          animate={{ height: 'auto', opacity: 1, y: 0 }}
+                          exit={{ height: 0, opacity: 0, y: -4 }}
+                          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          <div className="px-4 pb-5 pt-0 text-[0.98rem] font-medium leading-[1.65] text-[#27396C] sm:px-5">
+                            {faq.a}
+                          </div>
+                        </m.div>
+                      )}
+                    </AnimatePresence>
+                  </m.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
       </section>
 
-      {/* 12. INTEGRATED FOOTER (FORM + LINKS) */}
-      <div className="bg-brand-dark relative overflow-hidden border-t border-white/20">
-        <div className="absolute inset-0 opacity-[0.05] bg-blueprint"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-brand-blue/10 to-transparent"></div>
+      {/* 10. CONTACT */}
+      <section id="contacto" className="relative scroll-mt-24 overflow-hidden bg-[#D8ECFB] pb-28 pt-8 sm:py-10 md:pb-44 md:pt-8 lg:py-12">
+        <div className="pointer-events-none absolute -right-32 -top-36 h-[28rem] w-[28rem] rounded-full bg-white/45 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-44 left-[14%] h-[22rem] w-[30rem] rounded-full bg-[#9ED6F1]/45 blur-3xl" aria-hidden="true" />
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[43rem] text-center">
+            <h2 className="mt-0 font-display text-[2rem] font-extrabold leading-[1.06] tracking-[-0.04em] text-[#0B1B63] sm:text-[2.45rem] lg:text-[2.75rem]">
+              Tu nueva web <span style={{ color: '#3E88AE' }}>empieza aquí</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-[32rem] text-[0.98rem] font-medium leading-[1.5] text-[#27396C] sm:text-[1.04rem]">
+              Cuéntanos tu idea, aunque todavía no tengas todos los detalles. Te ayudamos a dar el siguiente paso.
+            </p>
+          </div>
 
-        <section id="contacto" className="py-16 sm:py-20 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-12 lg:gap-16 items-start">
-              <div className="lg:sticky lg:top-32 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="relative mx-auto mt-6 max-w-[64rem] pt-6 sm:mt-8 sm:pt-8 md:max-w-[34rem] md:pt-6 lg:mt-9 lg:max-w-[64rem] lg:px-[10.25rem] lg:pt-0">
+            <div className="contact-club-companion contact-club-companion--painter pointer-events-none absolute bottom-[-11.25rem] left-[-6.5rem] top-auto z-[5] hidden w-[6.5rem] md:block lg:bottom-[-5.75rem] lg:left-[-8.75rem] lg:w-[7.5rem]" aria-hidden="true">
+              <img
+                src="/contact/contact-club-painter.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="w-full"
+              />
+            </div>
 
-                <h2 className="ui-section-title text-white mb-8">
-                  TU NUEVA WEB <br />
-                  <span className="text-brand-lime italic font-normal">EMPIEZA AQUÍ</span>
-                </h2>
-                <p className="text-[15px] text-white/70 font-medium leading-relaxed mb-8 max-w-sm mx-auto lg:mx-0">
-                  Cuéntanos qué necesitas y te responderemos con una orientación clara para crear una web profesional, cuidada y preparada para captar clientes.
-                </p>
+            <div className="contact-club-companion contact-club-companion--gardener pointer-events-none absolute bottom-[-11.25rem] left-[1rem] top-auto z-[5] hidden w-[6.5rem] md:block lg:bottom-[-5.75rem] lg:left-[-3rem] lg:w-[7.5rem]" aria-hidden="true">
+              <img
+                src="/contact/contact-club-gardener.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="w-full"
+              />
+            </div>
 
-                <div className="grid grid-cols-1 gap-4 mb-8 pt-6 border-t border-white/10 w-full max-w-sm">
-                  {[
-                    { t: "Respuesta en menos de 24h", i: Clock },
-                    { t: "Precio definido antes de empezar", i: FileText },
-                    { t: "Atención personalizada", i: Heart },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-center lg:justify-start gap-3 text-xs font-bold text-white/90">
-                      <div className="w-6 h-6 rounded-lg bg-brand-lime/10 flex items-center justify-center text-brand-lime">
-                        <item.i size={14} />
-                      </div>
-                      {item.t}
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="contact-club-companion contact-club-companion--architect pointer-events-none absolute bottom-[-11.25rem] left-[8.5rem] right-auto top-auto z-[5] hidden w-[6.5rem] md:block lg:bottom-[-5.75rem] lg:left-auto lg:right-[-9.25rem] lg:w-[7.5rem]" aria-hidden="true">
+              <img
+                src="/contact/contact-club-architect.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="w-full"
+              />
+            </div>
 
-              <div className="bg-white/5 border border-white/10 p-5 md:p-7 rounded-[2.5rem] backdrop-blur-md shadow-2xl relative">
-                {isSubmitted ? (
-                  <div className="text-center py-10">
-                    <div className="w-16 h-16 bg-brand-lime rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(204,255,0,0.2)]">
-                      <Check size={32} className="text-brand-dark" />
-                    </div>
-                    <h3 className="font-display text-2xl uppercase mb-3 text-white italic">Solicitud enviada</h3>
-                    <p className="text-white/60 text-base mb-6 leading-relaxed">
-                      Gracias por contarnos tu proyecto. Te responderemos lo antes posible.
-                    </p>
-                    <a
-                      href="https://wa.me/34623783129"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex bg-brand-lime text-brand-dark px-8 py-4 rounded-full font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-all items-center gap-3 shadow-xl"
-                    >
-                      Hablar por WhatsApp <Send size={14} />
-                    </a>
+            <div className="contact-club-character pointer-events-none absolute bottom-[-6.75rem] right-1 top-auto z-10 mb-0 w-[5rem] max-w-none sm:bottom-[-7rem] sm:right-4 sm:w-[6rem] md:bottom-[-11.25rem] md:right-[-6.5rem] md:w-[9rem] lg:right-[-2rem] lg:bottom-[-5.75rem] lg:w-[16rem]">
+              <img
+                src="/contact/contact-club-mascot-v5.png"
+                alt="Personaje de Icono Studio asomándose con una expresión amable y el pulgar arriba"
+                loading="lazy"
+                decoding="async"
+                className="w-full"
+              />
+            </div>
+
+            <div className="contact-club-form relative z-20 overflow-hidden rounded-[1.5rem] border border-white/90 bg-white shadow-[0_24px_65px_rgba(11,27,99,0.16)] sm:rounded-[1.75rem]">
+              <div className="p-4 sm:p-6 lg:p-6">
+              {isSubmitted ? (
+                <div className="py-10 text-center">
+                  <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#9ED6F1]">
+                    <Check size={28} className="text-[#0B1B63]" strokeWidth={2.5} />
                   </div>
-                ) : (
-                  <>
-                    <div className="mb-6">
-                      <h3 className="font-display text-xl sm:text-2xl uppercase text-white italic tracking-tight leading-none mb-2">Pide tu presupuesto web</h3>
-                      <p className="text-sm text-white/70 font-medium">Te responderemos con una propuesta clara y sin compromiso.</p>
-                    </div>
-
-                    <form
-                      onSubmit={handleSubmit}
-                      onSubmitCapture={() => debugLeadFormSubmitCapture('contact_home_integrated')}
-                      onInvalidCapture={(event) => {
-                        const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-                        debugLeadFormInvalid('contact_home_integrated', target.name, target.validationMessage);
-                      }}
-                      className="space-y-3.5"
-                    >
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                        <div className="space-y-1">
-                          <label htmlFor="home-name" className="ui-form-label text-white/40 ml-1">Nombre</label>
-                          <input
-                            id="home-name"
-                            type="text"
-                            name="nombre"
-                            required
-                            value={formData.nombre}
-                            onChange={handleInputChange}
-                            placeholder="Tu nombre"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <label htmlFor="home-business" className="ui-form-label text-white/40 ml-1">Negocio / Marca</label>
-                          <input
-                            id="home-business"
-                            type="text"
-                            name="negocio"
-                            required
-                            value={formData.negocio}
-                            onChange={handleInputChange}
-                            placeholder="Nombre de tu empresa"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                        <div className="space-y-1">
-                          <label htmlFor="home-phone" className="ui-form-label text-white/40 ml-1">WhatsApp / Teléfono</label>
-                          <input
-                            id="home-phone"
-                            type="tel"
-                            name="whatsapp"
-                            required
-                            value={formData.whatsapp}
-                            onChange={handleInputChange}
-                            placeholder="600 000 000"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <label htmlFor="home-email" className="ui-form-label text-white/40 ml-1">Email</label>
-                          <input
-                            id="home-email"
-                            type="email"
-                            name="email"
-                            required
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="hola@tuweb.com"
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                        <div className="space-y-1">
-                          <label htmlFor="home-need" className="ui-form-label text-white/40 ml-1">Tipo de web</label>
-                          <select
-                            id="home-need"
-                            name="necesidad"
-                            required
-                            value={formData.necesidad}
-                            onChange={handleInputChange}
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
-                          >
-                            <option value="" className="bg-brand-dark">Selecciona una opción</option>
-                            <option value="corporativa" className="bg-brand-dark">Web corporativa</option>
-                            <option value="landing" className="bg-brand-dark">Landing page</option>
-                            <option value="portfolio" className="bg-brand-dark">Portfolio</option>
-                            <option value="tienda" className="bg-brand-dark">Tienda online</option>
-                            <option value="rediseño" className="bg-brand-dark">Rediseño web</option>
-                            <option value="no-claro" className="bg-brand-dark">No lo tengo claro</option>
-                          </select>
-                        </div>
-                        <div className="space-y-1">
-                          <label htmlFor="home-budget" className="ui-form-label text-white/40 ml-1">Presupuesto aproximado</label>
-                          <select
-                            id="home-budget"
-                            name="presupuesto"
-                            required
-                            value={formData.presupuesto}
-                            onChange={handleInputChange}
-                            className="w-full h-11 bg-white/5 border border-white/10 rounded-xl px-4 text-sm text-white focus:border-brand-lime focus:outline-none transition-all appearance-none cursor-pointer"
-                          >
-                            <option value="" className="bg-brand-dark">Selecciona un rango</option>
-                            <option value="350-500" className="bg-brand-dark">350 € – 500 €</option>
-                            <option value="500-800" className="bg-brand-dark">500 € – 800 €</option>
-                            <option value="800-1200" className="bg-brand-dark">800 € – 1.200 €</option>
-                            <option value="1200+" className="bg-brand-dark">Más de 1.200 €</option>
-                            <option value="orientacion" className="bg-brand-dark">Necesito orientación</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="space-y-1">
-                        <label htmlFor="home-message" className="ui-form-label text-white/40 ml-1">Cuéntanos qué necesitas</label>
-                        <textarea
-                          id="home-message"
-                          name="mensaje"
-                          required
-                          rows={2}
-                          value={formData.mensaje}
-                          onChange={handleInputChange}
-                          placeholder="Ej: necesito una web para mi clínica, con imagen profesional, contacto por WhatsApp y preparada para captar clientes."
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-brand-lime focus:outline-none transition-all resize-none"
-                        ></textarea>
-                      </div>
-
-                      <div className="flex items-start gap-3 py-1">
-                        <input
-                          type="checkbox"
-                          name="privacidad"
-                          id="privacidad"
-                          required
-                          checked={formData.privacidad}
-                          onChange={handleInputChange}
-                          className="mt-1 accent-brand-lime"
-                        />
-                        <label htmlFor="privacidad" className="text-[11px] text-white/55 leading-relaxed">
-                          Acepto la{' '}
-                          <RouterLink to="/politica-de-privacidad" className="text-brand-lime hover:text-white underline underline-offset-4">
-                            política de privacidad
-                          </RouterLink>{' '}
-                          y autorizo a Icono Studio a contactar conmigo.
-                        </label>
-                      </div>
-
-                      <button
-                        type="submit"
-                        onClick={() => debugLeadFormButtonClick('contact_home_integrated')}
-                        className="w-full bg-brand-lime text-brand-dark h-12 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] hover:scale-[1.02] transition-all shadow-xl shadow-brand-lime/20 mt-2 flex items-center justify-center gap-3"
-                      >
-                        Pedir presupuesto gratis <Send size={14} />
-                      </button>
-
-                      <p className="text-[9px] text-center text-white/40 font-bold uppercase tracking-widest pt-1">
-                        O <a href="https://wa.me/34623783129" className="text-brand-lime hover:underline">escríbenos por WhatsApp</a> si prefieres hablarlo más rápido.
-                      </p>
-                    </form>
+                  <h3 className="mb-3 font-display text-[1.3rem] font-extrabold text-[#0B1B63]">Solicitud enviada</h3>
+                  <p className="mb-6 text-[0.92rem] font-medium leading-relaxed text-[#536583]">
+                    Gracias por contarnos tu proyecto. Te responderemos lo antes posible.
+                  </p>
+                  <a
+                    href="https://wa.me/34623783129"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="brand-button brand-button--dark inline-flex items-center gap-2 px-7 py-3 text-[0.88rem] font-bold"
+                  >
+                    Hablar por WhatsApp <Send size={14} />
+                  </a>
+                </div>
+              ) : (
+                <>
+                  <HomeContactForm
+                    values={formData}
+                    busy={isSubmitting}
+                    error={formError}
+                    onChange={handleInputChange}
+                    onSubmit={handleSubmit}
+                  />
                   </>
                 )}
               </div>
             </div>
           </div>
+        </div>
         </section>
-      </div>
       </main>
 
       <Footer hideCTA={true} />
     </div>
+    </MotionConfig>
   );
 }

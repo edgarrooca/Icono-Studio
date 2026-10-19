@@ -1,97 +1,62 @@
-import { motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Mail, MessageCircle, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { mainNavLinks } from '../data/navigation';
+import { seoLocations } from '../data/seoLocations';
 import { footerContactLinks, siteConfig } from '../lib/site';
 
 interface FooterProps {
   hideCTA?: boolean;
 }
 
-export default function Footer({ hideCTA = false }: FooterProps) {
+const contactIcons = {
+  WhatsApp: MessageCircle,
+  Email: Mail,
+  Teléfono: Phone,
+} as const;
+
+export default function Footer({ hideCTA: _hideCTA = false }: FooterProps) {
   const footerNavLinks = mainNavLinks.flatMap((link) => {
     if (link.children?.length) {
-      return link.children;
+      return link.children
+        .filter((child) => !child.name.startsWith('Diseño Web'))
+        .map((child) => ({ name: child.name, href: child.href }));
     }
 
     return link.href ? [{ name: link.name, href: link.href }] : [];
   });
 
   return (
-    <footer className={`bg-brand-dark text-white ${hideCTA ? 'pt-8' : 'pt-16 sm:pt-20'} pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full`}>
-      {/* TRULY Edge-to-edge separator line - Forces width beyond parent containers */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-px bg-white/30 z-50 pointer-events-none"></div>
-
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {!hideCTA && (
-          <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-            <h2 className="font-display text-[14vw] sm:text-[16vw] md:text-[14vw] leading-[0.8] uppercase tracking-tighter mb-8 sm:mb-12 text-brand-lime">
-              ¿Hablamos?
-            </h2>
-            <motion.a 
-              href="/contacto"
-              id="cta_footer_contact"
-              onClick={() => (window as any).dataLayer?.push({
-                'event': 'cta_click',
-                'cta_id': 'footer_contact',
-                'cta_text': 'Pedir Presupuesto (Footer)',
-                'page_path': window.location.pathname
-              })}
-              whileHover="hover"
-              initial="initial"
-              className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 bg-white text-brand-dark px-8 sm:px-12 py-4 sm:py-6 rounded-full font-display text-xl sm:text-2xl uppercase overflow-hidden transition-all duration-300 w-full sm:w-auto"
-            >
-              {/* HIGH-VISIBILITY CRYSTAL SHINE - ENTER ONLY */}
-              <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-full font-normal">
-                <motion.div 
-                  whileHover={{ 
-                    x: '200%',
-                    transition: { duration: 0.8, ease: "easeInOut" }
-                  }}
-                  initial={{ x: '-200%', skewX: -35 }}
-                  transition={{ duration: 0 }}
-                  className="absolute inset-0 w-full h-full"
-                  style={{
-                    background: 'linear-gradient(90deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 70%)',
-                  }}
-                />
-              </div>
-              <span className="relative z-20">Pedir Presupuesto</span> 
-              <ArrowUpRight size={24} className="sm:w-7 sm:h-7 relative z-20 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.a>
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12">
-          <div className="sm:col-span-2">
-            <div className="flex items-center gap-2 mb-4 sm:mb-6">
-              <img 
-                src="/icono-studio-logo.png" 
-                alt="Icono Studio Logo" 
-                className="h-10 sm:h-12 w-auto object-contain filter brightness-0 invert mx-auto md:mx-0" 
-              />
-            </div>
-            <p className="text-white/60 max-w-sm text-base sm:text-lg mx-auto md:mx-0">
-              Agencia de diseño y desarrollo web en Valencia. Creamos webs rápidas, cuidadas y pensadas para convertir visitas en contactos.
+    <footer className="relative z-20 border-t border-[#DCE5EE] bg-white px-5 pb-6 pt-9 sm:px-6 sm:pb-7 sm:pt-12 lg:px-8 lg:pt-14">
+      <div className="mx-auto max-w-[1380px]">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr] lg:gap-20">
+          <div className="md:col-span-2 lg:col-span-1">
+            <Link to="/" className="inline-flex" aria-label="Icono Studio, inicio">
+              <img src="/icono-studio-logo.png" alt="Icono Studio" className="h-11 w-auto object-contain" style={{ filter: 'brightness(0)' }} />
+            </Link>
+            <p className="mt-5 max-w-md text-[0.95rem] leading-[1.7] text-[#526477]">
+              Diseño web y SEO para negocios que quieren explicar mejor lo que hacen y recibir más contactos.
             </p>
+            <Link
+              to="/contacto"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#0B1B63] transition-colors hover:text-[#2A6D98]"
+            >
+              Hablemos de tu proyecto <ArrowUpRight size={16} strokeWidth={1.8} />
+            </Link>
           </div>
-          
-          <div className="text-center md:text-left">
-            <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Navegación</h4>
-            <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
+
+          <div>
+            <h2 className="text-xs font-bold tracking-[0.16em] text-[#0B1B63]">Navegación</h2>
+            <ul className="mt-3 grid gap-2 text-sm font-medium text-[#526477] sm:mt-5 sm:gap-3">
               {footerNavLinks.map((link) => (
                 <li key={link.href}>
-                  <Link 
-                    to={link.href} 
+                  <Link
+                    to={link.href}
                     onClick={() => (window as any).dataLayer?.push({
-                      'event': 'nav_click',
-                      'nav_item': link.name,
-                      'page_path': window.location.pathname
+                      event: 'nav_click',
+                      nav_item: link.name,
+                      page_path: window.location.pathname,
                     })}
-                    className="hover:text-white transition-colors"
+                    className="transition-colors hover:text-[#0B1B63]"
                   >
                     {link.name}
                   </Link>
@@ -100,26 +65,57 @@ export default function Footer({ hideCTA = false }: FooterProps) {
             </ul>
           </div>
 
-          <div className="text-center md:text-left">
-            <h4 className="font-bold uppercase tracking-wider mb-4 sm:mb-6 text-brand-lime">Contacto</h4>
-            <ul className="space-y-3 sm:space-y-4 text-white/70 font-medium text-sm sm:text-base">
-              {footerContactLinks.map((link) => (
-                <li key={link.name}>
-                  <a href={link.href} className="hover:text-white transition-colors">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
+          <div>
+            <h2 className="text-xs font-bold tracking-[0.16em] text-[#0B1B63]">Contacto</h2>
+            <ul className="mt-3 grid gap-2 text-sm font-medium text-[#526477] sm:mt-5 sm:gap-3">
+              {footerContactLinks.map((link) => {
+                const Icon = contactIcons[link.name];
+
+                return (
+                  <li key={link.name}>
+                    <a href={link.href} className="inline-flex items-center gap-2.5 transition-colors hover:text-[#0B1B63]">
+                      <Icon size={16} strokeWidth={1.8} aria-hidden="true" />
+                      {link.name}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
+            <p className="mt-7 max-w-[15rem] text-sm leading-relaxed text-[#526477]">
+              Respondemos en menos de 24 horas laborables.
+            </p>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 border-t border-white/20 pt-8 mt-10 sm:mt-12 text-xs sm:text-sm text-white/50 font-mono text-center md:text-left">
-          <p>© 2026 {siteConfig.name}. Todos los derechos reservados.</p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-            <Link to="/aviso-legal" className="hover:text-white transition-colors">Aviso Legal</Link>
-            <Link to="/politica-de-privacidad" className="hover:text-white transition-colors">Privacidad</Link>
+        <div className="mt-14 border-t border-[#DCE5EE] pt-7 sm:mt-16">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <p className="text-xs font-bold tracking-[0.16em] text-[#0B1B63]">Diseño web en España</p>
+              <div className="mt-3 flex max-w-3xl flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-[#5F7186]">
+                {seoLocations.map((loc) => (
+                  <Link
+                    key={loc.slug}
+                    to={`/diseno-web-${loc.slug}`}
+                    onClick={() => (window as any).dataLayer?.push({
+                      event: 'nav_click',
+                      nav_item: `Diseño Web ${loc.name}`,
+                      page_path: window.location.pathname,
+                    })}
+                    className="transition-colors hover:text-[#0B1B63]"
+                  >
+                    {loc.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-[#5F7186] lg:justify-end">
+              <Link to="/aviso-legal" className="transition-colors hover:text-[#0B1B63]">Aviso legal</Link>
+              <Link to="/politica-de-privacidad" className="transition-colors hover:text-[#0B1B63]">Privacidad</Link>
+            </div>
           </div>
+
+          <p className="mt-8 text-xs font-medium text-[#5F7186]">© 2026 {siteConfig.name}. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

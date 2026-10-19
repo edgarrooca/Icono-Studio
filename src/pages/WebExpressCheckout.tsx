@@ -203,7 +203,7 @@ function EmbeddedStripeCheckoutForm({
         type="button"
         onClick={handlePayment}
         disabled={isConfirming}
-        className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-brand-lime px-6 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-brand-dark transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70"
+        className="brand-button brand-button--dark inline-flex w-full items-center justify-center gap-3 px-6 py-4 text-[0.98rem] font-semibold disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isConfirming ? (
           <>
@@ -484,7 +484,7 @@ export default function WebExpressCheckout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F6FB] font-sans text-brand-dark selection:bg-brand-lime selection:text-brand-dark">
+    <div className="min-h-screen bg-[#F7F9FC] font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title="Contratar Web Express | Icono Studio"
         description="Completa tus datos y realiza el pago seguro de Web Express desde la propia página."
@@ -494,11 +494,23 @@ export default function WebExpressCheckout() {
         schema={checkoutSchema}
       />
 
-      <Navbar initialTheme="dark" />
+      <Navbar initialTheme="light" />
 
       <main className="pt-28 pb-24 sm:pt-32">
-        <section className="px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
+        <section className="px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-6 text-center">
+              <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+                Contratación segura
+              </div>
+              <h1 className="mt-4 font-display text-[1.9rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-[#0B1B63] sm:text-[2.2rem]">
+                Contratar <span style={{ color: '#3E88AE' }}>Web Express</span>
+              </h1>
+              <p className="mx-auto mt-3 max-w-xl text-[0.95rem] font-medium leading-[1.65] text-[#425776] sm:text-base">
+                Rellena los datos básicos de tu negocio y continúa al pago seguro con Stripe.
+              </p>
+            </div>
+
             <form
               ref={formRef}
               onSubmit={(event) => event.preventDefault()}
@@ -624,7 +636,7 @@ export default function WebExpressCheckout() {
                           name="gestionarDominio"
                           checked={formData.gestionarDominio}
                           onChange={handleInputChange}
-                          className="h-4 w-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue"
+                          className="h-4 w-4 rounded border-gray-300 text-[#2A6D98] focus:ring-[#2A6D98]"
                         />
                         Quiero que gestionéis el dominio
                       </label>
@@ -672,7 +684,7 @@ export default function WebExpressCheckout() {
                         <button
                           type="button"
                           onClick={() => fileInputRef.current?.click()}
-                          className="inline-flex items-center gap-3 rounded-full bg-brand-dark px-5 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-white"
+                          className="brand-button brand-button--dark inline-flex items-center gap-3 px-5 py-3 text-[11px] font-black uppercase tracking-[0.18em]"
                         >
                           <ImageUp size={16} />
                           {logoFile ? 'Cambiar archivo' : 'Subir logo'}
@@ -691,7 +703,7 @@ export default function WebExpressCheckout() {
                       required
                       checked={formData.privacidad}
                       onChange={handleInputChange}
-                      className="mt-1 h-4 w-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue"
+                      className="mt-1 h-4 w-4 rounded border-gray-300 text-[#2A6D98] focus:ring-[#2A6D98]"
                     />
                     <span>
                       Acepto las{' '}
@@ -712,7 +724,7 @@ export default function WebExpressCheckout() {
                       debugLeadFormButtonClick('web_express_checkout_next');
                       goToSummary();
                     }}
-                    className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-brand-dark px-6 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-white transition-transform hover:scale-[1.01]"
+                    className="brand-button brand-button--dark inline-flex w-full items-center justify-center gap-3 px-6 py-4 text-[11px] font-black uppercase tracking-[0.22em]"
                   >
                     Siguiente
                     <ArrowRight size={16} />
@@ -721,7 +733,7 @@ export default function WebExpressCheckout() {
               ) : (
                 <div className="space-y-5">
                   <div className="rounded-[1.7rem] border border-gray-100 bg-[#FAFAFA] p-5">
-                    <p className="ui-eyebrow text-gray-400 mb-4">Resumen del pedido</p>
+                    <p className="mb-4 inline-block rounded-full bg-[#E6F4FB] px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">Resumen del pedido</p>
                     <div className="grid gap-4 sm:grid-cols-2">
                       {[
                         {
@@ -764,13 +776,13 @@ export default function WebExpressCheckout() {
 
                   <div className="rounded-[1.7rem] border border-brand-dark bg-brand-dark p-5 text-white">
                     <div className="mb-5 flex items-start gap-3">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/8 text-brand-lime">
+                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-[#9ED6F1]">
                         <LockKeyhole size={18} />
                       </div>
                       <div>
-                        <p className="ui-eyebrow text-brand-lime mb-3">Pago seguro</p>
+                        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#9ED6F1]">Pago seguro</p>
                         <p className="text-sm leading-7 text-white/74">
-                          Introduce la tarjeta y confirma el pago desde esta misma página. No te sacamos a una landing externa para cerrar la compra.
+                          Introduce la tarjeta y confirma el pago desde esta misma página, sin redirigirte a ningún otro sitio.
                         </p>
                       </div>
                     </div>
@@ -801,7 +813,7 @@ export default function WebExpressCheckout() {
                   <details className="rounded-[1.7rem] border border-gray-100 bg-white p-5 group">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                       <div>
-                        <p className="ui-eyebrow text-gray-400 mb-2">Detalle económico</p>
+                        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-400">Detalle económico</p>
                         <p className="text-sm font-semibold text-brand-dark">
                           Ver desglose de importes sin mostrar el total final aquí
                         </p>
@@ -834,7 +846,7 @@ export default function WebExpressCheckout() {
                         setStep(1);
                         setPaymentError('');
                       }}
-                      className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-gray-200 bg-white px-6 py-4 text-[11px] font-black uppercase tracking-[0.22em] text-brand-dark transition-transform hover:scale-[1.01]"
+                      className="brand-button brand-button--outline inline-flex w-full items-center justify-center gap-3 px-6 py-4 text-[0.98rem] font-semibold"
                     >
                       <PencilLine size={16} />
                       Editar datos

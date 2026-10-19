@@ -88,7 +88,7 @@ export const buildOrganizationSchema = () => ({
   image: absoluteUrl(siteConfig.defaultOgImage),
   logo: {
     '@type': 'ImageObject',
-    url: absoluteUrl(siteConfig.defaultOgImage),
+    url: absoluteUrl(siteConfig.logo),
   },
   address: {
     '@type': 'PostalAddress',
@@ -140,7 +140,7 @@ export const buildProjectCaseStudySchema = (project: ProjectSchemaSource) => {
     project.subtitle ||
     'Caso de estudio de diseño y desarrollo web.';
   const projectPath = `/proyecto/${project.id}`;
-  const imageUrl = absoluteUrl(project.imgReto || project.img || siteConfig.defaultOgImage);
+  const imageUrl = absoluteUrl(project.img || project.imgReto || siteConfig.defaultOgImage);
 
   return {
     '@context': 'https://schema.org',

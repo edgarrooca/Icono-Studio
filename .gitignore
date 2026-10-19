@@ -4,8 +4,15 @@ dist/
 coverage/
 .cache/
 .DS_Store
+._*
 *.log
 .env*
 !.env.example
 .vscode/
 Icono Studio/
+.freebuff/
+tmp/
+.verify-cover.mjs
+# Unrelated e-reader files accidentally copied into the public assets folder.
+public/como-hacemos-webs/zenpm.koplugin/
+public/como-hacemos-webs/ZenPM-koreader-ereader-1.0.12.zip

@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m } from 'motion/react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
-import { 
-  ArrowLeft, Calendar, User, ChevronRight, Share2, 
-  Copy, Menu, X, ArrowRight 
-} from 'lucide-react';
+import { ArrowRight, Calendar, ChevronRight } from 'lucide-react';
 import { blogPostsSorted } from '../data/blog';
+import { blogContentLoaders } from '../data/blogContentLoaders';
 import { blogSummariesSorted } from '../data/blogSummaries';
-import { mainNavLinks } from '../data/navigation';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SeoHead from '../components/SeoHead';
@@ -31,19 +28,49 @@ export default function BlogPost() {
   const [readingProgress, setReadingProgress] = useState(0);
   const [toc, setToc] = useState<ToCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [bodyHtml, setBodyHtml] = useState<string | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // Carga el cuerpo del artículo bajo demanda (chunk propio por artículo).
   useEffect(() => {
-    if (!post) return;
+    if (!post) {
+      return;
+    }
+
+    let cancelled = false;
+    const loader = blogContentLoaders[post.slug];
+    const load = loader ? loader() : Promise.resolve({ content: '' });
+
+    load
+      .then((module) => {
+        if (!cancelled) {
+          setBodyHtml(module.content);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setBodyHtml('');
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [post]);
+
+  // Genera el índice de contenidos cuando el cuerpo ya está disponible.
+  useEffect(() => {
+    if (!post || bodyHtml === null) {
+      return;
+    }
 
     // Generate ToC and Add IDs to content
     const generateToC = () => {
       const container = document.createElement('div');
-      container.innerHTML = post.content;
+      container.innerHTML = bodyHtml;
       const headings = container.querySelectorAll('h2');
       const items: ToCItem[] = [];
-      
+
       headings.forEach((h, i) => {
         const id = `section-${i}`;
         h.id = id;
@@ -54,6 +81,12 @@ export default function BlogPost() {
     };
 
     generateToC();
+  }, [post, bodyHtml]);
+
+  useEffect(() => {
+    if (!post) {
+      return;
+    }
 
     const handleScroll = () => {
       // Reading Progress
@@ -83,6 +116,7 @@ export default function BlogPost() {
     };
   }, [post]);
 
+
   if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -93,15 +127,15 @@ export default function BlogPost() {
           robots="noindex,nofollow"
         />
         <div className="text-center">
-          <h1 className="text-3xl font-display mb-4 uppercase text-brand-dark">Post no encontrado</h1>
-          <RouterLink to="/blog" className="text-brand-blue font-bold hover:underline">Volver al blog</RouterLink>
+          <h1 className="mb-4 font-display text-3xl font-bold text-[#0B1B63]">Post no encontrado</h1>
+          <RouterLink to="/blog" className="text-[#2A6D98] font-bold hover:underline">Volver al blog</RouterLink>
         </div>
       </div>
     );
   }
 
-  const contentWithIds = post.content.replace(/<h2>/g, (match, offset) => {
-    const before = post.content.substring(0, offset);
+  const contentWithIds = (bodyHtml ?? '').replace(/<h2>/g, (_match, offset) => {
+    const before = (bodyHtml ?? '').substring(0, offset);
     const index = (before.match(/<h2>/g) || []).length;
     return `<h2 id="section-${index}">`;
   });
@@ -161,7 +195,7 @@ export default function BlogPost() {
   const relatedPosts = getRelatedBlogEntries(blogSummariesSorted, post, 3);
 
   return (
-    <div className="min-h-screen bg-white selection:bg-brand-lime selection:text-brand-dark font-sans overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-[#F7F9FC] font-sans text-[#0B1B63] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63]">
       <SeoHead
         title={post.metaTitle}
         description={post.metaDescription}
@@ -174,41 +208,41 @@ export default function BlogPost() {
         section={post.tag}
         schema={blogPostSchema}
       />
-      
-      <Navbar initialTheme="dark" />
+
+      <Navbar initialTheme="light" />
 
       {/* Progress Bar (Lime for visibility against navbar) */}
       <div className="fixed top-0 left-0 w-full h-1.5 z-[110]">
-        <motion.div 
-          className="h-full bg-brand-lime shadow-[0_0_10px_rgba(212,255,0,0.8)]" 
+        <m.div
+          className="h-full bg-[#9ED6F1] shadow-[0_0_10px_rgba(158,214,241,0.8)]"
           style={{ width: `${readingProgress}%` }}
         />
       </div>
 
-      <main className="pt-32 pb-32">
+      <main className="pb-24 pt-28 sm:pb-32 sm:pt-32">
         <div className="max-w-7xl mx-auto px-6">
-          
-          <div className="max-w-5xl mx-auto mb-12 flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em]">
-            <RouterLink to="/" className="text-gray-400 hover:text-brand-dark transition-colors">Inicio</RouterLink>
+
+          <div className="mx-auto mb-12 flex max-w-5xl items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <RouterLink to="/" className="text-[#5F7186] transition-colors hover:text-[#0B1B63]">Inicio</RouterLink>
             <ChevronRight size={10} className="text-gray-300" />
-            <RouterLink to="/blog" className="text-gray-400 hover:text-brand-dark transition-colors">Blog</RouterLink>
+            <RouterLink to="/blog" className="text-[#5F7186] transition-colors hover:text-[#0B1B63]">Blog</RouterLink>
             <ChevronRight size={10} className="text-gray-300" />
-            <span className="text-brand-blue">{post.tag}</span>
+            <span className="text-[#2A6D98]">{post.tag}</span>
           </div>
 
           {/* Title Section (More Elegant) */}
           <div className="max-w-4xl mx-auto mb-12 text-center">
-            <motion.h1 
+            <m.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-brand-dark tracking-tight leading-[1.1] mb-10 text-balance"
             >
               {post.title}
-            </motion.h1>
+            </m.h1>
 
             <div className="flex flex-wrap items-center justify-center gap-y-6 gap-x-8 sm:gap-x-12 w-full">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-brand-dark text-brand-lime border-2 border-white shadow-sm overflow-hidden flex items-center justify-center font-display text-xl">
+                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-[#0B1B63] font-display text-xl text-[#9ED6F1] shadow-sm">
                   I
                 </div>
                 <div className="text-left">
@@ -231,18 +265,18 @@ export default function BlogPost() {
             </div>
           </div>
 
-          <motion.div 
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="max-w-5xl mx-auto mb-20 rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-xl border border-gray-100 bg-white"
+            className="mx-auto mb-16 max-w-5xl overflow-hidden rounded-[1.5rem] border border-[#DCE5EE] bg-white shadow-[0_20px_60px_-35px_rgba(11,27,99,0.35)] sm:mb-20 sm:rounded-[2rem]"
           >
-            <img src={post.image} alt={post.title} fetchpriority="high" decoding="async" className="w-full aspect-[16/9] lg:aspect-[2/1] object-cover" />
-          </motion.div>
+            <img src={post.image} alt={post.title} fetchPriority="high" decoding="async" className="w-full aspect-[16/9] lg:aspect-[2/1] object-cover" />
+          </m.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 xl:gap-24">
-            
-            <aside className="hidden lg:block text-slate-800">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[250px_1fr] xl:gap-20">
+
+            <aside className="hidden text-slate-800 lg:block">
               <div className="toc-sidebar">
                 <p className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-dark mb-6">Contenido</p>
                 <nav className="flex flex-col">
@@ -265,18 +299,18 @@ export default function BlogPost() {
                   </button>
                 </nav>
 
-                <div className="mt-12 p-6 bg-brand-blue/5 rounded-[2rem] border border-brand-blue/10">
-                   <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-3">¿Lanzamos tu web?</p>
-                   <p className="text-sm text-gray-500 mb-6 leading-relaxed">Pide tu presupuesto sin compromiso hoy mismo.</p>
-                   <RouterLink 
-                     to="/contacto" 
+                <div className="mt-10 rounded-2xl border border-[#DCE5EE] bg-[#EEF7FC] p-5">
+                   <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#2A6D98]">¿Lanzamos tu web?</p>
+                   <p className="mb-5 text-sm leading-relaxed text-[#526477]">Pide tu presupuesto sin compromiso.</p>
+                   <RouterLink
+                     to="/contacto"
                      onClick={() => (window as any).dataLayer?.push({
                        'event': 'cta_click',
                        'cta_id': 'blog_sidebar_budget',
                        'cta_text': 'Solicitar Presupuesto (Blog Sidebar)',
                        'page_path': window.location.pathname
                      })}
-                     className="block text-center bg-brand-dark text-brand-lime py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-blue transition-colors"
+                     className="brand-button brand-button--dark inline-flex w-full items-center justify-center py-3 text-center text-[10px] font-bold uppercase tracking-widest"
                    >
                      Solicitar Presupuesto
                    </RouterLink>
@@ -285,21 +319,27 @@ export default function BlogPost() {
             </aside>
 
             <div className="max-w-3xl">
-              <div 
-                ref={contentRef}
-                className="blog-content"
-                dangerouslySetInnerHTML={{ __html: contentWithIds }}
-              />
+              {bodyHtml === null ? (
+                <div className="blog-content" aria-busy="true">
+                  <p className="text-sm font-medium text-[#526477]">Cargando artículo…</p>
+                </div>
+              ) : (
+                <div
+                  ref={contentRef}
+                  className="blog-content"
+                  dangerouslySetInnerHTML={{ __html: contentWithIds }}
+                />
+              )}
 
               {post.faqs && (
-                <section className="mt-32 pt-24 border-t border-gray-100">
-                  <h2 className="font-display text-3xl uppercase mb-16 tracking-tight text-brand-dark">Preguntas <span className="text-brand-blue italic underline decoration-brand-lime/30">frecuentes</span></h2>
+                <section className="mt-24 border-t border-[#DCE5EE] pt-16">
+                  <h2 className="font-display text-3xl font-extrabold tracking-tight text-brand-dark">Preguntas <span className="text-[#2A6D98]">frecuentes</span></h2>
                   <div className="grid gap-8">
                     {post.faqs.map((faq, i) => (
                       <div key={i} className="group flex gap-6">
-                        <span className="text-brand-lime font-display text-2xl pt-1">0{i+1}.</span>
+                        <span className="pt-1 font-display text-2xl" style={{ color: '#3E88AE' }}>0{i + 1}.</span>
                         <div>
-                          <h3 className="text-xl font-bold text-brand-dark mb-4 group-hover:text-brand-blue transition-colors">{faq.question}</h3>
+                          <h3 className="text-xl font-bold text-brand-dark mb-4 group-hover:text-[#2A6D98] transition-colors">{faq.question}</h3>
                           <p className="text-gray-500 font-serif text-lg leading-relaxed">{faq.answer}</p>
                         </div>
                       </div>
@@ -308,22 +348,22 @@ export default function BlogPost() {
                 </section>
               )}
 
-              <div className="mt-32 p-12 bg-zinc-50 rounded-[3rem] border border-gray-100 flex flex-col md:flex-row items-center gap-10">
-                 <div className="w-24 h-24 rounded-3xl bg-brand-dark text-brand-lime font-display flex items-center justify-center text-4xl shrink-0">I</div>
+              <div className="mt-24 flex flex-col items-center gap-8 rounded-[1.5rem] border border-[#DCE5EE] bg-white p-7 sm:p-10 md:flex-row">
+                 <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-[#0B1B63] font-display text-3xl text-[#9ED6F1]">I</div>
                  <div className="text-center md:text-left">
-                    <p className="text-[10px] uppercase font-black tracking-widest text-brand-blue mb-2">Editor en Jefe</p>
-                    <h4 className="font-display text-2xl uppercase tracking-tight text-brand-dark mb-4">Icono Studio Team</h4>
-                    <p className="text-gray-500 mb-6 leading-relaxed">Especialistas en diseño web estratégico y desarrollo de alto impacto para negocios.</p>
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#2A6D98]">Detrás de la guía</p>
+                    <h4 className="mb-3 font-display text-2xl font-extrabold tracking-tight text-brand-dark">Icono Studio</h4>
+                    <p className="mb-5 leading-relaxed text-[#526477]">Diseño web estratégico y desarrollo para negocios que quieren crecer.</p>
                     <div className="flex justify-center md:justify-start gap-4">
-                       <RouterLink 
-                          to="/contacto" 
+                       <RouterLink
+                          to="/contacto"
                           onClick={() => (window as any).dataLayer?.push({
                             'event': 'cta_click',
                             'cta_id': 'blog_footer_budget',
                             'cta_text': 'Solicitar Presupuesto (Blog Footer)',
                             'page_path': window.location.pathname
                           })}
-                          className="text-xs font-bold uppercase tracking-widest text-brand-dark hover:text-brand-blue underline decoration-brand-lime decoration-4"
+                          className="text-xs font-bold uppercase tracking-widest text-[#0B1B63] underline decoration-[#9ED6F1] decoration-4 underline-offset-4 transition-colors hover:text-[#2A6D98]"
                         >
                           Solicitar Presupuesto
                         </RouterLink>
@@ -335,25 +375,24 @@ export default function BlogPost() {
         </div>
       </main>
 
-      <section className="py-32 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-16 px-4">
+      <section className="border-t border-[#DCE5EE] bg-white px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10 flex items-end justify-between gap-5 px-0 sm:mb-12">
             <div>
-              <p className="text-brand-blue font-black uppercase tracking-widest text-[10px] mb-2">Siguiente lectura</p>
-              <h2 className="font-display text-4xl uppercase tracking-tight">Quizás te <span className="italic text-brand-blue">interese</span></h2>
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#2A6D98]">Siguiente lectura</p>
+              <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#0B1B63] sm:text-4xl">Quizá te <span className="text-[#2A6D98]">interese</span></h2>
             </div>
-            <RouterLink to="/blog" className="hidden sm:flex items-center gap-2 font-bold uppercase tracking-widest text-xs hover:text-brand-blue transition-colors">Todos los artículos <ArrowRight size={14} /></RouterLink>
+            <RouterLink to="/blog" className="hidden items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0B1B63] transition-colors hover:text-[#2A6D98] sm:flex">Todos los artículos <ArrowRight size={14} /></RouterLink>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {relatedPosts.map((p) => (
-              <RouterLink to={`/blog/${p.slug}`} key={p.slug} className="group bg-white rounded-[2.5rem] p-5 shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-8 relative">
-                   <div className="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500" />
-                   <img src={p.image} alt={p.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+              <RouterLink to={'/blog/' + p.slug} key={p.slug} className="group overflow-hidden rounded-[1.25rem] border border-[#DCE5EE] bg-[#F7F9FC] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-[#9ED6F1] hover:bg-white hover:shadow-[0_18px_44px_-28px_rgba(11,27,99,0.35)]">
+                <div className="relative aspect-[1.5] overflow-hidden bg-[#D8ECFB]">
+                   <img src={p.image} alt={p.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                 </div>
-                <div className="px-2">
-                  <span className="text-[10px] font-bold text-brand-blue uppercase tracking-[0.2em] mb-4 block">{p.tag}</span>
-                  <h3 className="font-display text-2xl uppercase leading-[1.1] group-hover:text-brand-blue transition-colors line-clamp-2">{p.title}</h3>
+                <div className="p-5">
+                  <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.2em] text-[#2A6D98]">{p.tag}</span>
+                  <h3 className="line-clamp-2 font-display text-xl font-extrabold leading-[1.12] tracking-[-0.035em] text-[#0B1B63] transition-colors group-hover:text-[#2A6D98]">{p.title}</h3>
                 </div>
               </RouterLink>
             ))}

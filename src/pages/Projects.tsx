@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -22,6 +22,10 @@ const projectFilters = [
 type ProjectFilterId = (typeof projectFilters)[number]['id'];
 
 const projectFilterMap: Record<string, ProjectFilterId[]> = {
+  'inktime-tattoo': ['visibility', 'brand'],
+  'somnis-d-angels': ['visibility', 'brand'],
+  'autocustomgt': ['online', 'custom'],
+  'lorenzo-secades-fotografia': ['brand'],
   'instalaciones-torrijos-fontaneria': ['visibility', 'brand'],
   'libreria-garcia-lorca': ['visibility', 'brand', 'custom'],
   'gameshelf-app': ['online', 'custom'],
@@ -80,7 +84,7 @@ export default function Projects() {
     'Casos de estudio y proyectos web de Icono Studio: diseño, desarrollo y experiencias digitales pensadas para transmitir confianza y convertir mejor.';
 
   const filteredProjects = (activeFilter === 'all'
-    ? projects
+    ? [...projects]
     : projects.filter((project) => getProjectSegments(project).includes(activeFilter))
   ).sort((a, b) => {
     const aTitle = a.title.toLowerCase();
@@ -128,7 +132,7 @@ export default function Projects() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] selection:bg-brand-lime selection:text-brand-dark overflow-x-hidden">
+    <div className="min-h-screen bg-[#F7F9FC] selection:bg-[#9ED6F1]/40 selection:text-[#0B1B63] overflow-x-hidden">
       <SeoHead
         title="Proyectos Web y Casos de Estudio | Icono Studio"
         description={projectsDescription}
@@ -136,28 +140,30 @@ export default function Projects() {
         schema={projectsSchema}
       />
 
-      <Navbar initialTheme="dark" />
+      <Navbar initialTheme="light" />
       <main>
 
-      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-10 sm:pb-12 md:pb-14 overflow-hidden bg-brand-dark text-white">
-        <div className="absolute inset-0 opacity-[0.12] bg-blueprint"></div>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[320px] h-[320px] bg-brand-lime/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+      <section className="relative overflow-hidden bg-[#F7F7F7] px-5 pb-12 pt-28 sm:px-6 sm:pb-14 sm:pt-32 lg:px-8 lg:pb-16">
+        <div className="pointer-events-none absolute -right-32 -top-40 h-[34rem] w-[34rem] rounded-full bg-[#D8ECFB] blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-44 left-[-6%] h-[24rem] w-[24rem] rounded-full bg-[#EAF5FA] blur-3xl" aria-hidden />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="inline-block ui-eyebrow text-brand-lime mb-5">Portfolio web</span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+        <div className="relative mx-auto max-w-3xl text-center">
+          <div className="inline-block rounded-full bg-[#E6F4FB] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0B1B63]">
+            Portfolio web
+          </div>
+          <m.h1
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tighter leading-[0.95]"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-5 font-display text-[2.1rem] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0B1B63] sm:text-[2.6rem] lg:text-[3rem]"
           >
-            Proyectos <span className="text-brand-lime italic font-normal">reales</span>
-          </motion.h1>
+            Proyectos <span style={{ color: '#3E88AE' }}>reales</span>
+          </m.h1>
         </div>
       </section>
 
       <section className="py-12 sm:py-16 md:py-20 relative z-20 -mt-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
 
 
           <div className="flex flex-nowrap overflow-x-auto gap-2.5 sm:gap-3 w-[calc(100%+2rem)] -mx-4 px-4 sm:w-[calc(100%+3rem)] sm:-mx-6 sm:px-6 lg:w-full lg:mx-0 lg:px-0 py-2 min-w-0 lg:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mb-12 md:mb-16">
@@ -165,10 +171,10 @@ export default function Projects() {
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-sm sm:text-base font-medium transition-all duration-300 ${
+                className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-bold transition-colors duration-300 sm:px-5 sm:py-2.5 sm:text-sm ${
                   activeFilter === filter.id
-                    ? 'bg-brand-dark text-white shadow-md'
-                    : 'bg-gray-200/60 text-gray-600 hover:bg-gray-200 hover:text-brand-dark'
+                    ? 'border-[#0B1B63] bg-[#0B1B63] text-white shadow-sm'
+                    : 'border-[#DCE5EE] bg-white text-[#526477] hover:border-[#9ED6F1] hover:text-[#0B1B63]'
                 }`}
               >
                 {filter.label}
@@ -179,7 +185,7 @@ export default function Projects() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
             {filteredProjects.map((project, index) => (
-              <motion.div
+              <m.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -197,25 +203,25 @@ export default function Projects() {
                   })}
                   className="group cursor-pointer flex flex-col"
                 >
-                  <div className="overflow-hidden rounded-2xl lg:rounded-3xl aspect-[4/5] mb-5 sm:mb-6 lg:mb-8 bg-gray-100 relative shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-                    <img
-                      src={project.imgReto || project.img}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top transition-all duration-[5s] ease-in-out group-hover:object-bottom"
+                      <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl bg-[#EAF5FA] shadow-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_20px_42px_-20px_rgba(11,27,99,0.28)] sm:mb-6 lg:mb-8 lg:rounded-3xl">
+                        <img
+                      src={project.img}
+                        alt={project.title}
+                      className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
-                      onError={(e) => { (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${project.id}/1200/800`; }}
+                      onError={(e) => { (e.target as HTMLImageElement).src = siteConfig.defaultOgImage; }}
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
                   </div>
 
                   <div className="flex justify-between items-start gap-2">
                     <div>
-                      <h3 className="text-base sm:text-lg font-bold text-brand-dark mb-1 group-hover:text-brand-dark transition-colors duration-300">
+                      <h2 className="text-base sm:text-lg font-bold text-[#0B1B63] mb-1 transition-colors duration-300">
                         {project.title}
-                      </h3>
-                      <p className="text-[9px] font-black text-brand-blue uppercase tracking-widest mb-1.5">
+                      </h2>
+                      <p className="text-[9px] font-black text-[#2A6D98] uppercase tracking-widest mb-1.5">
                         {project.category}
                       </p>
                     </div>
@@ -224,7 +230,7 @@ export default function Projects() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

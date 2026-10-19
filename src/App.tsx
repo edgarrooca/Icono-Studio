@@ -1,5 +1,5 @@
 import { Suspense, lazy, startTransition, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import AnalyticsTracker from './components/AnalyticsTracker';
 import HashScrollHandler from './components/HashScrollHandler';
 import { seoLocations } from './data/seoLocations';
@@ -25,9 +25,12 @@ const Pricing = lazy(() => import('./pages/Pricing'));
 const CookieConsentBanner = lazy(() => import('./components/CookieConsentBanner'));
 const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
 const SalesNotification = lazy(() => import('./components/SalesNotification'));
+const ChatbotLauncher = lazy(() => import('./components/ChatbotLauncher'));
 
 function DeferredGlobalUi() {
   const [isReady, setIsReady] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     if (isPrerenderUserAgent()) {
@@ -45,9 +48,10 @@ function DeferredGlobalUi() {
 
   return (
     <Suspense fallback={null}>
-      <WhatsAppButton />
-      <CookieConsentBanner />
-      <SalesNotification />
+      <ChatbotLauncher isHome={isHome} />
+      {!isHome && <WhatsAppButton />}
+      {!isHome && <CookieConsentBanner />}
+      {!isHome && <SalesNotification />}
     </Suspense>
   );
 }
