@@ -39,7 +39,7 @@ export default function BlogPost() {
 
     let cancelled = false;
     const loader = blogContentLoaders[post.slug];
-    const load = loader ? loader() : Promise.resolve({ content: '' });
+    const load = loader ? loader() : Promise.resolve({ content: post.content || '' });
 
     load
       .then((module) => {
